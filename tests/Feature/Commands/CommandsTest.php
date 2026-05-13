@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 
 // Console commands — Artisan-runnable behaviour smoke tests.
 
@@ -76,6 +77,32 @@ it('enumerator:annotate runs without error for a valid enum', function (): void 
     expect($exit)->toBe(0);
 });
 
+it('enumerator:annotate emits @method stubs for backed enums', function (): void {
+    Artisan::call('enumerator:annotate', ['class' => StatusEnum::class]);
+    $output = Artisan::output();
+    expect($output)->toContain('@method static StatusEnum Active()');
+    expect($output)->toContain('@method static StatusEnum Archived()');
+});
+
+it('enumerator:annotate prints a usage hint when no class is given', function (): void {
+    $exit = Artisan::call('enumerator:annotate');
+    expect($exit)->toBe(0);
+    expect(Artisan::output())->toContain('php artisan enumerator:annotate');
+});
+
+it('enumerator:annotate fails for a non-enumerator class', function (): void {
+    $exit = Artisan::call('enumerator:annotate', ['class' => stdClass::class]);
+    expect($exit)->toBe(1);
+});
+
+it('enumerator:annotate handles AbstractEnumeratorClass subclasses', function (): void {
+    $exit = Artisan::call('enumerator:annotate', [
+        'class' => LegacyStatusEnum::class,
+    ]);
+    expect($exit)->toBe(0);
+    expect(Artisan::output())->toContain('@method static');
+});
+
 // enumerator:ide-helper
 
 it('enumerator:ide-helper runs and emits to a temp output', function (): void {
@@ -87,4 +114,19 @@ it('enumerator:ide-helper runs and emits to a temp output', function (): void {
     expect($exit)->toBe(0);
 
     @unlink(app()->basePath($path));
+});
+
+it('enumerator:ide-helper accepts positional class args (overrides config)', function (): void {
+    $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
+    $exit = Artisan::call('enumerator:ide-helper', [
+        'classes' => [StatusEnum::class],
+        '--out' => $path,
+    ]);
+    expect($exit)->toBe(0);
+
+    $absolute = app()->basePath($path);
+    if (file_exists($absolute)) {
+        expect(file_get_contents($absolute))->toContain('namespace');
+        @unlink($absolute);
+    }
 });
