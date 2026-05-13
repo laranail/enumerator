@@ -130,3 +130,124 @@ it('enumerator:ide-helper accepts positional class args (overrides config)', fun
         @unlink($absolute);
     }
 });
+
+it('enumerator:ide-helper emits factory + predicate methods for native enums', function (): void {
+    $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
+    Artisan::call('enumerator:ide-helper', [
+        'classes' => [StatusEnum::class],
+        '--out' => $path,
+    ]);
+
+    $absolute = app()->basePath($path);
+    $contents = file_get_contents($absolute);
+
+    expect($contents)->toContain('@method static StatusEnum Active()');
+    expect($contents)->toContain('@method bool isActive()');
+    expect($contents)->toContain('@method bool isNotActive()');
+    expect($contents)->toContain('class StatusEnum {}');
+
+    @unlink($absolute);
+});
+
+it('enumerator:ide-helper emits factory stubs for AbstractEnumeratorClass subclasses', function (): void {
+    $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
+    Artisan::call('enumerator:ide-helper', [
+        'classes' => [LegacyStatusEnum::class],
+        '--out' => $path,
+    ]);
+
+    $absolute = app()->basePath($path);
+    $contents = file_get_contents($absolute);
+
+    expect($contents)->toContain('@method static LegacyStatusEnum ACTIVE()');
+    expect($contents)->toContain('@method static LegacyStatusEnum INACTIVE()');
+    expect($contents)->toContain('class LegacyStatusEnum {}');
+
+    @unlink($absolute);
+});
+
+it('enumerator:ide-helper warns when no classes are configured', function (): void {
+    config()->set('enumerator.ide_helper.classes', null);
+    config()->set('enumerator.cache.auto_warm_classes', null);
+
+    $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
+    $exit = Artisan::call('enumerator:ide-helper', ['--out' => $path]);
+    expect($exit)->toBe(0);
+    expect(Artisan::output())->toContain('No enumerator classes found');
+});
+
+it('enumerator:ide-helper falls back to cache.auto_warm_classes', function (): void {
+    config()->set('enumerator.ide_helper.classes', null);
+    config()->set('enumerator.cache.auto_warm_classes', [StatusEnum::class]);
+
+    $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
+    Artisan::call('enumerator:ide-helper', ['--out' => $path]);
+
+    $absolute = app()->basePath($path);
+    expect(file_exists($absolute))->toBeTrue();
+    expect(file_get_contents($absolute))->toContain('StatusEnum');
+
+    @unlink($absolute);
+});
+
+it('enumerator:ide-helper skips non-enumerator candidates silently', function (): void {
+    $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
+    Artisan::call('enumerator:ide-helper', [
+        'classes' => [stdClass::class, StatusEnum::class],
+        '--out' => $path,
+    ]);
+
+    $absolute = app()->basePath($path);
+    $contents = file_get_contents($absolute);
+
+    expect($contents)->toContain('StatusEnum');
+    expect($contents)->not->toContain('stdClass');
+
+    @unlink($absolute);
+});
+
+// make:enumerator
+
+afterEach(function (): void {
+    $appDir = app()->path('Enums');
+    if (is_dir($appDir)) {
+        foreach (glob($appDir . '/*.php') ?: [] as $f) {
+            @unlink($f);
+        }
+        @rmdir($appDir);
+    }
+});
+
+it('make:enumerator scaffolds a backed-enum class', function (): void {
+    $exit = Artisan::call('make:enumerator', ['name' => 'TestBackedEnum']);
+    expect($exit)->toBe(0);
+
+    $expected = app()->path('Enums/TestBackedEnum.php');
+    expect(file_exists($expected))->toBeTrue();
+    expect(file_get_contents($expected))->toContain('enum TestBackedEnum');
+});
+
+it('make:enumerator supports the pure stub', function (): void {
+    Artisan::call('make:enumerator', ['name' => 'TestPureEnum', '--stub' => 'pure']);
+    $expected = app()->path('Enums/TestPureEnum.php');
+    expect(file_exists($expected))->toBeTrue();
+});
+
+it('make:enumerator supports the attributes stub', function (): void {
+    Artisan::call('make:enumerator', ['name' => 'TestAttrsEnum', '--stub' => 'attributes']);
+    expect(file_exists(app()->path('Enums/TestAttrsEnum.php')))->toBeTrue();
+});
+
+it('make:enumerator supports the bitmask stub', function (): void {
+    Artisan::call('make:enumerator', ['name' => 'TestBitmaskEnum', '--stub' => 'bitmask']);
+    expect(file_exists(app()->path('Enums/TestBitmaskEnum.php')))->toBeTrue();
+});
+
+it('make:enumerator supports the state-machine stub', function (): void {
+    Artisan::call('make:enumerator', ['name' => 'TestStateEnum', '--stub' => 'state-machine']);
+    expect(file_exists(app()->path('Enums/TestStateEnum.php')))->toBeTrue();
+});
+
+it('make:enumerator rejects an unknown stub', function (): void {
+    Artisan::call('make:enumerator', ['name' => 'TestUnknownEnum', '--stub' => 'no-such-stub']);
+})->throws(InvalidArgumentException::class);
