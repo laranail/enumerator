@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
 use BackedEnum;
+use Simtabi\Laranail\Enumerator\Concerns\Core\BehaviorCore;
 use Simtabi\Laranail\Enumerator\Support\CasesCollection;
 use UnitEnum;
 
@@ -12,7 +13,7 @@ use UnitEnum;
  * Umbrella trait for native PHP 8.3+ enums implementing the
  * `Simtabi\Laranail\Enumerator\Contracts\Enumerator` marker interface.
  *
- * Pulls in every always-on concern:
+ * Pulls in every always-on concern via `Concerns\Core\BehaviorCore`:
  *   - HasAttributes     attribute lookup with config-override layer
  *   - HasEquality       is / isNot / in / notIn / equals
  *   - HasFromHelpers    fromName / tryFromName / fromMeta / tryFromMeta / coerce
@@ -26,13 +27,7 @@ use UnitEnum;
  */
 trait HasEnumeratorBehavior
 {
-    use HasAttributes;
-    use HasEquality;
-    use HasFromHelpers;
-    use IsJsonable;
-    use IsTranslatable;
-    use RendersHtml;
-    use ResolvesMagicCalls;
+    use BehaviorCore;
 
     /**
      * Alias for `cases()` — kept for parity with class-const APIs.

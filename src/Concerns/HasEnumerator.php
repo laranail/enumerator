@@ -14,10 +14,11 @@ namespace Simtabi\Laranail\Enumerator\Concerns;
  *
  * Composed traits and what each contributes:
  *
- *   - HasEnumeratorBehavior  static collection helpers + __call dispatch
- *                            (itself an umbrella for HasAttributes /
- *                            HasEquality / HasFromHelpers / IsJsonable /
- *                            IsTranslatable / RendersHtml / ResolvesMagicCalls)
+ *   - HasEnumeratorBehavior  static collection helpers + the seven core
+ *                            behaviours composed by `Concerns\Core\BehaviorCore`
+ *                            (HasAttributes / HasEquality / HasFromHelpers /
+ *                            IsJsonable / IsTranslatable / RendersHtml /
+ *                            ResolvesMagicCalls)
  *   - HasBitmask             Bitwise support (#[Bit] attributes)
  *   - HasGrouping            declarative groups()
  *   - HasInvokableCases      `Status::Active()` static factory
