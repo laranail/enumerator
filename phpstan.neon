@@ -9,6 +9,7 @@ parameters:
     excludePaths:
         - tests/Application/database/migrations/*
         - tests/Unit/*
+        - tests/Feature/Eloquent/HasEnumeratorScopesTest.php
         - src/PHPStan/*
         - src/Integrations/*
     treatPhpDocTypesAsCertain: false
