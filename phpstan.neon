@@ -8,6 +8,7 @@ parameters:
         - tests
     excludePaths:
         - tests/Application/database/migrations/*
+        - tests/Unit/*
         - src/PHPStan/*
         - src/Integrations/*
     treatPhpDocTypesAsCertain: false
