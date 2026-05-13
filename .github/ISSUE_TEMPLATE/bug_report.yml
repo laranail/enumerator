@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a defect in laranail/enumerator
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Minimal failing code, expected vs actual.
+    validations:
+      required: true
+  - type: input
+    id: package_version
+    attributes:
+      label: Package version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: php_version
+    attributes:
+      label: PHP version
+      placeholder: "8.3.x"
+    validations:
+      required: true
+  - type: input
+    id: laravel_version
+    attributes:
+      label: Laravel version
+      placeholder: "13.x"
+    validations:
+      required: true

@@ -1,0 +1,16 @@
+/vendor/
+/node_modules/
+/build/
+/coverage/
+/plans/
+/.claude/
+/.phpunit.cache/
+/.phpstan-cache/
+/.idea/
+/.vscode/
+/.fleet/
+/.zed/
+.DS_Store
+.phpunit.result.cache
+composer.lock
+_ide_helper_enumerator.php

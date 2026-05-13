@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Simtabi\Laranail\Enumerator\Attributes\Bit;
+use Simtabi\Laranail\Enumerator\Concerns\{HasBitmask, HasEnumeratorBehavior};
+use Simtabi\Laranail\Enumerator\Contracts\{Bitwise, Enumerator};
+
+enum {{ class }}: int implements Enumerator, Bitwise
+{
+    use HasEnumeratorBehavior;
+    use HasBitmask;
+
+    #[Bit(1)] case Read = 1;
+    #[Bit(2)] case Write = 2;
+    #[Bit(4)] case Delete = 4;
+    #[Bit(8)] case Admin = 8;
+}

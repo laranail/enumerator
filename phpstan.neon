@@ -1,0 +1,25 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/Application/database/migrations/*
+        - src/PHPStan/*
+        - src/Integrations/*
+    treatPhpDocTypesAsCertain: false
+    # Baseline entries can drift across the PHP 8.3 / 8.4 / 8.5 matrix
+    # because each version infers types slightly differently. Don't fail
+    # the gate on baseline staleness — regenerate the baseline whenever
+    # you intentionally change the analyser surface.
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # Rules use new static() polymorphism for the fluent ::for() factory.
+        - identifier: new.static
+        # CasesCollection extends Laravel's Collection with stricter generic signatures
+        # that the parent template doesn't model. Tracked as future work.
+        - identifier: generics.moreTypes
+        - identifier: generics.notSubtype
