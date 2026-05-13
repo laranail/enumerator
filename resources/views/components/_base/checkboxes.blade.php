@@ -1,0 +1,53 @@
+{{-- Base checkbox group partial. Pure variables. --}}
+@php
+    $selectedValues ??= [];
+    $layout ??= 'vertical';
+    $legend ??= null;
+    $classes ??= 'enumerator-checkbox-group';
+    $itemClasses ??= 'enumerator-checkbox-item';
+    $inputClasses ??= '';
+    $labelClasses ??= 'enumerator-checkbox-label';
+    $legendClasses ??= 'enumerator-checkbox-legend';
+    $disabled ??= false;
+    $required ??= false;
+    $descriptions ??= false;
+    $descriptionOf ??= null;
+    $rootId ??= null;
+
+    $normalized = [];
+    foreach (is_iterable($selectedValues) ? $selectedValues : [$selectedValues] as $v) {
+        $normalized[] = (string) $v;
+    }
+    $isChecked = static fn ($case): bool => in_array((string) $valueOf($case), $normalized, true);
+    $fieldName = str_ends_with($name, '[]') ? $name : $name . '[]';
+@endphp
+
+<fieldset
+    @if ($rootId) id="{{ $rootId }}" @endif
+    class="{{ $classes }}"
+    data-layout="{{ $layout }}"
+    @disabled($disabled)
+>
+    @if ($legend !== null)
+        <legend class="{{ $legendClasses }}">{{ $legend }}</legend>
+    @endif
+
+    @foreach ($cases as $case)
+        @php $inputId = $idFor($case); @endphp
+        <div class="{{ $itemClasses }}">
+            <input
+                type="checkbox"
+                id="{{ $inputId }}"
+                name="{{ $fieldName }}"
+                value="{{ $valueOf($case) }}"
+                @if ($inputClasses) class="{{ $inputClasses }}" @endif
+                @checked($isChecked($case))
+                @disabled($disabled)
+            >
+            <label for="{{ $inputId }}" class="{{ $labelClasses }}">{{ $labelOf($case) }}</label>
+            @if ($descriptions && $descriptionOf && ($d = $descriptionOf($case)))
+                <small class="enumerator-checkbox-description">{{ $d }}</small>
+            @endif
+        </div>
+    @endforeach
+</fieldset>

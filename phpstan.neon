@@ -1,0 +1,20 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/Application/database/migrations/*
+        - src/PHPStan/*
+        - src/Integrations/*
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        # Rules use new static() polymorphism for the fluent ::for() factory.
+        - identifier: new.static
+        # CasesCollection extends Laravel's Collection with stricter generic signatures
+        # that the parent template doesn't model. Tracked as future work.
+        - identifier: generics.moreTypes
+        - identifier: generics.notSubtype

@@ -1,0 +1,5 @@
+services:
+    -
+        class: Simtabi\Laranail\Enumerator\PHPStan\EnumeratorMethodReflectionExtension
+        tags:
+            - phpstan.broker.methodsClassReflectionExtension
