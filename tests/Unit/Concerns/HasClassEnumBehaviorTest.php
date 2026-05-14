@@ -143,3 +143,59 @@ it('label() / color() / icon() resolve attributes on a case', function (): void 
 it('description() returns null when no #[Description] is set', function (): void {
     expect(LegacyStatusEnum::ACTIVE()->description())->toBeNull();
 });
+
+it('help() returns null when no #[Help] is set', function (): void {
+    expect(LegacyStatusEnum::ACTIVE()->help())->toBeNull();
+});
+
+it('order() returns null when no #[Order] is set', function (): void {
+    expect(LegacyStatusEnum::ACTIVE()->order())->toBeNull();
+});
+
+it('meta() without a key returns the whole meta array (empty by default)', function (): void {
+    expect(LegacyStatusEnum::ACTIVE()->meta())->toBe([]);
+});
+
+it('meta(key) returns null for an undeclared key', function (): void {
+    expect(LegacyStatusEnum::ACTIVE()->meta('priority'))->toBeNull();
+});
+
+it('toArray() returns the value/key/label shape for class-const enums', function (): void {
+    $case = LegacyStatusEnum::ACTIVE();
+    $arr = $case->toArray();
+    expect($arr)->toHaveKey('value')->toHaveKey('key')->toHaveKey('label');
+    expect($arr['value'])->toBe('active');
+    expect($arr['key'])->toBe('ACTIVE');
+    expect($arr['label'])->toBe('Active');
+});
+
+it('jsonSerialize() matches toArray()', function (): void {
+    $case = LegacyStatusEnum::ACTIVE();
+    expect($case->jsonSerialize())->toBe($case->toArray());
+});
+
+it('toJson() emits parseable JSON', function (): void {
+    $case = LegacyStatusEnum::ACTIVE();
+    $decoded = json_decode($case->toJson(), true);
+    expect($decoded)->toBeArray()
+        ->toHaveKey('value')
+        ->toHaveKey('key')
+        ->toHaveKey('label');
+});
+
+it('toHtml() renders an HtmlString containing the case label', function (): void {
+    $html = (string) LegacyStatusEnum::ACTIVE()->toHtml();
+    expect($html)->toContain('Active');
+    expect($html)->toContain('role="status"');
+});
+
+it('toHtml() falls back to enumerator-{color} when no #[CssClass] is set', function (): void {
+    // LegacyStatusEnum has no #[CssClass] attribute, so toHtml() uses
+    // the `enumerator-badge enumerator-{color}` fallback.
+    $html = (string) LegacyStatusEnum::ACTIVE()->toHtml();
+    expect($html)->toContain('enumerator-success');
+});
+
+it('cssClass() returns null when no #[CssClass] is set', function (): void {
+    expect(LegacyStatusEnum::ACTIVE()->cssClass('bootstrap'))->toBeNull();
+});
