@@ -4951,6 +4951,198 @@ parameters:
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
 
 		-
+			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:initialStates\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:transitions\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\CasingAmbiguousEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 6
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\>\.$#'
+			identifier: return.type
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:fromMask\(\) should return Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\> but returns Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:mask\(\) should return Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\> but returns Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:tryFromMeta\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\>\|null but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\>\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\)\> is not subtype of native type Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<\*NEVER\*\>\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\)\> is not subtype of native type Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<Simtabi\\Laranail\\Enumerator\\Contracts\\Bitwise&UnitEnum\>\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\)\> is not subtype of native type Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\>\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\)\> is not subtype of native type Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<UnitEnum\>\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\)\.$#'
+			identifier: varTag.nativeType
+			count: 4
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type array\<int, static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\)\> is not subtype of native type array\{Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\}\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\) is not subtype of native type Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\) is not subtype of native type Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\.$#'
+			identifier: varTag.nativeType
+			count: 3
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Parameter \#1 \$enumClass of class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask constructor expects class\-string\<TCase of Simtabi\\Laranail\\Enumerator\\Contracts\\Bitwise&UnitEnum\>, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Parameter \#1 \$items of class Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection constructor expects Illuminate\\Contracts\\Support\\Arrayable\<int, TCase of UnitEnum\>\|iterable\<int, TCase of UnitEnum\>\|null, array\<int, int\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Parameter \#2 \$cases of class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask constructor expects array\<int, TCase of Simtabi\\Laranail\\Enumerator\\Contracts\\Bitwise&UnitEnum\>, array\<int\|string, UnitEnum\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Possibly invalid array key type int\|null\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
 			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:initialStates\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1

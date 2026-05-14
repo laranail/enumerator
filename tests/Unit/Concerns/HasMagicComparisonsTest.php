@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Exceptions\AmbiguousMagicCallException;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\CasingAmbiguousEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\GroupedStatusEnum;
 
 // HasMagicComparisons — `$case->isFoo()` / `isNotFoo()` magic predicates,
@@ -69,4 +70,34 @@ it('non-ambiguous lookup just works (exact match)', function (): void {
 it('AmbiguousMagicCallException constructor is importable', function (): void {
     $e = new AmbiguousMagicCallException('test message');
     expect($e->getMessage())->toBe('test message');
+});
+
+// Case-name ambiguous resolution (lowercase needle matches multiple cases)
+
+it('case-name ambiguity throws by default (ambiguous_resolution=throw)', function (): void {
+    config()->set('enumerator.magic.ambiguous_resolution', 'throw');
+    config()->set('enumerator.magic.case_insensitive_method_names', true);
+
+    CasingAmbiguousEnum::Pending->isactive();
+})->throws(AmbiguousMagicCallException::class);
+
+it('case-name ambiguity returns the first hit when ambiguous_resolution=first', function (): void {
+    config()->set('enumerator.magic.ambiguous_resolution', 'first');
+    config()->set('enumerator.magic.case_insensitive_method_names', true);
+
+    // First case-insensitive hit is `Active`. `Pending->isactive()` then
+    // compares Pending === Active → false.
+    expect(CasingAmbiguousEnum::Pending->isactive())
+        ->toBeFalse();
+});
+
+it('case-name ambiguity returns null when ambiguous_resolution=null', function (): void {
+    config()->set('enumerator.magic.ambiguous_resolution', 'null');
+    config()->set('enumerator.magic.case_insensitive_method_names', true);
+
+    // With ambiguous-resolution=null, the case-name resolver returns null,
+    // magicCompare propagates that as no-hit, and __call falls through to
+    // BadMethodCallException.
+    expect(fn () => CasingAmbiguousEnum::Pending->isactive())
+        ->toThrow(BadMethodCallException::class);
 });
