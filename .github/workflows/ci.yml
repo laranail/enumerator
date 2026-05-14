@@ -45,4 +45,4 @@ jobs:
       - name: Pest (with coverage)
         # Coverage gate ratchets up as the unit-test backfill lands.
         # Target: 90% on stable releases.
-        run: vendor/bin/pest --coverage --min=70
+        run: vendor/bin/pest --coverage --min=80
