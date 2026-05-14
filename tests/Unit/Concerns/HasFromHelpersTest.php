@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorNameException;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Support\AttributesCache;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
 
@@ -53,4 +54,47 @@ it('fromMeta() throws ValueError when nothing matches', function (): void {
 
 it('tryFromMeta() returns null when nothing matches', function (): void {
     expect(StatusEnum::tryFromMeta('nothing'))->toBeNull();
+});
+
+it('fromMeta() returns the case collection when matches are found', function (): void {
+    AttributesCache::flush();
+    config()->set('enumerator.overrides', [
+        StatusEnum::class => [
+            'Active' => ['meta' => ['priority' => 'high']],
+            'Pending' => ['meta' => ['priority' => 'high']],
+        ],
+    ]);
+
+    $collection = StatusEnum::fromMeta('priority', 'high');
+    expect($collection->count())->toBe(2);
+});
+
+it('tryFromMeta() returns a collection when matches are found', function (): void {
+    AttributesCache::flush();
+    config()->set('enumerator.overrides', [
+        StatusEnum::class => [
+            'Active' => ['meta' => ['featured' => true]],
+        ],
+    ]);
+
+    $collection = StatusEnum::tryFromMeta('featured', true);
+    expect($collection)->not->toBeNull();
+    expect($collection->count())->toBe(1);
+});
+
+it('tryFromMeta() supports a callable predicate', function (): void {
+    AttributesCache::flush();
+    config()->set('enumerator.overrides', [
+        StatusEnum::class => [
+            'Active' => ['meta' => ['priority' => 5]],
+            'Pending' => ['meta' => ['priority' => 10]],
+        ],
+    ]);
+
+    $collection = StatusEnum::tryFromMeta('priority', fn ($v) => is_int($v) && $v >= 5);
+    expect($collection?->count())->toBe(2);
+});
+
+it('coerce() returns null when an int is given to an int-backed enum and no value matches', function (): void {
+    expect(BackedIntStatusEnum::coerce(9999))->toBeNull();
 });
