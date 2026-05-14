@@ -26,12 +26,29 @@ use Simtabi\Laranail\Enumerator\Exceptions\AmbiguousMagicCallException;
  */
 trait ResolvesMagicCalls
 {
+    /**
+     * Ordered list of handler method names tried by `__call`. Override
+     * in a downstream trait or enum to register additional dispatchers:
+     *
+     *     protected static function magicCallHandlers(): array
+     *     {
+     *         return [...parent::magicCallHandlers(), 'magicMyThing'];
+     *     }
+     *
+     * Each handler must accept `(string $method, array $args)` and return
+     * `[$result]` on a hit or `null` to pass.
+     *
+     * @return list<string>
+     */
+    protected static function magicCallHandlers(): array
+    {
+        return ['magicCompare'];
+    }
+
     public function __call(string $method, array $arguments): mixed
     {
-        $handlers = ['magicCompare'];
-
         $hits = [];
-        foreach ($handlers as $handler) {
+        foreach (static::magicCallHandlers() as $handler) {
             if (! method_exists($this, $handler)) {
                 continue;
             }

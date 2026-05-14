@@ -66,3 +66,27 @@ it('translationNamespace() falls back to the config default', function (): void 
     // StatusEnum doesn't override translationNamespace.
     expect(StatusEnum::translationNamespace())->toBe('enumerator');
 });
+
+it('placeholder() returns null when no translation is registered', function (): void {
+    expect(TranslatableStatusEnum::Draft->placeholder())->toBeNull();
+});
+
+it('placeholder() returns the registered translation when present', function (): void {
+    /** @var Translator $translator */
+    $translator = app('translator');
+    $translator->addLines([
+        'enums.translatable_status.draft.placeholder' => 'Choose…',
+    ], 'en', 'enumerator-fixtures');
+
+    expect(TranslatableStatusEnum::Draft->placeholder())->toBe('Choose…');
+});
+
+it('label() flat-key fallback hits when only the flat key is registered', function (): void {
+    /** @var Translator $translator */
+    $translator = app('translator');
+    $translator->addLines([
+        'enums.translatable_status.published' => 'Flat Hit',
+    ], 'en', 'enumerator-fixtures');
+
+    expect(TranslatableStatusEnum::Published->label())->toBe('Flat Hit');
+});

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
 
 // Console commands — Artisan-runnable behaviour smoke tests.
 
@@ -101,6 +102,16 @@ it('enumerator:annotate handles AbstractEnumeratorClass subclasses', function ()
     ]);
     expect($exit)->toBe(0);
     expect(Artisan::output())->toContain('@method static');
+});
+
+it('enumerator:annotate emits unannotated @method lines for pure enums', function (): void {
+    $exit = Artisan::call('enumerator:annotate', [
+        'class' => PureColorEnum::class,
+    ]);
+    expect($exit)->toBe(0);
+    $out = Artisan::output();
+    expect($out)->toContain('@method static PureColorEnum Red()');
+    expect($out)->not->toContain('returns string');
 });
 
 // enumerator:ide-helper

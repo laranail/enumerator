@@ -113,3 +113,20 @@ it('set() throws on an unsupported type', function (): void {
     $cast = new AsEnum(StatusEnum::class);
     $cast->set(asEnumTestModel(), 'status', new stdClass, []);
 })->throws(InvalidEnumeratorValueException::class);
+
+it('get() throws when the stored value is not string or int (e.g. an array)', function (): void {
+    $cast = new AsEnum(StatusEnum::class);
+    $cast->get(asEnumTestModel(), 'status', ['nope'], []);
+})->throws(InvalidEnumeratorValueException::class);
+
+it('get() throws on a pure-enum miss with an int value', function (): void {
+    $cast = new AsEnum(PureColorEnum::class);
+    // Pure enums only resolve by name; passing an int that can't match a
+    // case name should throw.
+    $cast->get(asEnumTestModel(), 'color', 42, []);
+})->throws(InvalidEnumeratorValueException::class);
+
+it('get() throws on a pure-enum miss with an unrecognised name', function (): void {
+    $cast = new AsEnum(PureColorEnum::class);
+    $cast->get(asEnumTestModel(), 'color', 'Magenta', []);
+})->throws(InvalidEnumeratorValueException::class);

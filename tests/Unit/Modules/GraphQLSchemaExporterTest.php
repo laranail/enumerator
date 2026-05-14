@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Modules\GraphQL\SchemaExporter;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\DescribedEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
 
@@ -40,4 +42,22 @@ it('export() uses getKey for class-const enums', function (): void {
 it('export() omits the class-level description block when none is set', function (): void {
     $graphql = (new SchemaExporter)->export(StatusEnum::class);
     expect($graphql)->toStartWith('enum StatusEnum {');
+});
+
+it('export() emits the class-level """description""" block when set', function (): void {
+    $graphql = (new SchemaExporter)->export(
+        AttributedStatusEnum::class,
+    );
+    expect($graphql)->toContain('"""');
+    expect($graphql)->toContain('Attributed status fixture');
+    expect($graphql)->toContain('enum AttributedStatusEnum {');
+});
+
+it('export() emits inline """description""" per case when set', function (): void {
+    $graphql = (new SchemaExporter)->export(
+        DescribedEnum::class,
+    );
+    expect($graphql)->toContain('"""');
+    expect($graphql)->toContain('Currently in progress.');
+    expect($graphql)->toContain('No longer accepting input.');
 });
