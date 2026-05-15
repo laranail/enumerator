@@ -141,6 +141,8 @@ trait HasEnumAttributes
      * Magic method: `$model->statusIs($x)`, `$model->statusIn([...])`, etc.
      *
      * Untyped to match Eloquent\Model::__call.
+     *
+     * @param  array<int, mixed>  $arguments
      */
     public function __call($method, $arguments)
     {

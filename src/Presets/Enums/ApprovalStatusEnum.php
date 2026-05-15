@@ -44,6 +44,9 @@ enum ApprovalStatusEnum: string implements Enumerator, Stateful
         ];
     }
 
+    /**
+     * @return array<string, array<int, self>>
+     */
     public static function groups(): array
     {
         return [

@@ -45,6 +45,9 @@ trait ResolvesMagicCalls
         return ['magicCompare'];
     }
 
+    /**
+     * @param  array<int, mixed>  $arguments
+     */
     public function __call(string $method, array $arguments): mixed
     {
         $hits = [];

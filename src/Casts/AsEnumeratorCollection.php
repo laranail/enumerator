@@ -53,6 +53,8 @@ final class AsEnumeratorCollection implements CastsAttributes
 
     /**
      * @param  array<string, mixed>  $attributes
+     *
+     * @phpstan-param mixed $value  Accepts iterable of cases, scalar values, or null; non-iterable returns null.
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): ?string
     {

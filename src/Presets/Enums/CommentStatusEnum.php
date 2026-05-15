@@ -24,6 +24,9 @@ enum CommentStatusEnum: string implements Enumerator
     #[Label('Spam'),     Color('danger'),    Icon('alert-octagon'), Order(30)] case Spam = 'spam';
     #[Label('Trash'),    Color('secondary'), Icon('trash'),        Order(40)] case Trash = 'trash';
 
+    /**
+     * @return array<string, array<int, self>>
+     */
     public static function groups(): array
     {
         return [

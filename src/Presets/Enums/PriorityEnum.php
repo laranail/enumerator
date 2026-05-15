@@ -27,6 +27,9 @@ enum PriorityEnum: string implements Enumerator
     #[Label('Urgent'),   Color('danger'),    Icon('zap'),              Order(40)] case Urgent = 'urgent';
     #[Label('Critical'), Color('danger'),    Icon('alert-octagon'),    Order(50)] case Critical = 'critical';
 
+    /**
+     * @return array<string, array<int, self>>
+     */
     public static function groups(): array
     {
         return [

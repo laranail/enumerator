@@ -23,6 +23,7 @@ class Checkboxes extends Component
 
     /**
      * @param  class-string  $enum
+     * @param  iterable<int|string, mixed>  $selected
      */
     public function __construct(
         public string $enum,

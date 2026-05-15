@@ -24,6 +24,7 @@ trait GroupsCases
 {
     /**
      * @param  array<int, UnitEnum|object>  $cases
+     * @param  string|Closure|array<string, array<int, UnitEnum|object>>|null  $groupsBy
      * @param  array<string, string>  $groupLabels
      * @return array<string, array<int, UnitEnum|object>>|null
      */

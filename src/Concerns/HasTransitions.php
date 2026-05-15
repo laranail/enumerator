@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
 use BackedEnum;
+use Simtabi\Laranail\Enumerator\Contracts\Stateful;
 use Simtabi\Laranail\Enumerator\Contracts\TransitionHook;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
 use UnitEnum;
@@ -20,6 +21,8 @@ use UnitEnum;
  * This trait provides the runtime: canTransitionTo, transitionTo (throws on
  * disallowed), tryTransitionTo (null on disallowed), allowedTransitions, and
  * isTerminal.
+ *
+ * @phpstan-require-implements Stateful
  */
 trait HasTransitions
 {

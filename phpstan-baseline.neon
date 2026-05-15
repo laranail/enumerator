@@ -55,12 +55,6 @@ parameters:
 			path: src/Blade/Components/Checkboxes.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Checkboxes\:\:__construct\(\) has parameter \$selected with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Blade/Components/Checkboxes.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Checkboxes\:\:scalar\(\) should return int\|string but returns bool\|float\|int\|string\.$#'
 			identifier: return.type
 			count: 1
@@ -86,12 +80,6 @@ parameters:
 
 		-
 			message: '#^Parameter \$groups of method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:__construct\(\) expects array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\>\|null, array\<string, array\<int, mixed\>\>\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Blade/Components/Dropdown.php
-
-		-
-			message: '#^Parameter \$selected of method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:__construct\(\) expects int\|iterable\|Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|string\|UnitEnum\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Blade/Components/Dropdown.php
@@ -193,18 +181,6 @@ parameters:
 			path: src/Blade/Components/Select.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:__construct\(\) has parameter \$selected with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Blade/Components/Select.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:buildGroups\(\) has parameter \$groupsBy with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Blade/Components/Select.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:scalarOf\(\) should return int\|string but returns bool\|float\|int\|string\.$#'
 			identifier: return.type
 			count: 1
@@ -212,12 +188,6 @@ parameters:
 
 		-
 			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Blade/Components/Select.php
-
-		-
-			message: '#^Parameter \#2 \$groupsBy of static method Simtabi\\Laranail\\Enumerator\\Support\\CaseGroupingResolver\:\:resolve\(\) expects array\<string, array\<int, mixed\>\>\|Closure\|string\|null, array\|Closure\|string\|null given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Blade/Components/Select.php
@@ -279,12 +249,6 @@ parameters:
 		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Casts\\AsEnumeratorCollection\:\:get\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/Casts/AsEnumeratorCollection.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Casts\\AsEnumeratorCollection\:\:set\(\) has parameter \$value with no value type specified in iterable type iterable\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/Casts/AsEnumeratorCollection.php
 
@@ -745,12 +709,6 @@ parameters:
 			path: src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
 
 		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: src/Presets/Enums/ApprovalStatusEnum.php
-
-		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Presets\\\\Enums\\\\ApprovalStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -799,32 +757,8 @@ parameters:
 			path: src/Presets/Enums/ApprovalStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/ApprovalStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:Approved\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:Cancelled\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:NeedsRevision\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:Rejected\>\.$#'
 			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/ApprovalStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/ApprovalStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:groupedByType\(\) should return array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\>\> but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/ApprovalStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ApprovalStatusEnum\:\:groups\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/ApprovalStatusEnum.php
 
@@ -919,12 +853,6 @@ parameters:
 			path: src/Presets/Enums/BasicPermissionEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\BasicPermissionEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/BasicPermissionEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\BasicPermissionEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\BasicPermissionEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\BasicPermissionEnum\:\:Admin\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\BasicPermissionEnum\:\:Delete\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\BasicPermissionEnum\:\:Read\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\BasicPermissionEnum\:\:Write\>\.$#'
 			identifier: return.type
 			count: 1
@@ -959,12 +887,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Presets/Enums/BasicPermissionEnum.php
-
-		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: src/Presets/Enums/CommentStatusEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Presets\\\\Enums\\\\CommentStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
@@ -1015,32 +937,8 @@ parameters:
 			path: src/Presets/Enums/CommentStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/CommentStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:Approved\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:Spam\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:Trash\>\.$#'
 			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/CommentStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/CommentStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:groupedByType\(\) should return array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\>\> but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/CommentStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\CommentStatusEnum\:\:groups\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/CommentStatusEnum.php
 
@@ -1135,12 +1033,6 @@ parameters:
 			path: src/Presets/Enums/DirectionEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\DirectionEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/DirectionEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\DirectionEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\DirectionEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\DirectionEnum\:\:Ascending\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\DirectionEnum\:\:Descending\>\.$#'
 			identifier: return.type
 			count: 1
@@ -1216,12 +1108,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\FeatureFlagEnum\:\:BetaUI\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\FeatureFlagEnum\:\:DarkMode\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\FeatureFlagEnum\:\:Experiments\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\FeatureFlagEnum\:\:Telemetry and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: src/Presets/Enums/FeatureFlagEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\FeatureFlagEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: src/Presets/Enums/FeatureFlagEnum.php
 
 		-
@@ -1309,12 +1195,6 @@ parameters:
 			path: src/Presets/Enums/GenderEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\GenderEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/GenderEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\GenderEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\GenderEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\GenderEnum\:\:Female\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\GenderEnum\:\:Male\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\GenderEnum\:\:NonBinary\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\GenderEnum\:\:Other\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\GenderEnum\:\:PreferNotToSay\>\.$#'
 			identifier: return.type
 			count: 1
@@ -1393,12 +1273,6 @@ parameters:
 			path: src/Presets/Enums/HttpMethodEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/HttpMethodEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:DELETE\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:GET\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:HEAD\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:OPTIONS\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:PATCH\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:POST\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpMethodEnum\:\:PUT\>\.$#'
 			identifier: return.type
 			count: 1
@@ -1474,12 +1348,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpStatusClassEnum\:\:ClientError\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpStatusClassEnum\:\:Informational\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpStatusClassEnum\:\:Redirection\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpStatusClassEnum\:\:ServerError\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpStatusClassEnum\:\:Success and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: src/Presets/Enums/HttpStatusClassEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\HttpStatusClassEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: src/Presets/Enums/HttpStatusClassEnum.php
 
 		-
@@ -1579,12 +1447,6 @@ parameters:
 			path: src/Presets/Enums/MaritalStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/MaritalStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:Divorced\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:DomesticPartnership\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:Married\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:Other\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:Separated\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:Single\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MaritalStatusEnum\:\:Widowed\>\.$#'
 			identifier: return.type
 			count: 1
@@ -1663,12 +1525,6 @@ parameters:
 			path: src/Presets/Enums/MimeTypeCategoryEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/MimeTypeCategoryEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Application\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Audio\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Font\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Image\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Message\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Multipart\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Other\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Text\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MimeTypeCategoryEnum\:\:Video\>\.$#'
 			identifier: return.type
 			count: 1
@@ -1744,12 +1600,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:April\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:August\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:December\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:February\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:January\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:July\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:June\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:March\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:May\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:November\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:October\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:September and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: src/Presets/Enums/MonthEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: src/Presets/Enums/MonthEnum.php
 
 		-
@@ -1873,12 +1723,6 @@ parameters:
 			path: src/Presets/Enums/NotificationOptInEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/NotificationOptInEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:Email\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:Push\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:SMS\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:Webhook\>\.$#'
 			identifier: return.type
 			count: 1
@@ -1913,12 +1757,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Presets/Enums/NotificationOptInEnum.php
-
-		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: src/Presets/Enums/OrderStatusEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Presets\\\\Enums\\\\OrderStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
@@ -1969,32 +1807,8 @@ parameters:
 			path: src/Presets/Enums/OrderStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/OrderStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:Cancelled\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:Confirmed\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:Delivered\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:Processing\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:Refunded\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:Shipped\>\.$#'
 			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/OrderStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/OrderStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:groupedByType\(\) should return array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\>\> but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/OrderStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\OrderStatusEnum\:\:groups\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/OrderStatusEnum.php
 
@@ -2039,12 +1853,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Presets/Enums/OrderStatusEnum.php
-
-		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: src/Presets/Enums/PaymentStatusEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Presets\\\\Enums\\\\PaymentStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
@@ -2095,32 +1903,8 @@ parameters:
 			path: src/Presets/Enums/PaymentStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/PaymentStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:Authorized\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:Captured\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:Disputed\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:Failed\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:Refunded\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:Voided\>\.$#'
 			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PaymentStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PaymentStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:groupedByType\(\) should return array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\>\> but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PaymentStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PaymentStatusEnum\:\:groups\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/PaymentStatusEnum.php
 
@@ -2165,12 +1949,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/Presets/Enums/PaymentStatusEnum.php
-
-		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: src/Presets/Enums/PriorityEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Presets\\\\Enums\\\\PriorityEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
@@ -2221,32 +1999,8 @@ parameters:
 			path: src/Presets/Enums/PriorityEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/PriorityEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Critical\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:High\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Low\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Medium\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Urgent\>\.$#'
 			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PriorityEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PriorityEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:groupedByType\(\) should return array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\>\> but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PriorityEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:groups\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/PriorityEnum.php
 
@@ -2311,12 +2065,6 @@ parameters:
 			path: src/Presets/Enums/PriorityEnum.php
 
 		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: src/Presets/Enums/PublicationStatusEnum.php
-
-		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Presets\\\\Enums\\\\PublicationStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -2365,32 +2113,8 @@ parameters:
 			path: src/Presets/Enums/PublicationStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/PublicationStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Archived\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Deleted\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Draft\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Published\>\.$#'
 			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PublicationStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PublicationStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:groupedByType\(\) should return array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\>\> but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/PublicationStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:groups\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/PublicationStatusEnum.php
 
@@ -2503,12 +2227,6 @@ parameters:
 			path: src/Presets/Enums/RaceEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/RaceEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:AmericanIndianOrAlaskaNative\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:Asian\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:BlackOrAfricanAmerican\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:HispanicOrLatino\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:NativeHawaiianOrOtherPacificIslander\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:Other\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:PreferNotToSay\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:TwoOrMoreRaces\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RaceEnum\:\:White\>\.$#'
 			identifier: return.type
 			count: 1
@@ -2587,12 +2305,6 @@ parameters:
 			path: src/Presets/Enums/ReligionEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/ReligionEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:Buddhism\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:Christianity\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:FolkReligion\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:Hinduism\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:Islam\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:Judaism\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:NoReligion\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:Other\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:PreferNotToSay\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ReligionEnum\:\:Sikhism\>\.$#'
 			identifier: return.type
 			count: 1
@@ -2668,12 +2380,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RoleFlagEnum\:\:Admin\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RoleFlagEnum\:\:Contributor\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RoleFlagEnum\:\:Editor\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RoleFlagEnum\:\:Subscriber and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: src/Presets/Enums/RoleFlagEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\RoleFlagEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: src/Presets/Enums/RoleFlagEnum.php
 
 		-
@@ -2758,12 +2464,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:Alert\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:Critical\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:Debug\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:Emergency\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:Error\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:Info\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:Notice\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:Warning and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: src/Presets/Enums/SeverityEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SeverityEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: src/Presets/Enums/SeverityEnum.php
 
 		-
@@ -2860,12 +2560,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Large\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Medium\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Small\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XLarge\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XSmall\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XXLarge and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: src/Presets/Enums/SizeEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: src/Presets/Enums/SizeEnum.php
 
 		-
@@ -2989,12 +2683,6 @@ parameters:
 			path: src/Presets/Enums/StatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/StatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:Archived\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:Inactive\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:Pending\>\.$#'
 			identifier: return.type
 			count: 1
@@ -3061,12 +2749,6 @@ parameters:
 			path: src/Presets/Enums/StatusEnum.php
 
 		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: src/Presets/Enums/TaskStatusEnum.php
-
-		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Presets\\\\Enums\\\\TaskStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -3115,32 +2797,8 @@ parameters:
 			path: src/Presets/Enums/TaskStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/TaskStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:Blocked\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:Cancelled\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:Done\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:InProgress\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:InReview\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:ToDo\>\.$#'
 			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/TaskStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/TaskStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:groupedByType\(\) should return array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\>\> but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Presets/Enums/TaskStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\TaskStatusEnum\:\:groups\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/TaskStatusEnum.php
 
@@ -3235,12 +2893,6 @@ parameters:
 			path: src/Presets/Enums/ToggleEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ToggleEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Presets/Enums/ToggleEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ToggleEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ToggleEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ToggleEnum\:\:Off\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\ToggleEnum\:\:On\>\.$#'
 			identifier: return.type
 			count: 1
@@ -3316,12 +2968,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\VisibilityEnum\:\:Internal\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\VisibilityEnum\:\:Private\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\VisibilityEnum\:\:Public\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\VisibilityEnum\:\:Restricted\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\VisibilityEnum\:\:Unlisted and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: src/Presets/Enums/VisibilityEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\VisibilityEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: src/Presets/Enums/VisibilityEnum.php
 
 		-
@@ -3418,12 +3064,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Friday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Monday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Saturday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Sunday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Thursday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Tuesday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Wednesday and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: src/Presets/Enums/WeekdayEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: src/Presets/Enums/WeekdayEnum.php
 
 		-
@@ -4177,12 +3817,6 @@ parameters:
 			path: tests/Feature/HasEnumAttributesTest.php
 
 		-
-			message: '#^Method HasEnumAttributesTestModel\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Feature/HasEnumAttributesTest.php
-
-		-
 			message: '#^Method HasEnumAttributesTestModel\:\:enumAttributes\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -4195,12 +3829,6 @@ parameters:
 			path: tests/Feature/HasEnumAttributesTest.php
 
 		-
-			message: '#^Method Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Feature/HasEnumAttributesTest.php
-
-		-
 			message: '#^Method Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\:\:enumAttributes\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -4209,18 +3837,6 @@ parameters:
 		-
 			message: '#^Method Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\:\:resolveEnumAttributesConfig\(\) should return array\<string, array\{enum\: class\-string, cast\?\: class\-string\}\> but returns array\<non\-empty\-array\<mixed\>\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Feature/HasEnumAttributesTest.php
-
-		-
-			message: '#^Parameter \#2 \$arguments of method HasEnumAttributesTestModel\:\:resolveEnumPredicate\(\) expects array\<int, mixed\>, array given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/Feature/HasEnumAttributesTest.php
-
-		-
-			message: '#^Parameter \#2 \$arguments of method Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\:\:resolveEnumPredicate\(\) expects array\<int, mixed\>, array given\.$#'
-			identifier: argument.type
 			count: 1
 			path: tests/Feature/HasEnumAttributesTest.php
 
@@ -4381,20 +3997,8 @@ parameters:
 			path: tests/Feature/MagicComparisonsTest.php
 
 		-
-			message: '#^Method MagicTestStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Feature/MagicComparisonsTest.php
-
-		-
 			message: '#^Method MagicTestStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, MagicTestStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<MagicTestStatusEnum\:\:Active\|MagicTestStatusEnum\:\:Banned\|MagicTestStatusEnum\:\:Inactive\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Feature/MagicComparisonsTest.php
-
-		-
-			message: '#^Method MagicTestStatusEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Feature/MagicComparisonsTest.php
 
@@ -4597,12 +4201,6 @@ parameters:
 			path: tests/Fixtures/Enums/AttributedStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\AttributedStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/AttributedStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\AttributedStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\AttributedStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\AttributedStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\AttributedStatusEnum\:\:Banned\>\.$#'
 			identifier: return.type
 			count: 1
@@ -4699,20 +4297,8 @@ parameters:
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Inactive\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Pending\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
 
@@ -4801,6 +4387,12 @@ parameters:
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
 
 		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
 			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:initialStates\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -4867,20 +4459,8 @@ parameters:
 			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
@@ -4969,6 +4549,12 @@ parameters:
 			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
 		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
 			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:initialStates\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -5035,20 +4621,8 @@ parameters:
 			path: tests/Fixtures/Enums/DescribedEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/DescribedEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:Closed\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:Open\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/DescribedEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/DescribedEnum.php
 
@@ -5137,6 +4711,12 @@ parameters:
 			path: tests/Fixtures/Enums/DescribedEnum.php
 
 		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
 			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:initialStates\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -5203,20 +4783,8 @@ parameters:
 			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:Ampersand\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:PlainHtml\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:PreEncoded\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:Quoted\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
 
@@ -5305,6 +4873,12 @@ parameters:
 			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
 
 		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\FlaggedPermissionEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -5350,12 +4924,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\FlaggedPermissionEnum\:\:Admin\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\FlaggedPermissionEnum\:\:Delete\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\FlaggedPermissionEnum\:\:Read\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\FlaggedPermissionEnum\:\:Write and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: tests/Fixtures/Enums/FlaggedPermissionEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\FlaggedPermissionEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: tests/Fixtures/Enums/FlaggedPermissionEnum.php
 
 		-
@@ -5461,20 +5029,8 @@ parameters:
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/GroupedStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Approved\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Banned\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Rejected\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Review\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/GroupedStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
@@ -5563,6 +5119,12 @@ parameters:
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
 		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
 			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:initialStates\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -5629,20 +5191,8 @@ parameters:
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/MultiHandlerEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:Alpha\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:Beta\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/MultiHandlerEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
 
@@ -5731,6 +5281,12 @@ parameters:
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
 
 		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
 			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:initialStates\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -5797,20 +5353,8 @@ parameters:
 			path: tests/Fixtures/Enums/OrderedStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/OrderedStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:First\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Fourth\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Second\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Third\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/OrderedStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/OrderedStatusEnum.php
 
@@ -5899,6 +5443,12 @@ parameters:
 			path: tests/Fixtures/Enums/OrderedStatusEnum.php
 
 		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
 			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:tryFrom\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -5950,12 +5500,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:Blue\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:Green\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:Red and BackedEnum will always evaluate to false\.$#'
 			identifier: instanceof.alwaysFalse
 			count: 2
-			path: tests/Fixtures/Enums/PureColorEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: tests/Fixtures/Enums/PureColorEnum.php
 
 		-
@@ -6055,20 +5599,8 @@ parameters:
 			path: tests/Fixtures/Enums/RenderableStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/RenderableStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Banned\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Inactive\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/RenderableStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/RenderableStatusEnum.php
 
@@ -6157,6 +5689,12 @@ parameters:
 			path: tests/Fixtures/Enums/RenderableStatusEnum.php
 
 		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\SimpleStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -6202,12 +5740,6 @@ parameters:
 			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\SimpleStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\SimpleStatusEnum\:\:Inactive\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\SimpleStatusEnum\:\:Pending and BackedEnum will always evaluate to true\.$#'
 			identifier: instanceof.alwaysTrue
 			count: 2
-			path: tests/Fixtures/Enums/SimpleStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\SimpleStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
 			path: tests/Fixtures/Enums/SimpleStatusEnum.php
 
 		-
@@ -6307,20 +5839,8 @@ parameters:
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
 
 		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:__call\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Archived\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Draft\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Published\>\.$#'
 			identifier: return.type
-			count: 1
-			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
-
-		-
-			message: '#^Method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:magicCompare\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
 
@@ -6405,5 +5925,11 @@ parameters:
 		-
 			message: '#^Possibly invalid array key type int\|null\.$#'
 			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum does not\.$#'
+			identifier: class.missingImplements
 			count: 1
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php

@@ -25,6 +25,7 @@ class Select extends Component
 
     /**
      * @param  class-string  $enum
+     * @param  UnitEnum|AbstractEnumeratorClass|iterable<int|string, mixed>|string|int|null  $selected
      * @param  array<string, string>  $groupLabels
      * @param  array<string, array<int, UnitEnum|AbstractEnumeratorClass>>|null  $groups
      */

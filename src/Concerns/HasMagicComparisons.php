@@ -35,6 +35,7 @@ trait HasMagicComparisons
      * Handler invoked by ResolvesMagicCalls. Return `[$bool]` on a hit, null
      * to let other handlers run.
      *
+     * @param  array<int, mixed>  $arguments
      * @return array{0: mixed}|null
      */
     protected function magicCompare(string $method, array $arguments): ?array
