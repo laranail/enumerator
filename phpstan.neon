@@ -28,3 +28,26 @@ parameters:
         # that the parent template doesn't model. Tracked as future work.
         - identifier: generics.moreTypes
         - identifier: generics.notSubtype
+        # Trait-template cascade: PHPStan analyses each trait once per
+        # consumer enum, and the concrete-case union (e.g. Active|Pending|
+        # Banned) doesn't satisfy the @return CasesCollection<int, static>
+        # declaration even though they are equivalent. Same root cause as
+        # the generics.* entries above. Restricted by path to the affected
+        # trait files; legitimate return-type / argument-type errors in
+        # other files still surface.
+        -
+            identifier: return.type
+            paths:
+                - src/Concerns/HasBitmask.php
+                - src/Concerns/HasEnumeratorBehavior.php
+                - src/Concerns/HasEnumAttributes.php
+                - src/Concerns/HasFromHelpers.php
+                - src/Concerns/HasOrder.php
+                - src/Support/CasesCollection.php
+        -
+            identifier: argument.type
+            paths:
+                - src/Concerns/HasBitmask.php
+                - src/Concerns/HasOrder.php
+                - src/Concerns/HasTransitions.php
+                - src/Concerns/RendersHtml.php
