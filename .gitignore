@@ -2,6 +2,7 @@
 /node_modules/
 /build/
 /coverage/
+/coverage.xml
 /.claude/
 /.design/_private/
 /.design/references/

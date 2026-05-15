@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Codecov coverage reporting** (PR-ε). `phpunit.xml` `<report>`
+  block now emits `coverage.xml` (Clover format) alongside the
+  existing text summary. New `.github/workflows/coverage.yml` runs
+  Pest with coverage on PHP 8.3 on every push to `main` (and on
+  PR), uploads to Codecov via `codecov/codecov-action@v4`. README
+  carries a Codecov badge. The CI `--min=83` floor in `ci.yml` is
+  unchanged — coverage.yml is a measurement / publication channel,
+  not a gate. `coverage.xml` is gitignored.
 - **Multi-select Alpine listbox** for `<x-...::dropdown>` (PR-δ). The
   Alpine path now handles `:multiple="true"` instead of falling through
   to the native `<select multiple>`. New shape: pill UI in the trigger

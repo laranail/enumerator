@@ -11,6 +11,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PHP 8.3+](https://img.shields.io/badge/php-%5E8.3-8892bf.svg)](composer.json)
 [![Laravel 13+](https://img.shields.io/badge/laravel-%5E13.0-ff2d20.svg)](composer.json)
+[![Coverage](https://codecov.io/gh/laranail/enumerator/branch/main/graph/badge.svg)](https://codecov.io/gh/laranail/enumerator)
 
 ## Highlights
 
