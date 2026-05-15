@@ -2587,6 +2587,42 @@ parameters:
 			path: tests/Feature/CasesCollectionTest.php
 
 		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(CacheKeyFixture\)\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(PureCacheKeyFixture\)\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Parameter \#2 \$ttl of static method Illuminate\\Cache\\Repository\:\:remember\(\) expects Closure\|DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Parameter \#3 \$ttl of static method Illuminate\\Cache\\Repository\:\:put\(\) expects DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:remember\(\)$#'
+			identifier: argument.templateType
+			count: 3
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:rememberForever\(\)$#'
+			identifier: argument.templateType
+			count: 3
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
 			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:blade\(\)\.$#'
 			identifier: method.notFound
 			count: 5
