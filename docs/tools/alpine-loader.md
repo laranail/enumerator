@@ -1,10 +1,11 @@
 # Alpine.js loader
 
 Some of the package's Blade components (notably the searchable /
-clearable `<x-...::dropdown>`, landing in PR-G) use Alpine.js for
-interactive behaviour. The package ships an opt-in `<x-laranail-enumerator::alpine-loader />`
-Blade component that handles loading Alpine for you: CDN-first, with
-a local fallback, with a conflict check so it never double-loads.
+clearable `<x-...::dropdown>`) use Alpine.js for interactive
+behaviour. The package ships an opt-in
+`<x-laranail-enumerator::alpine-loader />` Blade component that
+handles loading Alpine for you: CDN-first, with a local fallback,
+with a conflict check so it never double-loads.
 
 ## Quick start
 

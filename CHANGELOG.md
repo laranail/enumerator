@@ -52,6 +52,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `docs/tools/blade-components.md` updated with the component matrix,
   the Livewire integration contract, and the reserved-prop set per
   component.
+- **Alpine-enhanced `<x-laranail-enumerator::dropdown>`.** Set
+  `:searchable="true"` or `:clearable="true"` and the component
+  renders an accessible combobox/listbox driven by Alpine.js:
+  type-to-filter, arrow / Enter / Esc keyboard navigation, click-
+  outside close, ARIA roles, optional clear button, empty-state row,
+  and a hidden `<input>` for native form submission. With both flags
+  off, the native `<select>` from v0.1.0 still renders — fully
+  backwards-compatible. Requires `<x-...::alpine-loader />` once in
+  the page. Multi-select + disabled fall back to the native select
+  (multi-listbox is on the v0.3.0 backlog). ADR-0004 / ADR-0005.
+  Documentation: [`docs/tools/blade-components.md`](docs/tools/blade-components.md)
+  "Dropdown — Alpine-enhanced searchable / clearable" section.
 
 ### Fixed
 

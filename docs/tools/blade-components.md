@@ -7,7 +7,7 @@ Nine components ship with the package:
 | `<x-laranail-enumerator::badge>` | `<span>` | Render a single case as a coloured badge |
 | `<x-laranail-enumerator::element>` | `<a>` / `<button>` / `<span>` | Render a single case as an interactive element |
 | `<x-laranail-enumerator::select>` | `<select>` | Native select with one `<option>` per case |
-| `<x-laranail-enumerator::dropdown>` | Alpine-driven | Searchable / clearable dropdown (requires `<x-...::alpine-loader />` — landing in PR-G) |
+| `<x-laranail-enumerator::dropdown>` | Alpine-driven combobox / native `<select>` | Searchable / clearable when `:searchable="true"` or `:clearable="true"` — Alpine combobox. Otherwise — native `<select>`. Alpine path requires `<x-...::alpine-loader />`. |
 | `<x-laranail-enumerator::radio>` | `<fieldset><input type="radio">` | Radio group |
 | `<x-laranail-enumerator::checkboxes>` | `<fieldset><input type="checkbox">` | Checkbox group |
 | `<x-laranail-enumerator::grid>` | `<div>` grid | Grid of badge-like tiles |
@@ -96,6 +96,81 @@ attribute-forwarding path. The reserved sets:
 
 If you need to set one of those names as a raw HTML attribute (rare),
 use a `:slot` or wrap the component manually.
+
+## Dropdown — Alpine-enhanced searchable / clearable
+
+`<x-laranail-enumerator::dropdown>` ships in two shapes:
+
+```blade
+{{-- Native <select> path (v0.1.0 behaviour). Form submits via the
+     <select> directly. data-searchable / data-clearable attrs remain
+     for third-party JS libraries (Tom Select, Choices.js, etc.). --}}
+<x-laranail-enumerator::dropdown :enum="UserStatusEnum::class" name="status" />
+
+{{-- Alpine combobox path. Requires Alpine.js in the page — drop in
+     <x-laranail-enumerator::alpine-loader /> once in your layout. --}}
+<x-laranail-enumerator::dropdown
+    :enum="UserStatusEnum::class"
+    name="status"
+    :selected="$user->status"
+    :searchable="true"
+    :clearable="true"
+    label-text="Status"
+    description="Used by the dashboard filter."
+/>
+```
+
+### Alpine combobox features
+
+When `:searchable="true"` OR `:clearable="true"`, the dropdown emits:
+
+- A button that toggles the panel and shows the current selection
+- A hidden `<input type="hidden" name="...">` that carries the value
+  to form submission
+- An optional search filter input (when `:searchable="true"`)
+- An optional clear button (when `:clearable="true"`)
+- A `<ul role="listbox">` with one `<li role="option">` per case
+- Keyboard navigation: `↓` / `↑` to move focus, `Enter` to commit,
+  `Esc` to close
+- An empty-state row ("No matches.") when filter yields zero results
+- Click-outside-to-close + `Esc` global close
+- A `change` event dispatched on selection (`x-on:change` works)
+
+The Alpine path is intentionally NOT engaged when `multiple=true` or
+`disabled=true` — those fall through to the native `<select>`. (Multi-
+select listbox + Alpine wiring is on the v0.3.0 backlog.)
+
+### Setup
+
+Drop the loader into your layout once:
+
+```blade
+<x-laranail-enumerator::alpine-loader />
+```
+
+See [`alpine-loader.md`](alpine-loader.md) for CDN / local-fallback
+configuration, CSP, and opt-out flags.
+
+### Styling
+
+The Alpine combobox emits semantic classes you can style:
+
+- `.enumerator-dropdown` — the outer wrapper `<div>` (also used in the
+  native path)
+- `.enumerator-dropdown-combobox` — the Alpine root
+- `.enumerator-dropdown-button` — the trigger
+- `.enumerator-dropdown-clear` — the clear button
+- `.enumerator-dropdown-panel` — the floating panel (hidden by default
+  via inline `style="display:none"` until Alpine evaluates `x-show`)
+- `.enumerator-dropdown-search` — the filter input
+- `.enumerator-dropdown-list` — the `<ul role="listbox">`
+- `.enumerator-dropdown-option` — each `<li role="option">`
+- `.enumerator-dropdown-active` — added to the currently-hovered /
+  arrow-keyed option
+- `.enumerator-dropdown-empty` — the "No matches." row
+
+The package ships no CSS. Style these classes in your app or via the
+publishable view bundle.
 
 ## Class merging
 
