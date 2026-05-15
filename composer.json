@@ -1,6 +1,6 @@
 {
     "name": "laranail/enumerator",
-    "description": "Type-safe enumerator toolkit for Laravel 13+ with attributes, state machines, bitmasks, translations, validation, casts, blade components, and Filament/Livewire/Nova/Inertia integrations.",
+    "description": "The integration-rich Laravel enum toolkit — attributes, state machines, bitmasks, validation, casts, Blade components, and Filament / Livewire / Nova / Inertia integrations. PHP 8.3+, Laravel 13+.",
     "keywords": [
         "laravel",
         "laravel-13",
@@ -52,7 +52,7 @@
     "require-dev": {
         "larastan/larastan": "^3.0",
         "laravel/pint": "^1.18",
-        "orchestra/testbench": "^11.0|^10.0",
+        "orchestra/testbench": "^10.0|^11.0",
         "pestphp/pest": "^3.0",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.0"
@@ -91,7 +91,7 @@
     },
     "scripts": {
         "test": "pest",
-        "test:coverage": "pest --coverage --min=90",
+        "test:coverage": "pest --coverage --min=85",
         "analyse": "phpstan analyse",
         "format": "pint",
         "format:check": "pint --test"

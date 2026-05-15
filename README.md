@@ -1,6 +1,7 @@
 # laranail/enumerator
 
-> Type-safe enumerator toolkit for **Laravel 13** / **PHP 8.3+**.
+> The **integration-rich Laravel enum toolkit** for
+> **Laravel 13** / **PHP 8.3+**.
 > Native enums, declarative attributes, state machines, bitmasks,
 > Blade components, Eloquent casts, validation rules, Filament / Nova /
 > Livewire / Inertia integrations, optional Pest / OpenAPI / Lighthouse
@@ -49,8 +50,8 @@
   that can't yet use native enums.
 - **Reflection cache** with disk-backed snapshot for production
   + Octane warmup.
-- **Quality**: PHPStan `level: max`, Pint clean, 261 tests / 670
-  assertions on PHP 8.3 / 8.4 / 8.5.
+- **Quality**: PHPStan `level: max`, Pint clean, comprehensive Pest
+  suite across the PHP 8.3 / 8.4 / 8.5 matrix.
 
 ## Requirements
 

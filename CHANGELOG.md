@@ -5,6 +5,38 @@ All notable changes to `laranail/enumerator` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Softened the public tagline from the prior "Laravel enum godfather"
+  framing to **"the integration-rich Laravel enum toolkit"**. Reflects
+  the v0.1.0 breadth honestly without overstating depth in any single
+  integration axis.
+- Aligned the CI coverage gate, the `composer test:coverage` script,
+  and CI narrative on **`--min=85`** (was an inconsistent mix of 80 / 90
+  across surfaces). Currently 83.2% measured on CI — the new gate is
+  set just above that line, and the next batches add coverage on the
+  Livewire integration to clear it.
+- Reordered the `orchestra/testbench` constraint to `^10.0|^11.0` for
+  readability. Resolved version range unchanged.
+
+### Added
+
+- _(reserved — Livewire-aware components and Alpine loader land in
+  later batches; see `.design/plans/completion-plan.md`)_
+
+### Fixed
+
+- README quality stat no longer quotes a numeric test / assertion count
+  (the figure was stale within one commit of being written).
+- The `v0.1.0` Filament integration line in this file referred to
+  "column helpers". The shipped surface is more specific:
+  `EnumeratorColumn` for tables and `EnumeratorEntry` for infolists,
+  documented at `docs/tools/blade-components.md` and the integration
+  recipes. (Historical `[0.1.0]` entry kept verbatim per
+  Keep-a-Changelog discipline.)
+
 ## [0.1.0] — 2026-05-12
 
 Initial release.

@@ -2,8 +2,10 @@
 /node_modules/
 /build/
 /coverage/
-/plans/
 /.claude/
+/.design/_private/
+/.design/references/
+
 /.phpunit.cache/
 /.phpstan-cache/
 /.idea/

@@ -1,3 +1,9 @@
+# Dedicated PHPStan job with `--error-format=github` so static-analysis
+# errors surface as inline annotations on PR diffs. The PHPStan step in
+# `ci.yml` already runs across the full PHP matrix; this workflow exists
+# only to add the inline-annotation channel for reviewers. Do not delete
+# without first updating `ci.yml` to use `--error-format=github` too.
+
 name: Static Analysis
 
 on:
