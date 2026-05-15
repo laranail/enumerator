@@ -36,6 +36,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   documented at `docs/tools/blade-components.md` and the integration
   recipes. (Historical `[0.1.0]` entry kept verbatim per
   Keep-a-Changelog discipline.)
+- `Concerns\RendersHtml::toHtml()` and
+  `Concerns\HasClassEnumBehavior::toHtml()` now pass
+  `doubleEncode: false` to Laravel's `e()` helper. Before this fix, an
+  already-HTML-encoded entity in the label / classes / icon (e.g. a
+  translator that returned `&amp;` instead of `&`) was re-encoded to
+  `&amp;amp;` and rendered as visible `&amp;` text in the browser.
+  Plain strings (which are the documented contract for translations)
+  produce identical output — only the pre-encoded edge case changes
+  behaviour. Caught by the new `RendersHtmlEscapeTest` regression
+  suite. Issue S-3.
 
 ## [0.1.0] — 2026-05-12
 

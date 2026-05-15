@@ -6,7 +6,7 @@
     $itemClasses = $overrideItemClasses ?? 'py-2 text-sm text-gray-700';
     $classes = trim($classes . ' ' . ($appendClasses ?? ''));
 @endphp
-@include('laranail-enumerator::components._base.list', [
+@include('laranail-enumerator::components._base.listing', [
     'cases' => $cases, 'classes' => $classes, 'itemClasses' => $itemClasses,
     'labelOf' => $labelOf, 'valueOf' => $valueOf,
     'rootId' => $overrideRootId ?? null,

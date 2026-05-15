@@ -26,7 +26,17 @@ trait RendersHtml
         $label = method_exists($this, 'label') ? (string) $this->label() : (string) $this->name;
         $icon = method_exists($this, 'icon') ? $this->icon() : null;
 
-        $escape = function_exists('e') ? 'e' : 'htmlspecialchars';
+        // double_encode=false so a translator that returned an
+        // already-encoded entity (e.g. `&amp;` instead of `&`) stays
+        // single-encoded instead of becoming `&amp;amp;`. The icon path
+        // in the Blade base views is documented as trusted markup (see
+        // docs/tools/attributes.md "Trust contract"); the toHtml()
+        // value-object path keeps the icon escaped here because a raw
+        // HtmlString consumer is not gated by the Blade-component
+        // contract.
+        $escape = function_exists('e')
+            ? static fn (mixed $v): string => e($v, doubleEncode: false)
+            : static fn (mixed $v): string => htmlspecialchars((string) $v, ENT_QUOTES, 'UTF-8', false);
 
         $iconHtml = $icon !== null
             ? sprintf('<span class="enumerator-icon" aria-hidden="true">%s</span> ', $escape($icon))

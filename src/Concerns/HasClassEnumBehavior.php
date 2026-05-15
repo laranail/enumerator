@@ -311,15 +311,16 @@ trait HasClassEnumBehavior
         $framework ??= (string) (config('enumerator.css_framework') ?? 'plain');
         $classes = $this->cssClass($framework) ?? sprintf('enumerator-badge enumerator-%s', $this->color() ?? 'default');
         $icon = $this->icon();
+        // double_encode=false — see RendersHtml::toHtml() for rationale.
         $iconHtml = $icon !== null
-            ? sprintf('<span class="enumerator-icon" aria-hidden="true">%s</span> ', e($icon))
+            ? sprintf('<span class="enumerator-icon" aria-hidden="true">%s</span> ', e($icon, doubleEncode: false))
             : '';
 
         return new HtmlString(sprintf(
             '<span class="%s" role="status">%s%s</span>',
-            e($classes),
+            e($classes, doubleEncode: false),
             $iconHtml,
-            e($this->label()),
+            e($this->label(), doubleEncode: false),
         ));
     }
 
