@@ -1,0 +1,51 @@
+{
+    // Infection — PHP mutation testing. Run with:
+    //
+    //   vendor/bin/infection --threads=auto --show-mutations
+    //
+    // Requires a coverage driver (xdebug or pcov). Local runs fail
+    // without one — the soft workflow at .github/workflows/infection.yml
+    // is where this gets measured.
+    //
+    // Scope is focused on the core trait + helper surface where
+    // mutations cleanly map to semantic changes. The full src/ tree
+    // includes integration / module / blade-rendering paths where
+    // mutation kill rates would be low for reasons unrelated to test
+    // quality. Expanding the scope is a v0.3.x task once the initial
+    // baseline kill rate is observed and the floor (minCoveredMsi /
+    // minMsi) is set.
+
+    $schema: "vendor/infection/infection/resources/schema.json",
+
+    source: {
+        directories: [
+            "src/Casts",
+            "src/Concerns",
+            "src/Helpers",
+            "src/Rules",
+            "src/Support",
+        ],
+        excludes: [
+            "PHPStan",
+        ],
+    },
+
+    logs: {
+        text: "infection.log",
+        json: "infection.json",
+        github: true,
+    },
+
+    testFramework: "pest",
+
+    timeout: 30,
+
+    // No minMsi / minCoveredMsi yet — pure measurement on first run.
+    // Once we observe the baseline kill rate (in CI), set both to the
+    // observed value minus a small buffer. Same coverage-then-gate
+    // discipline as v0.2.0/v0.2.1.
+
+    mutators: {
+        "@default": true,
+    },
+}

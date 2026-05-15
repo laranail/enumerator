@@ -3,6 +3,9 @@
 /build/
 /coverage/
 /coverage.xml
+/infection.log
+/infection.json
+/infection.html
 /.claude/
 /.design/_private/
 /.design/references/
