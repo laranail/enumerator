@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+_(reserved for the next development cycle — see
+[.design/plans/v0.3.0-scope.md](.design/plans/v0.3.0-scope.md) and
+[.design/_private/NEXT-SESSION.md](.design/_private/NEXT-SESSION.md)
+for the v0.3.x / v0.4.0 backlog)_
+
+## [0.3.0] — 2026-05-15
+
+The **integration-depth + foundation** pass. Adds Livewire
+state-transition tooling, cache-key enum encapsulation, multi-select
+Alpine dropdown, per-input Livewire bindings on radio / checkboxes,
+Codecov + mutation-testing CI channels, and a 39 %-pattern /
+32 %-occurrence shrink of the PHPStan baseline.
+
+Backwards compatible with `v0.2.x` consumers — no shipped public
+surface removed, no public method renamed. The only behaviour
+change worth flagging: `<x-...::dropdown :multiple="true">` paired
+with `:searchable="true"` or `:clearable="true"` now renders the
+Alpine listbox instead of falling through to the native `<select
+multiple>`. The form-submission shape (one hidden input per selected
+value with `name="…[]"`) matches what the native select would have
+submitted, so server-side consumers see the same payload.
+
 ### Added
 
 - **`infection/infection` mutation testing infrastructure** (PR-ε
@@ -382,6 +404,7 @@ gate.
 severity, presentation, HTTP, bitmask demos, demographics, calendar,
 MIME types, plus one class-const example.
 
+[0.3.0]: https://github.com/laranail/enumerator/releases/tag/v0.3.0
 [0.2.1]: https://github.com/laranail/enumerator/releases/tag/v0.2.1
 [0.2.0]: https://github.com/laranail/enumerator/releases/tag/v0.2.0
 [0.1.0]: https://github.com/laranail/enumerator/releases/tag/v0.1.0
