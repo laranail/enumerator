@@ -8,6 +8,11 @@ use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorNameException;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 
+/**
+ * @method static LegacyTestEnum ACTIVE()
+ * @method static LegacyTestEnum INACTIVE()
+ * @method static LegacyTestEnum BANNED()
+ */
 class LegacyTestEnum extends AbstractEnumeratorClass
 {
     #[Label('Active'), Color('success')]

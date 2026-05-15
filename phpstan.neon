@@ -69,3 +69,17 @@ parameters:
                 - src/Modules/Pest/PestServiceProvider.php
                 - src/Modules/Saloon/SaloonServiceProvider.php
                 - src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
+        # HasTransitions is composed via the HasEnumerator umbrella onto
+        # every native enum using the package, including fixtures and
+        # presets that don't implement Contracts\Stateful. The trait's
+        # `@phpstan-require-implements Stateful` annotation (PR-α Batch 2)
+        # surfaces the unimplemented transitions() / initialStates() per
+        # consumer class — but the trait's documented design IS to be
+        # composed widely; the actual runtime contract is "call
+        # canTransitionTo() only on enums that implement Stateful." So
+        # the staticMethod.notFound entries inside the trait are noise,
+        # not bugs. Path-scoped to just HasTransitions.php.
+        -
+            identifier: staticMethod.notFound
+            paths:
+                - src/Concerns/HasTransitions.php

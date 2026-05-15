@@ -2455,62 +2455,8 @@ parameters:
 			path: tests/Feature/AbstractEnumeratorClassIntegrationTest.php
 
 		-
-			message: '#^Call to an undefined static method LegacyTestEnum\:\:ACTIVE\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 6
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
-			message: '#^Call to an undefined static method LegacyTestEnum\:\:BANNED\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 2
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
 			message: '#^Call to an undefined static method LegacyTestEnum\:\:UNKNOWN\(\)\.$#'
 			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
-			message: '#^Cannot call method color\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
-			message: '#^Cannot call method equals\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
-			message: '#^Cannot call method getKey\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
-			message: '#^Cannot call method getValue\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
-			message: '#^Cannot call method is\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
-			message: '#^Cannot call method label\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/AbstractEnumeratorClassTest.php
-
-		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
 			count: 1
 			path: tests/Feature/AbstractEnumeratorClassTest.php
 
@@ -2905,12 +2851,6 @@ parameters:
 			path: tests/Feature/HasEnumeratorTest.php
 
 		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Active\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 2
-			path: tests/Feature/HasEnumeratorTest.php
-
-		-
 			message: '#^Cannot access property \$name on int\.$#'
 			identifier: property.nonObject
 			count: 2
@@ -2919,7 +2859,7 @@ parameters:
 		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
 			identifier: argument.templateType
-			count: 7
+			count: 5
 			path: tests/Feature/HasEnumeratorTest.php
 
 		-
@@ -3091,12 +3031,6 @@ parameters:
 			path: tests/Feature/Modules/PestTest.php
 
 		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\LegacyStatusEnum\:\:ACTIVE\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Feature/Modules/SaloonTest.php
-
-		-
 			message: '#^Cannot access offset ''enum'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
@@ -3223,18 +3157,6 @@ parameters:
 			path: tests/Fixtures/Enums/AttributedStatusEnum.php
 
 		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
-
-		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\BackedIntStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -3323,18 +3245,6 @@ parameters:
 			identifier: class.missingImplements
 			count: 1
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\CasingAmbiguousEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
@@ -3427,18 +3337,6 @@ parameters:
 			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
 		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/DescribedEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/DescribedEnum.php
-
-		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\DescribedEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -3527,18 +3425,6 @@ parameters:
 			identifier: class.missingImplements
 			count: 1
 			path: tests/Fixtures/Enums/DescribedEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\EscapeRegressionEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
@@ -3685,18 +3571,6 @@ parameters:
 			path: tests/Fixtures/Enums/FlaggedPermissionEnum.php
 
 		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/GroupedStatusEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/GroupedStatusEnum.php
-
-		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\GroupedStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -3787,18 +3661,6 @@ parameters:
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
 		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/MultiHandlerEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/MultiHandlerEnum.php
-
-		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\MultiHandlerEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -3887,18 +3749,6 @@ parameters:
 			identifier: class.missingImplements
 			count: 1
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/OrderedStatusEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/OrderedStatusEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\OrderedStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
@@ -4051,18 +3901,6 @@ parameters:
 			path: tests/Fixtures/Enums/PureColorEnum.php
 
 		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/RenderableStatusEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/RenderableStatusEnum.php
-
-		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\RenderableStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -4205,18 +4043,6 @@ parameters:
 			identifier: varTag.nativeType
 			count: 1
 			path: tests/Fixtures/Enums/SimpleStatusEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:initialStates\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
-
-		-
-			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:transitions\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\TranslatableStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'

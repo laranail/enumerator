@@ -12,6 +12,10 @@ use Simtabi\Laranail\Enumerator\Attributes\Label;
  * Class-const fixture — exercises the AbstractEnumeratorClass path so
  * we can verify integration coverage parity with native enums
  * (the sweep).
+ *
+ * @method static LegacyStatusEnum ACTIVE()
+ * @method static LegacyStatusEnum INACTIVE()
+ * @method static LegacyStatusEnum BANNED()
  */
 class LegacyStatusEnum extends AbstractEnumeratorClass
 {
