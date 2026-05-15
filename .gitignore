@@ -5,6 +5,7 @@
 /.claude/
 /.design/_private/
 /.design/references/
+/.design/scaffold-history/
 
 /.phpunit.cache/
 /.phpstan-cache/

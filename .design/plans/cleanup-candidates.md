@@ -113,11 +113,20 @@ the validation report by relative path.
 
 ## Final disposition log
 
-This section is **left empty until Phase 7**. When items are removed,
-each row records the candidate ID, the approval string the user
-typed, the commit SHA, and the date — so a future session can audit
-what was removed and why.
+Each row records the candidate ID, the approval choice the user
+selected, the disposition that landed, and the date. Commit SHA for
+each row is the SHA of the chore commit referenced in the
+"Disposition" column — discoverable via `git log -- .design/plans/cleanup-candidates.md`.
 
-| Cand. | Approval | Commit | Date |
+| Cand. | Approval | Disposition | Date |
 |---|---|---|---|
-| (none yet) | — | — | — |
+| 1 — `scripts/refactor-facades.py` | "Move to .design/scaffold-history/" | Moved (gitignored). `git log --follow scripts/refactor-facades.py` for history. | 2026-05-15 |
+| 2 — `scripts/scaffold.sh` | "Move to .design/scaffold-history/" | Moved (gitignored). | 2026-05-15 |
+| 3 — `scripts/scaffold-docs.sh` | "Move to .design/scaffold-history/" | Moved (gitignored). | 2026-05-15 |
+| 4 — `scripts/scaffold-framework-variants.sh` | "Move to .design/scaffold-history/" | Moved (gitignored). | 2026-05-15 |
+| 5 — `scripts/scaffold-framework-views.sh` | "Move to .design/scaffold-history/" | Moved (gitignored). | 2026-05-15 |
+| 6 — `scripts/scaffold-presets.sh` | "Move to .design/scaffold-history/" | Moved (gitignored). | 2026-05-15 |
+| 7 — `scripts/scaffold-step-2.sh` | "Move to .design/scaffold-history/" | Moved (gitignored). | 2026-05-15 |
+| 8 — `composer.lock` untrack | n/a — verified no-op | File was never tracked (gitignored at line 15). I-6 verified-false-finding. | 2026-05-15 |
+| 9 — `.DS_Store` files (13 instances) | "Run the full sweep now" | Deleted from disk. Will regenerate when Finder visits dirs; gitignore line 13 keeps them untracked. | 2026-05-15 |
+| 10 — `_ide_helper_enumerator.php` | n/a — verified absent | File not present on disk. No action needed. | 2026-05-15 |
