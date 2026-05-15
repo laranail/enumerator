@@ -12,7 +12,9 @@ parameters:
         - tests/Feature/Eloquent/HasEnumeratorScopesTest.php
         - tests/Feature/Eloquent/StateMachineModelTest.php
         - src/PHPStan/*
-        - src/Integrations/*
+        - src/Integrations/Filament/*
+        - src/Integrations/Inertia/*
+        - src/Integrations/Nova/*
     treatPhpDocTypesAsCertain: false
     # Baseline entries can drift across the PHP 8.3 / 8.4 / 8.5 matrix
     # because each version infers types slightly differently. Don't fail

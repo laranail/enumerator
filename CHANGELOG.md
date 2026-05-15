@@ -33,6 +33,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   See [`docs/tools/alpine-loader.md`](docs/tools/alpine-loader.md).
 - New publish tag `enumerator-js` copies the Alpine bundle into
   `public/vendor/laranail-enumerator/` for the local-fallback path.
+- `livewire/livewire ^3.5` added to `require-dev` so the Livewire
+  integration (`src/Integrations/Livewire/`) is now exercised on the
+  full CI matrix. `EnumeratorCasts` covered by 7 feature tests.
+  Livewire stays in the `suggest` block — it's still an opt-in for
+  consumers, just now CI-gated for the maintainer.
 
 ### Fixed
 
