@@ -16,7 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   PR), uploads to Codecov via `codecov/codecov-action@v4`. README
   carries a Codecov badge. The CI `--min=83` floor in `ci.yml` is
   unchanged — coverage.yml is a measurement / publication channel,
-  not a gate. `coverage.xml` is gitignored.
+  not a gate. `coverage.xml` is gitignored. **One-time setup
+  required:** Codecov v4 dropped tokenless uploads even for public
+  OSS repos. Set the `CODECOV_TOKEN` GitHub secret on the repo to
+  enable badge updates — instructions in
+  `.github/workflows/coverage.yml` header comment. Until then, the
+  workflow succeeds (fail_ci_if_error: false) but the badge stays
+  "unknown".
 - **Multi-select Alpine listbox** for `<x-...::dropdown>` (PR-δ). The
   Alpine path now handles `:multiple="true"` instead of falling through
   to the native `<select multiple>`. New shape: pill UI in the trigger

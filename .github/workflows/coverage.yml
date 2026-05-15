@@ -5,6 +5,22 @@ name: Coverage
 # and uploads to Codecov. The full PHP 8.3 / 8.4 / 8.5 matrix runs in
 # `ci.yml` with `--min=83`; this workflow exists only to feed Codecov
 # so the README badge stays fresh.
+#
+# SETUP REQUIRED (one-time per repo):
+#
+#   Codecov v4+ does not allow tokenless uploads even on public OSS
+#   repos. To get the badge working:
+#
+#     1. Sign in at https://codecov.io with the laranail GitHub account.
+#     2. Add the laranail/enumerator repo (it's listed automatically
+#        once the GitHub app is installed).
+#     3. Copy the upload token from the repo's Codecov settings.
+#     4. Add it to GitHub: Settings → Secrets and variables → Actions
+#        → New repository secret, name `CODECOV_TOKEN`.
+#
+#   Until the secret is set, every coverage.yml run will succeed at
+#   the Pest step but skip the Codecov upload (fail_ci_if_error:
+#   false absorbs the failure). The badge will show "unknown".
 
 on:
   push:
