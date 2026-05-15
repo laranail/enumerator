@@ -42,7 +42,7 @@ trait HasFromHelpers
     {
         foreach (static::cases() as $case) {
             if ($case->name === $name) {
-                /** @var static $case */
+                /** @phpstan-var static $case */
                 return $case;
             }
         }
@@ -104,10 +104,10 @@ trait HasFromHelpers
         }
 
         if (is_subclass_of(static::class, BackedEnum::class)) {
-            /** @var BackedEnum|null $byValue */
+            /** @phpstan-var BackedEnum|null $byValue */
             $byValue = static::tryFrom($valueOrName);
             if ($byValue !== null) {
-                /** @var static $byValue */
+                /** @phpstan-var static $byValue */
                 return $byValue;
             }
         }

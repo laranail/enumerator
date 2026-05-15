@@ -85,7 +85,6 @@ class CasesCollection extends Collection
     {
         $filtered = $this->filter(static fn (UnitEnum $case): bool => $case->name === $name);
 
-        /** @var static<int, TCase> */
         return new static(array_values($filtered->all()));
     }
 
@@ -100,7 +99,6 @@ class CasesCollection extends Collection
             static fn (UnitEnum $case): bool => $case instanceof BackedEnum && $case->value === $value,
         );
 
-        /** @var static<int, TCase> */
         return new static(array_values($filtered->all()));
     }
 
@@ -119,7 +117,6 @@ class CasesCollection extends Collection
             return $case->meta($key) === $value;
         });
 
-        /** @var static<int, TCase> */
         return new static(array_values($filtered->all()));
     }
 
@@ -135,7 +132,6 @@ class CasesCollection extends Collection
             static fn (UnitEnum $case): bool => ! in_array($case->name, $names, true),
         );
 
-        /** @var static<int, TCase> */
         return new static(array_values($filtered->all()));
     }
 
@@ -151,7 +147,6 @@ class CasesCollection extends Collection
             static fn (UnitEnum $case): bool => in_array($case->name, $names, true),
         );
 
-        /** @var static<int, TCase> */
         return new static(array_values($filtered->all()));
     }
 

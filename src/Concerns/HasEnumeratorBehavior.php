@@ -36,7 +36,6 @@ trait HasEnumeratorBehavior
      */
     public static function all(): array
     {
-        /** @var array<int, static> */
         return static::cases();
     }
 
@@ -103,7 +102,6 @@ trait HasEnumeratorBehavior
     {
         $cases = static::cases();
 
-        /** @var static */
         return $cases[0];
     }
 
@@ -111,7 +109,6 @@ trait HasEnumeratorBehavior
     {
         $cases = static::cases();
 
-        /** @var static */
         return $cases[array_key_last($cases)];
     }
 
@@ -119,7 +116,6 @@ trait HasEnumeratorBehavior
     {
         $cases = static::cases();
 
-        /** @var static */
         return $cases[array_rand($cases)];
     }
 

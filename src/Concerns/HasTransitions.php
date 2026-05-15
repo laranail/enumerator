@@ -94,7 +94,7 @@ trait HasTransitions
      */
     private function transitionKey(): string|int
     {
-        /** @var UnitEnum $self */
+        /** @phpstan-var UnitEnum $self */
         $self = $this;
 
         return $self instanceof BackedEnum ? $self->value : $self->name;

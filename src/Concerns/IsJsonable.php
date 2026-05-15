@@ -23,7 +23,7 @@ trait IsJsonable
      */
     public function toArray(): array
     {
-        /** @var UnitEnum $self */
+        /** @phpstan-var UnitEnum $self */
         $self = $this;
 
         return [

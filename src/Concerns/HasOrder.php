@@ -67,7 +67,6 @@ trait HasOrder
                 <=> (AttributesCache::for($b)->order ?? PHP_INT_MAX),
         );
 
-        /** @var CasesCollection<int, static> */
         return new CasesCollection($cases);
     }
 
@@ -78,7 +77,6 @@ trait HasOrder
     {
         $cases = static::sortedByOrder()->all();
 
-        /** @var CasesCollection<int, static> */
         return new CasesCollection(array_reverse($cases));
     }
 }

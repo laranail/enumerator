@@ -25,7 +25,6 @@ trait HasBitmask
      */
     public static function mask(self|UnitEnum ...$cases): Bitmask
     {
-        /** @var Bitmask<static> */
         return new Bitmask(static::class, $cases);
     }
 
@@ -44,7 +43,6 @@ trait HasBitmask
             }
         }
 
-        /** @var Bitmask<static> */
         return new Bitmask(static::class, $cases);
     }
 

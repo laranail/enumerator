@@ -137,7 +137,7 @@ trait IsTranslatable
 
     private function caseKey(): string
     {
-        /** @var UnitEnum $self */
+        /** @phpstan-var UnitEnum $self */
         $self = $this;
         if ($self instanceof BackedEnum && is_string($self->value)) {
             return $self->value;
@@ -151,7 +151,7 @@ trait IsTranslatable
 
     private function caseName(): string
     {
-        /** @var UnitEnum $self */
+        /** @phpstan-var UnitEnum $self */
         $self = $this;
 
         return $self->name;
