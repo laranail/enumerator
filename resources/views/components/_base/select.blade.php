@@ -12,9 +12,21 @@
     $groups ??= null;
     $ariaLabel ??= null;
     $rootId ??= null;
-    // arbitrary HTML attributes forwarded from anonymous-component
-    // callers (data-*, aria-*, etc.) flow through this string.
-    $extraAttrs ??= '';
+    // Arbitrary HTML attributes forwarded from the component caller
+    // (data-*, aria-*, wire:model.*, x-*, etc.) flow through this
+    // string. Framework views may pass `extraAttrs` explicitly; if
+    // they don't, we auto-build from the parent's $attributes bag.
+    // Laravel's ComponentAttributeBag::__toString() HTML-escapes
+    // attribute values, so the {!! !!} output below is safe by
+    // construction (see tests/Unit/Blade/SelectComponentContractTest).
+    $extraAttrs ??= isset($attributes) && method_exists($attributes, 'except')
+        ? (string) $attributes->except([
+            'class', 'id', 'enum', 'name', 'selected', 'nullable', 'placeholder',
+            'multiple', 'size', 'disabled', 'required', 'framework',
+            'groups-by', 'groups', 'group-labels', 'aria-label', 'classes',
+            'option-classes', 'root-id',
+        ])
+        : '';
 
     $inputId = $rootId ?? $name;
     $renderName = $multiple ? rtrim($name, '[]') . '[]' : $name;

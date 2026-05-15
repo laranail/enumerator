@@ -38,6 +38,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   full CI matrix. `EnumeratorCasts` covered by 7 feature tests.
   Livewire stays in the `suggest` block — it's still an opt-in for
   consumers, just now CI-gated for the maintainer.
+- **Livewire-aware Blade components.** `<x-...::select>`,
+  `<x-...::radio>`, and `<x-...::checkboxes>` now forward arbitrary
+  caller attributes (`wire:model.*`, `wire:loading`, `data-*`,
+  `aria-*`, `x-*`, etc.) through to their outer element via Laravel's
+  `ComponentAttributeBag::except()`. The select binds on `<select>`;
+  the radio / checkboxes bind on the wrapping `<fieldset>` (Livewire 3
+  morphs the value down to each `<input>`). Per-input wireModel prop
+  deferred to v0.3.0. ADR-0004.
+- `<x-...::checkboxes>` (and `<x-...::radio>`) base views now emit
+  the forwarded-attribute string on the wrapping `<fieldset>`. Was
+  previously only the bootstrap variant of `<x-...::select>`.
+- `docs/tools/blade-components.md` updated with the component matrix,
+  the Livewire integration contract, and the reserved-prop set per
+  component.
 
 ### Fixed
 

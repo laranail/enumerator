@@ -13,6 +13,20 @@
     $descriptions ??= false;
     $descriptionOf ??= null;
     $rootId ??= null;
+    // Arbitrary HTML attributes forwarded from the component caller
+    // (data-*, aria-*, wire:model.*, x-*, etc.). Auto-built from the
+    // parent's $attributes bag when not passed explicitly. For
+    // Livewire array-bound checkboxes, future versions will accept a
+    // dedicated wireModel prop that applies wire:model to each
+    // <input> rather than the wrapping <fieldset>.
+    $extraAttrs ??= isset($attributes) && method_exists($attributes, 'except')
+        ? (string) $attributes->except([
+            'class', 'id', 'enum', 'name', 'selected', 'layout', 'legend',
+            'framework', 'disabled', 'required', 'descriptions', 'classes',
+            'item-classes', 'input-classes', 'label-classes', 'legend-classes',
+            'root-id',
+        ])
+        : '';
 
     $normalized = [];
     foreach (is_iterable($selectedValues) ? $selectedValues : [$selectedValues] as $v) {
@@ -27,6 +41,7 @@
     class="{{ $classes }}"
     data-layout="{{ $layout }}"
     @disabled($disabled)
+    {!! $extraAttrs !!}
 >
     @if ($legend !== null)
         <legend class="{{ $legendClasses }}">{{ $legend }}</legend>
