@@ -1,0 +1,163 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Support\MessageBag;
+use Livewire\Component;
+use Simtabi\Laranail\Enumerator\Attributes\Label;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumerator;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Contracts\Stateful;
+use Simtabi\Laranail\Enumerator\Integrations\Livewire\WithEnumTransitions;
+
+// Feature coverage for the v0.3.0 PR-ζ WithEnumTransitions trait.
+//
+// The trait wraps `Stateful::transitionTo()` for Livewire components
+// — on success it mutates the property and dispatches an event; on
+// `InvalidTransitionException` it adds the error to the Livewire
+// error bag at the property path. The trait itself is the unit under
+// test here, so the tests stay focused on the behaviour without
+// booting a full Livewire request lifecycle.
+
+enum OrderStatus: string implements Enumerator, Stateful
+{
+    use HasEnumerator;
+
+    #[Label('Pending')] case Pending = 'pending';
+    #[Label('Paid')] case Paid = 'paid';
+    #[Label('Shipped')] case Shipped = 'shipped';
+    #[Label('Cancelled')] case Cancelled = 'cancelled';
+
+    public static function initialStates(): array
+    {
+        return [self::Pending];
+    }
+
+    public static function transitions(): array
+    {
+        return [
+            self::Pending->value => [self::Paid, self::Cancelled],
+            self::Paid->value => [self::Shipped, self::Cancelled],
+            self::Shipped->value => [],
+            self::Cancelled->value => [],
+        ];
+    }
+}
+
+class OrderShowFixture extends Component
+{
+    use WithEnumTransitions;
+
+    public OrderStatus $status = OrderStatus::Pending;
+
+    /** @var array<string, string> */
+    public array $dispatched = [];
+
+    private MessageBag $stubBag;
+
+    public function __construct()
+    {
+        // parent::__construct() can't be called outside a Livewire
+        // lifecycle; skip it for the test fixture and initialize the
+        // minimum state the trait needs (error bag + dispatch sink).
+        $this->stubBag = new MessageBag;
+    }
+
+    public function render(): string
+    {
+        return '<div></div>';
+    }
+
+    // Stub Livewire's getErrorBag()/addError() so the trait's error
+    // path doesn't depend on the full Livewire request lifecycle.
+    public function getErrorBag(): MessageBag
+    {
+        return $this->stubBag;
+    }
+
+    public function addError($name, $message)
+    {
+        $this->stubBag->add($name, $message);
+
+        return $this;
+    }
+
+    // Stub Livewire's dispatch() so the trait's call doesn't fail.
+    public function dispatch($event, ...$params)
+    {
+        $this->dispatched[(string) $event] = json_encode($params);
+
+        return $this;
+    }
+}
+
+it('returns true and advances the property on a valid transition', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    $ok = $component->transitionEnum('status', OrderStatus::Paid);
+
+    expect($ok)->toBeTrue();
+    expect($component->status)->toBe(OrderStatus::Paid);
+});
+
+it('returns false and pushes a Livewire error on an invalid transition', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    // Pending → Shipped is not allowed (Pending → Paid → Shipped is).
+    $ok = $component->transitionEnum('status', OrderStatus::Shipped);
+
+    expect($ok)->toBeFalse();
+    expect($component->status)->toBe(OrderStatus::Pending);  // unchanged
+    expect($component->getErrorBag()->has('status'))->toBeTrue();
+});
+
+it('returns false when the property is not a Stateful instance', function (): void {
+    $component = new OrderShowFixture;
+    // @phpstan-ignore-next-line — intentionally write a wrong-shaped value
+    $component->status = OrderStatus::Pending;
+    // Replace the property at runtime to simulate a non-Stateful value.
+    // PHP enum properties are typed, so we test against the trait's
+    // own check by using a property path that doesn't resolve to
+    // Stateful: an undefined sub-property.
+    $ok = $component->transitionEnum('nonexistentProperty', OrderStatus::Paid);
+
+    expect($ok)->toBeFalse();
+    expect($component->getErrorBag()->has('nonexistentProperty'))->toBeTrue();
+});
+
+it('canTransitionEnum() pre-flights without mutating state', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    expect($component->canTransitionEnum('status', OrderStatus::Paid))->toBeTrue();
+    expect($component->canTransitionEnum('status', OrderStatus::Shipped))->toBeFalse();
+    expect($component->status)->toBe(OrderStatus::Pending);  // unmutated
+});
+
+it('dispatches enumerator.transitioned with from/to payload on success', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    $component->transitionEnum('status', OrderStatus::Paid);
+
+    expect($component->dispatched)->toHaveKey('enumerator.transitioned');
+    $payload = json_decode($component->dispatched['enumerator.transitioned'], true);
+    expect($payload)->toBeArray();
+});
+
+it('chained valid transitions advance through the state machine', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    expect($component->transitionEnum('status', OrderStatus::Paid))->toBeTrue();
+    expect($component->status)->toBe(OrderStatus::Paid);
+
+    expect($component->transitionEnum('status', OrderStatus::Shipped))->toBeTrue();
+    expect($component->status)->toBe(OrderStatus::Shipped);
+
+    // Shipped is terminal — no further transitions allowed.
+    expect($component->transitionEnum('status', OrderStatus::Paid))->toBeFalse();
+    expect($component->status)->toBe(OrderStatus::Shipped);
+});

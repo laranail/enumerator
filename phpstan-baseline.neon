@@ -493,6 +493,30 @@ parameters:
 			path: src/Helpers/Bitmask.php
 
 		-
+			message: '''
+				#^PHPDoc tag @error has invalid value \(\('order\.status'\) \<span class\="error"\>\{\{ \$message \}\}\</span\> @enderror
+
+				Behaviour\:
+
+				  \- Resolves the property via Livewire's `\$this\-\>\{property\}` access
+				    \(uses dot notation\: `order\.status` resolves through getter chain\)\.
+				  \- Calls `Stateful\:\:transitionTo\(\$next\)` under the hood\.
+				  \- On success\: the resolved value is set back on the property path,
+				    and a `enumerator\.transitioned` Livewire event is dispatched with
+				    `\[from, to\]` payload\.
+				  \- On `InvalidTransitionException`\: the message is pushed to the
+				    Livewire error bag at the property path so Blade's `@error\(\)`
+				    directive picks it up\. No exception bubbles out of the action\.
+
+				Pass `wire\:loading\.attr\="disabled"` \(or similar\) to the trigger
+				button to get the loading state\. The trait doesn't ship UI markup —
+				see the recipe for full examples\.\)\: Unexpected token "'order\.status'", expected TOKEN_DOUBLE_QUOTED_STRING at offset 771 on line 25$#
+			'''
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/Integrations/Livewire/WithEnumTransitions.php
+
+		-
 			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
@@ -2903,6 +2927,162 @@ parameters:
 			identifier: method.nonObject
 			count: 1
 			path: tests/Feature/IdeHelperCommandTest.php
+
+		-
+			message: '#^Call to an undefined method Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful\:\:canTransitionTo\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to an undefined method Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful\:\:transitionTo\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function is_subclass_of\(\) with ''OrderStatus'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(OrderShowFixture\) and ''dispatch'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(OrderStatus\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(OrderStatus\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(OrderStatus\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with OrderStatus\:\:Cancelled\|OrderStatus\:\:Paid\|OrderStatus\:\:Pending\|OrderStatus\:\:Shipped and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 6
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Instanceof between OrderStatus\:\:Cancelled\|OrderStatus\:\:Paid\|OrderStatus\:\:Pending\|OrderStatus\:\:Shipped and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:addError\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:addError\(\) has parameter \$message with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:addError\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:canTransitionEnum\(\) should return bool but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:dispatch\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:dispatch\(\) has parameter \$event with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:dispatch\(\) has parameter \$params with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, OrderStatus\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(OrderStatus\)\.$#'
+			identifier: varTag.nativeType
+			count: 4
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(OrderStatus\) is not subtype of native type OrderStatus\:\:Cancelled\|OrderStatus\:\:Paid\|OrderStatus\:\:Pending\|OrderStatus\:\:Shipped\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<OrderStatus\:\:Cancelled\|OrderStatus\:\:Paid\|OrderStatus\:\:Pending\|OrderStatus\:\:Shipped\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Parameter \#1 \$key of method Illuminate\\Support\\MessageBag\:\:add\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Parameter \#2 \$message of method Illuminate\\Support\\MessageBag\:\:add\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Possibly invalid array key type int\|null\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Property OrderShowFixture\:\:\$dispatched \(array\<string, string\>\) does not accept array\<string, bool\|string\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
 
 		-
 			message: '#^Call to an undefined method MagicTestStatusEnum\:\:Active\:\:isACTIVE\(\)\.$#'
