@@ -2505,6 +2505,18 @@ parameters:
 		-
 			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'
 			identifier: property.notFound
+			count: 2
+			path: tests/Feature/Blade/DropdownMultiSelectTest.php
+
+		-
+			message: '#^Cannot call method toContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Blade/DropdownMultiSelectTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'
+			identifier: property.notFound
 			count: 4
 			path: tests/Feature/Blade/RendersHtmlEscapeTest.php
 

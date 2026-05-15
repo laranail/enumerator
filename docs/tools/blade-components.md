@@ -161,9 +161,41 @@ When `:searchable="true"` OR `:clearable="true"`, the dropdown emits:
 - Click-outside-to-close + `Esc` global close
 - A `change` event dispatched on selection (`x-on:change` works)
 
-The Alpine path is intentionally NOT engaged when `multiple=true` or
-`disabled=true` — those fall through to the native `<select>`. (Multi-
-select listbox + Alpine wiring is on the v0.3.0 backlog.)
+### Multi-select mode (PR-δ, v0.3.0)
+
+When `:multiple="true"` is combined with `:searchable="true"` or
+`:clearable="true"`, the Alpine path stays engaged and shifts into
+multi-select shape:
+
+- The trigger renders a **pill UI** — one `<span
+  class="enumerator-dropdown-pill">` per selected value, each with
+  an `×` button to remove that value.
+- Hidden inputs are emitted via `<template x-for>` over the selected
+  values — one `<input type="hidden" name="permissions[]"
+  :value="..."` per selection. PHP receives the array shape Eloquent
+  / FormRequest expects.
+- `commitSelection` toggles values (add if absent, remove if
+  present) and **keeps the panel open** so consecutive selections
+  don't require re-opening.
+- The listbox `<ul>` gets `aria-multiselectable="true"`; each
+  `<li>`'s `aria-selected` flips per selection.
+- The clear button (when `:clearable="true"`) empties the array
+  via `clearSelection()`.
+
+```blade
+<x-laranail-enumerator::dropdown
+    :enum="PermissionEnum::class"
+    name="permissions[]"
+    :multiple="true"
+    :searchable="true"
+    :clearable="true"
+    :selected="$user->permissions"
+    label-text="Permissions"
+/>
+```
+
+`disabled=true` always falls through to the native
+`<select multiple>` — the listbox doesn't run on disabled fields.
 
 ### Setup
 

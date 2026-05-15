@@ -8,8 +8,17 @@
     select path still ships data-searchable / data-clearable hooks for
     consumers using Tom Select, Choices.js, etc.
 
+    multiple=true is supported in BOTH paths:
+      - Alpine path: multi-select listbox with pill UI for selected
+        values, click-to-deselect on each pill, Enter toggles
+        selection without closing the panel.
+      - Native path: <select multiple> falls through.
+
     Groups: when searchable=true the options are flattened (group
-    headers ignored). Grouped + searchable is a v0.3.0 enhancement.
+    headers ignored). Grouped + searchable is a v0.3.x enhancement.
+
+    disabled=true always falls through to the native path; the Alpine
+    listbox doesn't run.
 --}}
 @php
     $selectedValue ??= null;
@@ -50,14 +59,32 @@
         return (string) $selectedValue === $needle;
     };
 
+    // Alpine path engaged when interactivity is requested AND the
+    // component isn't disabled. multiple=true now stays in the Alpine
+    // branch — handled as a multi-select listbox in the x-data state
+    // below.
+    $alpineEnhanced = ($searchable || $clearable) && ! $disabled;
+
     // For the Alpine listbox path: flat list of { value, label } pairs.
-    // Groups are flattened when searchable=true.
-    $alpineEnhanced = ($searchable || $clearable) && ! $multiple && ! $disabled;
     $optionsList = [];
     foreach ($cases as $case) {
         $optionsList[] = ['value' => (string) $valueOf($case), 'label' => (string) $labelOf($case)];
     }
-    $alpineSelectedValue = $selectedValue === null ? '' : (string) $selectedValue;
+
+    // Initial state — single-select gets a scalar, multi-select an
+    // array. Single-mode's $alpineSelectedValue stays empty in
+    // multi-mode (we use $alpineSelectedValues instead). Casting an
+    // array to (string) emits a PHP warning + 'Array' literal, so
+    // skip the cast when $selectedValue is already an iterable.
+    $alpineSelectedValue = '';
+    $alpineSelectedValues = [];
+    if ($multiple && is_iterable($selectedValue)) {
+        foreach ($selectedValue as $v) {
+            $alpineSelectedValues[] = (string) $v;
+        }
+    } elseif ($selectedValue !== null && ! is_iterable($selectedValue)) {
+        $alpineSelectedValue = (string) $selectedValue;
+    }
 @endphp
 
 <div {{ $attributes->only(['id'])->class(['enumerator-dropdown', $wrapperClasses]) }}>
@@ -80,30 +107,85 @@
             open: false,
             filter: '',
             activeIndex: -1,
+            multiple: {{ $multiple ? 'true' : 'false' }},
             selectedValue: {{ json_encode($alpineSelectedValue, JSON_UNESCAPED_SLASHES) }},
+            selectedValues: {{ json_encode($alpineSelectedValues, JSON_UNESCAPED_SLASHES) }},
             selectedLabel: '',
+            selectedLabels: [],
             options: {{ json_encode($optionsList, JSON_UNESCAPED_SLASHES) }},
             init() {
-                const found = this.options.find(o => String(o.value) === String(this.selectedValue));
-                this.selectedLabel = found ? found.label : '';
+                if (this.multiple) {
+                    this.refreshSelectedLabels();
+                } else {
+                    const found = this.options.find(o => String(o.value) === String(this.selectedValue));
+                    this.selectedLabel = found ? found.label : '';
+                }
             },
             get filtered() {
                 if (!this.filter) return this.options;
                 const f = String(this.filter).toLowerCase();
                 return this.options.filter(o => String(o.label).toLowerCase().includes(f));
             },
+            refreshSelectedLabels() {
+                this.selectedLabels = this.selectedValues
+                    .map(v => {
+                        const o = this.options.find(o => String(o.value) === String(v));
+                        return o ? { value: String(v), label: o.label } : null;
+                    })
+                    .filter(o => o !== null);
+            },
+            isSelected(opt) {
+                if (this.multiple) {
+                    return this.selectedValues.some(v => String(v) === String(opt.value));
+                }
+                return String(opt.value) === String(this.selectedValue);
+            },
+            hasSelection() {
+                return this.multiple ? this.selectedValues.length > 0 : this.selectedValue !== '';
+            },
             commitSelection(opt) {
-                this.selectedValue = String(opt.value);
-                this.selectedLabel = String(opt.label);
-                this.open = false;
-                this.filter = '';
-                this.activeIndex = -1;
-                this.$dispatch('change', { value: this.selectedValue });
+                if (this.multiple) {
+                    const v = String(opt.value);
+                    const idx = this.selectedValues.findIndex(x => String(x) === v);
+                    if (idx >= 0) {
+                        this.selectedValues.splice(idx, 1);
+                    } else {
+                        this.selectedValues.push(v);
+                    }
+                    this.refreshSelectedLabels();
+                    this.$dispatch('change', { values: this.selectedValues });
+                    // Multi mode keeps the panel open so multiple
+                    // selections can land in a row. Esc / click-outside
+                    // closes.
+                } else {
+                    this.selectedValue = String(opt.value);
+                    this.selectedLabel = String(opt.label);
+                    this.open = false;
+                    this.filter = '';
+                    this.activeIndex = -1;
+                    this.$dispatch('change', { value: this.selectedValue });
+                }
+            },
+            removeValue(value) {
+                if (!this.multiple) return;
+                const v = String(value);
+                const idx = this.selectedValues.findIndex(x => String(x) === v);
+                if (idx >= 0) {
+                    this.selectedValues.splice(idx, 1);
+                    this.refreshSelectedLabels();
+                    this.$dispatch('change', { values: this.selectedValues });
+                }
             },
             clearSelection() {
-                this.selectedValue = '';
-                this.selectedLabel = '';
-                this.$dispatch('change', { value: '' });
+                if (this.multiple) {
+                    this.selectedValues = [];
+                    this.selectedLabels = [];
+                    this.$dispatch('change', { values: [] });
+                } else {
+                    this.selectedValue = '';
+                    this.selectedLabel = '';
+                    this.$dispatch('change', { value: '' });
+                }
             },
             toggleOpen() {
                 this.open = !this.open;
@@ -130,11 +212,19 @@
         @click.outside="open = false"
         @keydown.escape.window="open = false"
         class="enumerator-dropdown-combobox"
+        :class="{ 'enumerator-dropdown-multiple': multiple }"
         data-enhancement="alpine"
+        data-multiple="{{ $multiple ? 'true' : 'false' }}"
         data-searchable="{{ $searchable ? 'true' : 'false' }}"
         data-clearable="{{ $clearable ? 'true' : 'false' }}"
     >
+        @if ($multiple)
+        <template x-for="entry in selectedLabels" :key="entry.value">
+            <input type="hidden" name="{{ $renderName }}" :value="entry.value">
+        </template>
+        @else
         <input type="hidden" name="{{ $renderName }}" :value="selectedValue" @if ($required) required @endif>
+        @endif
 
         <button
             type="button"
@@ -148,13 +238,30 @@
             @if ($ariaLabel ?? $labelText) aria-label="{{ $ariaLabel ?? $labelText }}" @endif
             class="enumerator-dropdown-button {{ $classes }}"
         >
-            <span x-text="selectedLabel || {{ json_encode($placeholder, JSON_UNESCAPED_SLASHES) }}" class="enumerator-dropdown-label-text"></span>
+            <template x-if="multiple">
+                <span class="enumerator-dropdown-pills">
+                    <span x-show="selectedLabels.length === 0" x-text="{{ json_encode($placeholder, JSON_UNESCAPED_SLASHES) }}" class="enumerator-dropdown-label-text"></span>
+                    <template x-for="entry in selectedLabels" :key="entry.value">
+                        <span class="enumerator-dropdown-pill">
+                            <span x-text="entry.label"></span>
+                            <button type="button"
+                                    @click.stop="removeValue(entry.value)"
+                                    class="enumerator-dropdown-pill-remove"
+                                    :aria-label="'Remove ' + entry.label"
+                            >&times;</button>
+                        </span>
+                    </template>
+                </span>
+            </template>
+            <template x-if="!multiple">
+                <span x-text="selectedLabel || {{ json_encode($placeholder, JSON_UNESCAPED_SLASHES) }}" class="enumerator-dropdown-label-text"></span>
+            </template>
         </button>
 
         @if ($clearable)
         <button
             type="button"
-            x-show="selectedValue !== ''"
+            x-show="hasSelection()"
             @click.stop="clearSelection()"
             class="enumerator-dropdown-clear"
             aria-label="Clear selection"
@@ -179,12 +286,15 @@
             >
             @endif
 
-            <ul role="listbox" class="enumerator-dropdown-list">
+            <ul role="listbox" @if ($multiple) aria-multiselectable="true" @endif class="enumerator-dropdown-list">
                 <template x-for="(opt, idx) in filtered" :key="String(opt.value)">
                     <li
                         role="option"
-                        :aria-selected="String(opt.value) === String(selectedValue) ? 'true' : 'false'"
-                        :class="{ 'enumerator-dropdown-active': idx === activeIndex }"
+                        :aria-selected="isSelected(opt) ? 'true' : 'false'"
+                        :class="{
+                            'enumerator-dropdown-active': idx === activeIndex,
+                            'enumerator-dropdown-selected': isSelected(opt),
+                        }"
                         @click="commitSelection(opt)"
                         @mouseenter="activeIndex = idx"
                         class="enumerator-dropdown-option"

@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Multi-select Alpine listbox** for `<x-...::dropdown>` (PR-δ). The
+  Alpine path now handles `:multiple="true"` instead of falling through
+  to the native `<select multiple>`. New shape: pill UI in the trigger
+  (each pill with a `×` remove button), hidden inputs emitted via
+  `<template x-for>` so the form receives the array, panel stays open
+  on each selection toggle, `aria-multiselectable="true"` on the
+  listbox `<ul>`, and a `change` event carrying the full array. Single-
+  select mode is unchanged. `disabled=true` still falls through to
+  the native `<select multiple>`. See
+  [`docs/tools/blade-components.md`](docs/tools/blade-components.md)
+  "Multi-select mode" section. Tests: 10 new in
+  `tests/Feature/Blade/DropdownMultiSelectTest.php`.
 - **Per-input `:wireModel` prop on radio + checkboxes** (PR-γ).
   `<x-...::radio>` and `<x-...::checkboxes>` accept a dedicated
   `wireModel` prop that emits `wire:model="..."` on every `<input>`

@@ -124,18 +124,21 @@ it('hydrates the selectedValue into the Alpine x-data when :selected is provided
     expect((string) $html)->toContain('selectedValue: &quot;active&quot;');
 });
 
-// Fallthrough to native select — multiple
+// Multi-mode — Alpine path now handles multiple=true (post-PR-δ)
 
-it('falls through to the native <select> when multiple=true (Alpine path not multi-select)', function (): void {
+it('multiple=true stays in the Alpine path (post-PR-δ)', function (): void {
     $html = Blade::render(
         '<x-laranail-enumerator::dropdown :enum="$enum" name="status[]" :multiple="true" :searchable="true" />',
         ['enum' => SimpleStatusEnum::class],
     );
 
     expect((string) $html)
-        ->toContain('<select')
-        ->toContain('multiple')
-        ->not->toContain('x-data');
+        ->toContain('x-data')
+        ->toContain('multiple: true')
+        ->toContain('data-multiple="true"')
+        ->toContain('aria-multiselectable="true"')
+        ->toContain('enumerator-dropdown-pills')
+        ->not->toContain('<select');
 });
 
 // Fallthrough — disabled
