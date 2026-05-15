@@ -24,6 +24,14 @@ class Checkboxes extends Component
     /**
      * @param  class-string  $enum
      * @param  iterable<int|string, mixed>  $selected
+     * @param  string|null  $wireModel  Optional Livewire property name. When set,
+     *                                  each `<input>` emits `wire:model="…"` so
+     *                                  Livewire binds the array at the input level
+     *                                  (required for checkbox-array binding to
+     *                                  actually populate the property).
+     * @param  string|null  $wireModelModifier  Livewire wire:model modifier
+     *                                          (`live`, `blur`, `defer`, `debounce.500ms`,
+     *                                          …). No-op unless `wireModel` is also set.
      */
     public function __construct(
         public string $enum,
@@ -41,6 +49,8 @@ class Checkboxes extends Component
         public ?string $labelClasses = null,
         public ?string $legendClasses = null,
         public ?string $rootId = null,
+        public ?string $wireModel = null,
+        public ?string $wireModelModifier = null,
     ) {
         $this->cases = $enum::cases();
         foreach ($selected as $item) {
@@ -66,6 +76,8 @@ class Checkboxes extends Component
             'overrideLabelClasses' => $this->labelClasses,
             'overrideLegendClasses' => $this->legendClasses,
             'overrideRootId' => $this->rootId,
+            'wireModel' => $this->wireModel,
+            'wireModelModifier' => $this->wireModelModifier,
             'valueOf' => $this->valueOfFn(),
             'labelOf' => $this->labelOfFn(),
             'idFor' => $this->idForFn(),

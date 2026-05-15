@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-_(reserved for the next development cycle — see
-[completion-plan.md](.design/plans/completion-plan.md) deferred items
-for what's tentatively v0.3.0)_
+### Added
+
+- **Per-input `:wireModel` prop on radio + checkboxes** (PR-γ).
+  `<x-...::radio>` and `<x-...::checkboxes>` accept a dedicated
+  `wireModel` prop that emits `wire:model="..."` on every `<input>`
+  element (in addition to the existing attribute-bag forwarding on
+  the `<fieldset>`). The `wireModelModifier` companion prop emits
+  `wire:model.live="..."` / `wire:model.blur="..."` /
+  `wire:model.debounce.500ms="..."` etc. This is the required shape
+  for Livewire 3 checkbox-array binding (array values won't
+  populate from `wire:model` on the wrapping `<fieldset>`). v0.2.0
+  attribute-bag-forwarded `wire:model` on the fieldset still works
+  for single radios via Livewire's DOM-morph, but the
+  `:wireModel` prop is the recommended pattern. See
+  `docs/tools/blade-components.md` "Livewire integration".
 
 ## [0.2.1] — 2026-05-15
 

@@ -13,13 +13,17 @@
     $descriptions ??= false;
     $descriptionOf ??= null;
     $rootId ??= null;
+    $wireModel ??= null;
+    $wireModelModifier ??= null;
+    $wireModelAttr = $wireModel !== null
+        ? 'wire:model' . ($wireModelModifier !== null ? '.' . $wireModelModifier : '') . '="' . $wireModel . '"'
+        : '';
     // Arbitrary HTML attributes forwarded from the component caller
     // (data-*, aria-*, wire:model.*, x-*, etc.). Auto-built from the
-    // parent's $attributes bag when not passed explicitly. Note:
-    // wire:model placed on the <fieldset> requires Livewire 3's DOM-
-    // morph behaviour to propagate to the child <input>s; for
-    // explicit input-level binding, future versions will accept a
-    // dedicated wireModel prop.
+    // parent's $attributes bag when not passed explicitly. For
+    // explicit input-level Livewire binding (preferred for radio
+    // groups) use the :wireModel prop; that emits wire:model on each
+    // <input>.
     $extraAttrs ??= isset($attributes) && method_exists($attributes, 'except')
         ? (string) $attributes->except([
             'class', 'id', 'enum', 'name', 'selected', 'layout', 'legend',
@@ -57,6 +61,7 @@
                 @checked($isSelected($case))
                 @disabled($disabled)
                 @required($required)
+                {!! $wireModelAttr !!}
             >
             <label for="{{ $inputId }}" class="{{ $labelClasses }}">{{ $labelOf($case) }}</label>
             @if ($descriptions && $descriptionOf && ($d = $descriptionOf($case)))

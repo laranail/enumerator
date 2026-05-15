@@ -40,10 +40,11 @@ php artisan vendor:publish --tag=enumerator-views
 
 ## Livewire integration
 
-The `select`, `radio`, and `checkboxes` components forward arbitrary
-HTML attributes (anything not matching a known component prop)
-through to their outer element. That makes Livewire bindings work
-out of the box:
+Two layers:
+
+**Attribute-bag forwarding** — every component forwards arbitrary
+HTML attributes (anything not matching a known prop) to the outer
+element. Works for `wire:*`, `data-*`, `aria-*`, `x-*`, etc.:
 
 ```blade
 {{-- wire:model.live on the <select> --}}
@@ -52,31 +53,55 @@ out of the box:
     name="status"
     wire:model.live="status"
 />
+```
 
-{{-- wire:model on the radio <fieldset>; Livewire 3 propagates to
-     the child <input>s via DOM morph --}}
+For `<x-...::select>` that's enough: Livewire binds at the `<select>`
+element directly. But for radio + checkboxes, Livewire 3 binds at
+the `<input>` level — placing `wire:model` on the wrapping
+`<fieldset>` works for radios (via Livewire's DOM-morph) but **fails
+for checkbox-array binding**.
+
+**Per-input `:wireModel` prop** — for radio + checkboxes, the
+dedicated `wireModel` / `wireModelModifier` props emit `wire:model`
+on every `<input>`:
+
+```blade
+{{-- wire:model="status" emitted on each radio input --}}
 <x-laranail-enumerator::radio
     :enum="UserStatusEnum::class"
     name="status"
-    wire:model="status"
+    wire-model="status"
 />
 
-{{-- Same for checkboxes — the wire:model is placed on the
-     <fieldset>. For per-input Livewire binding (e.g. array-bound
-     checkboxes), see the v0.3.0 backlog (input-level wireModel
-     prop). --}}
+{{-- wire:model.live="status" on each input (with the .live modifier) --}}
+<x-laranail-enumerator::radio
+    :enum="UserStatusEnum::class"
+    name="status"
+    wire-model="status"
+    wire-model-modifier="live"
+/>
+
+{{-- Required shape for Livewire array-bound checkboxes --}}
 <x-laranail-enumerator::checkboxes
     :enum="PermissionEnum::class"
     name="permissions[]"
-    wire:model="permissions"
+    wire-model="permissions"
+/>
+
+{{-- Complex modifiers work too --}}
+<x-laranail-enumerator::checkboxes
+    :enum="PermissionEnum::class"
+    name="permissions[]"
+    wire-model="permissions"
+    wire-model-modifier="debounce.500ms"
 />
 ```
 
-Any `data-*`, `aria-*`, `x-*` (Alpine), `wire:*` (Livewire), or
-custom attributes you set on the component tag flow through to the
-outer element. Laravel's `ComponentAttributeBag` HTML-escapes
-attribute values at serialisation time, so the forwarded string is
-safe under normal use.
+Laravel's `ComponentAttributeBag` HTML-escapes attribute values at
+serialisation time, so attribute-bag forwarding is safe under normal
+use. The `:wireModel` prop value is interpolated directly into the
+attribute — pass only a Livewire property name (it should never come
+from user input).
 
 ## Known component props (NOT forwarded)
 

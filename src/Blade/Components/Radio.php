@@ -22,6 +22,14 @@ class Radio extends Component
 
     /**
      * @param  class-string  $enum
+     * @param  string|null  $wireModel  Optional Livewire property name. When set,
+     *                                  each `<input>` emits `wire:model="…"` so
+     *                                  Livewire binds at the input level (not just
+     *                                  at the fieldset). Use with `wireModelModifier`
+     *                                  for `wire:model.live="…"` etc.
+     * @param  string|null  $wireModelModifier  Livewire wire:model modifier
+     *                                          (`live`, `blur`, `defer`, `debounce.500ms`,
+     *                                          …). No-op unless `wireModel` is also set.
      */
     public function __construct(
         public string $enum,
@@ -39,6 +47,8 @@ class Radio extends Component
         public ?string $labelClasses = null,
         public ?string $legendClasses = null,
         public ?string $rootId = null,
+        public ?string $wireModel = null,
+        public ?string $wireModelModifier = null,
     ) {
         $this->cases = $enum::cases();
         $this->selectedValue = $this->scalar($selected);
@@ -62,6 +72,8 @@ class Radio extends Component
             'overrideLabelClasses' => $this->labelClasses,
             'overrideLegendClasses' => $this->legendClasses,
             'overrideRootId' => $this->rootId,
+            'wireModel' => $this->wireModel,
+            'wireModelModifier' => $this->wireModelModifier,
             'valueOf' => $this->valueOfFn(),
             'labelOf' => $this->labelOfFn(),
             'idFor' => $this->idForFn(),
