@@ -20,6 +20,7 @@ and feature highlights; everything else lives under `docs/`.
 - [Attributes](tools/attributes.md) — `#[Label]`, `#[Color]`, `#[Icon]`, `#[Description]`, `#[Help]`, `#[Order]`, `#[Meta]`, `#[Bit]`, `#[CssClass]`
 - [Bitmask](tools/bitmask.md) — `#[Bit]`-tagged enums, `Bitmask` value type, `AsBitmask` cast
 - [Blade components](tools/blade-components.md) — `badge`, `select`, `radio`, `dropdown`, `checkboxes`, `grid`, `listing`, `element` × 5 frameworks
+- [Cache keys](tools/cache-keys.md) — `IsCacheKey` trait + `Cacheable` contract for enum-as-cache-key pattern (v0.3.0)
 - [Blade directives](tools/blade-directives.md) — `@enumeratorLabel`, `@enumeratorBadge`, `@enumeratorIs`, `@enumeratorIn`, …
 - [Cases collection](tools/cases-collection.md) — `CasesCollection` (extends Laravel's `Collection`)
 - [Eloquent casts](tools/casts.md) — `AsEnum`, `AsNullableEnum`, `AsEnumeratorCollection`, `AsBitmask`
@@ -30,6 +31,7 @@ and feature highlights; everything else lives under `docs/`.
 - [Exceptions](tools/exceptions.md)
 - [Helpers](tools/helpers.md)
 - [Invokable cases](tools/invokable-cases.md) — `Status::Active()` shorthand
+- [Livewire transitions](tools/livewire-transitions.md) — `WithEnumTransitions` trait for Livewire 3 components (v0.3.0)
 - [Magic comparisons](tools/magic-comparisons.md) — `$status->isActive()`, `->isNotBanned()`
 - [`make:enumerator` command](tools/make-enumerator.md)
 - [Presets](tools/presets.md) — 26 production-ready enums under `Presets\Enums\`

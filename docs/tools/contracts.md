@@ -1,6 +1,6 @@
 # Contracts
 
-Six interfaces in `src/Contracts/`:
+Seven interfaces in `src/Contracts/`:
 
 - `Enumerator` — marker interface, implemented by every enum.
 - `HtmlRenderable` — `toHtml()`.
@@ -8,3 +8,4 @@ Six interfaces in `src/Contracts/`:
 - `Translatable` — overrides for translation key shape.
 - `Bitwise` — bitmask enums (use with `#[Bit]`).
 - `TransitionHook` — before/after hooks for state transitions.
+- `Cacheable` — enum-as-cache-key (`key()`), v0.3.0. See [Cache keys](cache-keys.md).
