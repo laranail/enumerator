@@ -25,6 +25,12 @@ parameters:
 			path: src/AbstractEnumeratorClass.php
 
 		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/AlpineLoader.php
+
+		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
 			count: 3
@@ -4133,6 +4139,30 @@ parameters:
 			identifier: cast.string
 			count: 1
 			path: tests/Feature/AbstractEnumeratorClassTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<mixed\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Blade/AlpineLoaderTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Blade/AlpineLoaderTest.php
+
+		-
+			message: '#^Cannot access property \$not on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Blade/AlpineLoaderTest.php
+
+		-
+			message: '#^Cannot call method toContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Blade/AlpineLoaderTest.php
 
 		-
 			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'

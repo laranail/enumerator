@@ -23,8 +23,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- _(reserved — Livewire-aware components and Alpine loader land in
-  later batches; see `.design/plans/completion-plan.md`)_
+- `<x-laranail-enumerator::alpine-loader />` Blade component for the
+  Alpine-enhanced components landing in later v0.2.0 batches. CDN-first
+  with local fallback; conflict-check guard prevents double-loading
+  when consumers already ship Alpine via npm. Pinned Alpine version
+  + SHA-384 SRI live in `config/enumerator.php` under `alpine.*`; CI
+  verifies the bundled `resources/js/alpine.min.js` matches the
+  integrity hash on every push. Opt out of the CDN with `:cdn="false"`.
+  See [`docs/tools/alpine-loader.md`](docs/tools/alpine-loader.md).
+- New publish tag `enumerator-js` copies the Alpine bundle into
+  `public/vendor/laranail-enumerator/` for the local-fallback path.
 
 ### Fixed
 

@@ -36,6 +36,22 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
+      - name: Verify Alpine bundle SRI
+        # Guards against the bundled resources/js/alpine.min.js drifting
+        # from the integrity hash recorded in config/enumerator.php.
+        # The env() stub here lets us read the file's default value
+        # without booting Laravel.
+        run: |
+          BUNDLED_SRI="sha384-$(shasum -a 384 -b resources/js/alpine.min.js | awk '{print $1}' | xxd -r -p | base64)"
+          PINNED_SRI=$(php -r "function env(\$k, \$d = null) { return \$d; } echo (require 'config/enumerator.php')['alpine']['integrity'];")
+          if [ "$BUNDLED_SRI" != "$PINNED_SRI" ]; then
+            echo "::error::Alpine SRI mismatch"
+            echo "  bundled: $BUNDLED_SRI"
+            echo "  pinned:  $PINNED_SRI"
+            exit 1
+          fi
+          echo "Alpine SRI verified: $PINNED_SRI"
+
       - name: Pint (format check)
         run: vendor/bin/pint --test
 

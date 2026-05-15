@@ -59,6 +59,32 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Alpine.js loader (Alpine-enhanced components)
+    |--------------------------------------------------------------------------
+    | Pinned version + SRI integrity used by the
+    | <x-laranail-enumerator::alpine-loader /> component. The component
+    | emits a <script defer> that:
+    |   1. No-ops if window.Alpine is already defined.
+    |   2. Loads from cdn_url with the integrity hash.
+    |   3. On CDN error, falls back to local_url (publish with
+    |      `vendor:publish --tag=enumerator-js`).
+    |
+    | `cdn_url` may contain a `{version}` placeholder, replaced at render.
+    | `integrity` is omitted from the <script> tag when empty (no SRI).
+    |
+    | The bundled `resources/js/alpine.min.js` and the `integrity` value
+    | below are kept in sync. CI verifies the bundle's SHA-384 matches
+    | this value on every push.
+    */
+    'alpine' => [
+        'version' => env('ENUMERATOR_ALPINE_VERSION', '3.15.12'),
+        'integrity' => env('ENUMERATOR_ALPINE_INTEGRITY', 'sha384-pb6hrQvo4s23cEUFtj0CZkzGE3jyK3pj26RIupXXxhSrrcUA/Cn0lZgcCrGH0t6L'),
+        'cdn_url' => env('ENUMERATOR_ALPINE_CDN', 'https://cdn.jsdelivr.net/npm/alpinejs@{version}/dist/cdn.min.js'),
+        'local_url' => env('ENUMERATOR_ALPINE_LOCAL', '/vendor/laranail-enumerator/alpine.min.js'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Magic behaviour
     |--------------------------------------------------------------------------
     */

@@ -16,6 +16,7 @@ and feature highlights; everything else lives under `docs/`.
 
 ## Tools (one per public feature)
 
+- [Alpine.js loader](tools/alpine-loader.md) — `<x-laranail-enumerator::alpine-loader />`, CDN-first + local fallback, for the Alpine-enhanced components
 - [Attributes](tools/attributes.md) — `#[Label]`, `#[Color]`, `#[Icon]`, `#[Description]`, `#[Help]`, `#[Order]`, `#[Meta]`, `#[Bit]`, `#[CssClass]`
 - [Bitmask](tools/bitmask.md) — `#[Bit]`-tagged enums, `Bitmask` value type, `AsBitmask` cast
 - [Blade components](tools/blade-components.md) — `badge`, `select`, `radio`, `dropdown`, `checkboxes`, `grid`, `listing`, `element` × 5 frameworks

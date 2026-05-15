@@ -208,6 +208,14 @@ final class EnumeratorServiceProvider extends ServiceProvider
             __DIR__ . '/../database/migrations' => $this->app->databasePath('migrations'),
         ], 'enumerator-migrations');
 
+        // Alpine.js bundle for the Alpine-enhanced components. Consumers
+        // publish this once if they want the local-fallback path of
+        // <x-laranail-enumerator::alpine-loader /> to work offline /
+        // under strict CSP. See docs/tools/alpine-loader.md.
+        $this->publishes([
+            __DIR__ . '/../resources/js' => $this->app->publicPath('vendor/laranail-enumerator'),
+        ], 'enumerator-js');
+
         $this->publishes([
             __DIR__ . '/Presets' => $this->app->path('Enums'),
         ], 'enumerator-presets');
