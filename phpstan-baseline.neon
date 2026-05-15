@@ -31,12 +31,6 @@ parameters:
 			path: src/Blade/Components/AlpineLoader.php
 
 		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 3
-			path: src/Blade/Components/Badge.php
-
-		-
 			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
 			identifier: argument.type
 			count: 1
@@ -51,7 +45,7 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 4
 			path: src/Blade/Components/Checkboxes.php
 
 		-
@@ -91,12 +85,6 @@ parameters:
 			path: src/Blade/Components/Dropdown.php
 
 		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 3
-			path: src/Blade/Components/Element.php
-
-		-
 			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
 			identifier: argument.type
 			count: 1
@@ -111,7 +99,7 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 5
+			count: 2
 			path: src/Blade/Components/Grid.php
 
 		-
@@ -129,7 +117,7 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 5
+			count: 2
 			path: src/Blade/Components/Listing.php
 
 		-
@@ -153,7 +141,7 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 3
 			path: src/Blade/Components/Radio.php
 
 		-
@@ -171,7 +159,7 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 3
 			path: src/Blade/Components/Select.php
 
 		-
@@ -741,13 +729,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/ApprovalStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/ApprovalStatusEnum.php
 
 		-
@@ -835,15 +823,9 @@ parameters:
 			path: src/Presets/Enums/BasicPermissionEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/BasicPermissionEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/BasicPermissionEnum.php
 
 		-
@@ -921,13 +903,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/CommentStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/CommentStatusEnum.php
 
 		-
@@ -1015,15 +997,9 @@ parameters:
 			path: src/Presets/Enums/DirectionEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/DirectionEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/DirectionEnum.php
 
 		-
@@ -1093,15 +1069,9 @@ parameters:
 			path: src/Presets/Enums/FeatureFlagEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/FeatureFlagEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/FeatureFlagEnum.php
 
 		-
@@ -1177,15 +1147,9 @@ parameters:
 			path: src/Presets/Enums/GenderEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/GenderEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/GenderEnum.php
 
 		-
@@ -1255,15 +1219,9 @@ parameters:
 			path: src/Presets/Enums/HttpMethodEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/HttpMethodEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/HttpMethodEnum.php
 
 		-
@@ -1335,13 +1293,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/HttpStatusClassEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/HttpStatusClassEnum.php
 
 		-
@@ -1429,15 +1387,9 @@ parameters:
 			path: src/Presets/Enums/MaritalStatusEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/MaritalStatusEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/MaritalStatusEnum.php
 
 		-
@@ -1507,15 +1459,9 @@ parameters:
 			path: src/Presets/Enums/MimeTypeCategoryEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/MimeTypeCategoryEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/MimeTypeCategoryEnum.php
 
 		-
@@ -1587,13 +1533,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/MonthEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/MonthEnum.php
 
 		-
@@ -1705,15 +1651,9 @@ parameters:
 			path: src/Presets/Enums/NotificationOptInEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/NotificationOptInEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/NotificationOptInEnum.php
 
 		-
@@ -1791,13 +1731,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/OrderStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/OrderStatusEnum.php
 
 		-
@@ -1887,13 +1827,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/PaymentStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/PaymentStatusEnum.php
 
 		-
@@ -1983,13 +1923,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/PriorityEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/PriorityEnum.php
 
 		-
@@ -2097,13 +2037,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/PublicationStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/PublicationStatusEnum.php
 
 		-
@@ -2209,15 +2149,9 @@ parameters:
 			path: src/Presets/Enums/RaceEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/RaceEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/RaceEnum.php
 
 		-
@@ -2287,15 +2221,9 @@ parameters:
 			path: src/Presets/Enums/ReligionEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/ReligionEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/ReligionEnum.php
 
 		-
@@ -2365,15 +2293,9 @@ parameters:
 			path: src/Presets/Enums/RoleFlagEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/RoleFlagEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/RoleFlagEnum.php
 
 		-
@@ -2451,13 +2373,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/SeverityEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/SeverityEnum.php
 
 		-
@@ -2547,13 +2469,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/SizeEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/SizeEnum.php
 
 		-
@@ -2667,13 +2589,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/StatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/StatusEnum.php
 
 		-
@@ -2781,13 +2703,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/TaskStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/TaskStatusEnum.php
 
 		-
@@ -2875,15 +2797,9 @@ parameters:
 			path: src/Presets/Enums/ToggleEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/ToggleEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/ToggleEnum.php
 
 		-
@@ -2955,13 +2871,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/VisibilityEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/VisibilityEnum.php
 
 		-
@@ -3051,13 +2967,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: src/Presets/Enums/WeekdayEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: src/Presets/Enums/WeekdayEnum.php
 
 		-
@@ -3979,15 +3895,9 @@ parameters:
 			path: tests/Feature/MagicComparisonsTest.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Feature/MagicComparisonsTest.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Feature/MagicComparisonsTest.php
 
 		-
@@ -4183,15 +4093,9 @@ parameters:
 			path: tests/Fixtures/Enums/AttributedStatusEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/AttributedStatusEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: tests/Fixtures/Enums/AttributedStatusEnum.php
 
 		-
@@ -4281,13 +4185,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
 
 		-
@@ -4443,13 +4347,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
 		-
@@ -4605,13 +4509,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/DescribedEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Fixtures/Enums/DescribedEnum.php
 
 		-
@@ -4767,13 +4671,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
 
 		-
@@ -4909,15 +4813,9 @@ parameters:
 			path: tests/Fixtures/Enums/FlaggedPermissionEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/FlaggedPermissionEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: tests/Fixtures/Enums/FlaggedPermissionEnum.php
 
 		-
@@ -5013,13 +4911,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
 		-
@@ -5175,13 +5073,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
 
 		-
@@ -5337,13 +5235,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/OrderedStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Fixtures/Enums/OrderedStatusEnum.php
 
 		-
@@ -5485,15 +5383,9 @@ parameters:
 			path: tests/Fixtures/Enums/PureColorEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/PureColorEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: tests/Fixtures/Enums/PureColorEnum.php
 
 		-
@@ -5583,13 +5475,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/RenderableStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 7
+			count: 5
 			path: tests/Fixtures/Enums/RenderableStatusEnum.php
 
 		-
@@ -5725,15 +5617,9 @@ parameters:
 			path: tests/Fixtures/Enums/SimpleStatusEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/SimpleStatusEnum.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: tests/Fixtures/Enums/SimpleStatusEnum.php
 
 		-
@@ -5823,13 +5709,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
-			count: 2
+			count: 1
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 6
+			count: 4
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
 
 		-

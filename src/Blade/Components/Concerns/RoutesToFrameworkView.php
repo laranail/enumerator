@@ -26,9 +26,14 @@ trait RoutesToFrameworkView
      */
     protected function frameworkView(string $component): string
     {
-        $ns = (string) (config('enumerator.view_namespace') ?? 'laranail-enumerator');
-        $framework = $this->framework
-            ?? (string) (config('enumerator.css_framework') ?? 'plain');
+        $nsConfig = config('enumerator.view_namespace');
+        $ns = is_string($nsConfig) && $nsConfig !== '' ? $nsConfig : 'laranail-enumerator';
+
+        $framework = $this->framework;
+        if ($framework === null) {
+            $fwConfig = config('enumerator.css_framework');
+            $framework = is_string($fwConfig) && $fwConfig !== '' ? $fwConfig : 'plain';
+        }
 
         // Fall back to the plain bundle when an unknown framework is requested.
         $allowed = ['plain', 'tailwind', 'daisyui', 'bootstrap', 'bulma'];
@@ -55,7 +60,9 @@ trait RoutesToFrameworkView
             return '';
         }
 
-        return trim((string) ($this->attributes->get('class') ?? ''));
+        $class = $this->attributes->get('class');
+
+        return trim(is_string($class) ? $class : '');
     }
 
     /**

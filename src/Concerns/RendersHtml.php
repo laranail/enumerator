@@ -18,9 +18,13 @@ trait RendersHtml
     public function toHtml(?string $framework = null): HtmlString
     {
         if ($framework === null) {
-            $framework = function_exists('config')
-                ? (string) (config('enumerator.css_framework') ?? 'plain')
-                : 'plain';
+            $framework = 'plain';
+            if (function_exists('config')) {
+                $configured = config('enumerator.css_framework');
+                if (is_string($configured) && $configured !== '') {
+                    $framework = $configured;
+                }
+            }
         }
         $classes = $this->cssClass($framework) ?? $this->fallbackClasses($framework);
         $label = method_exists($this, 'label') ? (string) $this->label() : (string) $this->name;

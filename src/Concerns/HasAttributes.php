@@ -36,8 +36,14 @@ trait HasAttributes
     public function order(): ?int
     {
         $override = $this->overrideResolve('order');
-        if ($override !== null) {
-            return is_int($override) ? $override : (int) $override;
+        if (is_int($override)) {
+            return $override;
+        }
+        if (is_string($override) && is_numeric($override)) {
+            return (int) $override;
+        }
+        if (is_float($override)) {
+            return (int) $override;
         }
 
         return $this->attributeBag()->order;
@@ -46,9 +52,13 @@ trait HasAttributes
     public function cssClass(?string $framework = null): ?string
     {
         if ($framework === null) {
-            $framework = function_exists('config')
-                ? (string) (config('enumerator.css_framework') ?? 'plain')
-                : 'plain';
+            $framework = 'plain';
+            if (function_exists('config')) {
+                $configured = config('enumerator.css_framework');
+                if (is_string($configured) && $configured !== '') {
+                    $framework = $configured;
+                }
+            }
         }
         $override = $this->overrideResolve('css_class.' . $framework);
         if (is_string($override)) {
