@@ -15,6 +15,22 @@ namespace Simtabi\Laranail\Enumerator\Contracts;
  * `TenantContext` FIRST, then falls back to
  * `config('enumerator.overrides')`, then the compile-time `#[Attribute]`
  * declaration on the case.
+ *
+ * SECURITY — trusted-input contract for the `icon`, `color`, and
+ * `css_class` keys:
+ *
+ * The Blade base components render `icon` as raw HTML (so consumers
+ * can ship inline SVG / `<i>` markup). Implementations of this
+ * contract that read `icon` / `color` / `css_class` values from
+ * user-editable storage MUST sanitise or token-validate those values
+ * before returning them. Returning raw HTML from a request- or
+ * admin-editable source is an XSS surface. See
+ * `docs/tools/attributes.md` ("Trust contract") for the full
+ * discussion and the safe-shape recommendations.
+ *
+ * `label`, `description`, `help`, and `meta` values pass through
+ * Laravel's translator and are HTML-escaped at render time — those
+ * keys are safe under runtime override.
  */
 interface TenantContext
 {

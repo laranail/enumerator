@@ -587,12 +587,14 @@ or publish into `app/Enums/` with `--tag=enumerator-presets`:
 
 ### Getting started
 
+- [Documentation index](docs/README.md)
 - [Installation](docs/installation.md)
 - [Getting started](docs/getting-started.md)
 - [Configuration](docs/configuration.md)
 - [Architecture overview](docs/architecture.md)
 - [Release process](docs/release.md)
 - [Shipping checklist](docs/shipping-checklist.md)
+- [Comparison with other Laravel enum packages](docs/comparison.md)
 
 ### Tools
 
@@ -621,7 +623,9 @@ or publish into `app/Enums/` with `--tag=enumerator-presets`:
 ### Recipes
 
 - [API resources](docs/recipes/api-resources.md)
+- [Contributing a translation](docs/recipes/contributing-translations.md)
 - [Customizing presets](docs/recipes/customizing-presets.md)
+- [Factories — random enum values](docs/recipes/factories.md)
 - [Filament integration](docs/recipes/filament.md)
 - [Form requests](docs/recipes/form-requests.md)
 - [Inertia integration](docs/recipes/inertia.md)

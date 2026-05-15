@@ -51,11 +51,46 @@ Resolution priority: config override → `#[Attribute]` → default.
 `meta` arrays merge shallowly (override wins on key conflict). All other
 keys fully replace the attribute value.
 
-## Environment overrides
+## Environment variable surface
 
-Two keys read from environment variables:
+Every env var the package reads. Defaults shown match
+`config/enumerator.php`. Set in `.env` (or your environment's
+equivalent) to override; an empty/missing value falls back to the
+default.
 
-```bash
-ENUMERATOR_CSS=tailwind            # css_framework
-ENUMERATOR_CACHE_DRIVER=layered    # cache.driver
+| Variable | Maps to | Default | Accepts |
+|---|---|---|---|
+| `ENUMERATOR_CSS` | `css_framework` | `plain` | `plain` / `tailwind` / `daisyui` / `bootstrap` / `bulma` |
+| `ENUMERATOR_CACHE_DRIVER` | `cache.driver` | `layered` | `memory` / `file` / `layered` |
+| `ENUMERATOR_TRANSLATOR` | `translator.adapter` | `null` | FQCN implementing `Contracts\TranslatorAdapter` |
+| `ENUMERATOR_TENANCY_DRIVER` | `tenancy.driver` | `null` | FQCN implementing `Contracts\TenantContext` |
+| `ENUMERATOR_MODULE_PEST` | `modules.pest` | `false` | `true` / `false` |
+| `ENUMERATOR_MODULE_OPENAPI` | `modules.openapi` | `false` | `true` / `false` |
+| `ENUMERATOR_MODULE_LIGHTHOUSE` | `modules.lighthouse` | `false` | `true` / `false` |
+| `ENUMERATOR_MODULE_SALOON` | `modules.saloon` | `false` | `true` / `false` |
+| `ENUMERATOR_MODULE_OCTANE` | `modules.octane` | `false` | `true` / `false` |
+| `ENUMERATOR_MODULE_STRUCTURED_OUTPUT` | `modules.structured_output` | `false` | `true` / `false` |
+| `ENUMERATOR_MODULE_GRAPHQL` | `modules.graphql` | `false` | `true` / `false` |
+| `ENUMERATOR_MODULE_TENANCY` | `modules.tenancy` | `false` | `true` / `false` |
+
+The `modules.*` toggles gate the optional service providers (Pest,
+OpenAPI, Lighthouse, Saloon, Octane, StructuredOutput, GraphQL,
+Tenancy). Each provider no-ops when its toggle is `false` AND when
+its vendor marker class is absent — so leaving them at `false` adds
+zero cost on boot.
+
+The `translator.adapter` and `tenancy.driver` env vars accept a
+fully-qualified class name. The class must `implements` the
+corresponding contract; the service provider verifies this at boot
+and silently falls back to the default (`LaravelTranslatorAdapter` /
+`NullTenantContext`) on mismatch.
+
+`.env` example:
+
+```dotenv
+ENUMERATOR_CSS=tailwind
+ENUMERATOR_CACHE_DRIVER=layered
+ENUMERATOR_MODULE_PEST=true
+ENUMERATOR_MODULE_OPENAPI=true
+ENUMERATOR_TRANSLATOR=App\Enum\DatabaseTranslatorAdapter
 ```
