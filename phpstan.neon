@@ -51,3 +51,21 @@ parameters:
                 - src/Concerns/HasOrder.php
                 - src/Concerns/HasTransitions.php
                 - src/Concerns/RendersHtml.php
+        # Service providers use the idiomatic `$app['config']->get(...)`
+        # / `$app->make(...)` patterns that PHPStan types as `mixed`
+        # because of the loose ArrayAccess + Container::make contract.
+        # The runtime types are statically known (Repository, etc.)
+        # but the static surface returns mixed. Path-scoped so other
+        # genuine method.nonObject errors (null-deref bugs) still
+        # surface elsewhere.
+        -
+            identifier: method.nonObject
+            paths:
+                - src/EnumeratorServiceProvider.php
+                - src/Modules/GraphQL/GraphQLServiceProvider.php
+                - src/Modules/Lighthouse/LighthouseServiceProvider.php
+                - src/Modules/Octane/OctaneServiceProvider.php
+                - src/Modules/OpenApi/OpenApiServiceProvider.php
+                - src/Modules/Pest/PestServiceProvider.php
+                - src/Modules/Saloon/SaloonServiceProvider.php
+                - src/Modules/StructuredOutput/StructuredOutputServiceProvider.php

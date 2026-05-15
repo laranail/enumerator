@@ -421,24 +421,6 @@ parameters:
 			path: src/EnumeratorServiceProvider.php
 
 		-
-			message: '#^Cannot call method bootstrapPath\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/EnumeratorServiceProvider.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 6
-			path: src/EnumeratorServiceProvider.php
-
-		-
-			message: '#^Cannot call method make\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 5
-			path: src/EnumeratorServiceProvider.php
-
-		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
 			count: 2
@@ -517,12 +499,6 @@ parameters:
 			path: src/Modules/GraphQL/GraphQLServiceProvider.php
 
 		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/Modules/GraphQL/GraphQLServiceProvider.php
-
-		-
 			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass and ''getKey'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 1
@@ -571,20 +547,8 @@ parameters:
 			path: src/Modules/Lighthouse/LighthouseServiceProvider.php
 
 		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/Modules/Lighthouse/LighthouseServiceProvider.php
-
-		-
 			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: src/Modules/Octane/OctaneServiceProvider.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
 			count: 1
 			path: src/Modules/Octane/OctaneServiceProvider.php
 
@@ -603,12 +567,6 @@ parameters:
 		-
 			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: src/Modules/OpenApi/OpenApiServiceProvider.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
 			count: 1
 			path: src/Modules/OpenApi/OpenApiServiceProvider.php
 
@@ -643,12 +601,6 @@ parameters:
 			path: src/Modules/Pest/PestServiceProvider.php
 
 		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/Modules/Pest/PestServiceProvider.php
-
-		-
 			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass and ''getValue'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 1
@@ -657,12 +609,6 @@ parameters:
 		-
 			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: src/Modules/Saloon/SaloonServiceProvider.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
 			count: 1
 			path: src/Modules/Saloon/SaloonServiceProvider.php
 
@@ -687,12 +633,6 @@ parameters:
 		-
 			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
 			count: 1
 			path: src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
 
