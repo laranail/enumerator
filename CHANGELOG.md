@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+_(reserved for the next development cycle — see
+[completion-plan.md](.design/plans/completion-plan.md) deferred items
+for what's tentatively v0.3.0)_
+
+## [0.2.0] — 2026-05-15
+
+The **integration-rich Laravel enum toolkit** pass. Adds Alpine.js
+loader infrastructure with CDN-first + local-fallback, an
+Alpine-enhanced searchable / clearable dropdown, Livewire-aware
+attribute forwarding on the select / radio / checkboxes components,
+Livewire promoted to `require-dev` so the integration is CI-tested,
+documentation reorganisation, and a release-messaging cleanup.
+
+Backwards compatible with `v0.1.0` consumers — no shipped surface
+removed, no public method renamed. The only behaviour change is a
+single defensive escape correction in `RendersHtml::toHtml()` (see
+Fixed below), which affects only the pre-encoded-entity edge case.
+
 ### Changed
 
 - Softened the public tagline from the prior "Laravel enum godfather"
@@ -276,4 +294,5 @@ gate.
 severity, presentation, HTTP, bitmask demos, demographics, calendar,
 MIME types, plus one class-const example.
 
+[0.2.0]: https://github.com/laranail/enumerator/releases/tag/v0.2.0
 [0.1.0]: https://github.com/laranail/enumerator/releases/tag/v0.1.0
