@@ -9,6 +9,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **`infection/infection` mutation testing infrastructure** (PR-ε
+  sub-batch). New `infection.json5` config targeting the core
+  `src/Concerns`, `src/Helpers`, `src/Casts`, `src/Rules`,
+  `src/Support` surface (modules / integrations / blade-views / etc.
+  excluded). New `.github/workflows/infection.yml` runs mutation
+  testing with pcov coverage on push to main + on PRs touching
+  src/ or tests/. Non-blocking on first runs (`continue-on-error:
+  true`) — pure measurement until a baseline kill rate is observed.
+  No `minMsi` / `minCoveredMsi` gate yet; promotion to gating
+  follows the same coverage-then-gate discipline as v0.2.0/v0.2.1.
+- **`IsCacheKey` trait + `Cacheable` contract** (PR-η). Define an
+  enum case as a cache-key namespace, with shorthand methods
+  proxying to Laravel's `Cache` facade — `put()` / `get()` /
+  `forget()` / `has()` / `remember()` / `increment()` / `decrement()`.
+  Standalone trait (not in the `HasEnumerator` umbrella) so a
+  cache-key enum doesn't accidentally pull in label / colour / icon
+  surface area when only the cache shape is wanted. Override `key()`
+  in the consumer enum for a non-trivial cache-key shape (e.g.,
+  `'settings:' . $this->value`). 12 feature tests against Laravel's
+  array-cache driver.
+- **`WithEnumTransitions` Livewire trait** (PR-ζ). Promotes the
+  existing `docs/recipes/livewire-state-transitions.md` recipe to a
+  first-class trait under `src/Integrations/Livewire/`. Two methods:
+  `transitionEnum($propertyPath, $target)` advances the state and
+  dispatches an `enumerator.transitioned` Livewire event on success
+  (or adds the `InvalidTransitionException` message to the Livewire
+  error bag on failure); `canTransitionEnum(...)` pre-flights
+  without mutating state. Uses `data_get()` / `data_set()` so
+  nested property paths like `'order.status'` resolve through
+  Livewire's getter chain. 6 feature tests with a stubbed-error-bag
+  fixture (no full Livewire request lifecycle required).
 - **Codecov coverage reporting** (PR-ε). `phpunit.xml` `<report>`
   block now emits `coverage.xml` (Clover format) alongside the
   existing text summary. New `.github/workflows/coverage.yml` runs
