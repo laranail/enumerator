@@ -7,10 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-_(reserved for v0.5.0 — see
-[.design/plans/v0.4.0-scope.md](.design/plans/v0.4.0-scope.md)
-follow-up notes and [.design/plans/v1.0.0-roadmap.md](.design/plans/v1.0.0-roadmap.md)
-for the v0.x → v1.0 trajectory.)_
+See [.design/plans/v1.0.0-roadmap.md](.design/plans/v1.0.0-roadmap.md)
+for the v0.x → v1.0 trajectory.
+
+### Tests
+
+- **Real-Livewire-roundtrip tests for `WithEnumTransitions`** (PR-ω).
+  The v0.3.0 PR-ζ + v0.4.0 PR-ν tests use a stubbed error-bag
+  fixture to avoid booting a full Livewire request — fast but
+  doesn't pin the trait's behaviour through the actual lifecycle.
+  PR-ω adds 10 tests at
+  `tests/Feature/Integrations/Livewire/WithEnumTransitionsRoundtripTest.php`
+  that boot a real `Livewire\Component` via `Livewire::test()` and
+  drive it through the real request lifecycle — assertions go
+  through `assertSet()` / `assertHasErrors()` / `assertDispatched()`
+  rather than reading the stubbed bag directly. Covers
+  `transitionEnum()` happy path + invalid transition + terminal-state
+  guard + chained transitions; `bulkTransitionEnum()` all-success +
+  partial-failure; `transitionEnumOrValidate()` custom-message +
+  success-dispatch; plus a hydration-sanity check. Graduates the
+  trait from "experimental" to "stable enough to lock at v1.0" per
+  [`v1.0.0-roadmap.md`](.design/plans/v1.0.0-roadmap.md).
+- `tests/TestCase.php` registers Livewire's `LivewireServiceProvider`
+  when `livewire/livewire` is installed (still require-dev per
+  ADR-0006) and sets a fake `app.key` so Livewire's component-state
+  encryption succeeds.
+- `WorkflowStatus` fixture moved to `tests/Fixtures/Enums/` (was
+  inline in the test file) so PR-θ's path-scoped suppressions apply.
+
+### Changed
+
+- **PHPStan baseline: another −10 %** on top of PR-θ's −52 %. PR-ω's
+  WithEnumTransitions analysis-in-Livewire-context surfaced
+  identifier-specific cascade entries (`method.notFound`,
+  `function.alreadyNarrowedType`, `return.type` inside the trait;
+  `method.nonObject` for `Livewire::test()->call()->...` fluent
+  chains; `offsetAccess.*` / `arrayValues.list` / `cast.int` for
+  `HasLifecycle` + `HasOrder` per-fixture). Scoped these by
+  identifier × path. Baseline 704 → 633 errors. Identifies the
+  contract-tightening candidate for v1.0.0: add `transitionTo()` /
+  `canTransitionTo()` to the `Stateful` contract so consumers who
+  implement it without `HasTransitions` fail at compile time
+  instead of runtime.
 
 ## [0.4.0] — 2026-05-16
 

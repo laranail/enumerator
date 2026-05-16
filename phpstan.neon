@@ -157,3 +157,62 @@ parameters:
                 - tests/Feature/HasEnumAttributesTest.php
                 - tests/Feature/MagicComparisonsTest.php
                 - tests/Feature/Modules/PestTest.php
+                # PR-ω (v0.5.0) — WithEnumTransitions calls
+                # transitionTo() / canTransitionTo() on the resolved
+                # Stateful instance, but Stateful contract only
+                # declares transitions() / initialStates() — the
+                # transitionTo / canTransitionTo methods come from
+                # HasTransitions trait (and the runtime contract is
+                # "Stateful enums must use HasTransitions"). Path-
+                # scoping the warning here keeps the analyser useful
+                # elsewhere. Candidate for v1.0.0: tighten Stateful
+                # to require transitionTo / canTransitionTo.
+                - src/Integrations/Livewire/WithEnumTransitions.php
+        # PR-ω real-Livewire-roundtrip tests use Livewire::test()
+        # which returns Livewire\Features\SupportTesting\Testable.
+        # PHPStan can't infer the fluent return type so each
+        # ->call() / ->assertSet() / ->assertHasErrors() chain shows
+        # up as `method.nonObject`. Path-scoped to the roundtrip
+        # test file; the assertion shape is well-tested via Livewire's
+        # own MakesAssertions suite.
+        -
+            identifier: method.nonObject
+            paths:
+                - tests/Feature/Integrations/Livewire/WithEnumTransitionsRoundtripTest.php
+        # Other identifiers that fire in the WithEnumTransitions
+        # trait body when analysed in context of a real Livewire
+        # WorkflowComponent consumer — same template-polymorphism
+        # noise as the HasTransitions path-scope above.
+        -
+            identifier: function.alreadyNarrowedType
+            paths:
+                - src/Integrations/Livewire/WithEnumTransitions.php
+        -
+            identifier: return.type
+            paths:
+                - src/Integrations/Livewire/WithEnumTransitions.php
+        # HasLifecycle/HasOrder per-fixture cascade in WorkflowStatus:
+        # array_values() on a non-empty-list, offset access on a
+        # cases() array, mixed → int cast for the #[Order] value.
+        # Identifier-specific paths so the warnings stay visible
+        # outside the fixture context.
+        -
+            identifier: offsetAccess.notFound
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        -
+            identifier: offsetAccess.invalidOffset
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        -
+            identifier: arrayValues.list
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        -
+            identifier: cast.int
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
