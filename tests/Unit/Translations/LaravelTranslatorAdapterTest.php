@@ -93,3 +93,44 @@ it('has() respects the locale argument', function (): void {
     expect($adapter->has('enumerator::scope.localised', 'es'))->toBeTrue();
     expect($adapter->has('enumerator::scope.localised', 'fr'))->toBeFalse();
 });
+
+// F8 (pre-tag 2026-05-16) strict-locale behaviour: when an explicit
+// non-null locale is passed, Lang's configured fallback chain is
+// suppressed so IsTranslatable's own #[Label] / humanize fallback can
+// take over. These tests pin that behaviour against future regressions.
+
+it('translate() with explicit locale does NOT silently fall back to the app default', function (): void {
+    /** @var Translator $translator */
+    $translator = app('translator');
+    // Register the key ONLY under the app default locale ('en' in Testbench).
+    $translator->addLines(['scope.en-only-strict' => 'Hi'], 'en', 'enumerator');
+
+    $adapter = new LaravelTranslatorAdapter;
+    // Asking for 'fr' explicitly must NOT yield the 'en' value — the
+    // caller's null-fallback chain depends on this.
+    expect($adapter->translate('enumerator::scope.en-only-strict', [], 'fr'))->toBeNull();
+});
+
+it('translate() with null locale DOES allow the configured fallback chain', function (): void {
+    /** @var Translator $translator */
+    $translator = app('translator');
+    $translator->addLines(['scope.default-locale-only' => 'Hi'], 'en', 'enumerator');
+
+    $adapter = new LaravelTranslatorAdapter;
+    // No explicit locale — Laravel's normal Lang::get behaviour applies
+    // (which under the Testbench default locale 'en' returns the entry).
+    expect($adapter->translate('enumerator::scope.default-locale-only'))->toBe('Hi');
+});
+
+it('has() with explicit locale only checks that locale (no fallback)', function (): void {
+    /** @var Translator $translator */
+    $translator = app('translator');
+    $translator->addLines(['scope.has-strict' => 'Hi'], 'en', 'enumerator');
+
+    $adapter = new LaravelTranslatorAdapter;
+    expect($adapter->has('enumerator::scope.has-strict', 'fr'))->toBeFalse();
+    expect($adapter->has('enumerator::scope.has-strict', 'en'))->toBeTrue();
+    // null locale → Lang's normal behaviour applies, the key resolves
+    // through the configured default locale.
+    expect($adapter->has('enumerator::scope.has-strict'))->toBeTrue();
+});
