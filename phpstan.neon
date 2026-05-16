@@ -51,6 +51,14 @@ parameters:
                 - src/Concerns/HasOrder.php
                 - src/Concerns/HasTransitions.php
                 - src/Concerns/RendersHtml.php
+                # PR-θ batch 2 — EnumeratorServiceProvider's
+                # `$app->make(EnumeratorRegistry::class)` /
+                # `app('cache.store')` calls return `mixed` per the
+                # Container contract; the concrete return types are
+                # statically known but PHPStan can't infer them.
+                # Same noise pattern as the method.nonObject scope
+                # below; adding here for the argument-typing side.
+                - src/EnumeratorServiceProvider.php
         # Service providers use the idiomatic `$app['config']->get(...)`
         # / `$app->make(...)` patterns that PHPStan types as `mixed`
         # because of the loose ArrayAccess + Container::make contract.
@@ -83,3 +91,69 @@ parameters:
             identifier: staticMethod.notFound
             paths:
                 - src/Concerns/HasTransitions.php
+        # PR-θ (v0.4.0) — trait-cascade noise in tests/Fixtures and
+        # tests/Feature. Each new fixture enum that uses the
+        # HasEnumeratorBehavior umbrella retriggers the same set of
+        # `is_subclass_of()` / `method_exists()` /
+        # `instanceof BackedEnum` narrowing warnings from the trait's
+        # own checks. The trait checks are correct (they're defensive
+        # against pure vs backed vs class-const enums); PHPStan just
+        # sees them as "already narrowed" in each concrete consumer.
+        # The runtime behaviour is unaffected. Path-scoping
+        # function.alreadyNarrowedType to tests/Fixtures/Enums/ drops
+        # ~80 baseline entries; we re-include actual src/ paths via
+        # the negative-by-omission pattern (paths must be enumerated
+        # explicitly).
+        -
+            identifier: function.alreadyNarrowedType
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        # Same pattern for instanceof.alwaysTrue inside the fixture
+        # context — the consumer's concrete-case union always
+        # satisfies the trait's BackedEnum / UnitEnum guard. Inherent
+        # to template polymorphism, not a bug.
+        -
+            identifier: instanceof.alwaysTrue
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        # Preset enums use HasEnumeratorBehavior — the trait does
+        # is_subclass_of() / @var narrowing in its body; PHPStan sees
+        # each concrete consumer satisfying the @var so it reports
+        # `varTag.nativeType` for the per-consumer cascade. Same
+        # template-polymorphism noise.
+        -
+            identifier: varTag.nativeType
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        # Casts inside HasEnumeratorBehavior/IsJsonable/IsTranslatable/
+        # RendersHtml widen to `mixed` per-consumer in PHPStan's view
+        # because the trait's `$self` is a UnitEnum, not the concrete
+        # case. The cast is correct at runtime. Path-scoping to the
+        # fixture + preset side keeps the cast.string warning visible
+        # if it ever appears outside this template-cascade context.
+        -
+            identifier: cast.string
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        # HasEnumAttributesTest exercises the trait against several
+        # Eloquent-style fixtures; the `_meta` / `_label` / etc.
+        # property-access magic happens via __get(), so PHPStan
+        # surfaces property.notFound for each fixture. These are
+        # legitimately covered by the trait's __get handler; the
+        # static analyser just doesn't see it. Same pattern for
+        # the magic-method test which calls Is*() / Equals*() via
+        # __call.
+        -
+            identifier: property.notFound
+            paths:
+                - tests/Feature/HasEnumAttributesTest.php
+        -
+            identifier: method.notFound
+            paths:
+                - tests/Feature/HasEnumAttributesTest.php
+                - tests/Feature/MagicComparisonsTest.php
+                - tests/Feature/Modules/PestTest.php
