@@ -2587,6 +2587,36 @@ parameters:
 			path: tests/Feature/CasesCollectionTest.php
 
 		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(DriverMatrixCacheKey\)\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Parameter \#2 \$ttl of static method Illuminate\\Cache\\Repository\:\:remember\(\) expects Closure\|DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Parameter \#3 \$ttl of static method Illuminate\\Cache\\Repository\:\:put\(\) expects DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:remember\(\)$#'
+			identifier: argument.templateType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:rememberForever\(\)$#'
+			identifier: argument.templateType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
 			message: '#^Call to function is_subclass_of\(\) with ''ComposedCacheableEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3

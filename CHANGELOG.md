@@ -12,6 +12,16 @@ for the active backlog and proposed PR sequence.
 
 ### Added
 
+- **`IsCacheKey` driver-matrix test coverage** (PR-ξ). v0.3.0 PR-η
+  shipped IsCacheKey tested only against the array cache driver. New
+  feature suite at `tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php`
+  pins put / get / cached / forget / remember / increment / decrement
+  roundtrips against the **file** driver and the **database** driver
+  (`cache` table created on the in-memory sqlite connection via the
+  same shape as Testbench's stub migration). Redis is documented as
+  a CI follow-up — needs a redis sidecar the local test harness can't
+  reliably bind. The trait is now demonstrably driver-agnostic on the
+  two drivers Laravel ships out of the box.
 - **`WithEnumTransitions` bulk + validation helpers** (PR-ν). Two
   new methods on the v0.3.0 Livewire trait. `bulkTransitionEnum(
   $paths, $target)` advances many Stateful properties to the same
