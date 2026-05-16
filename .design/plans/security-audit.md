@@ -147,3 +147,55 @@ None block v0.2.0. None require an immediate hotfix to v0.1.0.
 [VERIFIED 2026-05-15: composer audit → No security vulnerability advisories found.]
 [VERIFIED 2026-05-15: grep -rn -E 'eval *\(|extract *\(|shell_exec *\(|system *\(|passthru *\(|proc_open *\(|unserialize *\(' src/ → no matches]
 [VERIFIED 2026-05-15: grep -rn -E 'DB::(raw|statement)' src/ → no matches]
+
+---
+
+## v0.3.0 pre-tag sweep — 2026-05-16
+
+A second pass over the resources/views/ surface, motivated by F1
+(`#[Icon]` raw render) + F2 (wireModel attribute concatenation) plus
+the PR-π scope item in v0.4.0-scope.md.
+
+### Inventory of `{!! ... !!}` raw renders
+
+| Site | Source | Verdict |
+|---|---|---|
+| `_base/badge.blade.php` (`$caseIcon`) | `#[Icon]` attr — runtime-overridable via `enumerator.overrides` + `TenantContext` | **FIXED (F1, `ce685af`):** switched to `{{ }}`. |
+| `_base/element.blade.php` (`$caseIcon`) | Same as above | **FIXED (F1, `ce685af`):** switched to `{{ }}`. |
+| `_base/checkboxes.blade.php:57` (`$extraAttrs`) | `ComponentAttributeBag::__toString()` (Laravel core) | SAFE-by-construction. Pinned by `CheckboxesComponentContractTest`. |
+| `_base/checkboxes.blade.php:74` (`$wireModelAttr`) | Built from props via `htmlspecialchars(..., ENT_QUOTES, 'UTF-8', false)` | **FIXED (F2, `ce685af`):** escape applied. Pinned by `WireModelEscapingTest`. |
+| `_base/radio.blade.php:54` (`$extraAttrs`) | Same as checkboxes:57 | SAFE-by-construction. Pinned by `RadioComponentContractTest`. |
+| `_base/radio.blade.php:72` (`$wireModelAttr`) | Same as checkboxes:74 | **FIXED (F2, `ce685af`):** escape applied. |
+| `_base/select.blade.php:59` (`$extraAttrs`) | Same as above | SAFE-by-construction. Pinned by `SelectComponentContractTest`. |
+| `_base/alpine-loader.blade.php` × 4 (`{!! json_encode($cdnUrl/$integrity/$localUrl, ...) !!}`) | `config('enumerator.alpine')` — config-time, NOT tenant-overridable; emitted inside `<script>...</script>` JS-string context | SAFE: `json_encode()` produces JS-string-safe output. Tenant overrides don't reach `alpine.*` config. |
+| `_base/element.blade.php:45` (`$slot`) | Standard Blade `<x-slot>` content — developer-authored | SAFE by design. Identical to Laravel's `<x-...>` slot pattern. |
+
+### Inventory of attribute-string concatenations
+
+| Site | Inputs | Verdict |
+|---|---|---|
+| `_base/radio.blade.php` `$wireModelAttr` builder | `$wireModel`, `$wireModelModifier` | **FIXED (F2):** `htmlspecialchars(..., ENT_QUOTES, 'UTF-8', false)` applied to both fragments. |
+| `_base/checkboxes.blade.php` `$wireModelAttr` builder | Same as above | **FIXED (F2):** same fix. |
+| Framework subviews (bootstrap, tailwind, plain, bulma, daisyui) | — | None found. Subviews delegate attribute handling to `_base/*` via `@aware` / `@props`. |
+
+### What's missing — closed by this pass
+
+- v0.3.0 added contract tests for Select but not Radio / Checkboxes /
+  Dropdown. Dropdown has no `{!! $extraAttrs !!}` surface (audited
+  2026-05-16) so it doesn't need the contract test. Radio + Checkboxes
+  now have parallel contract tests:
+  `tests/Unit/Blade/RadioComponentContractTest.php` (3 tests),
+  `tests/Unit/Blade/CheckboxesComponentContractTest.php` (3 tests).
+
+### Result
+
+No remaining `{!! !!}` site or attribute-string concatenation in
+`resources/views/` is unaccounted for. The escape posture across the
+v0.3.0 surface is consistent: tenant-overridable values are
+`{{ ... }}`-escaped, attribute concatenations apply
+`htmlspecialchars()`, raw outputs are pinned by either a contract test
+(`$extraAttrs`), context-safety (`json_encode` inside `<script>`), or
+the Blade slot convention (`$slot`).
+
+[VERIFIED 2026-05-16: grep -rn '{!!' resources/views/ → 11 sites, all in `_base/`, all accounted for above]
+[VERIFIED 2026-05-16: vendor/bin/pest tests/Unit/Blade/{Select,Radio,Checkboxes}ComponentContractTest.php → 9 passed (3 each)]
