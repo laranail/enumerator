@@ -7,8 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-See [.design/plans/v0.4.0-scope.md](.design/plans/v0.4.0-scope.md)
-for the active backlog and proposed PR sequence.
+_(reserved for v0.5.0 — see
+[.design/plans/v0.4.0-scope.md](.design/plans/v0.4.0-scope.md)
+follow-up notes and [.design/plans/v1.0.0-roadmap.md](.design/plans/v1.0.0-roadmap.md)
+for the v0.x → v1.0 trajectory.)_
+
+## [0.4.0] — 2026-05-16
+
+The **hardening + parity** pass. Closes parity gaps left by v0.3.0
+(dropdown wire:model + a11y + runtime i18n), pushes coverage past
+the long-standing 85 % threshold, halves the PHPStan baseline noise,
+and lands the v0.x → v1.0 lookahead.
+
+Backwards compatible with v0.3.0 — no shipped public API removed
+or renamed; every new prop / method is opt-in additive.
 
 ### Added
 
@@ -74,6 +86,38 @@ for the active backlog and proposed PR sequence.
   arch tests. 9 new feature tests cover the four emission shapes
   (single/multi × Alpine/native) + escape regressions.
 
+### Changed
+
+- **PHPStan baseline: halved** (PR-θ). The PR-α residue analysis
+  (v0.3.0) flagged ~120 patterns over the ≤ 600 target left after
+  the v0.3.0 freeze. Most were trait-cascade noise: every new
+  consumer enum that uses the `HasEnumeratorBehavior` umbrella
+  retriggers the same defensive type-check warnings from the trait
+  bodies. PR-α had path-scoped `src/Concerns/*` itself; PR-θ extends
+  the same path-scope pattern to `tests/Fixtures/Enums/*` and
+  `src/Presets/Enums/*` (the two big consumer dirs) plus the
+  magic-method tests (`HasEnumAttributesTest`, `MagicComparisonsTest`,
+  `Modules/PestTest`) and `EnumeratorServiceProvider`'s container-
+  return-typed argument leaks. Result: baseline errors 1480 → 704
+  (−52 %), file 4615 → 2179 lines (−53 %), unique entries ~360
+  (under the ≤ 600 PR-α target). `reportUnmatchedIgnoredErrors:
+  true` flip stays deferred to v0.5.0.
+
+### Docs
+
+- **v1.0.0 roadmap doc** (PR-σ). New `.design/plans/v1.0.0-roadmap.md`
+  enumerates three buckets: (a) public surface stable enough to lock
+  at v1.0.0 (every Contract interface, the always-on trait set, all
+  9 opt-in feature traits, 4 Casts, 9 Attributes, Helpers + Facade,
+  9 Blade components, cache surface); (b) experimental surface that
+  needs more v0.x bake time (WithEnumTransitions real-Livewire
+  roundtrip, EnumeratorCasts, StructuredOutput emitters, Lighthouse
+  / Saloon / Octane / Pest modules, Filament / Inertia / Nova
+  integrations); (c) breaking changes worth saving for v1.0.0 (drop
+  dead defensive guards, tighten `mixed` widening, split
+  HasEnumerator umbrella, opt-in HasTransitions, config-key
+  rename). Plus a v0.x → v1.0 cycle sequence.
+
 ### Tests
 
 - **Coverage push** (PR-ι + PR-λ). `AttributesCache` 77.6 % → 99.2 %
@@ -81,7 +125,10 @@ for the active backlog and proposed PR sequence.
   power-of-two / class-const-bit fixtures). `LaravelTranslatorAdapter`
   62.5 % → 87.5 % via stub-translator container binding to exercise
   the `try / catch (\Throwable)` branches in `translate()` and
-  `has()`. Total `src/` coverage: 83.40 % → 85.10 %.
+  `has()`. Total `src/` coverage: 83.40 % → 85.10 %. The CI
+  `--min=83` floor remains unchanged; per the v0.2.0 → v0.2.1 lesson,
+  the gate moves to `--min=85` once the measured number sustains
+  across two consecutive releases — v0.4.0 is the first.
 - **`extraAttrs` contract tests** (PR-π) on `Radio` and `Checkboxes`,
   mirroring the existing `Select` arch test. Pins the trust contract
   that `{!! \$extraAttrs !!}` only receives `ComponentAttributeBag`-
@@ -519,6 +566,7 @@ gate.
 severity, presentation, HTTP, bitmask demos, demographics, calendar,
 MIME types, plus one class-const example.
 
+[0.4.0]: https://github.com/laranail/enumerator/releases/tag/v0.4.0
 [0.3.0]: https://github.com/laranail/enumerator/releases/tag/v0.3.0
 [0.2.1]: https://github.com/laranail/enumerator/releases/tag/v0.2.1
 [0.2.0]: https://github.com/laranail/enumerator/releases/tag/v0.2.0
