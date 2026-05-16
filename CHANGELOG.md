@@ -10,8 +10,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 See [.design/plans/v1.0.0-roadmap.md](.design/plans/v1.0.0-roadmap.md)
 for the v0.x → v1.0 trajectory.
 
+### Added
+
+- **`Stateful` contract carries `@method` PHPDoc for the six trait
+  methods** (PR-β2). The `allowedTransitions` / `canTransitionTo` /
+  `transitionTo` / `tryTransitionTo` / `isTerminal` / `isInitialState`
+  methods come from `Concerns\HasTransitions`. v0.1.0..v0.4.x shipped
+  the trait unannotated, so PHPStan flagged `Stateful::transitionTo`
+  as `method.notFound` when called via `WithEnumTransitions` (PR-ω
+  path-scoped the noise). PR-β2 declares them as `@method` annotations
+  on the interface — PHPStan + IDEs now type-check the calls; the
+  trait remains the canonical implementation; no PHP-level signature
+  on the interface so the trait's narrower `self` parameter types
+  don't trip PHP's contravariance rule. The PR-ω suppression is
+  retired.
+
 ### Changed
 
+- **`WithEnumTransitions::transitionEnum` /
+  `canTransitionEnum` / `transitionEnumOrValidate` now guard
+  `$target` is a `Stateful` instance** (PR-β2). Previously a caller
+  passing a non-Stateful `UnitEnum` (e.g. a pure label enum) would
+  reach `$current->transitionTo($target)` with an incompatible
+  target. The guard adds an error-bag entry + early return ("target
+  must be a Stateful enum case (got …)"). Behaviourally consistent
+  with the existing `$current instanceof Stateful` guard on the
+  property side. BC-safe — the public `UnitEnum|BackedEnum
+  \$target` signature is unchanged; only the runtime guard is
+  tighter. 2 new feature tests in `WithEnumTransitionsTest`.
 - **CI coverage gate moved `--min=83 → --min=85`** (PR-α2). Two
   consecutive measurements on CI confirmed `src/` coverage sustains
   ≥ 85 % — v0.4.0 (85.7 %) and the post-PR-ω state (85.7 %). The

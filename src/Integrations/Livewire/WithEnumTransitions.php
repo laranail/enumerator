@@ -84,6 +84,15 @@ trait WithEnumTransitions
             return false;
         }
 
+        if (! $target instanceof Stateful) {
+            $this->addError($propertyPath, sprintf(
+                'Cannot transition: target must be a Stateful enum case (got %s).',
+                get_debug_type($target),
+            ));
+
+            return false;
+        }
+
         try {
             $next = $current->transitionTo($target);
         } catch (InvalidTransitionException $e) {
@@ -114,6 +123,9 @@ trait WithEnumTransitions
     {
         $current = data_get($this, $propertyPath);
         if (! $current instanceof Stateful) {
+            return false;
+        }
+        if (! $target instanceof Stateful) {
             return false;
         }
 
@@ -170,6 +182,15 @@ trait WithEnumTransitions
                 'Cannot transition: property "%s" is not a Stateful enum case (got %s).',
                 $propertyPath,
                 $current === null ? 'null' : get_debug_type($current),
+            ));
+
+            return false;
+        }
+
+        if (! $target instanceof Stateful) {
+            $this->addError($propertyPath, $messages['notStateful'] ?? sprintf(
+                'Cannot transition: target must be a Stateful enum case (got %s).',
+                get_debug_type($target),
             ));
 
             return false;

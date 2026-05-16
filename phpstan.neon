@@ -157,17 +157,11 @@ parameters:
                 - tests/Feature/HasEnumAttributesTest.php
                 - tests/Feature/MagicComparisonsTest.php
                 - tests/Feature/Modules/PestTest.php
-                # PR-ω (v0.5.0) — WithEnumTransitions calls
-                # transitionTo() / canTransitionTo() on the resolved
-                # Stateful instance, but Stateful contract only
-                # declares transitions() / initialStates() — the
-                # transitionTo / canTransitionTo methods come from
-                # HasTransitions trait (and the runtime contract is
-                # "Stateful enums must use HasTransitions"). Path-
-                # scoping the warning here keeps the analyser useful
-                # elsewhere. Candidate for v1.0.0: tighten Stateful
-                # to require transitionTo / canTransitionTo.
-                - src/Integrations/Livewire/WithEnumTransitions.php
+                # The PR-ω path-scope for src/Integrations/Livewire/
+                # WithEnumTransitions.php was retired by PR-β2 — the
+                # Stateful contract now declares transitionTo() and
+                # canTransitionTo() so PHPStan no longer needs the
+                # noise suppressed here.
         # PR-ω real-Livewire-roundtrip tests use Livewire::test()
         # which returns Livewire\Features\SupportTesting\Testable.
         # PHPStan can't infer the fluent return type so each

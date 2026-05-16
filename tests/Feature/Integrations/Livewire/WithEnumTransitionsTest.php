@@ -9,6 +9,7 @@ use Simtabi\Laranail\Enumerator\Concerns\HasEnumerator;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
 use Simtabi\Laranail\Enumerator\Integrations\Livewire\WithEnumTransitions;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\NonStatefulPalette;
 
 // Feature coverage for the v0.3.0 PR-ζ WithEnumTransitions trait.
 //
@@ -138,6 +139,35 @@ it('canTransitionEnum() pre-flights without mutating state', function (): void {
     expect($component->canTransitionEnum('status', OrderStatus::Paid))->toBeTrue();
     expect($component->canTransitionEnum('status', OrderStatus::Shipped))->toBeFalse();
     expect($component->status)->toBe(OrderStatus::Pending);  // unmutated
+});
+
+it('transitionEnum() refuses a non-Stateful target enum (PR-β2 defensive guard)', function (): void {
+    // PR-β2 narrows the runtime contract: `$target` must be a
+    // Stateful instance. A consumer accidentally passing a non-
+    // Stateful UnitEnum (e.g. a pure label enum) now gets an
+    // error-bag entry + early return rather than reaching
+    // transitionTo() with an incompatible target.
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    $ok = $component->transitionEnum('status', NonStatefulPalette::Red);
+
+    expect($ok)->toBeFalse();
+    expect($component->status)->toBe(OrderStatus::Pending);  // unchanged
+    expect($component->getErrorBag()->has('status'))->toBeTrue();
+
+    $errors = $component->getErrorBag()->get('status');
+    expect($errors[0])->toContain('target must be a Stateful enum case');
+});
+
+it('canTransitionEnum() returns false for a non-Stateful target', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    // Pass a non-Stateful UnitEnum target. PHP's enum union type
+    // accepts any UnitEnum here, but canTransitionEnum() must
+    // return false rather than reaching $current->canTransitionTo().
+    expect($component->canTransitionEnum('status', NonStatefulPalette::Red))->toBeFalse();
 });
 
 it('dispatches enumerator.transitioned with from/to payload on success', function (): void {
