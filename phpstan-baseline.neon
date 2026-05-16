@@ -3709,6 +3709,60 @@ parameters:
 			path: tests/Fixtures/Enums/DescribedEnum.php
 
 		-
+			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\DuplicateBitEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\:\:First\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\:\:Second and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
+			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\:\:First\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\:\:Second and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\)\.$#'
+			identifier: varTag.nativeType
+			count: 3
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\) is not subtype of native type Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\:\:First\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DuplicateBitEnum\:\:Second\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/DuplicateBitEnum.php
+
+		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\EscapeRegressionEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -3943,6 +3997,60 @@ parameters:
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
 		-
+			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\MixedBitEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Plain\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Read\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Write and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
+			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Plain\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Read\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Write and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\)\.$#'
+			identifier: varTag.nativeType
+			count: 3
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\) is not subtype of native type Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Plain\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Read\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MixedBitEnum\:\:Write\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/MixedBitEnum.php
+
+		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\MultiHandlerEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 3
@@ -4031,6 +4139,66 @@ parameters:
 			identifier: class.missingImplements
 			count: 1
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\NonPowerOfTwoBitEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\:\:Three and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\:\:Three and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\)\.$#'
+			identifier: varTag.nativeType
+			count: 3
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\) is not subtype of native type Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\:\:Three\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum and \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\) will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
 
 		-
 			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\OrderedStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
