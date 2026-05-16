@@ -23,7 +23,12 @@ final class LaravelTranslatorAdapter implements TranslatorAdapter
         }
 
         try {
-            $translated = (string) Lang::get($key, $replace, $locale);
+            // When an explicit locale is given, suppress the configured
+            // locale-fallback chain — the caller (e.g. IsTranslatable)
+            // needs `null` here to trigger its own #[Label] / humanize
+            // fallback. Allow Laravel's fallback only when the caller
+            // hasn't asked for a specific locale.
+            $translated = (string) Lang::get($key, $replace, $locale, $locale === null);
         } catch (\Throwable) {
             return null;
         }
@@ -40,7 +45,9 @@ final class LaravelTranslatorAdapter implements TranslatorAdapter
         }
 
         try {
-            return Lang::has($key, $locale);
+            // Same fallback discipline as translate(): an explicit locale
+            // means "only check this locale, no app-wide fallback".
+            return Lang::has($key, $locale, $locale === null);
         } catch (\Throwable) {
             return false;
         }

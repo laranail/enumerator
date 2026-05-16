@@ -39,7 +39,7 @@
 @if ($showBadge)
 <x-laranail-enumerator::badge :case="$case" :classes="$badgeClasses" />
 @else
-@if ($showIcon && $caseIcon)<span class="{{ $iconClasses }}" aria-hidden="true">{!! $caseIcon !!}</span>@endif
+@if ($showIcon && $caseIcon)<span class="{{ $iconClasses }}" aria-hidden="true">{{ $caseIcon }}</span>@endif
 @if ($showLabel)<span class="{{ $labelClasses }}">{{ $caseLabel }}</span>@endif
 @endif
 {!! $slot !!}

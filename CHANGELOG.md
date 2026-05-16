@@ -12,7 +12,7 @@ _(reserved for the next development cycle — see
 [.design/_private/NEXT-SESSION.md](.design/_private/NEXT-SESSION.md)
 for the v0.3.x / v0.4.0 backlog)_
 
-## [0.3.0] — 2026-05-15
+## [0.3.0] — 2026-05-16
 
 The **integration-depth + foundation** pass. Adds Livewire
 state-transition tooling, cache-key enum encapsulation, multi-select
@@ -106,6 +106,41 @@ submitted, so server-side consumers see the same payload.
   for single radios via Livewire's DOM-morph, but the
   `:wireModel` prop is the recommended pattern. See
   `docs/tools/blade-components.md` "Livewire integration".
+
+### Fixed (pre-tag audit, 2026-05-16)
+
+- **XSS hardening: `#[Icon]` attribute now HTML-escaped on render.**
+  The `_base/badge.blade.php` and `_base/element.blade.php` base
+  partials used to emit `{!! $caseIcon !!}` (raw). Every shipped
+  preset enum uses a plain class-name string (`'check-circle'`,
+  `'arrow-down'`, etc.), so escaping is a no-op for normal usage —
+  but the `#[Icon]` value is also overridable at runtime via
+  `enumerator.overrides` config and `TenantContext::overridesFor()`.
+  A tenant-supplied override containing HTML/JS would have become a
+  stored XSS. Switched to `{{ $caseIcon }}` so the value is always
+  HTML-escaped. Pinned by `tests/Feature/Blade/IconEscapingTest.php`.
+  Consumers who actually want raw SVG icons should publish the view
+  bundle and customise per their framework variant.
+- **Defensive escape: `:wireModel` / `:wireModelModifier` props on
+  radio + checkboxes** are now `htmlspecialchars()`-encoded before
+  being concatenated into the `wire:model="..."` attribute string.
+  Values are typically developer-controlled, but defensive escaping
+  protects against attribute-breakout if either prop ever carries an
+  unescaped `"` or `&`. The browser decodes attribute entities before
+  Livewire reads the value, so the change is invisible at the JS
+  layer. Pinned by `tests/Feature/Blade/WireModelEscapingTest.php`.
+- **`LaravelTranslatorAdapter` now honours an explicit locale strictly.**
+  When `translate($key, $replace, $locale)` was called with an explicit
+  non-null `$locale` and that locale had no entry, the adapter used to
+  return the Laravel-fallback locale's value (typically `en`). That
+  silently defeated `IsTranslatable::label($locale)`'s fallback chain
+  (caller relies on `null` here to fall through to `#[Label]` then
+  `Humanizer::humanize()`). The adapter now passes the third
+  `$fallback` argument to `Lang::has()` / `Lang::get()`: `false` when
+  the caller supplied an explicit locale (no fallback wanted), `true`
+  when the caller passed `null` (resolve via the app's current locale
+  + its fallback). Pinned by the three new tests in
+  `tests/Unit/Translations/LaravelTranslatorAdapterTest.php`.
 
 ## [0.2.1] — 2026-05-15
 

@@ -15,8 +15,16 @@
     $rootId ??= null;
     $wireModel ??= null;
     $wireModelModifier ??= null;
+    // HTML-escape both pieces in case a value contains `"` or `&`. The
+    // browser decodes attribute entities before Livewire reads the value,
+    // so escaping is invisible at the JS layer and fortifies the markup
+    // against attribute-breakout from unexpected input.
     $wireModelAttr = $wireModel !== null
-        ? 'wire:model' . ($wireModelModifier !== null ? '.' . $wireModelModifier : '') . '="' . $wireModel . '"'
+        ? 'wire:model'
+            . ($wireModelModifier !== null
+                ? '.' . htmlspecialchars((string) $wireModelModifier, ENT_QUOTES, 'UTF-8', false)
+                : '')
+            . '="' . htmlspecialchars((string) $wireModel, ENT_QUOTES, 'UTF-8', false) . '"'
         : '';
     // Arbitrary HTML attributes forwarded from the component caller
     // (data-*, aria-*, wire:model.*, x-*, etc.). Auto-built from the

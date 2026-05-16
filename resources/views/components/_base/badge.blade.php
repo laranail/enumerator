@@ -30,4 +30,4 @@
     @if ($caseColor) data-color="{{ $caseColor }}" @endif
     data-value="{{ $caseValue }}"
     data-name="{{ $case->name }}"
->@if ($caseIcon && $iconPosition === 'before')<span class="{{ $iconClasses }}" aria-hidden="true">{!! $caseIcon !!}</span>@endif<span class="{{ $labelClasses }}">{{ $caseLabel }}</span>@if ($caseIcon && $iconPosition === 'after')<span class="{{ $iconClasses }}" aria-hidden="true">{!! $caseIcon !!}</span>@endif</{{ $tag }}>
+>@if ($caseIcon && $iconPosition === 'before')<span class="{{ $iconClasses }}" aria-hidden="true">{{ $caseIcon }}</span>@endif<span class="{{ $labelClasses }}">{{ $caseLabel }}</span>@if ($caseIcon && $iconPosition === 'after')<span class="{{ $iconClasses }}" aria-hidden="true">{{ $caseIcon }}</span>@endif</{{ $tag }}>
