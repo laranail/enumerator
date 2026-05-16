@@ -197,6 +197,70 @@ multi-select shape:
 `disabled=true` always falls through to the native
 `<select multiple>` — the listbox doesn't run on disabled fields.
 
+### Accessibility (PR-ο, v0.4.0)
+
+The Alpine path follows the WAI-ARIA Authoring Practices Guide
+combobox-with-listbox pattern:
+
+- **`aria-controls`** on the trigger button and search input
+  references the listbox `<ul id="{name}-listbox">`. Screen readers
+  use this to announce "menu, 5 items" when focus enters the
+  trigger.
+- **`aria-activedescendant`** on the trigger + search input is
+  bound dynamically to the currently-active option's `id`. Focus
+  stays on the trigger or filter input; arrow keys move the
+  active descendant, not the DOM focus. This is the APG-recommended
+  shape for combobox keyboard navigation.
+- Each option `<li>` gets a unique `id="{name}-opt-{idx}"` that
+  `aria-activedescendant` resolves to.
+- `aria-multiselectable="true"` on the listbox in multi-select mode.
+- `aria-selected` per option flips with selection state.
+- The pill remove button and the clear button both carry
+  `aria-label` so screen readers read "Remove Read" / "Clear
+  selection" rather than just "×".
+
+**Opt-in `:announceChanges` prop.** When `:announce-changes="true"`,
+a polite `aria-live="polite" aria-atomic="true"` `<span>` is emitted
+near the wrapper; Alpine populates it with `"Added <label>"` /
+`"Removed <label>"` / `"Selected <label>"` / `"Selection cleared"`
+on each selection change. Off by default so consumers who already
+expose their own status region don't get double-announced.
+
+```blade
+<x-laranail-enumerator::dropdown
+    :enum="PermissionEnum::class"
+    name="permissions[]"
+    :multiple="true"
+    :searchable="true"
+    :announce-changes="true"
+    label-text="Permissions"
+/>
+```
+
+The live region has class `enumerator-dropdown-sr-only` for styling.
+The package ships no CSS — supply your own `.sr-only`-style rule
+that visually hides the region while keeping it accessible:
+
+```css
+.enumerator-dropdown-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+```
+
+**What's NOT verified in this release.** The static-render and
+emitted-attribute tests are green, but actual screen-reader
+behaviour (NVDA + Firefox, JAWS + Edge, VoiceOver + Safari) hasn't
+been validated end-to-end. Browser-level verification is on the
+v0.5.0 roadmap.
+
 ### Setup
 
 Drop the loader into your layout once:

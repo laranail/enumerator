@@ -19,6 +19,10 @@ use Illuminate\Contracts\View\View;
  *   attribute emitted on the hidden `<input>` (Alpine path) or on the
  *   `<select>` element (native fallback path). Mirrors the per-input
  *   shape PR-γ added to radio + checkboxes.
+ *   announceChanges — opt-in polite live region under the wrapper
+ *   that announces "Added / Removed <label>" to assistive tech when
+ *   selections change. Off by default so consumers who already supply
+ *   their own status region don't get double-announcements.
  */
 class Dropdown extends Select
 {
@@ -62,6 +66,7 @@ class Dropdown extends Select
         public ?string $labelId = null,
         public ?string $wireModel = null,
         public ?string $wireModelModifier = null,
+        public bool $announceChanges = false,
     ) {
         parent::__construct(
             enum: $enum,
@@ -116,6 +121,7 @@ class Dropdown extends Select
             'overrideLabelId' => $this->labelId,
             'wireModel' => $this->wireModel,
             'wireModelModifier' => $this->wireModelModifier,
+            'announceChanges' => $this->announceChanges,
             'valueOf' => $this->valueOfFn(),
             'labelOf' => $this->labelOfFn(),
         ]);

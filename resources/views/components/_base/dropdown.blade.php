@@ -41,6 +41,7 @@
     $clearable ??= false;
     $wireModel ??= null;
     $wireModelModifier ??= null;
+    $announceChanges ??= false;
     // Build wire:model[.modifier]="..." once, both fragments
     // HTML-escaped per D75 (attribute-string concatenation discipline).
     $wireModelAttr = $wireModel !== null
@@ -52,6 +53,16 @@
         : '';
 
     $inputId = $attributes->get('id', $name);
+    // a11y wiring (PR-ο):
+    //   - $listboxId IDs the <ul role="listbox">; the trigger / search
+    //     <input> bind aria-controls to it.
+    //   - $optionIdPrefix is the per-option id seed; bound dynamically
+    //     by Alpine to aria-activedescendant when an option is active.
+    //   - $announceId is the polite live region id, only emitted when
+    //     announceChanges=true.
+    $listboxId = $inputId . '-listbox';
+    $optionIdPrefix = $inputId . '-opt-';
+    $announceId = $inputId . '-announce';
     $describedById = $description !== null ? $inputId . '-description' : null;
     $renderName = $multiple ? rtrim($name, '[]') . '[]' : $name;
     $isSelected = static function ($case) use ($selectedValue, $valueOf, $multiple): bool {
@@ -123,6 +134,7 @@
             selectedValues: {{ json_encode($alpineSelectedValues, JSON_UNESCAPED_SLASHES) }},
             selectedLabel: '',
             selectedLabels: [],
+            announcement: '',
             options: {{ json_encode($optionsList, JSON_UNESCAPED_SLASHES) }},
             init() {
                 if (this.multiple) {
@@ -158,12 +170,16 @@
                 if (this.multiple) {
                     const v = String(opt.value);
                     const idx = this.selectedValues.findIndex(x => String(x) === v);
+                    let verb;
                     if (idx >= 0) {
                         this.selectedValues.splice(idx, 1);
+                        verb = 'Removed';
                     } else {
                         this.selectedValues.push(v);
+                        verb = 'Added';
                     }
                     this.refreshSelectedLabels();
+                    this.announcement = verb + ' ' + String(opt.label);
                     this.$dispatch('change', { values: this.selectedValues });
                     // Multi mode keeps the panel open so multiple
                     // selections can land in a row. Esc / click-outside
@@ -171,6 +187,7 @@
                 } else {
                     this.selectedValue = String(opt.value);
                     this.selectedLabel = String(opt.label);
+                    this.announcement = 'Selected ' + String(opt.label);
                     this.open = false;
                     this.filter = '';
                     this.activeIndex = -1;
@@ -182,8 +199,10 @@
                 const v = String(value);
                 const idx = this.selectedValues.findIndex(x => String(x) === v);
                 if (idx >= 0) {
+                    const removed = this.selectedLabels[idx] ? this.selectedLabels[idx].label : '';
                     this.selectedValues.splice(idx, 1);
                     this.refreshSelectedLabels();
+                    this.announcement = 'Removed ' + removed;
                     this.$dispatch('change', { values: this.selectedValues });
                 }
             },
@@ -191,10 +210,12 @@
                 if (this.multiple) {
                     this.selectedValues = [];
                     this.selectedLabels = [];
+                    this.announcement = 'Selection cleared';
                     this.$dispatch('change', { values: [] });
                 } else {
                     this.selectedValue = '';
                     this.selectedLabel = '';
+                    this.announcement = 'Selection cleared';
                     this.$dispatch('change', { value: '' });
                 }
             },
@@ -229,6 +250,11 @@
         data-searchable="{{ $searchable ? 'true' : 'false' }}"
         data-clearable="{{ $clearable ? 'true' : 'false' }}"
     >
+        @if ($announceChanges)
+        {{-- Polite live region for screen-reader announcements (PR-ο, v0.4.0). --}}
+        <span id="{{ $announceId }}" class="enumerator-dropdown-sr-only" aria-live="polite" aria-atomic="true" x-text="announcement"></span>
+        @endif
+
         @if ($multiple)
         <template x-for="entry in selectedLabels" :key="entry.value">
             <input type="hidden" name="{{ $renderName }}" :value="entry.value" {!! $wireModelAttr !!}>
@@ -245,6 +271,8 @@
             @keydown.enter.prevent="open ? commitActive() : toggleOpen()"
             :aria-expanded="open ? 'true' : 'false'"
             aria-haspopup="listbox"
+            aria-controls="{{ $listboxId }}"
+            :aria-activedescendant="activeIndex >= 0 ? {{ json_encode($optionIdPrefix, JSON_UNESCAPED_SLASHES) }} + activeIndex : null"
             @if ($describedById) aria-describedby="{{ $describedById }}" @endif
             @if ($ariaLabel ?? $labelText) aria-label="{{ $ariaLabel ?? $labelText }}" @endif
             class="enumerator-dropdown-button {{ $classes }}"
@@ -293,13 +321,16 @@
                 placeholder="Search…"
                 class="enumerator-dropdown-search"
                 aria-label="Search options"
+                aria-controls="{{ $listboxId }}"
+                :aria-activedescendant="activeIndex >= 0 ? {{ json_encode($optionIdPrefix, JSON_UNESCAPED_SLASHES) }} + activeIndex : null"
                 autocomplete="off"
             >
             @endif
 
-            <ul role="listbox" @if ($multiple) aria-multiselectable="true" @endif class="enumerator-dropdown-list">
+            <ul id="{{ $listboxId }}" role="listbox" @if ($multiple) aria-multiselectable="true" @endif class="enumerator-dropdown-list">
                 <template x-for="(opt, idx) in filtered" :key="String(opt.value)">
                     <li
+                        :id="{{ json_encode($optionIdPrefix, JSON_UNESCAPED_SLASHES) }} + idx"
                         role="option"
                         :aria-selected="isSelected(opt) ? 'true' : 'false'"
                         :class="{

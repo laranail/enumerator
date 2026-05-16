@@ -12,6 +12,19 @@ for the active backlog and proposed PR sequence.
 
 ### Added
 
+- **A11y wiring on the Alpine dropdown listbox** (PR-ο). Brings the
+  multi-select dropdown's keyboard + screen-reader behaviour up to
+  the WAI-ARIA Authoring Practices Guide combobox-with-listbox
+  pattern: `aria-controls` linking the trigger / search input to the
+  listbox `<ul id="{name}-listbox">`, `aria-activedescendant` bound
+  to the currently-active option's id (`{name}-opt-{idx}`), per-`<li>`
+  ids, plus the existing `aria-multiselectable` / `aria-selected` /
+  pill `aria-label` posture from v0.3.0. New opt-in
+  `:announce-changes="true"` prop emits a polite
+  `aria-live="polite" aria-atomic="true"` `<span>` near the wrapper
+  that Alpine populates with `Added <label>` / `Removed <label>` /
+  `Selected <label>` / `Selection cleared`. 9 new feature tests.
+  Browser-level screen-reader validation deferred to v0.5.0.
 - **`IsCacheKey` driver-matrix test coverage** (PR-ξ). v0.3.0 PR-η
   shipped IsCacheKey tested only against the array cache driver. New
   feature suite at `tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php`
