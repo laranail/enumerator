@@ -33,7 +33,7 @@ its name for pure enums) as the cache-key string.
 CacheKey::CurrentUser->put($user, ttl: 3600);
 CacheKey::CurrentUser->get();                   // → $user
 CacheKey::CurrentUser->get('fallback-value');   // default when absent
-CacheKey::CurrentUser->has();                   // → true
+CacheKey::CurrentUser->cached();                // → true
 CacheKey::CurrentUser->forget();                // → drops
 
 CacheKey::TenantConfig->remember(
@@ -54,7 +54,7 @@ CacheKey::Counter->decrement(by: 2);     // → 4
 | `put(mixed $value, mixed $ttl = null)` | `bool` | `Cache::forever()` when `$ttl === null`, `Cache::put()` otherwise |
 | `get(mixed $default = null)` | `mixed` | `Cache::get()` |
 | `forget()` | `bool` | `Cache::forget()` |
-| `has()` | `bool` | `Cache::has()` |
+| `cached()` | `bool` | `Cache::has()` |
 | `remember(Closure $cb, mixed $ttl = null)` | `mixed` | `Cache::rememberForever()` or `Cache::remember()` |
 | `increment(int $by = 1)` | `int\|bool` | `Cache::increment()` |
 | `decrement(int $by = 1)` | `int\|bool` | `Cache::decrement()` |
@@ -134,7 +134,14 @@ enum UserStatus: string implements Enumerator, Cacheable
 
 $user->status->label();           // "Active"
 UserStatus::Active->put('hello'); // caches under "user:status:active"
+UserStatus::Active->cached();     // → true
+UserStatus::has('active');        // static membership check — also true
 ```
+
+The instance probe is `cached()` (not `has()`) so it doesn't collide
+with the static `Enumerator::has(target)` membership check that
+`HasEnumeratorBehavior` ships. Both traits compose cleanly without
+trait-conflict resolution.
 
 ## Driver agnostic
 

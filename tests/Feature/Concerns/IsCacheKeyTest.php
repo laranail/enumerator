@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Cache;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 use Simtabi\Laranail\Enumerator\Concerns\IsCacheKey;
 use Simtabi\Laranail\Enumerator\Contracts\Cacheable;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 
 // Feature coverage for the v0.3.0 PR-η IsCacheKey trait + Cacheable
 // contract. Each test exercises one of the trait's wrappers around
@@ -36,6 +38,25 @@ enum PrefixedCacheKey: string implements Cacheable
     public function key(): string
     {
         return 'settings:' . $this->value;
+    }
+}
+
+// Regression fixture for the smoke-test landmine: HasEnumeratorBehavior
+// ships a static `has(target)` membership check, IsCacheKey ships an
+// instance presence probe. The trait composition would have raised a
+// fatal trait-method collision had `IsCacheKey` named its presence
+// probe `has()`. Renaming to `cached()` keeps both available.
+enum ComposedCacheableEnum: string implements Cacheable, Enumerator
+{
+    use HasEnumeratorBehavior;
+    use IsCacheKey;
+
+    case Active = 'active';
+    case Inactive = 'inactive';
+
+    public function key(): string
+    {
+        return 'composed:' . $this->value;
     }
 }
 
@@ -73,19 +94,19 @@ it('get() returns the default when the key is absent', function (): void {
     expect(CacheKeyFixture::CurrentUser->get('fallback'))->toBe('fallback');
 });
 
-it('has() reflects presence + absence', function (): void {
-    expect(CacheKeyFixture::CurrentUser->has())->toBeFalse();
+it('cached() reflects presence + absence', function (): void {
+    expect(CacheKeyFixture::CurrentUser->cached())->toBeFalse();
 
     CacheKeyFixture::CurrentUser->put('x');
-    expect(CacheKeyFixture::CurrentUser->has())->toBeTrue();
+    expect(CacheKeyFixture::CurrentUser->cached())->toBeTrue();
 });
 
 it('forget() drops the cached value', function (): void {
     CacheKeyFixture::CurrentUser->put('x');
-    expect(CacheKeyFixture::CurrentUser->has())->toBeTrue();
+    expect(CacheKeyFixture::CurrentUser->cached())->toBeTrue();
 
     CacheKeyFixture::CurrentUser->forget();
-    expect(CacheKeyFixture::CurrentUser->has())->toBeFalse();
+    expect(CacheKeyFixture::CurrentUser->cached())->toBeFalse();
 });
 
 it('remember() runs the callback when absent + caches the result', function (): void {
@@ -108,7 +129,7 @@ it('remember() with ttl=null caches forever', function (): void {
     $result = CacheKeyFixture::TenantConfig->remember(fn () => 'forever');
 
     expect($result)->toBe('forever');
-    expect(CacheKeyFixture::TenantConfig->has())->toBeTrue();
+    expect(CacheKeyFixture::TenantConfig->cached())->toBeTrue();
 });
 
 it('increment / decrement work with the underlying Cache facade', function (): void {
@@ -126,4 +147,24 @@ it('two cases use distinct keys', function (): void {
 
     expect(CacheKeyFixture::CurrentUser->get())->toBe('user-val');
     expect(CacheKeyFixture::TenantConfig->get())->toBe('tenant-val');
+});
+
+it('composes cleanly with HasEnumeratorBehavior — both has() and cached() reachable', function (): void {
+    // static membership check (from HasEnumeratorBehavior)
+    expect(ComposedCacheableEnum::has('active'))->toBeTrue();
+    expect(ComposedCacheableEnum::has('not-a-case'))->toBeFalse();
+
+    // instance presence probe (from IsCacheKey)
+    expect(ComposedCacheableEnum::Active->cached())->toBeFalse();
+
+    ComposedCacheableEnum::Active->put('payload');
+    expect(ComposedCacheableEnum::Active->cached())->toBeTrue();
+
+    // both surfaces share no state — the static check is independent
+    // of whether the value is cached
+    expect(ComposedCacheableEnum::has('active'))->toBeTrue();
+
+    ComposedCacheableEnum::Active->forget();
+    expect(ComposedCacheableEnum::Active->cached())->toBeFalse();
+    expect(ComposedCacheableEnum::has('active'))->toBeTrue();
 });

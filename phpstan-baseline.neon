@@ -2587,9 +2587,57 @@ parameters:
 			path: tests/Feature/CasesCollectionTest.php
 
 		-
+			message: '#^Call to function is_subclass_of\(\) with ''ComposedCacheableEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(ComposedCacheableEnum\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(ComposedCacheableEnum\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(ComposedCacheableEnum\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with ComposedCacheableEnum\:\:Active\|ComposedCacheableEnum\:\:Inactive and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Instanceof between ComposedCacheableEnum\:\:Active\|ComposedCacheableEnum\:\:Inactive and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
 			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(CacheKeyFixture\)\.$#'
 			identifier: varTag.nativeType
 			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(ComposedCacheableEnum\)\.$#'
+			identifier: varTag.nativeType
+			count: 3
 			path: tests/Feature/Concerns/IsCacheKeyTest.php
 
 		-
@@ -2599,27 +2647,33 @@ parameters:
 			path: tests/Feature/Concerns/IsCacheKeyTest.php
 
 		-
+			message: '#^PHPDoc tag @var with type static\(ComposedCacheableEnum\) is not subtype of native type ComposedCacheableEnum\:\:Active\|ComposedCacheableEnum\:\:Inactive\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
 			message: '#^Parameter \#2 \$ttl of static method Illuminate\\Cache\\Repository\:\:remember\(\) expects Closure\|DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
 			identifier: argument.type
-			count: 3
+			count: 4
 			path: tests/Feature/Concerns/IsCacheKeyTest.php
 
 		-
 			message: '#^Parameter \#3 \$ttl of static method Illuminate\\Cache\\Repository\:\:put\(\) expects DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
 			identifier: argument.type
-			count: 3
+			count: 4
 			path: tests/Feature/Concerns/IsCacheKeyTest.php
 
 		-
 			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:remember\(\)$#'
 			identifier: argument.templateType
-			count: 3
+			count: 4
 			path: tests/Feature/Concerns/IsCacheKeyTest.php
 
 		-
 			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:rememberForever\(\)$#'
 			identifier: argument.templateType
-			count: 3
+			count: 4
 			path: tests/Feature/Concerns/IsCacheKeyTest.php
 
 		-

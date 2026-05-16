@@ -44,12 +44,17 @@ submitted, so server-side consumers see the same payload.
 - **`IsCacheKey` trait + `Cacheable` contract** (PR-η). Define an
   enum case as a cache-key namespace, with shorthand methods
   proxying to Laravel's `Cache` facade — `put()` / `get()` /
-  `forget()` / `has()` / `remember()` / `increment()` / `decrement()`.
-  Standalone trait (not in the `HasEnumerator` umbrella) so a
-  cache-key enum doesn't accidentally pull in label / colour / icon
-  surface area when only the cache shape is wanted. Override `key()`
-  in the consumer enum for a non-trivial cache-key shape (e.g.,
-  `'settings:' . $this->value`). 12 feature tests against Laravel's
+  `forget()` / `cached()` / `remember()` / `increment()` /
+  `decrement()`. The presence probe is `cached()` rather than
+  `has()` so the trait composes with `HasEnumeratorBehavior`
+  (which ships a static `Enumerator::has(target)` membership
+  check) without a fatal trait-method collision; the regression
+  is pinned by a composed-enum feature test. Standalone trait
+  (not in the `HasEnumerator` umbrella) so a cache-key enum doesn't
+  accidentally pull in label / colour / icon surface area when
+  only the cache shape is wanted. Override `key()` in the consumer
+  enum for a non-trivial cache-key shape (e.g.,
+  `'settings:' . $this->value`). 13 feature tests against Laravel's
   array-cache driver.
 - **`WithEnumTransitions` Livewire trait** (PR-ζ). Promotes the
   existing `docs/recipes/livewire-state-transitions.md` recipe to a

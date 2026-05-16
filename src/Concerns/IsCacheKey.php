@@ -30,7 +30,7 @@ use UnitEnum;
  *
  *     CacheKey::CurrentUser->put($user, ttl: 3600);
  *     CacheKey::CurrentUser->get();
- *     CacheKey::CurrentUser->has();
+ *     CacheKey::CurrentUser->cached();
  *     CacheKey::CurrentUser->forget();
  *
  *     CacheKey::TenantConfig->remember(
@@ -102,8 +102,12 @@ trait IsCacheKey
 
     /**
      * Check whether a value is currently cached under this case's key.
+     *
+     * Named `cached()` rather than `has()` so it never collides with
+     * `Enumerator::has(target)` (a static membership check shipped via
+     * `HasEnumeratorBehavior`) when both traits compose into one enum.
      */
-    public function has(): bool
+    public function cached(): bool
     {
         return Cache::has($this->key());
     }
