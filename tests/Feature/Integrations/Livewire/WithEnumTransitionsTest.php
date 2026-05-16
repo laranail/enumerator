@@ -120,7 +120,6 @@ it('returns false and pushes a Livewire error on an invalid transition', functio
 
 it('returns false when the property is not a Stateful instance', function (): void {
     $component = new OrderShowFixture;
-    // @phpstan-ignore-next-line — intentionally write a wrong-shaped value
     $component->status = OrderStatus::Pending;
     // Replace the property at runtime to simulate a non-Stateful value.
     // PHP enum properties are typed, so we test against the trait's

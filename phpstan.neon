@@ -17,10 +17,14 @@ parameters:
         - src/Integrations/Nova/*
     treatPhpDocTypesAsCertain: false
     # Baseline entries can drift across the PHP 8.3 / 8.4 / 8.5 matrix
-    # because each version infers types slightly differently. Don't fail
-    # the gate on baseline staleness — regenerate the baseline whenever
-    # you intentionally change the analyser surface.
-    reportUnmatchedIgnoredErrors: false
+    # because each version infers types slightly differently. From
+    # v0.5.0 (PR-χ) the gate IS strict — staleness fails CI so the
+    # next maintainer can't silently regenerate around a real bug.
+    # When the CI matrix surfaces a version-specific entry mismatch,
+    # the workflow output names the unmatched ignore pattern; either
+    # regenerate the baseline on that PHP version and commit, OR fix
+    # the underlying analyser surface drift.
+    reportUnmatchedIgnoredErrors: true
     ignoreErrors:
         # Rules use new static() polymorphism for the fluent ::for() factory.
         - identifier: new.static
@@ -181,10 +185,11 @@ parameters:
             identifier: function.alreadyNarrowedType
             paths:
                 - src/Integrations/Livewire/WithEnumTransitions.php
-        -
-            identifier: return.type
-            paths:
-                - src/Integrations/Livewire/WithEnumTransitions.php
+        # The PR-ω `return.type` scope on WithEnumTransitions.php was
+        # retired by PR-β2 — adding `@method` PHPDoc to Stateful
+        # resolved the `canTransitionEnum() should return bool but
+        # returns mixed` warning at the analyser source rather than
+        # via path-scope suppression.
         # HasLifecycle/HasOrder per-fixture cascade in WorkflowStatus:
         # array_values() on a non-empty-list, offset access on a
         # cases() array, mixed → int cast for the #[Order] value.

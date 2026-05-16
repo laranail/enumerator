@@ -27,6 +27,20 @@ for the v0.x → v1.0 trajectory.
 
 ### Changed
 
+- **PHPStan strict-baseline gate** (PR-χ). Flipped
+  `reportUnmatchedIgnoredErrors: false → true` in `phpstan.neon`.
+  Stale baseline entries now fail CI so the next maintainer can't
+  silently regenerate around a real bug. Cleanup pass retired
+  the PR-ω `return.type` path-scope on
+  `src/Integrations/Livewire/WithEnumTransitions.php` (resolved at
+  the analyser source by PR-β2's `@method` PHPDoc on Stateful) plus
+  a stale `@phpstan-ignore-next-line` inside
+  `tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php`.
+  PHPStan moved out of the `ci.yml` matrix — static analysis isn't
+  per-runtime-version and the matrix surfaced cross-version drift
+  (PHP 8.5 fires `offsetAccess.invalidOffset` warnings the older
+  versions don't). The dedicated `static-analysis.yml` workflow on
+  PHP 8.3 (the floor) is now the single PHPStan gate.
 - **`WithEnumTransitions::transitionEnum` /
   `canTransitionEnum` / `transitionEnumOrValidate` now guard
   `$target` is a `Stateful` instance** (PR-β2). Previously a caller
