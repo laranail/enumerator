@@ -50,6 +50,10 @@ class OrderShowFixture extends Component
 
     public OrderStatus $status = OrderStatus::Pending;
 
+    public OrderStatus $secondaryStatus = OrderStatus::Pending;
+
+    public OrderStatus $tertiaryStatus = OrderStatus::Pending;
+
     /** @var array<string, string> */
     public array $dispatched = [];
 
@@ -160,4 +164,102 @@ it('chained valid transitions advance through the state machine', function (): v
     // Shipped is terminal — no further transitions allowed.
     expect($component->transitionEnum('status', OrderStatus::Paid))->toBeFalse();
     expect($component->status)->toBe(OrderStatus::Shipped);
+});
+
+// === PR-ν bulkTransitionEnum + transitionEnumOrValidate (v0.4.0) =========
+
+it('bulkTransitionEnum() advances every path when all transitions are valid', function (): void {
+    $component = new OrderShowFixture;
+
+    $ok = $component->bulkTransitionEnum(
+        ['status', 'secondaryStatus', 'tertiaryStatus'],
+        OrderStatus::Paid,
+    );
+
+    expect($ok)->toBeTrue();
+    expect($component->status)->toBe(OrderStatus::Paid);
+    expect($component->secondaryStatus)->toBe(OrderStatus::Paid);
+    expect($component->tertiaryStatus)->toBe(OrderStatus::Paid);
+});
+
+it('bulkTransitionEnum() returns false but still advances valid paths when one fails', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+    // Pre-advance secondaryStatus to Shipped so its transition to Paid
+    // becomes invalid (Shipped is terminal). status + tertiaryStatus
+    // still transition cleanly.
+    $component->secondaryStatus = OrderStatus::Shipped;
+
+    $ok = $component->bulkTransitionEnum(
+        ['status', 'secondaryStatus', 'tertiaryStatus'],
+        OrderStatus::Paid,
+    );
+
+    expect($ok)->toBeFalse();
+    expect($component->status)->toBe(OrderStatus::Paid);
+    expect($component->secondaryStatus)->toBe(OrderStatus::Shipped);  // unchanged
+    expect($component->tertiaryStatus)->toBe(OrderStatus::Paid);
+    expect($component->getErrorBag()->has('secondaryStatus'))->toBeTrue();
+});
+
+it('bulkTransitionEnum() with empty path list is a no-op true', function (): void {
+    $component = new OrderShowFixture;
+
+    expect($component->bulkTransitionEnum([], OrderStatus::Paid))->toBeTrue();
+    expect($component->status)->toBe(OrderStatus::Pending);
+});
+
+it('transitionEnumOrValidate() uses a custom invalid message when supplied', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    $ok = $component->transitionEnumOrValidate(
+        'status',
+        OrderStatus::Shipped,  // invalid: Pending → Shipped not allowed
+        messages: ['invalid' => 'You must pay before shipping.'],
+    );
+
+    expect($ok)->toBeFalse();
+    expect($component->getErrorBag()->get('status'))->toBe(['You must pay before shipping.']);
+});
+
+it('transitionEnumOrValidate() uses a custom notStateful message when supplied', function (): void {
+    $component = new OrderShowFixture;
+
+    $ok = $component->transitionEnumOrValidate(
+        'nonexistentProperty',
+        OrderStatus::Paid,
+        messages: ['notStateful' => 'No such order field.'],
+    );
+
+    expect($ok)->toBeFalse();
+    expect($component->getErrorBag()->get('nonexistentProperty'))->toBe(['No such order field.']);
+});
+
+it('transitionEnumOrValidate() falls back to the exception message when no `invalid` key is given', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    $ok = $component->transitionEnumOrValidate('status', OrderStatus::Shipped);
+
+    expect($ok)->toBeFalse();
+    $errors = $component->getErrorBag()->get('status');
+    expect($errors)->not->toBeEmpty();
+    // The InvalidTransitionException's default message format.
+    expect($errors[0])->toContain('Pending')->toContain('Shipped');
+});
+
+it('transitionEnumOrValidate() advances the property + dispatches on a valid transition', function (): void {
+    $component = new OrderShowFixture;
+    $component->status = OrderStatus::Pending;
+
+    $ok = $component->transitionEnumOrValidate(
+        'status',
+        OrderStatus::Paid,
+        messages: ['invalid' => 'never seen because the transition is valid'],
+    );
+
+    expect($ok)->toBeTrue();
+    expect($component->status)->toBe(OrderStatus::Paid);
+    expect($component->dispatched)->toHaveKey('enumerator.transitioned');
 });

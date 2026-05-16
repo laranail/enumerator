@@ -7,7 +7,9 @@ use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\McpSchemaEmitter;
 use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\OpenAiSchemaEmitter;
 use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\StructuredOutputServiceProvider;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 
 it('OpenAI response_format wraps the schema correctly', function (): void {
     $schema = (new OpenAiSchemaEmitter)->asResponseFormat(StatusEnum::class);
@@ -65,20 +67,20 @@ it('binds all three emitters as singletons when module is enabled', function ():
 
 it('AnthropicSchemaEmitter includes a description when the enum has a class-level #[Description]', function (): void {
     $schema = (new AnthropicSchemaEmitter)->asToolInputProperty(
-        Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum::class,
+        AttributedStatusEnum::class,
     );
 
     expect($schema)->toHaveKey('description');
-    expect($schema['description'])->toBe('Attributed status fixture');
+    expect($schema['description'] ?? null)->toBe('Attributed status fixture');
 });
 
 it('McpSchemaEmitter includes a description when the enum has a class-level #[Description]', function (): void {
     $schema = (new McpSchemaEmitter)->asToolInputProperty(
-        Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum::class,
+        AttributedStatusEnum::class,
     );
 
     expect($schema)->toHaveKey('description');
-    expect($schema['description'])->toBe('Attributed status fixture');
+    expect($schema['description'] ?? null)->toBe('Attributed status fixture');
 });
 
 it('McpSchemaEmitter title resolves via ReflectionClass for class-const enums', function (): void {
@@ -86,10 +88,10 @@ it('McpSchemaEmitter title resolves via ReflectionClass for class-const enums', 
     // aren't native PHP enums, so enum_exists() is false and the resolver
     // falls back to ReflectionClass::getShortName().
     $schema = (new McpSchemaEmitter)->asToolInputProperty(
-        Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum::class,
+        LegacyStatusEnum::class,
     );
 
-    expect($schema['title'])->toBe('LegacyStatusEnum');
+    expect($schema['title'] ?? null)->toBe('LegacyStatusEnum');
 });
 
 it('Anthropic + Mcp classDescription() helpers swallow enum-throwing exceptions', function (): void {

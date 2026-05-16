@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Contracts\Events\Dispatcher;
 use Simtabi\Laranail\Enumerator\Modules\Octane\OctaneServiceProvider;
 use Simtabi\Laranail\Enumerator\Modules\Octane\WarmCachesListener;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
@@ -43,4 +44,25 @@ it('OctaneServiceProvider no-ops when the Octane event class is absent', functio
 
     // No assertion that throws here — just confirm registration is safe.
     expect(true)->toBeTrue();
+});
+
+it('OctaneServiceProvider registers a listener when the Octane event class IS present', function (): void {
+    // We can't depend on Laravel\Octane being installed in this test
+    // suite, so we class_alias an existing class to the fully-qualified
+    // event name the provider checks. After the alias, class_exists()
+    // returns true and the provider's shouldRegister() short-circuit
+    // passes through to the listen() call.
+    $aliasedName = 'Laravel\\Octane\\Events\\WorkerStarting';
+    if (! class_exists($aliasedName)) {
+        class_alias(stdClass::class, $aliasedName);
+    }
+
+    config()->set('enumerator.modules.octane', true);
+
+    $dispatcher = app(Dispatcher::class);
+    expect($dispatcher->hasListeners($aliasedName))->toBeFalse();
+
+    app()->register(OctaneServiceProvider::class, true);
+
+    expect($dispatcher->hasListeners($aliasedName))->toBeTrue();
 });

@@ -119,4 +119,80 @@ trait WithEnumTransitions
 
         return $current->canTransitionTo($target);
     }
+
+    /**
+     * Transition multiple Stateful properties to the same target case
+     * in a single batch. Useful for "approve all", "ship all" actions
+     * that fan out one event to N order/ticket/task properties.
+     *
+     * Per-path failures are independent — one invalid path doesn't
+     * abort the others. Each failure adds an error to the Livewire
+     * error bag at the failing path. Returns true only if every path
+     * transitioned successfully.
+     *
+     * @param  array<int, string>  $propertyPaths
+     */
+    public function bulkTransitionEnum(array $propertyPaths, UnitEnum|BackedEnum $target): bool
+    {
+        $allOk = true;
+
+        foreach ($propertyPaths as $path) {
+            $pathOk = $this->transitionEnum($path, $target);
+            if (! $pathOk) {
+                $allOk = false;
+            }
+        }
+
+        return $allOk;
+    }
+
+    /**
+     * Transition with custom error messages on failure. Same semantics
+     * as `transitionEnum()`, but on `InvalidTransitionException` the
+     * caller-provided message is pushed to the error bag instead of
+     * the exception's. Useful when the framework-default message
+     * doesn't fit the UX copy.
+     *
+     * @param  array{
+     *     invalid?: string,
+     *     notStateful?: string,
+     * }  $messages
+     */
+    public function transitionEnumOrValidate(
+        string $propertyPath,
+        UnitEnum|BackedEnum $target,
+        array $messages = [],
+    ): bool {
+        $current = data_get($this, $propertyPath);
+
+        if (! $current instanceof Stateful) {
+            $this->addError($propertyPath, $messages['notStateful'] ?? sprintf(
+                'Cannot transition: property "%s" is not a Stateful enum case (got %s).',
+                $propertyPath,
+                $current === null ? 'null' : get_debug_type($current),
+            ));
+
+            return false;
+        }
+
+        try {
+            $next = $current->transitionTo($target);
+        } catch (InvalidTransitionException $e) {
+            $this->addError($propertyPath, $messages['invalid'] ?? $e->getMessage());
+
+            return false;
+        }
+
+        data_set($this, $propertyPath, $next);
+
+        if (method_exists($this, 'dispatch')) {
+            $this->dispatch('enumerator.transitioned', [
+                'from' => $current,
+                'to' => $next,
+                'property' => $propertyPath,
+            ]);
+        }
+
+        return true;
+    }
 }

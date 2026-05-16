@@ -167,6 +167,58 @@ class OrderShow extends Component
 (Backed enums hydrate natively in Livewire 3.5+; `EnumeratorCasts`
 is for pure-enum / `AbstractEnumeratorClass` paths.)
 
+## Bulk transitions (v0.4.0)
+
+`bulkTransitionEnum($paths, $target)` advances multiple Stateful
+properties to the same target case in one call. Use it for actions
+that fan out to N records — "approve all pending", "ship all paid",
+"cancel all queued".
+
+```php
+public function shipAll(): void
+{
+    $this->bulkTransitionEnum(
+        ['primaryOrder.status', 'secondaryOrder.status', 'shipment.status'],
+        OrderStatus::Shipped,
+    );
+}
+```
+
+Per-path failures are independent. A path whose current value can't
+reach the target adds an error to the bag at THAT path; the other
+paths still advance. The method returns `true` only when every
+path transitioned successfully; otherwise `false`. An empty path
+list is a no-op that returns `true`.
+
+## Custom error messages (v0.4.0)
+
+`transitionEnumOrValidate($path, $target, $messages)` matches
+`transitionEnum()`'s semantics but lets the caller override the
+default error text on failure — useful when the framework-default
+message ("Cannot transition Pending → Shipped") doesn't fit the
+UX copy:
+
+```php
+public function pay(): void
+{
+    $this->transitionEnumOrValidate(
+        'order.status',
+        OrderStatus::Paid,
+        messages: [
+            'invalid' => 'Please complete the previous step first.',
+            'notStateful' => 'Order is not in a transition-aware state.',
+        ],
+    );
+}
+```
+
+`messages['invalid']` replaces the `InvalidTransitionException`
+message; `messages['notStateful']` replaces the "not a Stateful
+enum case" message. Either key is optional; omitted keys fall
+through to the default text. Behaviour on success is identical
+to `transitionEnum()` — property advances, `enumerator.transitioned`
+event dispatches.
+
 ## See also
 
 - [State machine](state-machine.md) — `Stateful` contract + `HasTransitions` trait

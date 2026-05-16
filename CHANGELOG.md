@@ -12,6 +12,17 @@ for the active backlog and proposed PR sequence.
 
 ### Added
 
+- **`WithEnumTransitions` bulk + validation helpers** (PR-ν). Two
+  new methods on the v0.3.0 Livewire trait. `bulkTransitionEnum(
+  $paths, $target)` advances many Stateful properties to the same
+  target case in one call (for "approve all" / "ship all" actions);
+  per-path failures are independent. `transitionEnumOrValidate(
+  $path, $target, $messages)` matches the original `transitionEnum`
+  semantics but accepts caller-overridable error text for the
+  `invalid` and `notStateful` failure modes — useful when the
+  framework-default message doesn't fit UX copy. Both methods reuse
+  the existing error-bag + dispatch wiring; no breakage to v0.3.0
+  callers. 7 new feature tests.
 - **Dropdown component `:wireModel` / `:wireModelModifier` props**
   (PR-μ). Mirror of the PR-γ pattern on radio + checkboxes — closes
   the parity gap left in v0.3.0. Emits `wire:model[.modifier]="..."`
