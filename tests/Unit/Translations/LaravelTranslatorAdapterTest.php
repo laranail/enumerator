@@ -134,3 +134,73 @@ it('has() with explicit locale only checks that locale (no fallback)', function 
     // through the configured default locale.
     expect($adapter->has('enumerator::scope.has-strict'))->toBeTrue();
 });
+
+// === Throwable-branch coverage (2026-05-16) =================================
+// translate() and has() each wrap their Lang::* call in a try/catch
+// that returns null / false on any \Throwable. The catches are
+// defensive against translator misconfiguration (e.g. malformed loader
+// returning a non-string, or a bound implementation that raises).
+// Bind a stub Translator into the container that throws to exercise
+// these branches.
+
+it('translate() returns null when the underlying translator throws', function (): void {
+    $throwingTranslator = new class implements Illuminate\Contracts\Translation\Translator
+    {
+        public function get($key, array $replace = [], $locale = null): string|array
+        {
+            throw new RuntimeException('translator boom');
+        }
+
+        public function choice($key, $number, array $replace = [], $locale = null): string
+        {
+            throw new RuntimeException('translator boom');
+        }
+
+        public function getLocale(): string
+        {
+            return 'en';
+        }
+
+        public function setLocale($locale): void {}
+
+        public function has($key, ?string $locale = null, bool $fallback = true): bool
+        {
+            return true;  // pass the has() guard so we reach Lang::get
+        }
+    };
+    app()->instance('translator', $throwingTranslator);
+
+    $adapter = new LaravelTranslatorAdapter;
+    expect($adapter->translate('any::key'))->toBeNull();
+});
+
+it('has() returns false when the underlying translator throws', function (): void {
+    $throwingTranslator = new class implements Illuminate\Contracts\Translation\Translator
+    {
+        public function get($key, array $replace = [], $locale = null): string|array
+        {
+            return $key;
+        }
+
+        public function choice($key, $number, array $replace = [], $locale = null): string
+        {
+            return $key;
+        }
+
+        public function getLocale(): string
+        {
+            return 'en';
+        }
+
+        public function setLocale($locale): void {}
+
+        public function has($key, ?string $locale = null, bool $fallback = true): bool
+        {
+            throw new RuntimeException('translator boom');
+        }
+    };
+    app()->instance('translator', $throwingTranslator);
+
+    $adapter = new LaravelTranslatorAdapter;
+    expect($adapter->has('any::key'))->toBeFalse();
+});
