@@ -7,10 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-_(reserved for the next development cycle — see
-[.design/plans/v0.3.0-scope.md](.design/plans/v0.3.0-scope.md) and
-[.design/_private/NEXT-SESSION.md](.design/_private/NEXT-SESSION.md)
-for the v0.3.x / v0.4.0 backlog)_
+See [.design/plans/v0.4.0-scope.md](.design/plans/v0.4.0-scope.md)
+for the active backlog and proposed PR sequence.
+
+### Added
+
+- **Dropdown component `:wireModel` / `:wireModelModifier` props**
+  (PR-μ). Mirror of the PR-γ pattern on radio + checkboxes — closes
+  the parity gap left in v0.3.0. Emits `wire:model[.modifier]="..."`
+  on the hidden `<input>(s)` for the Alpine listbox path (one per
+  selected value in multi-select via `<template x-for>`) and on the
+  `<select>` element for the native fallback path. Values flow
+  through `htmlspecialchars(..., ENT_QUOTES, 'UTF-8', false)` per
+  the D75 escape discipline. New `Dropdown` contract test extends
+  the existing `Select` / `Radio` / `Checkboxes` no-extraAttrs
+  arch tests. 9 new feature tests cover the four emission shapes
+  (single/multi × Alpine/native) + escape regressions.
+
+### Tests
+
+- **Coverage push** (PR-ι + PR-λ). `AttributesCache` 77.6 % → 99.2 %
+  via 8 new branch-coverage tests (mixed-bit / duplicate-bit / non-
+  power-of-two / class-const-bit fixtures). `LaravelTranslatorAdapter`
+  62.5 % → 87.5 % via stub-translator container binding to exercise
+  the `try / catch (\Throwable)` branches in `translate()` and
+  `has()`. Total `src/` coverage: 83.40 % → 85.10 %.
+- **`extraAttrs` contract tests** (PR-π) on `Radio` and `Checkboxes`,
+  mirroring the existing `Select` arch test. Pins the trust contract
+  that `{!! \$extraAttrs !!}` only receives `ComponentAttributeBag`-
+  built (HTML-escaped) input.
 
 ## [0.3.0] — 2026-05-16
 

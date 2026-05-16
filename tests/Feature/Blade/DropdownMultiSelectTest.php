@@ -63,10 +63,13 @@ it('multi-mode emits hidden inputs via <template x-for> over selectedLabels', fu
     );
 
     // The hidden input lives inside a <template x-for>, with name
-    // pre-resolved by Blade and value bound via Alpine.
+    // pre-resolved by Blade and value bound via Alpine. (PR-μ adds an
+    // optional wire:model emission slot before the closing `>`, hence
+    // the loose assertion that stops before the `>` — wire:model is
+    // empty when wireModel prop isn't set.)
     expect($html)
         ->toContain('<template x-for="entry in selectedLabels"')
-        ->toContain('<input type="hidden" name="permissions[]" :value="entry.value">');
+        ->toContain('<input type="hidden" name="permissions[]" :value="entry.value"');
 });
 
 it('multi-mode hydrates selectedValues from :selected iterable', function (): void {

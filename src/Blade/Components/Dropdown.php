@@ -15,6 +15,10 @@ use Illuminate\Contracts\View\View;
  * Per-element overrides (in addition to those inherited from Select):
  *   wrapperClasses, labelClasses, descriptionClasses
  *   wrapperId, labelId
+ *   wireModel, wireModelModifier — Livewire `wire:model[.modifier]`
+ *   attribute emitted on the hidden `<input>` (Alpine path) or on the
+ *   `<select>` element (native fallback path). Mirrors the per-input
+ *   shape PR-γ added to radio + checkboxes.
  */
 class Dropdown extends Select
 {
@@ -22,6 +26,12 @@ class Dropdown extends Select
      * @param  class-string  $enum
      * @param  array<string, string>  $groupLabels
      * @param  array<string, array<int, mixed>>|null  $groups
+     * @param  string|null  $wireModel  Livewire `wire:model` attribute
+     *                                  value (e.g. `'status'`).
+     * @param  string|null  $wireModelModifier  Livewire wire:model modifier
+     *                                          (`live`, `blur`, `defer`,
+     *                                          `debounce.500ms`, …). No-op
+     *                                          unless `wireModel` is set.
      */
     public function __construct(
         string $enum,
@@ -50,6 +60,8 @@ class Dropdown extends Select
         public ?string $descriptionClasses = null,
         public ?string $wrapperId = null,
         public ?string $labelId = null,
+        public ?string $wireModel = null,
+        public ?string $wireModelModifier = null,
     ) {
         parent::__construct(
             enum: $enum,
@@ -102,6 +114,8 @@ class Dropdown extends Select
             'overrideRootId' => $this->rootId,
             'overrideWrapperId' => $this->wrapperId,
             'overrideLabelId' => $this->labelId,
+            'wireModel' => $this->wireModel,
+            'wireModelModifier' => $this->wireModelModifier,
             'valueOf' => $this->valueOfFn(),
             'labelOf' => $this->labelOfFn(),
         ]);

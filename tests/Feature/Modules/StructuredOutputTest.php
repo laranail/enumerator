@@ -62,3 +62,53 @@ it('binds all three emitters as singletons when module is enabled', function ():
     expect(app(AnthropicSchemaEmitter::class))->toBeInstanceOf(AnthropicSchemaEmitter::class);
     expect(app(McpSchemaEmitter::class))->toBeInstanceOf(McpSchemaEmitter::class);
 });
+
+it('AnthropicSchemaEmitter includes a description when the enum has a class-level #[Description]', function (): void {
+    $schema = (new AnthropicSchemaEmitter)->asToolInputProperty(
+        Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum::class,
+    );
+
+    expect($schema)->toHaveKey('description');
+    expect($schema['description'])->toBe('Attributed status fixture');
+});
+
+it('McpSchemaEmitter includes a description when the enum has a class-level #[Description]', function (): void {
+    $schema = (new McpSchemaEmitter)->asToolInputProperty(
+        Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum::class,
+    );
+
+    expect($schema)->toHaveKey('description');
+    expect($schema['description'])->toBe('Attributed status fixture');
+});
+
+it('McpSchemaEmitter title resolves via ReflectionClass for class-const enums', function (): void {
+    // shortName() takes the non-enum reflection branch — class-const enums
+    // aren't native PHP enums, so enum_exists() is false and the resolver
+    // falls back to ReflectionClass::getShortName().
+    $schema = (new McpSchemaEmitter)->asToolInputProperty(
+        Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum::class,
+    );
+
+    expect($schema['title'])->toBe('LegacyStatusEnum');
+});
+
+it('Anthropic + Mcp classDescription() helpers swallow enum-throwing exceptions', function (): void {
+    // The classDescription() helper wraps the enum's classDescription()
+    // call in try/catch and returns '' on \Throwable. Pin the catch
+    // branch with a fixture whose classDescription() raises.
+    $thrower = new class
+    {
+        public static function classDescription(): string
+        {
+            throw new RuntimeException('boom');
+        }
+    };
+
+    $ref = new ReflectionMethod(AnthropicSchemaEmitter::class, 'classDescription');
+    $ref->setAccessible(true);
+    expect($ref->invoke(new AnthropicSchemaEmitter, $thrower::class))->toBe('');
+
+    $ref = new ReflectionMethod(McpSchemaEmitter::class, 'classDescription');
+    $ref->setAccessible(true);
+    expect($ref->invoke(new McpSchemaEmitter, $thrower::class))->toBe('');
+});

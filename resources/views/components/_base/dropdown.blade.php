@@ -39,6 +39,17 @@
     $ariaLabel ??= null;
     $searchable ??= false;
     $clearable ??= false;
+    $wireModel ??= null;
+    $wireModelModifier ??= null;
+    // Build wire:model[.modifier]="..." once, both fragments
+    // HTML-escaped per D75 (attribute-string concatenation discipline).
+    $wireModelAttr = $wireModel !== null
+        ? 'wire:model'
+            . ($wireModelModifier !== null
+                ? '.' . htmlspecialchars((string) $wireModelModifier, ENT_QUOTES, 'UTF-8', false)
+                : '')
+            . '="' . htmlspecialchars((string) $wireModel, ENT_QUOTES, 'UTF-8', false) . '"'
+        : '';
 
     $inputId = $attributes->get('id', $name);
     $describedById = $description !== null ? $inputId . '-description' : null;
@@ -220,10 +231,10 @@
     >
         @if ($multiple)
         <template x-for="entry in selectedLabels" :key="entry.value">
-            <input type="hidden" name="{{ $renderName }}" :value="entry.value">
+            <input type="hidden" name="{{ $renderName }}" :value="entry.value" {!! $wireModelAttr !!}>
         </template>
         @else
-        <input type="hidden" name="{{ $renderName }}" :value="selectedValue" @if ($required) required @endif>
+        <input type="hidden" name="{{ $renderName }}" :value="selectedValue" @if ($required) required @endif {!! $wireModelAttr !!}>
         @endif
 
         <button
@@ -320,6 +331,7 @@
         @if ($describedById) aria-describedby="{{ $describedById }}" @endif
         data-searchable="{{ $searchable ? 'true' : 'false' }}"
         data-clearable="{{ $clearable ? 'true' : 'false' }}"
+        {!! $wireModelAttr !!}
         class="enumerator-select {{ $classes }}"
     >
         @if ($nullable && ! $multiple)
