@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 See [.design/plans/v1.0.0-roadmap.md](.design/plans/v1.0.0-roadmap.md)
 for the v0.x → v1.0 trajectory.
 
+### Changed
+
+- **CI coverage gate moved `--min=83 → --min=85`** (PR-α2). Two
+  consecutive measurements on CI confirmed `src/` coverage sustains
+  ≥ 85 % — v0.4.0 (85.7 %) and the post-PR-ω state (85.7 %). The
+  v0.2.0 → v0.2.1 discipline ("don't raise the floor before the
+  measurement sustains") is now satisfied. Updated in `ci.yml` and
+  the `composer test:coverage` script. Next target is 90 % per the
+  inline workflow comment — still earned by covering uncovered
+  branches, not by tightening the gate first.
+
 ### Tests
 
 - **Real-Livewire-roundtrip tests for `WithEnumTransitions`** (PR-ω).

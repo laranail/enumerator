@@ -93,7 +93,7 @@
     },
     "scripts": {
         "test": "pest",
-        "test:coverage": "pest --coverage --min=83",
+        "test:coverage": "pest --coverage --min=85",
         "analyse": "phpstan analyse",
         "format": "pint",
         "format:check": "pint --test"

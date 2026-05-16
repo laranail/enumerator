@@ -60,11 +60,19 @@ jobs:
 
       - name: Pest (with coverage)
         # Coverage gate ratchets up as the unit-test backfill lands.
-        # Currently 83% — adjusted in v0.2.1 to match what's actually
-        # measurable on src/. The new Livewire / Alpine surface area
-        # in v0.2.0 lifted the suite count from 751 → 789 tests but
-        # most of those tests exercise Blade view rendering (excluded
-        # from <source> in phpunit.xml), so src/ coverage barely moved.
+        #
+        # History:
+        #   v0.2.0 lifted gate to 85 prematurely; CI failed because
+        #   the new Blade/Livewire/Alpine surface was excluded from
+        #   <source> in phpunit.xml and src/ coverage was actually 83.2%.
+        #   v0.2.1 hotfix lowered gate to 83.
+        #   v0.3.0 freeze measured 83.4% on src/ — held at 83.
+        #   v0.4.0 PR-ι + PR-λ + PR-π drove src/ coverage to 85.1%
+        #   local / 85.7% CI. Held the gate at 83 per the discipline
+        #   "wait until measured sustains across two consecutive
+        #   releases before bumping".
+        #   v0.5.0 PR-ω confirmed second consecutive measurement at
+        #   85.7% CI. Gate bumped 83 → 85 here (PR-α2).
         # Target: 90% on stable releases — get there by covering
         # uncovered src/ branches, not by tightening the gate first.
-        run: vendor/bin/pest --coverage --min=83
+        run: vendor/bin/pest --coverage --min=85
