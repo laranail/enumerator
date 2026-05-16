@@ -11,16 +11,41 @@ This recipe walks through adding a new locale.
 
 The default locale lives at
 [`lang/en/enumerator.php`](https://github.com/laranail/enumerator/blob/main/lang/en/enumerator.php).
-It carries three top-level keys:
+As of v0.4.0 it carries four top-level keys:
 
 - `validation` — strings used by the package's validation rules
   (`EnumValue`, `EnumName`, `EnumIn`, `EnumNotIn`, `EnumTransition`).
-- `components` — placeholder / empty-state strings used by the Blade
-  components (`select`, `radio`, `grid`).
+- `components` — placeholder / empty-state / aria-label strings used by
+  the Blade components (`select`, `radio`, `grid`, `dropdown`).
+- `aria` — `aria-label` templates for the rendered components.
 - `commands` — output strings used by the Artisan commands.
 
 A new locale should mirror the same key set, translated to the target
 language.
+
+### Strings inside `components.dropdown.*` (v0.4.0 additions)
+
+The multi-select Alpine dropdown (PR-δ, v0.3.0) routes nine strings
+through the translator namespace as of v0.4.0 (PR-ρ):
+
+| Key | English | Notes |
+|---|---|---|
+| `search_placeholder` | `Search…` | search input `placeholder` |
+| `search_label` | `Search options` | search input `aria-label` |
+| `no_matches` | `No matches.` | empty-state row in the listbox |
+| `clear_selection` | `Clear selection` | clear-button `aria-label` |
+| `remove_value` | `Remove :label` | pill remove-button `aria-label` (Alpine substitutes `:label` at runtime — keep the placeholder verbatim) |
+| `announce_added` | `Added :label` | screen-reader announcement when a pill is added (`:label` substituted at runtime) |
+| `announce_removed` | `Removed :label` | same, on remove |
+| `announce_selected` | `Selected :label` | single-select pick |
+| `announce_cleared` | `Selection cleared` | clear-all |
+
+The four `announce_*` keys feed the polite live region emitted when
+`<x-...::dropdown :announce-changes="true" />`. The `:label`
+placeholder MUST be preserved in any translation — it's split out in
+PHP and concatenated with the runtime option label in JS. Leaving
+trailing whitespace after stripping `:label` is fine; the helper
+trims it.
 
 ## Step-by-step
 

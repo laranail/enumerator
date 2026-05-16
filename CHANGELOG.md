@@ -12,6 +12,22 @@ for the active backlog and proposed PR sequence.
 
 ### Added
 
+- **Runtime i18n for the multi-select Alpine dropdown** (PR-ρ). v0.3.0
+  shipped nine hardcoded English strings inside the Blade view + Alpine
+  `x-data` state (search placeholder, empty-state, clear / pill /
+  announcement labels). PR-ρ routes every user-facing string through
+  the Laravel translator under
+  `enumerator::enumerator.components.dropdown.*`, with English
+  defaults seeded in `lang/en/enumerator.php`. The
+  `Blade\Components\Dropdown::resolveDropdownStrings()` helper splits
+  `:label`-bearing patterns into a JS-prefix + the placeholder so
+  Alpine can substitute the option label at runtime; non-pattern
+  strings flow through directly. 4 new feature tests pin the en
+  defaults AND the locale-override behaviour (fr / es overlays via
+  `Translator::addLines()`). Closes the gap between ADR-0003's stated
+  i18n-pluggable posture and the v0.3.0 dropdown surface. See
+  [ADR-0008](.design/decisions/0008-reaffirm-en-only-i18n-with-runtime-i18n-surface-closed.md)
+  for the reaffirm-en-only-default decision and the flip conditions.
 - **A11y wiring on the Alpine dropdown listbox** (PR-ο). Brings the
   multi-select dropdown's keyboard + screen-reader behaviour up to
   the WAI-ARIA Authoring Practices Guide combobox-with-listbox

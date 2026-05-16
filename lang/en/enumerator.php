@@ -22,6 +22,17 @@ return [
         'grid' => [
             'empty' => 'No options available.',
         ],
+        'dropdown' => [
+            'search_placeholder' => 'Search…',
+            'search_label' => 'Search options',
+            'no_matches' => 'No matches.',
+            'clear_selection' => 'Clear selection',
+            'remove_value' => 'Remove :label',
+            'announce_added' => 'Added :label',
+            'announce_removed' => 'Removed :label',
+            'announce_selected' => 'Selected :label',
+            'announce_cleared' => 'Selection cleared',
+        ],
     ],
     'aria' => [
         'badge' => 'Status: :label',

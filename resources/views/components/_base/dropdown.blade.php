@@ -63,6 +63,23 @@
     $listboxId = $inputId . '-listbox';
     $optionIdPrefix = $inputId . '-opt-';
     $announceId = $inputId . '-announce';
+
+    // PR-ρ: translator-resolved strings for the Alpine surface.
+    // Falls back to English literals when the consumer hasn't shipped a
+    // locale file. `prefix` variants are the static head of an
+    // `:label`-bearing pattern (e.g., "Added "); the trailing label
+    // is concatenated in JS.
+    $strings ??= [
+        'search_placeholder' => 'Search…',
+        'search_label' => 'Search options',
+        'no_matches' => 'No matches.',
+        'clear_selection' => 'Clear selection',
+        'remove_value_prefix' => 'Remove ',
+        'announce_added_prefix' => 'Added ',
+        'announce_removed_prefix' => 'Removed ',
+        'announce_selected_prefix' => 'Selected ',
+        'announce_cleared' => 'Selection cleared',
+    ];
     $describedById = $description !== null ? $inputId . '-description' : null;
     $renderName = $multiple ? rtrim($name, '[]') . '[]' : $name;
     $isSelected = static function ($case) use ($selectedValue, $valueOf, $multiple): bool {
@@ -170,16 +187,16 @@
                 if (this.multiple) {
                     const v = String(opt.value);
                     const idx = this.selectedValues.findIndex(x => String(x) === v);
-                    let verb;
+                    let verbPrefix;
                     if (idx >= 0) {
                         this.selectedValues.splice(idx, 1);
-                        verb = 'Removed';
+                        verbPrefix = {{ json_encode($strings['announce_removed_prefix'].' ', JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) }};
                     } else {
                         this.selectedValues.push(v);
-                        verb = 'Added';
+                        verbPrefix = {{ json_encode($strings['announce_added_prefix'].' ', JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) }};
                     }
                     this.refreshSelectedLabels();
-                    this.announcement = verb + ' ' + String(opt.label);
+                    this.announcement = verbPrefix + String(opt.label);
                     this.$dispatch('change', { values: this.selectedValues });
                     // Multi mode keeps the panel open so multiple
                     // selections can land in a row. Esc / click-outside
@@ -187,7 +204,7 @@
                 } else {
                     this.selectedValue = String(opt.value);
                     this.selectedLabel = String(opt.label);
-                    this.announcement = 'Selected ' + String(opt.label);
+                    this.announcement = {{ json_encode($strings['announce_selected_prefix'].' ', JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) }} + String(opt.label);
                     this.open = false;
                     this.filter = '';
                     this.activeIndex = -1;
@@ -202,7 +219,7 @@
                     const removed = this.selectedLabels[idx] ? this.selectedLabels[idx].label : '';
                     this.selectedValues.splice(idx, 1);
                     this.refreshSelectedLabels();
-                    this.announcement = 'Removed ' + removed;
+                    this.announcement = {{ json_encode($strings['announce_removed_prefix'].' ', JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) }} + removed;
                     this.$dispatch('change', { values: this.selectedValues });
                 }
             },
@@ -210,12 +227,12 @@
                 if (this.multiple) {
                     this.selectedValues = [];
                     this.selectedLabels = [];
-                    this.announcement = 'Selection cleared';
+                    this.announcement = {{ json_encode($strings['announce_cleared'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) }};
                     this.$dispatch('change', { values: [] });
                 } else {
                     this.selectedValue = '';
                     this.selectedLabel = '';
-                    this.announcement = 'Selection cleared';
+                    this.announcement = {{ json_encode($strings['announce_cleared'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) }};
                     this.$dispatch('change', { value: '' });
                 }
             },
@@ -286,7 +303,7 @@
                             <button type="button"
                                     @click.stop="removeValue(entry.value)"
                                     class="enumerator-dropdown-pill-remove"
-                                    :aria-label="'Remove ' + entry.label"
+                                    :aria-label="{{ json_encode($strings['remove_value_prefix'].' ', JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) }} + entry.label"
                             >&times;</button>
                         </span>
                     </template>
@@ -303,7 +320,7 @@
             x-show="hasSelection()"
             @click.stop="clearSelection()"
             class="enumerator-dropdown-clear"
-            aria-label="Clear selection"
+            aria-label="{{ $strings['clear_selection'] }}"
             style="display:none"
         >&times;</button>
         @endif
@@ -318,9 +335,9 @@
                 @keydown.arrow-up.prevent="moveUp()"
                 @keydown.enter.prevent="commitActive()"
                 @keydown.escape.prevent="open = false; filter = ''"
-                placeholder="Search…"
+                placeholder="{{ $strings['search_placeholder'] }}"
                 class="enumerator-dropdown-search"
-                aria-label="Search options"
+                aria-label="{{ $strings['search_label'] }}"
                 aria-controls="{{ $listboxId }}"
                 :aria-activedescendant="activeIndex >= 0 ? {{ json_encode($optionIdPrefix, JSON_UNESCAPED_SLASHES) }} + activeIndex : null"
                 autocomplete="off"
@@ -345,7 +362,7 @@
                     </li>
                 </template>
                 <li x-show="filtered.length === 0" class="enumerator-dropdown-empty">
-                    No matches.
+                    {{ $strings['no_matches'] }}
                 </li>
             </ul>
         </div>
