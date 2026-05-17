@@ -543,7 +543,7 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 2
+			count: 1
 			path: src/Modules/OpenApi/OpenApiSchemaExporter.php
 
 		-
@@ -595,28 +595,46 @@ parameters:
 			path: src/Modules/Saloon/SaloonServiceProvider.php
 
 		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 1
-			path: src/Modules/StructuredOutput/AnthropicSchemaEmitter.php
-
-		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 1
-			path: src/Modules/StructuredOutput/McpSchemaEmitter.php
-
-		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 1
-			path: src/Modules/StructuredOutput/OpenAiSchemaEmitter.php
-
-		-
 			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/ApprovalStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/CommentStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/HttpStatusClassEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/MonthEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/MonthEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:April\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:August\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:December\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:February\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:January\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:July\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:June\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:March\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:May\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:November\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:October\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:September\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/MonthEnum.php
 
 		-
 			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:tryFrom\(\)\.$#'
@@ -637,8 +655,86 @@ parameters:
 			path: src/Presets/Enums/NotificationOptInEnum.php
 
 		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/OrderStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/PaymentStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/PriorityEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/PriorityEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Critical\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:High\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Low\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Medium\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Urgent\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/PriorityEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/PublicationStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/PublicationStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Archived\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Deleted\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Draft\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Published\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/PublicationStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/SeverityEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/SizeEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/SizeEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Large\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Medium\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Small\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XLarge\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XSmall\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XXLarge\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/SizeEnum.php
+
+		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
+			count: 1
+			path: src/Presets/Enums/StatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
 			count: 1
 			path: src/Presets/Enums/StatusEnum.php
 
@@ -659,6 +755,36 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/StatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/TaskStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/VisibilityEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/WeekdayEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/WeekdayEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Friday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Monday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Saturday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Sunday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Thursday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Tuesday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Wednesday\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/WeekdayEnum.php
 
 		-
 			message: '#^Instantiated class Rector\\Symplify\\RuleDocGenerator\\ValueObject\\CodeSample\\CodeSample not found\.$#'
@@ -1477,12 +1603,6 @@ parameters:
 			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
 
 		-
-			message: '#^Possibly invalid array key type int\|null\.$#'
-			identifier: offsetAccess.invalidOffset
-			count: 1
-			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
-
-		-
 			message: '#^Property OrderShowFixture\:\:\$dispatched \(array\<string, string\>\) does not accept array\<string, bool\|string\>\.$#'
 			identifier: assign.propertyType
 			count: 1
@@ -1639,6 +1759,24 @@ parameters:
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
 
 		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Inactive\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Pending\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
 			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum does not\.$#'
 			identifier: class.missingImplements
 			count: 1
@@ -1647,6 +1785,24 @@ parameters:
 		-
 			message: '#^Cannot access offset int\|string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
 			count: 1
 			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
@@ -1663,6 +1819,24 @@ parameters:
 			path: tests/Fixtures/Enums/DescribedEnum.php
 
 		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:Closed\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:Open\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
 			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum does not\.$#'
 			identifier: class.missingImplements
 			count: 1
@@ -1671,6 +1845,24 @@ parameters:
 		-
 			message: '#^Cannot access offset int\|string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:Ampersand\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:PlainHtml\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:PreEncoded\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:Quoted\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
 			count: 1
 			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
 
@@ -1687,6 +1879,24 @@ parameters:
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
 		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Approved\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Banned\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Rejected\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Review\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
 			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum does not\.$#'
 			identifier: class.missingImplements
 			count: 1
@@ -1695,6 +1905,24 @@ parameters:
 		-
 			message: '#^Cannot access offset int\|string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:Alpha\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:Beta\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
 			count: 1
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
 
@@ -1713,6 +1941,24 @@ parameters:
 		-
 			message: '#^Cannot access offset int\|string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:First\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Fourth\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Second\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Third\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
 			count: 1
 			path: tests/Fixtures/Enums/OrderedStatusEnum.php
 
@@ -1747,6 +1993,24 @@ parameters:
 			path: tests/Fixtures/Enums/RenderableStatusEnum.php
 
 		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Banned\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Inactive\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
 			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum does not\.$#'
 			identifier: class.missingImplements
 			count: 1
@@ -1759,7 +2023,43 @@ parameters:
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
 
 		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Archived\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Draft\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Published\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
 			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum does not\.$#'
 			identifier: class.missingImplements
 			count: 1
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/WorkflowStatus.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/WorkflowStatus.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Approved\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Draft\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Published\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Rejected\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Submitted\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/WorkflowStatus.php

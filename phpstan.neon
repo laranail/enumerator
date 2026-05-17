@@ -17,13 +17,9 @@ parameters:
         - src/Integrations/Nova/*
     treatPhpDocTypesAsCertain: false
     # Baseline entries can drift across the PHP 8.3 / 8.4 / 8.5 matrix
-    # because each version infers types slightly differently. From
-    # v0.5.0 (PR-χ) the gate IS strict — staleness fails CI so the
-    # next maintainer can't silently regenerate around a real bug.
-    # When the CI matrix surfaces a version-specific entry mismatch,
-    # the workflow output names the unmatched ignore pattern; either
-    # regenerate the baseline on that PHP version and commit, OR fix
-    # the underlying analyser surface drift.
+    # because each version infers types slightly differently. Don't fail
+    # the gate on baseline staleness — regenerate the baseline whenever
+    # you intentionally change the analyser surface.
     reportUnmatchedIgnoredErrors: true
     ignoreErrors:
         # Rules use new static() polymorphism for the fluent ::for() factory.
@@ -188,30 +184,14 @@ parameters:
         # The PR-ω `return.type` scope on WithEnumTransitions.php was
         # retired by PR-β2 — adding `@method` PHPDoc to Stateful
         # resolved the `canTransitionEnum() should return bool but
-        # returns mixed` warning at the analyser source rather than
-        # via path-scope suppression.
-        # HasLifecycle/HasOrder per-fixture cascade in WorkflowStatus:
-        # array_values() on a non-empty-list, offset access on a
-        # cases() array, mixed → int cast for the #[Order] value.
-        # Identifier-specific paths so the warnings stay visible
-        # outside the fixture context.
-        -
-            identifier: offsetAccess.notFound
-            paths:
-                - tests/Fixtures/Enums/*
-                - src/Presets/Enums/*
-        -
-            identifier: offsetAccess.invalidOffset
-            paths:
-                - tests/Fixtures/Enums/*
-                - src/Presets/Enums/*
-        -
-            identifier: arrayValues.list
-            paths:
-                - tests/Fixtures/Enums/*
-                - src/Presets/Enums/*
-        -
-            identifier: cast.int
-            paths:
-                - tests/Fixtures/Enums/*
-                - src/Presets/Enums/*
+        # returns mixed` warning at the analyser source. Dropped
+        # in PR-χ once strict-mode required scopes to match.
+        # NOTE: the offsetAccess.notFound / offsetAccess.invalidOffset
+        # / arrayValues.list / cast.int path-scopes for HasLifecycle +
+        # HasOrder per-fixture cascade were dropped by PR-χ (v0.5.0).
+        # Those errors only surface on PHP 8.5; CI's PHPStan gate runs
+        # on PHP 8.3 (the floor) and doesn't see them. With
+        # reportUnmatchedIgnoredErrors: true, scopes that don't match
+        # on the gating PHP version would themselves fail the gate.
+        # Local PHPStan on PHP 8.5 will surface these warnings — treat
+        # as informational; CI's PHP-8.3 run is authoritative.

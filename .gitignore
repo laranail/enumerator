@@ -21,3 +21,4 @@
 .phpunit.result.cache
 composer.lock
 _ide_helper_enumerator.php
+/composer.phar

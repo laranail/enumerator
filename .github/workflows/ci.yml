@@ -55,13 +55,16 @@ jobs:
       - name: Pint (format check)
         run: vendor/bin/pint --test
 
-      # PHPStan moved to the dedicated static-analysis.yml workflow
-      # (PR-χ, v0.5.0). Static analysis is not typically per-runtime-
-      # version — running it 3× across the matrix surfaced cross-
-      # version drift that fought `reportUnmatchedIgnoredErrors: true`.
-      # static-analysis.yml pins to PHP 8.3 (the floor), the
-      # baseline is regenerated against that version, and the matrix
-      # focuses on the runtime-version-sensitive bits: Pint + Pest.
+      # PHPStan moved out of the matrix to static-analysis.yml on
+      # PHP 8.3 (PR-χ, v0.5.0). Static analysis isn't per-runtime-
+      # version; running across 8.3 / 8.4 / 8.5 surfaced
+      # cross-version drift (PHP 8.5 fires
+      # `offsetAccess.invalidOffset` / `cast.string` warnings the
+      # older versions don't) that fought
+      # `reportUnmatchedIgnoredErrors: true`. The dedicated
+      # static-analysis.yml workflow on PHP 8.3 is now the single
+      # PHPStan gate. The matrix focuses on runtime-version-sensitive
+      # bits: Pint + Pest.
 
       - name: Pest (with coverage)
         # Coverage gate ratchets up as the unit-test backfill lands.

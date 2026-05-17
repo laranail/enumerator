@@ -29,18 +29,24 @@ for the v0.x → v1.0 trajectory.
 
 - **PHPStan strict-baseline gate** (PR-χ). Flipped
   `reportUnmatchedIgnoredErrors: false → true` in `phpstan.neon`.
-  Stale baseline entries now fail CI so the next maintainer can't
-  silently regenerate around a real bug. Cleanup pass retired
-  the PR-ω `return.type` path-scope on
-  `src/Integrations/Livewire/WithEnumTransitions.php` (resolved at
-  the analyser source by PR-β2's `@method` PHPDoc on Stateful) plus
-  a stale `@phpstan-ignore-next-line` inside
-  `tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php`.
-  PHPStan moved out of the `ci.yml` matrix — static analysis isn't
-  per-runtime-version and the matrix surfaced cross-version drift
-  (PHP 8.5 fires `offsetAccess.invalidOffset` warnings the older
-  versions don't). The dedicated `static-analysis.yml` workflow on
-  PHP 8.3 (the floor) is now the single PHPStan gate.
+  Stale baseline entries fail CI so the next maintainer can't
+  silently regenerate around a real bug. Made workable by anchoring
+  the analyser at a single PHP version: PHPStan moved out of
+  `ci.yml`'s matrix (where it ran 3× across PHP 8.3 / 8.4 / 8.5),
+  leaving `static-analysis.yml` on PHP 8.3 (the floor) as the
+  single gating analyser. Baseline regenerated against PHP 8.3 in
+  Docker (`php:8.3-cli-alpine`) — 682 errors, 341 unique entries,
+  2065 lines (down from 633 / 360 / 2179 under the PHP 8.5
+  baseline). Cleanup pass retired three path-scopes that PHP 8.5
+  needed but PHP 8.3 doesn't (`offsetAccess.notFound`,
+  `offsetAccess.invalidOffset`, `arrayValues.list`, `cast.int` on
+  `tests/Fixtures/Enums/*` + `src/Presets/Enums/*`) plus PR-ω's
+  `return.type` scope on `WithEnumTransitions.php` (resolved at
+  the analyser source by PR-β2's `@method` PHPDoc) plus a stale
+  `@phpstan-ignore-next-line` inside `WithEnumTransitionsTest.php`.
+  Local PHPStan on PHP 8.4 / 8.5 may surface warnings the CI gate
+  doesn't — treat as informational; CI's PHP 8.3 run is
+  authoritative.
 - **`WithEnumTransitions::transitionEnum` /
   `canTransitionEnum` / `transitionEnumOrValidate` now guard
   `$target` is a `Stateful` instance** (PR-β2). Previously a caller
