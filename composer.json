@@ -50,7 +50,7 @@
         "illuminate/view": "^13.0"
     },
     "require-dev": {
-        "infection/infection": "^0.29",
+        "infection/infection": "^0.29 || ^0.33",
         "larastan/larastan": "^3.0",
         "laravel/pint": "^1.18",
         "livewire/livewire": "^3.5",
