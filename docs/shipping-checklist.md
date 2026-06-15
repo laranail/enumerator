@@ -96,4 +96,4 @@ This follows the same coverage-then-gate discipline as v0.2.0 → v0.2.1
 
 - [`docs/release.md`](release.md) — full release workflow details
 - [`.github/workflows/release.yml`](../.github/workflows/release.yml) — what runs on tag push
-- [Org-wide package-publishing guide](../../package-publishing-guide.md) (local Simtabi reference; not in repo)
+- Org-wide package-publishing guide — local Simtabi maintainer reference at `/opensource/package-publishing-guide.md` (not shipped in this repo)

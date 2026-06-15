@@ -586,9 +586,12 @@ or publish into `app/Enums/` with `--tag=enumerator-presets`:
 
 ## Documentation
 
+This README carries the package's tagline, quickstart, and feature
+highlights; everything else lives under [`docs/`](docs/). Report issues
+at <https://github.com/laranail/enumerator/issues>.
+
 ### Getting started
 
-- [Documentation index](docs/README.md)
 - [Installation](docs/installation.md)
 - [Getting started](docs/getting-started.md)
 - [Configuration](docs/configuration.md)
@@ -599,9 +602,11 @@ or publish into `app/Enums/` with `--tag=enumerator-presets`:
 
 ### Tools
 
+- [Alpine.js loader](docs/tools/alpine-loader.md)
 - [Attributes](docs/tools/attributes.md)
 - [Bitmask](docs/tools/bitmask.md)
 - [Blade components](docs/tools/blade-components.md)
+- [Cache keys](docs/tools/cache-keys.md)
 - [Blade directives](docs/tools/blade-directives.md)
 - [Cases collection](docs/tools/cases-collection.md)
 - [Eloquent casts](docs/tools/casts.md)
@@ -612,6 +617,7 @@ or publish into `app/Enums/` with `--tag=enumerator-presets`:
 - [Exceptions](docs/tools/exceptions.md)
 - [Helpers](docs/tools/helpers.md)
 - [Invokable cases](docs/tools/invokable-cases.md)
+- [Livewire transitions](docs/tools/livewire-transitions.md)
 - [Magic comparisons](docs/tools/magic-comparisons.md)
 - [`make:enumerator` command](docs/tools/make-enumerator.md)
 - [Presets](docs/tools/presets.md)
