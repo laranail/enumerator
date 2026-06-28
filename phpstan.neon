@@ -16,11 +16,12 @@ parameters:
         - src/Integrations/Inertia/*
         - src/Integrations/Nova/*
     treatPhpDocTypesAsCertain: false
-    # Baseline entries can drift across the PHP 8.3 / 8.4 / 8.5 matrix
-    # because each version infers types slightly differently. Don't fail
-    # the gate on baseline staleness — regenerate the baseline whenever
-    # you intentionally change the analyser surface.
-    reportUnmatchedIgnoredErrors: true
+    # Ignore patterns drift across the PHP 8.3 / 8.4 / 8.5 matrix AND across
+    # larastan/phpstan releases (CI resolves dev tools with `composer update`,
+    # so each run can infer types slightly differently). Failing the gate when
+    # a curated ignore no longer matches turns every upstream tool release into
+    # a red build, so this is off; genuine errors still fail the gate.
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         # Rules use new static() polymorphism for the fluent ::for() factory.
         - identifier: new.static
@@ -157,6 +158,9 @@ parameters:
                 - tests/Feature/HasEnumAttributesTest.php
                 - tests/Feature/MagicComparisonsTest.php
                 - tests/Feature/Modules/PestTest.php
+                # toBeCase() is a runtime-registered Pest expectation (booted by
+                # the module's PestServiceProvider); PHPStan can't see it statically.
+                - tests/Feature/Modules/ModuleProvidersTest.php
                 # The PR-ω path-scope for src/Integrations/Livewire/
                 # WithEnumTransitions.php was retired by PR-β2 — the
                 # Stateful contract now declares transitionTo() and
