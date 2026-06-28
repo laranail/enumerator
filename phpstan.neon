@@ -23,6 +23,19 @@ parameters:
     # a red build, so this is off; genuine errors still fail the gate.
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
+        # Pest 4's TestCall no longer statically exposes chained test helpers —
+        # the laravel plugin's artisan(), the package's custom blade(), and
+        # PHPUnit's markTestSkipped() are all resolved at runtime. (Tests run green;
+        # this is a static-analysis-only gap.)
+        - '#Call to an undefined method Pest\\PendingCalls\\TestCall::#'
+        # Pest 4 types Expectation::$value as `mixed`, so PHPStan won't narrow it
+        # through the inline `instanceof UnitEnum ? …` guard in the assertion-message
+        # builders (the guard is correct at runtime; refactoring trips Pest's closure
+        # scope rebinding). False-positive concat-on-mixed, scoped to that file.
+        -
+            identifier: binaryOp.invalid
+            paths:
+                - src/Modules/Pest/Expectations.php
         # Rules use new static() polymorphism for the fluent ::for() factory.
         - identifier: new.static
         # CasesCollection extends Laravel's Collection with stricter generic signatures
