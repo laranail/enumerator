@@ -1,8 +1,7 @@
 # Contributing a translation
 
 `laranail/enumerator` ships with English translations only by design
-(see [ADR-0003](../../.design/decisions/0003-translations-en-only-plus-community-scaffolding.md)
-in the project's design record). Locale coverage grows through
+(ADR-0003 in the project's design record). Locale coverage grows through
 community pull requests.
 
 This recipe walks through adding a new locale.
