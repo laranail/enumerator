@@ -18,7 +18,7 @@
         "simtabi",
         "laranail"
     ],
-    "homepage": "https://opensource.simtabi.com/products/laranail/enumerator",
+    "homepage": "https://opensource.simtabi.com/enumerator/",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -38,7 +38,7 @@
         "email": "opensource@simtabi.com",
         "issues": "https://github.com/laranail/enumerator/issues",
         "source": "https://github.com/laranail/enumerator",
-        "docs": "https://opensource.simtabi.com/documentation/laranail/enumerator"
+        "docs": "https://opensource.simtabi.com/enumerator/docs/"
     },
     "require": {
         "php": "^8.3",

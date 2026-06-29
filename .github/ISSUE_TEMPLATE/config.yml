@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Documentation
-    url: https://opensource.simtabi.com/documentation/laranail/enumerator
+    url: https://opensource.simtabi.com/enumerator/docs/
     about: Read the docs first.
   - name: Security
     url: mailto:opensource@simtabi.com
