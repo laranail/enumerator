@@ -1,0 +1,69 @@
+name: Infection
+
+# Non-blocking mutation testing channel. Runs on push to main + on PRs
+# touching src/ or tests/. Uses pcov (faster than xdebug for coverage-
+# only runs). No minMsi gate yet — pure measurement.
+#
+# On first runs, the score will be a baseline. After several runs and
+# manual review of the surviving mutants, set minMsi / minCoveredMsi
+# in infection.json5 to the observed kill rate minus a small buffer
+# (matching the coverage-then-gate discipline from v0.2.0/v0.2.1).
+#
+# Workflow currently does NOT fail the build on mutation regressions
+# — `continue-on-error: true` on the mutation step. Promote to gating
+# when the floor is set in infection.json5.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "infection.json5"
+      - ".github/workflows/infection.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  mutation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: pcov
+          tools: composer:v2
+
+      - name: Cache Composer
+        uses: actions/cache@v6
+        with:
+          path: ~/.composer/cache/files
+          key: composer-infection-${{ hashFiles('composer.json') }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run Infection
+        # --threads=auto chooses based on cores; on GitHub-hosted
+        # runners that's typically 2. --show-mutations prints the
+        # surviving mutants in the log so they're visible without
+        # downloading the artifact.
+        run: vendor/bin/infection --threads=auto --show-mutations --no-progress
+        continue-on-error: true
+
+      - name: Upload Infection log
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: infection-log
+          path: |
+            infection.log
+            infection.json
+          retention-days: 14

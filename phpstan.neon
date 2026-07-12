@@ -1,0 +1,214 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/Application/database/migrations/*
+        - tests/Unit/*
+        - tests/Feature/Eloquent/HasEnumeratorScopesTest.php
+        - tests/Feature/Eloquent/StateMachineModelTest.php
+        - src/PHPStan/*
+        - src/Integrations/Filament/*
+        - src/Integrations/Inertia/*
+        - src/Integrations/Nova/*
+    treatPhpDocTypesAsCertain: false
+    # Ignore patterns drift across the PHP 8.3 / 8.4 / 8.5 matrix AND across
+    # larastan/phpstan releases (CI resolves dev tools with `composer update`,
+    # so each run can infer types slightly differently). Failing the gate when
+    # a curated ignore no longer matches turns every upstream tool release into
+    # a red build, so this is off; genuine errors still fail the gate.
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # Pest 4's TestCall no longer statically exposes chained test helpers —
+        # the laravel plugin's artisan(), the package's custom blade(), and
+        # PHPUnit's markTestSkipped() are all resolved at runtime. (Tests run green;
+        # this is a static-analysis-only gap.)
+        - '#Call to an undefined method Pest\\PendingCalls\\TestCall::#'
+        # Pest 4 types Expectation::$value as `mixed`, so PHPStan won't narrow it
+        # through the inline `instanceof UnitEnum ? …` guard in the assertion-message
+        # builders (the guard is correct at runtime; refactoring trips Pest's closure
+        # scope rebinding). False-positive concat-on-mixed, scoped to that file.
+        -
+            identifier: binaryOp.invalid
+            paths:
+                - src/Modules/Pest/Expectations.php
+        # Rules use new static() polymorphism for the fluent ::for() factory.
+        - identifier: new.static
+        # CasesCollection extends Laravel's Collection with stricter generic signatures
+        # that the parent template doesn't model. Tracked as future work.
+        - identifier: generics.moreTypes
+        - identifier: generics.notSubtype
+        # Trait-template cascade: PHPStan analyses each trait once per
+        # consumer enum, and the concrete-case union (e.g. Active|Pending|
+        # Banned) doesn't satisfy the @return CasesCollection<int, static>
+        # declaration even though they are equivalent. Same root cause as
+        # the generics.* entries above. Restricted by path to the affected
+        # trait files; legitimate return-type / argument-type errors in
+        # other files still surface.
+        -
+            identifier: return.type
+            paths:
+                - src/Concerns/HasBitmask.php
+                - src/Concerns/HasEnumeratorBehavior.php
+                - src/Concerns/HasEnumAttributes.php
+                - src/Concerns/HasFromHelpers.php
+                - src/Concerns/HasOrder.php
+                - src/Support/CasesCollection.php
+        -
+            identifier: argument.type
+            paths:
+                - src/Concerns/HasBitmask.php
+                - src/Concerns/HasOrder.php
+                - src/Concerns/HasTransitions.php
+                - src/Concerns/RendersHtml.php
+                # PR-θ batch 2 — EnumeratorServiceProvider's
+                # `$app->make(EnumeratorRegistry::class)` /
+                # `app('cache.store')` calls return `mixed` per the
+                # Container contract; the concrete return types are
+                # statically known but PHPStan can't infer them.
+                # Same noise pattern as the method.nonObject scope
+                # below; adding here for the argument-typing side.
+                - src/EnumeratorServiceProvider.php
+        # Service providers use the idiomatic `$app['config']->get(...)`
+        # / `$app->make(...)` patterns that PHPStan types as `mixed`
+        # because of the loose ArrayAccess + Container::make contract.
+        # The runtime types are statically known (Repository, etc.)
+        # but the static surface returns mixed. Path-scoped so other
+        # genuine method.nonObject errors (null-deref bugs) still
+        # surface elsewhere.
+        -
+            identifier: method.nonObject
+            paths:
+                - src/EnumeratorServiceProvider.php
+                - src/Modules/GraphQL/GraphQLServiceProvider.php
+                - src/Modules/Lighthouse/LighthouseServiceProvider.php
+                - src/Modules/Octane/OctaneServiceProvider.php
+                - src/Modules/OpenApi/OpenApiServiceProvider.php
+                - src/Modules/Pest/PestServiceProvider.php
+                - src/Modules/Saloon/SaloonServiceProvider.php
+                - src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
+        # HasTransitions is composed via the HasEnumerator umbrella onto
+        # every native enum using the package, including fixtures and
+        # presets that don't implement Contracts\Stateful. The trait's
+        # `@phpstan-require-implements Stateful` annotation (PR-α Batch 2)
+        # surfaces the unimplemented transitions() / initialStates() per
+        # consumer class — but the trait's documented design IS to be
+        # composed widely; the actual runtime contract is "call
+        # canTransitionTo() only on enums that implement Stateful." So
+        # the staticMethod.notFound entries inside the trait are noise,
+        # not bugs. Path-scoped to just HasTransitions.php.
+        -
+            identifier: staticMethod.notFound
+            paths:
+                - src/Concerns/HasTransitions.php
+        # PR-θ (v0.4.0) — trait-cascade noise in tests/Fixtures and
+        # tests/Feature. Each new fixture enum that uses the
+        # HasEnumeratorBehavior umbrella retriggers the same set of
+        # `is_subclass_of()` / `method_exists()` /
+        # `instanceof BackedEnum` narrowing warnings from the trait's
+        # own checks. The trait checks are correct (they're defensive
+        # against pure vs backed vs class-const enums); PHPStan just
+        # sees them as "already narrowed" in each concrete consumer.
+        # The runtime behaviour is unaffected. Path-scoping
+        # function.alreadyNarrowedType to tests/Fixtures/Enums/ drops
+        # ~80 baseline entries; we re-include actual src/ paths via
+        # the negative-by-omission pattern (paths must be enumerated
+        # explicitly).
+        -
+            identifier: function.alreadyNarrowedType
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        # Same pattern for instanceof.alwaysTrue inside the fixture
+        # context — the consumer's concrete-case union always
+        # satisfies the trait's BackedEnum / UnitEnum guard. Inherent
+        # to template polymorphism, not a bug.
+        -
+            identifier: instanceof.alwaysTrue
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        # Preset enums use HasEnumeratorBehavior — the trait does
+        # is_subclass_of() / @var narrowing in its body; PHPStan sees
+        # each concrete consumer satisfying the @var so it reports
+        # `varTag.nativeType` for the per-consumer cascade. Same
+        # template-polymorphism noise.
+        -
+            identifier: varTag.nativeType
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        # Casts inside HasEnumeratorBehavior/IsJsonable/IsTranslatable/
+        # RendersHtml widen to `mixed` per-consumer in PHPStan's view
+        # because the trait's `$self` is a UnitEnum, not the concrete
+        # case. The cast is correct at runtime. Path-scoping to the
+        # fixture + preset side keeps the cast.string warning visible
+        # if it ever appears outside this template-cascade context.
+        -
+            identifier: cast.string
+            paths:
+                - tests/Fixtures/Enums/*
+                - src/Presets/Enums/*
+        # HasEnumAttributesTest exercises the trait against several
+        # Eloquent-style fixtures; the `_meta` / `_label` / etc.
+        # property-access magic happens via __get(), so PHPStan
+        # surfaces property.notFound for each fixture. These are
+        # legitimately covered by the trait's __get handler; the
+        # static analyser just doesn't see it. Same pattern for
+        # the magic-method test which calls Is*() / Equals*() via
+        # __call.
+        -
+            identifier: property.notFound
+            paths:
+                - tests/Feature/HasEnumAttributesTest.php
+        -
+            identifier: method.notFound
+            paths:
+                - tests/Feature/HasEnumAttributesTest.php
+                - tests/Feature/MagicComparisonsTest.php
+                - tests/Feature/Modules/PestTest.php
+                # toBeCase() is a runtime-registered Pest expectation (booted by
+                # the module's PestServiceProvider); PHPStan can't see it statically.
+                - tests/Feature/Modules/ModuleProvidersTest.php
+                # The PR-ω path-scope for src/Integrations/Livewire/
+                # WithEnumTransitions.php was retired by PR-β2 — the
+                # Stateful contract now declares transitionTo() and
+                # canTransitionTo() so PHPStan no longer needs the
+                # noise suppressed here.
+        # PR-ω real-Livewire-roundtrip tests use Livewire::test()
+        # which returns Livewire\Features\SupportTesting\Testable.
+        # PHPStan can't infer the fluent return type so each
+        # ->call() / ->assertSet() / ->assertHasErrors() chain shows
+        # up as `method.nonObject`. Path-scoped to the roundtrip
+        # test file; the assertion shape is well-tested via Livewire's
+        # own MakesAssertions suite.
+        -
+            identifier: method.nonObject
+            paths:
+                - tests/Feature/Integrations/Livewire/WithEnumTransitionsRoundtripTest.php
+        # Other identifiers that fire in the WithEnumTransitions
+        # trait body when analysed in context of a real Livewire
+        # WorkflowComponent consumer — same template-polymorphism
+        # noise as the HasTransitions path-scope above.
+        -
+            identifier: function.alreadyNarrowedType
+            paths:
+                - src/Integrations/Livewire/WithEnumTransitions.php
+        # The PR-ω `return.type` scope on WithEnumTransitions.php was
+        # retired by PR-β2 — adding `@method` PHPDoc to Stateful
+        # resolved the `canTransitionEnum() should return bool but
+        # returns mixed` warning at the analyser source. Dropped
+        # in PR-χ once strict-mode required scopes to match.
+        # NOTE: the offsetAccess.notFound / offsetAccess.invalidOffset
+        # / arrayValues.list / cast.int path-scopes for HasLifecycle +
+        # HasOrder per-fixture cascade were dropped by PR-χ (v0.5.0).
+        # Those errors only surface on PHP 8.5; CI's PHPStan gate runs
+        # on PHP 8.3 (the floor) and doesn't see them. With
+        # reportUnmatchedIgnoredErrors: true, scopes that don't match
+        # on the gating PHP version would themselves fail the gate.
+        # Local PHPStan on PHP 8.5 will surface these warnings — treat
+        # as informational; CI's PHP-8.3 run is authoritative.

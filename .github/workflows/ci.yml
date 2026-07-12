@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["8.3", "8.4", "8.5"]
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: xdebug
+          tools: composer:v2
+
+      - name: Cache Composer
+        uses: actions/cache@v6
+        with:
+          path: ~/.composer/cache/files
+          key: composer-${{ matrix.php }}-${{ hashFiles('composer.json') }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Verify Alpine bundle SRI
+        # Guards against the bundled resources/js/alpine.min.js drifting
+        # from the integrity hash recorded in config/enumerator.php.
+        # The env() stub here lets us read the file's default value
+        # without booting Laravel.
+        run: |
+          BUNDLED_SRI="sha384-$(shasum -a 384 -b resources/js/alpine.min.js | awk '{print $1}' | xxd -r -p | base64)"
+          PINNED_SRI=$(php -r "function env(\$k, \$d = null) { return \$d; } echo (require 'config/enumerator.php')['alpine']['integrity'];")
+          if [ "$BUNDLED_SRI" != "$PINNED_SRI" ]; then
+            echo "::error::Alpine SRI mismatch"
+            echo "  bundled: $BUNDLED_SRI"
+            echo "  pinned:  $PINNED_SRI"
+            exit 1
+          fi
+          echo "Alpine SRI verified: $PINNED_SRI"
+
+      - name: Pint (format check)
+        run: vendor/bin/pint --test
+
+      # PHPStan moved out of the matrix to static-analysis.yml on
+      # PHP 8.3 (PR-χ, v0.5.0). Static analysis isn't per-runtime-
+      # version; running across 8.3 / 8.4 / 8.5 surfaced
+      # cross-version drift (PHP 8.5 fires
+      # `offsetAccess.invalidOffset` / `cast.string` warnings the
+      # older versions don't) that fought
+      # `reportUnmatchedIgnoredErrors: true`. The dedicated
+      # static-analysis.yml workflow on PHP 8.3 is now the single
+      # PHPStan gate. The matrix focuses on runtime-version-sensitive
+      # bits: Pint + Pest.
+
+      - name: Pest (with coverage)
+        # Coverage gate ratchets up as the unit-test backfill lands.
+        #
+        # History:
+        #   v0.2.0 lifted gate to 85 prematurely; CI failed because
+        #   the new Blade/Livewire/Alpine surface was excluded from
+        #   <source> in phpunit.xml and src/ coverage was actually 83.2%.
+        #   v0.2.1 hotfix lowered gate to 83.
+        #   v0.3.0 freeze measured 83.4% on src/ — held at 83.
+        #   v0.4.0 PR-ι + PR-λ + PR-π drove src/ coverage to 85.1%
+        #   local / 85.7% CI. Held the gate at 83 per the discipline
+        #   "wait until measured sustains across two consecutive
+        #   releases before bumping".
+        #   v0.5.0 PR-ω confirmed second consecutive measurement at
+        #   85.7% CI. Gate bumped 83 → 85 here (PR-α2).
+        # Target: 90% on stable releases — get there by covering
+        # uncovered src/ branches, not by tightening the gate first.
+        run: vendor/bin/pest --coverage --min=85

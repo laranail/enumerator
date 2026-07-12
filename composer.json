@@ -1,0 +1,114 @@
+{
+    "name": "laranail/enumerator",
+    "description": "The integration-rich Laravel enum toolkit \u2014 attributes, state machines, bitmasks, validation, casts, Blade components, and Filament / Livewire / Nova / Inertia integrations. PHP 8.3+, Laravel 13+.",
+    "keywords": [
+        "laravel",
+        "laravel-13",
+        "php-8.3",
+        "enum",
+        "enums",
+        "enumerator",
+        "state-machine",
+        "bitmask",
+        "filament",
+        "livewire",
+        "nova",
+        "inertia",
+        "typescript",
+        "simtabi",
+        "laranail"
+    ],
+    "homepage": "https://opensource.simtabi.com/products/laranail/enumerator",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Simtabi LLC",
+            "email": "opensource@simtabi.com",
+            "homepage": "https://simtabi.com",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Imani Manyara",
+            "email": "imani@simtabi.com",
+            "role": "Lead developer"
+        }
+    ],
+    "support": {
+        "email": "opensource@simtabi.com",
+        "issues": "https://github.com/laranail/enumerator/issues",
+        "source": "https://github.com/laranail/enumerator",
+        "docs": "https://opensource.simtabi.com/documentation/laranail/enumerator/"
+    },
+    "require": {
+        "php": "^8.3",
+        "illuminate/console": "^13.0",
+        "illuminate/contracts": "^13.0",
+        "illuminate/database": "^13.0",
+        "illuminate/support": "^13.0",
+        "illuminate/validation": "^13.0",
+        "illuminate/view": "^13.0"
+    },
+    "require-dev": {
+        "infection/infection": "^0.29 || ^0.34",
+        "larastan/larastan": "~3.10.0",
+        "laravel/pint": "^1.18",
+        "livewire/livewire": "^3.5 || ^4.0",
+        "orchestra/testbench": "^10.0|^11.0",
+        "pestphp/pest": "^3.0 || ^4.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.0"
+    },
+    "suggest": {
+        "filament/filament": "Use the Filament integration (columns, form fields, filters).",
+        "inertiajs/inertia-laravel": "Use the Inertia transformer for typed SPA responses.",
+        "laravel/nova": "Use the Nova integration (field, filter).",
+        "livewire/livewire": "Use the Livewire enum-aware property casts and rule helpers.",
+        "nuwave/lighthouse": "Use the Lighthouse module (Modules/Lighthouse) for GraphQL scalar registration.",
+        "laravel/octane": "Use the Octane module (Modules/Octane) for per-worker reflection-cache warmup.",
+        "saloonphp/saloon": "Use the Saloon module (Modules/Saloon) to serialize enum instances in API request payloads.",
+        "rector/rector": "Use the Rector migration rules (src/Rector/) to migrate from BenSampo/Spatie enums to laranail/enumerator."
+    },
+    "autoload": {
+        "psr-4": {
+            "Simtabi\\Laranail\\Enumerator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Simtabi\\Laranail\\Enumerator\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Simtabi\\Laranail\\Enumerator\\EnumeratorServiceProvider"
+            ]
+        },
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "test:coverage": "pest --coverage --min=85",
+        "analyse": "phpstan analyse",
+        "format": "pint",
+        "format:check": "pint --test"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "infection/extension-installer": true,
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

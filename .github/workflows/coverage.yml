@@ -1,0 +1,81 @@
+name: Coverage
+
+# Single-job workflow that runs Pest with coverage on PHP 8.3 (the
+# floor), generates a Clover report (per `phpunit.xml` `<clover>`),
+# and uploads to Codecov. The full PHP 8.3 / 8.4 / 8.5 matrix runs in
+# `ci.yml` with `--min=83`; this workflow exists only to feed Codecov
+# so the README badge stays fresh.
+#
+# SETUP REQUIRED (one-time per repo):
+#
+#   Codecov v4+ does not allow tokenless uploads even on public OSS
+#   repos. To get the badge working:
+#
+#     1. Sign in at https://codecov.io with the laranail GitHub account.
+#     2. Add the laranail/enumerator repo (it's listed automatically
+#        once the GitHub app is installed).
+#     3. Copy the upload token from the repo's Codecov settings.
+#     4. Add it to GitHub: Settings → Secrets and variables → Actions
+#        → New repository secret, name `CODECOV_TOKEN`.
+#
+#   Until the secret is set, every coverage.yml run will succeed at
+#   the Pest step but skip the Codecov upload (fail_ci_if_error:
+#   false absorbs the failure). The badge will show "unknown".
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: xdebug
+          tools: composer:v2
+
+      - name: Cache Composer
+        uses: actions/cache@v6
+        with:
+          path: ~/.composer/cache/files
+          key: composer-coverage-${{ hashFiles('composer.json') }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Verify Alpine bundle SRI
+        # Same guard as ci.yml — fail fast if the bundle drifts before
+        # we waste coverage time.
+        run: |
+          BUNDLED_SRI="sha384-$(shasum -a 384 -b resources/js/alpine.min.js | awk '{print $1}' | xxd -r -p | base64)"
+          PINNED_SRI=$(php -r "function env(\$k, \$d = null) { return \$d; } echo (require 'config/enumerator.php')['alpine']['integrity'];")
+          if [ "$BUNDLED_SRI" != "$PINNED_SRI" ]; then
+            echo "::error::Alpine SRI mismatch"
+            exit 1
+          fi
+
+      - name: Pest with coverage
+        # phpunit.xml configures the Clover output path (coverage.xml).
+        # No --min gate here; the floor lives in ci.yml.
+        run: vendor/bin/pest --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v7
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: false
+          flags: unittests
+          name: codecov-laranail-enumerator
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

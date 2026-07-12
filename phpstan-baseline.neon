@@ -1,0 +1,2065 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: src/AbstractEnumeratorClass.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\:\:collect\(\) should return Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<int, static\(Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\)\> but returns Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection\<UnitEnum\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/AbstractEnumeratorClass.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\:\:meta\(\) should return array\<string, mixed\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/AbstractEnumeratorClass.php
+
+		-
+			message: '#^Parameter \#1 \$items of class Simtabi\\Laranail\\Enumerator\\Support\\CasesCollection constructor expects Illuminate\\Contracts\\Support\\Arrayable\<int, TCase of UnitEnum\>\|iterable\<int, TCase of UnitEnum\>\|null, array\<int, static\(Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\)\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/AbstractEnumeratorClass.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/AlpineLoader.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Badge.php
+
+		-
+			message: '#^Anonymous function should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Blade/Components/Checkboxes.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: src/Blade/Components/Checkboxes.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Checkboxes\:\:scalar\(\) should return int\|string but returns bool\|float\|int\|string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Blade/Components/Checkboxes.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Checkboxes.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Checkboxes\:\:\$cases \(array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Blade/Components/Checkboxes.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Dropdown.php
+
+		-
+			message: '#^Parameter \$groups of method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:__construct\(\) expects array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\>\|null, array\<string, array\<int, mixed\>\>\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Dropdown.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:\$groups \(array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\>\|null\) does not accept array\<string, array\<int, object\>\>\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Blade/Components/Dropdown.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Element.php
+
+		-
+			message: '#^Anonymous function should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Blade/Components/Grid.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: src/Blade/Components/Grid.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Grid.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Grid\:\:\$cases \(array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Blade/Components/Grid.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: src/Blade/Components/Listing.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Listing.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Listing\:\:\$cases \(array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Blade/Components/Listing.php
+
+		-
+			message: '#^Anonymous function should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Blade/Components/Radio.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: src/Blade/Components/Radio.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Radio.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Radio\:\:\$cases \(array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Blade/Components/Radio.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: src/Blade/Components/Select.php
+
+		-
+			message: '#^Instanceof between iterable and Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass will always evaluate to false\.$#'
+			identifier: instanceof.alwaysFalse
+			count: 1
+			path: src/Blade/Components/Select.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:scalarOf\(\) should return int\|string but returns bool\|float\|int\|string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Blade/Components/Select.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Blade/Components/Select.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:\$cases \(array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Blade/Components/Select.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Blade\\Components\\Select\:\:\$groups \(array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass\|UnitEnum\>\>\|null\) does not accept array\<string, array\<int, object\>\>\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Blade/Components/Select.php
+
+		-
+			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Contracts\\Bitwise\:\:tryMask\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: src/Casts/AsBitmask.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Casts\\AsBitmask\:\:get\(\) return type with generic class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask does not specify its types\: TCase$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Casts/AsBitmask.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Casts\\AsBitmask\:\:set\(\) has parameter \$value with generic class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask but does not specify its types\: TCase$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Casts/AsBitmask.php
+
+		-
+			message: '#^PHPDoc tag @var contains generic class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask but does not specify its types\: TCase$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Casts/AsBitmask.php
+
+		-
+			message: '#^Parameter \#1 \$enumClass of class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask constructor contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Casts/AsBitmask.php
+
+		-
+			message: '#^Parameter \#2 \$cases of class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask constructor contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Casts/AsBitmask.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Casts\\AsEnum\:\:hydrate\(\) should return object but returns mixed\.$#'
+			identifier: return.type
+			count: 2
+			path: src/Casts/AsEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Casts\\AsEnumeratorCollection\:\:get\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Casts/AsEnumeratorCollection.php
+
+		-
+			message: '#^Parameter \#1 \$enumClass of class Simtabi\\Laranail\\Enumerator\\Casts\\AsEnum constructor expects class\-string\<Simtabi\\Laranail\\Enumerator\\Contracts\\Enumerator\>, class\-string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Casts/AsEnumeratorCollection.php
+
+		-
+			message: '#^Parameter \#1 \$enumClass of class Simtabi\\Laranail\\Enumerator\\Casts\\AsEnum constructor expects class\-string\<Simtabi\\Laranail\\Enumerator\\Contracts\\Enumerator\>, class\-string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Casts/AsNullableEnum.php
+
+		-
+			message: '#^Cannot cast array\|bool\|float\|int\|string to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Console/AnnotateEnumeratorCommand.php
+
+		-
+			message: '#^Parameter \#1 \$class of static method Simtabi\\Laranail\\Enumerator\\Support\\IsEnumeratorClass\:\:check\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/AnnotateEnumeratorCommand.php
+
+		-
+			message: '#^Parameter \#1 \$enum of function enum_exists expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/AnnotateEnumeratorCommand.php
+
+		-
+			message: '#^Parameter \#1 \$objectOrClass of class ReflectionEnum constructor expects class\-string\<UnitEnum\>\|UnitEnum, class\-string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/AnnotateEnumeratorCommand.php
+
+		-
+			message: '#^Part \$class \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/Console/AnnotateEnumeratorCommand.php
+
+		-
+			message: '#^Parameter \#1 \$classes of method Simtabi\\Laranail\\Enumerator\\Support\\ReflectionCachePersistor\:\:dump\(\) expects array\<int, class\-string\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/CacheEnumeratorCommand.php
+
+		-
+			message: '#^Cannot cast array\|bool\|float\|int\|string to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Console/ExportEnumeratorCommand.php
+
+		-
+			message: '#^Cannot cast array\|bool\|float\|int\|string\|null to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Console/ExportEnumeratorCommand.php
+
+		-
+			message: '#^Parameter \#1 \$enum of function enum_exists expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/ExportEnumeratorCommand.php
+
+		-
+			message: '#^Parameter \#1 \$path of function dirname expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/ExportEnumeratorCommand.php
+
+		-
+			message: '#^Parameter \#1 \$path of static method Illuminate\\Support\\Facades\\File\:\:put\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/ExportEnumeratorCommand.php
+
+		-
+			message: '#^Part \$class \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/Console/ExportEnumeratorCommand.php
+
+		-
+			message: '#^Part \$out \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/Console/ExportEnumeratorCommand.php
+
+		-
+			message: '#^Cannot cast non\-empty\-array\|float\|int\<min, \-1\>\|int\<1, max\>\|non\-falsy\-string\|true to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Console/IdeHelperCommand.php
+
+		-
+			message: '#^Parameter \#1 \$objectOrClass of class ReflectionEnum constructor expects class\-string\<UnitEnum\>\|UnitEnum, class\-string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/IdeHelperCommand.php
+
+		-
+			message: '#^Parameter \#1 \$path of function base_path expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/IdeHelperCommand.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/IdeHelperCommand.php
+
+		-
+			message: '#^Cannot cast array\|bool\|float\|int\|string\|null to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Console/MakeEnumeratorCommand.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/MakeEnumeratorCommand.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/DynamicEnums/DatabaseBackedEnum.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Eloquent/EnumeratorStateHistory.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Eloquent\\EnumeratorStateHistory\:\:causer\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\MorphTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Eloquent/EnumeratorStateHistory.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Eloquent\\EnumeratorStateHistory\:\:subject\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\MorphTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Eloquent/EnumeratorStateHistory.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property Simtabi\\Laranail\\Enumerator\\Eloquent\\EnumeratorStateHistory\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: src/Eloquent/EnumeratorStateHistory.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Eloquent\\HasEnumeratorScopes is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/Eloquent/HasEnumeratorScopes.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Eloquent\\HasEnumeratorStateMachine is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/Eloquent/HasEnumeratorStateMachine.php
+
+		-
+			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/EnumeratorServiceProvider.php
+
+		-
+			message: '#^Cannot access offset ''config'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/EnumeratorServiceProvider.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: src/EnumeratorServiceProvider.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Helpers/Bitmask.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\:\:add\(\) return type with generic class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask does not specify its types\: TCase$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Helpers/Bitmask.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\:\:remove\(\) return type with generic class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask does not specify its types\: TCase$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Helpers/Bitmask.php
+
+		-
+			message: '#^Parameter \#2 \$cases of class Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask constructor expects array\<int, TCase of Simtabi\\Laranail\\Enumerator\\Contracts\\Bitwise&UnitEnum\>, array\<int\|string, TCase of Simtabi\\Laranail\\Enumerator\\Contracts\\Bitwise&UnitEnum\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Helpers/Bitmask.php
+
+		-
+			message: '''
+				#^PHPDoc tag @error has invalid value \(\('order\.status'\) \<span class\="error"\>\{\{ \$message \}\}\</span\> @enderror
+
+				Behaviour\:
+
+				  \- Resolves the property via Livewire's `\$this\-\>\{property\}` access
+				    \(uses dot notation\: `order\.status` resolves through getter chain\)\.
+				  \- Calls `Stateful\:\:transitionTo\(\$next\)` under the hood\.
+				  \- On success\: the resolved value is set back on the property path,
+				    and a `enumerator\.transitioned` Livewire event is dispatched with
+				    `\[from, to\]` payload\.
+				  \- On `InvalidTransitionException`\: the message is pushed to the
+				    Livewire error bag at the property path so Blade's `@error\(\)`
+				    directive picks it up\. No exception bubbles out of the action\.
+
+				Pass `wire\:loading\.attr\="disabled"` \(or similar\) to the trigger
+				button to get the loading state\. The trait doesn't ship UI markup —
+				see the recipe for full examples\.\)\: Unexpected token "'order\.status'", expected TOKEN_DOUBLE_QUOTED_STRING at offset 771 on line 25$#
+			'''
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/Integrations/Livewire/WithEnumTransitions.php
+
+		-
+			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Modules/GraphQL/GraphQLServiceProvider.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass and ''getKey'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Modules/GraphQL/SchemaExporter.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Modules/GraphQL/SchemaExporter.php
+
+		-
+			message: '#^Access to property \$value on an unknown class GraphQL\\Language\\AST\\Node\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Modules/Lighthouse/EnumScalar.php
+
+		-
+			message: '#^Instantiated class GraphQL\\Error\\Error not found\.$#'
+			identifier: class.notFound
+			count: 3
+			path: src/Modules/Lighthouse/EnumScalar.php
+
+		-
+			message: '#^Parameter \$valueNode of method Simtabi\\Laranail\\Enumerator\\Modules\\Lighthouse\\EnumScalar\:\:parseLiteral\(\) has invalid type GraphQL\\Language\\AST\\Node\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Modules/Lighthouse/EnumScalar.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Modules\\Lighthouse\\EnumScalar\:\:\$enumClass \(class\-string\) does not accept default value of type string\.$#'
+			identifier: property.defaultValue
+			count: 1
+			path: src/Modules/Lighthouse/EnumScalar.php
+
+		-
+			message: '#^Throwing object of an unknown class GraphQL\\Error\\Error\.$#'
+			identifier: class.notFound
+			count: 3
+			path: src/Modules/Lighthouse/EnumScalar.php
+
+		-
+			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Modules/Lighthouse/LighthouseServiceProvider.php
+
+		-
+			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Modules/Octane/OctaneServiceProvider.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass and ''getKey'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Modules/OpenApi/OpenApiSchemaExporter.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Modules/OpenApi/OpenApiSchemaExporter.php
+
+		-
+			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Modules/OpenApi/OpenApiServiceProvider.php
+
+		-
+			message: '#^Cannot access property \$value on mixed\.$#'
+			identifier: property.nonObject
+			count: 14
+			path: src/Modules/Pest/Expectations.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(mixed\)\: mixed\)\|null, Closure\(UnitEnum\)\: non\-falsy\-string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Modules/Pest/Expectations.php
+
+		-
+			message: '#^Parameter \#1 \$case of method Simtabi\\Laranail\\Enumerator\\Helpers\\Bitmask\<Simtabi\\Laranail\\Enumerator\\Contracts\\Bitwise&UnitEnum\>\:\:has\(\) expects Simtabi\\Laranail\\Enumerator\\Contracts\\Bitwise&UnitEnum, UnitEnum given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Modules/Pest/Expectations.php
+
+		-
+			message: '#^Undefined variable\: \$this$#'
+			identifier: variable.undefined
+			count: 19
+			path: src/Modules/Pest/Expectations.php
+
+		-
+			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Modules/Pest/PestServiceProvider.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass and ''getValue'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Modules/Saloon/EnumCaster.php
+
+		-
+			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Modules/Saloon/SaloonServiceProvider.php
+
+		-
+			message: '#^Cannot access offset ''config'' on Illuminate\\Contracts\\Foundation\\Application\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/ApprovalStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/CommentStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/HttpStatusClassEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/MonthEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/MonthEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:April\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:August\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:December\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:February\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:January\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:July\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:June\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:March\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:May\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:November\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:October\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\:\:September\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/MonthEnum.php
+
+		-
+			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:tryFrom\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: src/Presets/Enums/NotificationOptInEnum.php
+
+		-
+			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Presets\\\\Enums\\\\NotificationOptInEnum'' and ''BackedEnum'' will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 3
+			path: src/Presets/Enums/NotificationOptInEnum.php
+
+		-
+			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:Email\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:Push\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:SMS\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\NotificationOptInEnum\:\:Webhook and BackedEnum will always evaluate to false\.$#'
+			identifier: instanceof.alwaysFalse
+			count: 2
+			path: src/Presets/Enums/NotificationOptInEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/OrderStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/PaymentStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/PriorityEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/PriorityEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Critical\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:High\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Low\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Medium\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\:\:Urgent\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/PriorityEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/PublicationStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/PublicationStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Archived\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Deleted\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Draft\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\:\:Published\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/PublicationStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/SeverityEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/SizeEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/SizeEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Large\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Medium\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:Small\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XLarge\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XSmall\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\:\:XXLarge\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/SizeEnum.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Presets/Enums/StatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/StatusEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Presets/Enums/StatusEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:groupedByType\(\) should return array\<string, array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\>\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Presets/Enums/StatusEnum.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:groups\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Presets/Enums/StatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/TaskStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/VisibilityEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Presets/Enums/WeekdayEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/Presets/Enums/WeekdayEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Friday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Monday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Saturday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Sunday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Thursday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Tuesday\|Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\:\:Wednesday\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Presets/Enums/WeekdayEnum.php
+
+		-
+			message: '#^Instantiated class Rector\\Symplify\\RuleDocGenerator\\ValueObject\\CodeSample\\CodeSample not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Rector/RectorBenSampoEnumToEnumerator.php
+
+		-
+			message: '#^Instantiated class Rector\\Symplify\\RuleDocGenerator\\ValueObject\\RuleDefinition not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Rector/RectorBenSampoEnumToEnumerator.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Rector\\RectorBenSampoEnumToEnumerator\:\:getRuleDefinition\(\) has invalid return type Rector\\Symplify\\RuleDocGenerator\\ValueObject\\RuleDefinition\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Rector/RectorBenSampoEnumToEnumerator.php
+
+		-
+			message: '#^Instantiated class Rector\\Symplify\\RuleDocGenerator\\ValueObject\\CodeSample\\CodeSample not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Rector/RectorSpatieEnumToEnumerator.php
+
+		-
+			message: '#^Instantiated class Rector\\Symplify\\RuleDocGenerator\\ValueObject\\RuleDefinition not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Rector/RectorSpatieEnumToEnumerator.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Rector\\RectorSpatieEnumToEnumerator\:\:getRuleDefinition\(\) has invalid return type Rector\\Symplify\\RuleDocGenerator\\ValueObject\\RuleDefinition\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Rector/RectorSpatieEnumToEnumerator.php
+
+		-
+			message: '#^Anonymous function should return object but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Routing/EnumeratorRouteBinder.php
+
+		-
+			message: '#^Parameter \#1 \$enumClass of class Simtabi\\Laranail\\Enumerator\\Rules\\EnumValue constructor expects class\-string\<Simtabi\\Laranail\\Enumerator\\Contracts\\Enumerator\>, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rules/EnumIn.php
+
+		-
+			message: '#^Parameter \#1 \$enumClass of class Simtabi\\Laranail\\Enumerator\\Rules\\EnumValue constructor expects class\-string\<Simtabi\\Laranail\\Enumerator\\Contracts\\Enumerator\>, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rules/EnumNotIn.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass and ''getKey'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Rules/EnumTransition.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Rules/EnumValue.php
+
+		-
+			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass and Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/Rules/EnumValue.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Rules\\EnumValue\:\:coerce\(\) should return object\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Rules/EnumValue.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: src/Rules/EnumValue.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Support/AttributesCache.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Support\\AttributesCache\:\:apply\(\) has parameter \$attribute with generic class ReflectionAttribute but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Support/AttributesCache.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Support\\AttributeBag\:\:\$meta \(array\<string, mixed\>\|null\) does not accept array\<mixed, mixed\>\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Support/AttributesCache.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Support/AttributesOverrideResolver.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Support\\AttributesOverrideResolver\:\:mergeMeta\(\) should return array\<string, mixed\>\|null but returns array\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Support/AttributesOverrideResolver.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: src/Support/BladeViewHelpers.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Support\\BladeViewHelpers\:\:toScalar\(\) should return int\|string but returns bool\|float\|int\|string\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Support/BladeViewHelpers.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: src/Support/CaseGroupingResolver.php
+
+		-
+			message: '#^Parameter \#1 \$groups of static method Simtabi\\Laranail\\Enumerator\\Support\\CaseGroupingResolver\:\:relabel\(\) expects array\<string, array\<int, object\>\>, array\<string, array\<int, mixed\>\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Support/CaseGroupingResolver.php
+
+		-
+			message: '#^Static property Simtabi\\Laranail\\Enumerator\\Support\\CasesCache\:\:\$memo \(array\<class\-string, array\<int\<0, max\>\|string, mixed\>\>\) does not accept non\-empty\-array\<non\-falsy\-string, array\<int\<0, max\>\|string, mixed\>\>\.$#'
+			identifier: assign.propertyType
+			count: 2
+			path: src/Support/CasesCache.php
+
+		-
+			message: '#^Static property Simtabi\\Laranail\\Enumerator\\Support\\CasesCache\:\:\$memo \(array\<class\-string, array\<int\<0, max\>\|string, mixed\>\>\) does not accept non\-empty\-array\<string, mixed\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Support/CasesCache.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Support/CasesCollection.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: src/Support/CasesCollection.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Support/EnumExporter.php
+
+		-
+			message: '#^Property Simtabi\\Laranail\\Enumerator\\Support\\LayeredCache\:\:\$file \(array\<string, mixed\>\|null\) does not accept array\<mixed, mixed\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Support/LayeredCache.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: src/Support/OptionsArrayBuilder.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Translations/DatabaseTranslatorAdapter.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:artisan\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: tests/Feature/AbstractEnumeratorClassIntegrationTest.php
+
+		-
+			message: '#^Cannot call method assertFailed\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/AbstractEnumeratorClassIntegrationTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/AbstractEnumeratorClassIntegrationTest.php
+
+		-
+			message: '#^Cannot call method expectsOutputToContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: tests/Feature/AbstractEnumeratorClassIntegrationTest.php
+
+		-
+			message: '#^Call to an undefined static method LegacyTestEnum\:\:UNKNOWN\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: tests/Feature/AbstractEnumeratorClassTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<mixed\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Blade/AlpineLoaderTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Blade/AlpineLoaderTest.php
+
+		-
+			message: '#^Cannot access property \$not on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Blade/AlpineLoaderTest.php
+
+		-
+			message: '#^Cannot call method toContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Blade/AlpineLoaderTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 4
+			path: tests/Feature/Blade/DropdownAlpineTest.php
+
+		-
+			message: '#^Cannot access property \$not on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Blade/DropdownAlpineTest.php
+
+		-
+			message: '#^Cannot call method toContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: tests/Feature/Blade/DropdownAlpineTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 2
+			path: tests/Feature/Blade/DropdownMultiSelectTest.php
+
+		-
+			message: '#^Cannot call method toContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Blade/DropdownMultiSelectTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 4
+			path: tests/Feature/Blade/RendersHtmlEscapeTest.php
+
+		-
+			message: '#^Cannot access property \$not on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Blade/RendersHtmlEscapeTest.php
+
+		-
+			message: '#^Cannot call method toContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: tests/Feature/Blade/RendersHtmlEscapeTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:blade\(\)\.$#'
+			identifier: method.notFound
+			count: 17
+			path: tests/Feature/BladeComponentsTest.php
+
+		-
+			message: '#^Cannot call method assertDontSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/BladeComponentsTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 50
+			path: tests/Feature/BladeComponentsTest.php
+
+		-
+			message: '#^Cannot access property \$name on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/CasesCollectionTest.php
+
+		-
+			message: '#^Cannot access property \$value on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/CasesCollectionTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(DriverMatrixCacheKey\)\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Parameter \#2 \$ttl of static method Illuminate\\Cache\\Repository\:\:remember\(\) expects Closure\|DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Parameter \#3 \$ttl of static method Illuminate\\Cache\\Repository\:\:put\(\) expects DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:remember\(\)$#'
+			identifier: argument.templateType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:rememberForever\(\)$#'
+			identifier: argument.templateType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyDriverMatrixTest.php
+
+		-
+			message: '#^Call to function is_subclass_of\(\) with ''ComposedCacheableEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(ComposedCacheableEnum\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(ComposedCacheableEnum\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(ComposedCacheableEnum\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with ComposedCacheableEnum\:\:Active\|ComposedCacheableEnum\:\:Inactive and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Instanceof between ComposedCacheableEnum\:\:Active\|ComposedCacheableEnum\:\:Inactive and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(CacheKeyFixture\)\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(ComposedCacheableEnum\)\.$#'
+			identifier: varTag.nativeType
+			count: 3
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(PureCacheKeyFixture\)\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(ComposedCacheableEnum\) is not subtype of native type ComposedCacheableEnum\:\:Active\|ComposedCacheableEnum\:\:Inactive\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Parameter \#2 \$ttl of static method Illuminate\\Cache\\Repository\:\:remember\(\) expects Closure\|DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Parameter \#3 \$ttl of static method Illuminate\\Cache\\Repository\:\:put\(\) expects DateInterval\|DateTimeInterface\|int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:remember\(\)$#'
+			identifier: argument.templateType
+			count: 4
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Unable to resolve the template type TCacheValue in call to static method Illuminate\\Cache\\Repository\:\:rememberForever\(\)$#'
+			identifier: argument.templateType
+			count: 4
+			path: tests/Feature/Concerns/IsCacheKeyTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:blade\(\)\.$#'
+			identifier: method.notFound
+			count: 5
+			path: tests/Feature/DropdownOptgroupsTest.php
+
+		-
+			message: '#^Cannot call method assertDontSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/DropdownOptgroupsTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 14
+			path: tests/Feature/DropdownOptgroupsTest.php
+
+		-
+			message: '#^Call to an undefined static method TenantStatusFixture\:\:CHURNED\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: tests/Feature/DynamicEnumsTest.php
+
+		-
+			message: '#^Call to an undefined static method TenantStatusFixture\:\:PILOT\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: tests/Feature/DynamicEnumsTest.php
+
+		-
+			message: '#^Cannot call method getKey\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/DynamicEnumsTest.php
+
+		-
+			message: '#^Cannot call method getValue\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/DynamicEnumsTest.php
+
+		-
+			message: '#^Cannot call method id\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/DynamicEnumsTest.php
+
+		-
+			message: '#^Cannot call method string\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/DynamicEnumsTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|null\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 2
+			path: tests/Feature/FrameworkCssClassesTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:blade\(\)\.$#'
+			identifier: method.notFound
+			count: 21
+			path: tests/Feature/FrameworkCssClassesTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 27
+			path: tests/Feature/FrameworkCssClassesTest.php
+
+		-
+			message: '#^Cannot call method toContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/FrameworkCssClassesTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: tests/Feature/FrameworkCssClassesTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:blade\(\)\.$#'
+			identifier: method.notFound
+			count: 8
+			path: tests/Feature/FrameworkVariantsTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 18
+			path: tests/Feature/FrameworkVariantsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(HasEnumAttributesTestModel\) and ''getAttribute'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(HasEnumAttributesTestModel\) and ''getCasts'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(HasEnumAttributesTestModel\) and ''mergeCasts'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\) and ''getAttribute'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\) and ''getCasts'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\) and ''mergeCasts'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Call to function property_exists\(\) with \$this\(HasEnumAttributesTestModel\) and ''casts'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Call to function property_exists\(\) with \$this\(Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\) and ''casts'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Cannot access property \$rendered on HasEnumAttributesTestModel\|Illuminate\\Database\\Eloquent\\Collection\<int, HasEnumAttributesTestModel\>\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Cannot access property \$status on HasEnumAttributesTestModel\|Illuminate\\Database\\Eloquent\\Collection\<int, HasEnumAttributesTestModel\>\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Cannot call method id\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Cannot call method nullable\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Cannot call method string\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 5
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Method HasEnumAttributesTestModel\:\:enumAttributes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Method Illuminate\\Database\\Eloquent\\Model@anonymous/tests/Feature/HasEnumAttributesTest\.php\:109\:\:enumAttributes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 18
+			path: tests/Feature/HasEnumAttributesTest.php
+
+		-
+			message: '#^Call to an undefined method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Active\:\:isActive\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/HasEnumeratorTest.php
+
+		-
+			message: '#^Call to an undefined method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Active\:\:isInactive\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/HasEnumeratorTest.php
+
+		-
+			message: '#^Call to an undefined method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Active\:\:isNotInactive\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/HasEnumeratorTest.php
+
+		-
+			message: '#^Cannot access property \$name on int\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/HasEnumeratorTest.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 5
+			path: tests/Feature/HasEnumeratorTest.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Mixins\\Expectation\<string\|false\|null\>\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/IdeHelperCommandTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:artisan\(\)\.$#'
+			identifier: method.notFound
+			count: 8
+			path: tests/Feature/IdeHelperCommandTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 8
+			path: tests/Feature/IdeHelperCommandTest.php
+
+		-
+			message: '#^Cannot call method expectsOutputToContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/IdeHelperCommandTest.php
+
+		-
+			message: '#^Cannot call method toContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/IdeHelperCommandTest.php
+
+		-
+			message: '#^Call to function is_subclass_of\(\) with ''OrderStatus'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(OrderStatus\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(OrderStatus\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(OrderStatus\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with OrderStatus\:\:Cancelled\|OrderStatus\:\:Paid\|OrderStatus\:\:Pending\|OrderStatus\:\:Shipped and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 6
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Instanceof between OrderStatus\:\:Cancelled\|OrderStatus\:\:Paid\|OrderStatus\:\:Pending\|OrderStatus\:\:Shipped and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:addError\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:addError\(\) has parameter \$message with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:addError\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:dispatch\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:dispatch\(\) has parameter \$event with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Method OrderShowFixture\:\:dispatch\(\) has parameter \$params with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, OrderStatus\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(OrderStatus\)\.$#'
+			identifier: varTag.nativeType
+			count: 4
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(OrderStatus\) is not subtype of native type OrderStatus\:\:Cancelled\|OrderStatus\:\:Paid\|OrderStatus\:\:Pending\|OrderStatus\:\:Shipped\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<OrderStatus\:\:Cancelled\|OrderStatus\:\:Paid\|OrderStatus\:\:Pending\|OrderStatus\:\:Shipped\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Parameter \#1 \$key of method Illuminate\\Support\\MessageBag\:\:add\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Parameter \#2 \$message of method Illuminate\\Support\\MessageBag\:\:add\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Property OrderShowFixture\:\:\$dispatched \(array\<string, string\>\) does not accept array\<string, bool\|string\>\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Integrations/Livewire/WithEnumTransitionsTest.php
+
+		-
+			message: '#^Call to function is_subclass_of\(\) with ''MagicTestStatusEnum'' and ''BackedEnum'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(MagicTestStatusEnum\) and ''color'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(MagicTestStatusEnum\) and ''icon'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(MagicTestStatusEnum\) and ''label'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^Call to function method_exists\(\) with MagicTestStatusEnum\:\:Active\|MagicTestStatusEnum\:\:Banned\|MagicTestStatusEnum\:\:Inactive and ''meta'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 5
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^Instanceof between MagicTestStatusEnum\:\:Active\|MagicTestStatusEnum\:\:Banned\|MagicTestStatusEnum\:\:Inactive and BackedEnum will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type UnitEnum is not subtype of native type \$this\(MagicTestStatusEnum\)\.$#'
+			identifier: varTag.nativeType
+			count: 3
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type static\(MagicTestStatusEnum\) is not subtype of native type MagicTestStatusEnum\:\:Active\|MagicTestStatusEnum\:\:Banned\|MagicTestStatusEnum\:\:Inactive\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 6
+			path: tests/Feature/MagicComparisonsTest.php
+
+		-
+			message: '#^Parameter \#1 \$value of function expect contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 3
+			path: tests/Feature/Modules/PestTest.php
+
+		-
+			message: '#^Return type of call to function expect contains unresolvable type\.$#'
+			identifier: function.unresolvableReturnType
+			count: 3
+			path: tests/Feature/Modules/PestTest.php
+
+		-
+			message: '#^Cannot access offset ''enum'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Feature/Modules/StructuredOutputTest.php
+
+		-
+			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Feature/Modules/StructuredOutputTest.php
+
+		-
+			message: '#^Cannot access offset ''schema'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: tests/Feature/Modules/StructuredOutputTest.php
+
+		-
+			message: '#^Cannot access offset ''strict'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Feature/Modules/StructuredOutputTest.php
+
+		-
+			message: '#^Cannot access offset ''type'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Feature/Modules/StructuredOutputTest.php
+
+		-
+			message: '#^Offset ''title'' might not exist on array\{type\: string, enum\: list\<int\|string\>, description\?\: string, title\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Feature/Modules/StructuredOutputTest.php
+
+		-
+			message: '#^Call to an undefined method PHPUnit\\Framework\\TestCase\:\:artisan\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/Feature/ReflectionCachePersistorTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/ReflectionCachePersistorTest.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Contracts\\TenantContext@anonymous/tests/Feature/TenantOverrideTest\.php\:20\:\:currentTenant\(\) never returns int so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: tests/Feature/TenantOverrideTest.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Contracts\\TenantContext@anonymous/tests/Feature/TenantOverrideTest\.php\:20\:\:currentTenant\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: tests/Feature/TenantOverrideTest.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Contracts\\TenantContext@anonymous/tests/Feature/TenantOverrideTest\.php\:51\:\:currentTenant\(\) never returns int so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: tests/Feature/TenantOverrideTest.php
+
+		-
+			message: '#^Method Simtabi\\Laranail\\Enumerator\\Contracts\\TenantContext@anonymous/tests/Feature/TenantOverrideTest\.php\:51\:\:currentTenant\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: tests/Feature/TenantOverrideTest.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Inactive\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\:\:Pending\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:ACTIVE\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum\:\:Pending\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\CasingAmbiguousEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:Closed\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\:\:Open\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/DescribedEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:Ampersand\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:PlainHtml\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:PreEncoded\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum\:\:Quoted\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\EscapeRegressionEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Approved\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Banned\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Pending\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Rejected\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\:\:Review\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/GroupedStatusEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:Alpha\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\:\:Beta\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/MultiHandlerEnum.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum and \$this\(Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\NonPowerOfTwoBitEnum\) will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: tests/Fixtures/Enums/NonPowerOfTwoBitEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:First\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Fourth\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Second\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum\:\:Third\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\OrderedStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/OrderedStatusEnum.php
+
+		-
+			message: '#^Call to an undefined static method Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:tryFrom\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: tests/Fixtures/Enums/PureColorEnum.php
+
+		-
+			message: '#^Call to function is_subclass_of\(\) with ''Simtabi\\\\Laranail\\\\Enumerator\\\\Tests\\\\Fixtures\\\\Enums\\\\PureColorEnum'' and ''BackedEnum'' will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 3
+			path: tests/Fixtures/Enums/PureColorEnum.php
+
+		-
+			message: '#^Instanceof between Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:Blue\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:Green\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\PureColorEnum\:\:Red and BackedEnum will always evaluate to false\.$#'
+			identifier: instanceof.alwaysFalse
+			count: 2
+			path: tests/Fixtures/Enums/PureColorEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Active\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Banned\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\:\:Inactive\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/RenderableStatusEnum.php
+
+		-
+			message: '#^Cannot access offset int\|string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Archived\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Draft\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\:\:Published\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Trait Simtabi\\Laranail\\Enumerator\\Concerns\\HasTransitions requires using class to implement Simtabi\\Laranail\\Enumerator\\Contracts\\Stateful, but Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum does not\.$#'
+			identifier: class.missingImplements
+			count: 1
+			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Fixtures/Enums/WorkflowStatus.php
+
+		-
+			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\>\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/Fixtures/Enums/WorkflowStatus.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Approved\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Draft\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Published\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Rejected\|Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\:\:Submitted\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: tests/Fixtures/Enums/WorkflowStatus.php

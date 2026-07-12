@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+
+enum {{ class }}: string implements Enumerator
+{
+    use HasEnumeratorBehavior;
+
+    case Active = 'active';
+    case Inactive = 'inactive';
+}

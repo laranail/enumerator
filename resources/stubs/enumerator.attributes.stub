@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Simtabi\Laranail\Enumerator\Attributes\{Color, Description, Icon, Label, Meta, Order};
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+
+#[Description('{{ class }} cases')]
+enum {{ class }}: string implements Enumerator
+{
+    use HasEnumeratorBehavior;
+
+    #[Label('Active'), Color('success'), Icon('check-circle'), Order(10)]
+    case Active = 'active';
+
+    #[Label('Inactive'), Color('ghost'), Icon('pause-circle'), Order(20)]
+    case Inactive = 'inactive';
+}

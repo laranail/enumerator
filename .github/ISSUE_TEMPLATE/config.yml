@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://opensource.simtabi.com/documentation/laranail/enumerator/
+    about: Read the docs first.
+  - name: Security
+    url: mailto:opensource@simtabi.com
+    about: Do not file public issues for security vulnerabilities.
