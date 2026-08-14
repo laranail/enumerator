@@ -24,12 +24,24 @@ trait HasOrder
 
     /**
      * <0 when $this comes before $other, 0 when equal, >0 when after.
+     *
+     * `$other->getOrder()` is `mixed` to the analyser — `UnitEnum` declares no
+     * such method, so `method_exists()` proves it is callable but says nothing
+     * about what it returns. This narrows with `is_int()` rather than casting.
+     *
+     * The cast was not only a static-analysis complaint: `(int) null` is 0, so
+     * an override returning null sorted its case *first*, while the documented
+     * behaviour for a case with no order is to sort *last* (PHP_INT_MAX). Any
+     * non-int now falls through to the attribute, which is where the default
+     * lives.
      */
     public function compareTo(UnitEnum $other): int
     {
         $self = $this->getOrder();
-        $that = method_exists($other, 'getOrder')
-            ? (int) $other->getOrder()
+
+        $reported = method_exists($other, 'getOrder') ? $other->getOrder() : null;
+        $that = is_int($reported)
+            ? $reported
             : (AttributesCache::for($other)->order ?? PHP_INT_MAX);
 
         return $self <=> $that;

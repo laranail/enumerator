@@ -607,30 +607,6 @@ parameters:
 			path: src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/ApprovalStatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/CommentStatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/HttpStatusClassEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/MonthEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\MonthEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -655,24 +631,6 @@ parameters:
 			path: src/Presets/Enums/NotificationOptInEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/OrderStatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/PaymentStatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/PriorityEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PriorityEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -691,12 +649,6 @@ parameters:
 			path: src/Presets/Enums/PriorityEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/PublicationStatusEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\PublicationStatusEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -713,18 +665,6 @@ parameters:
 			identifier: offsetAccess.invalidOffset
 			count: 1
 			path: src/Presets/Enums/PublicationStatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/SeverityEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/SizeEnum.php
 
 		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\SizeEnum\>\.$#'
@@ -751,12 +691,6 @@ parameters:
 			path: src/Presets/Enums/StatusEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/StatusEnum.php
-
-		-
 			message: '#^Method Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\:\:group\(\) should return array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\StatusEnum\> but returns mixed\.$#'
 			identifier: return.type
 			count: 1
@@ -773,24 +707,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Presets/Enums/StatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/TaskStatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/VisibilityEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: src/Presets/Enums/WeekdayEnum.php
 
 		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Presets\\Enums\\WeekdayEnum\>\.$#'
@@ -1747,12 +1663,6 @@ parameters:
 			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/BackedIntStatusEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\BackedIntStatusEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -1779,12 +1689,6 @@ parameters:
 		-
 			message: '#^Cannot access offset int\|string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
 			count: 1
 			path: tests/Fixtures/Enums/CasingAmbiguousEnum.php
 
@@ -1819,12 +1723,6 @@ parameters:
 			path: tests/Fixtures/Enums/DescribedEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/DescribedEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\DescribedEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -1851,12 +1749,6 @@ parameters:
 		-
 			message: '#^Cannot access offset int\|string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
 			count: 1
 			path: tests/Fixtures/Enums/EscapeRegressionEnum.php
 
@@ -1891,12 +1783,6 @@ parameters:
 			path: tests/Fixtures/Enums/GroupedStatusEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/GroupedStatusEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\GroupedStatusEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -1927,12 +1813,6 @@ parameters:
 			path: tests/Fixtures/Enums/MultiHandlerEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/MultiHandlerEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\MultiHandlerEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -1959,12 +1839,6 @@ parameters:
 		-
 			message: '#^Cannot access offset int\|string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: tests/Fixtures/Enums/OrderedStatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
 			count: 1
 			path: tests/Fixtures/Enums/OrderedStatusEnum.php
 
@@ -2005,12 +1879,6 @@ parameters:
 			path: tests/Fixtures/Enums/RenderableStatusEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/RenderableStatusEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\RenderableStatusEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -2041,12 +1909,6 @@ parameters:
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
-
-		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\TranslatableStatusEnum\>\.$#'
 			identifier: offsetAccess.notFound
 			count: 1
@@ -2069,12 +1931,6 @@ parameters:
 			identifier: class.missingImplements
 			count: 1
 			path: tests/Fixtures/Enums/TranslatableStatusEnum.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Fixtures/Enums/WorkflowStatus.php
 
 		-
 			message: '#^Offset int\|null might not exist on array\<int, Simtabi\\Laranail\\Enumerator\\Tests\\Fixtures\\Enums\\WorkflowStatus\>\.$#'

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Support\CasesCollection;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\NullOrderReportingEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\OrderedStatusEnum;
 
 // HasOrder — explicit ordering + sortedBy* + compare helpers.
@@ -41,4 +42,14 @@ it('sortedByOrder() returns a CasesCollection in ascending #[Order]', function (
 it('sortedByOrderDesc() returns the reverse order', function (): void {
     $sorted = OrderedStatusEnum::sortedByOrderDesc();
     expect($sorted->flatValues())->toBe(['fourth', 'third', 'second', 'first']);
+});
+
+it('falls back to the attribute when a foreign getOrder() cannot answer', function (): void {
+    // compareTo() probes with method_exists(), which proves the method is
+    // callable and nothing about its return. The old code cast it — and
+    // (int) null is 0, so a case reporting null sorted before everything,
+    // inverting the documented default that an unordered case sorts last.
+    expect(OrderedStatusEnum::First->compareTo(NullOrderReportingEnum::Early))->toBe(0);
+    expect(OrderedStatusEnum::First->compareTo(NullOrderReportingEnum::Late))->toBe(-1);
+    expect(OrderedStatusEnum::Fourth->compareTo(NullOrderReportingEnum::Early))->toBe(1);
 });

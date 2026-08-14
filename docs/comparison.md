@@ -54,7 +54,7 @@ Surveyed 2026-05-15.
 | Pest expectations | · | · | · | · | · | **+** |
 | Magic comparisons (`isActive()`) | + | + | · | + | · | **+** (ambiguity policy configurable) |
 | Invokable cases (`Status::Active()`) | · | · | + | + | · | **+** |
-| Preset enum library | · | · | · | · | · | **+** (26 presets) |
+| Preset enum library | · | · | · | · | · | **+** (27 presets) |
 
 ## Where `laranail/enumerator` does NOT win
 

@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **`Presets\Enums\AlertTypeEnum`** — the twenty-seventh preset: the styling of a
+  flash message or inline notice (`default`, `primary`, `success`, `info`,
+  `warning`, `error`, `mono`).
+
+  Distinct from `SeverityEnum`, which classifies a log record on the RFC 5424
+  scale — `Primary` and `Mono` are not severities and nothing here maps to a
+  syslog level.
+
+  Migrated from a class-constant enum in a consuming application, where a public
+  `Request::alert($message, string $type)` macro passed arbitrary strings to
+  `new AlertType($type)`. Its `icon()` was a `match` with no default arm, so any
+  value outside the seven constants threw `UnhandledMatchError` from a helper
+  whose only job was showing the user a message. As a native enum that failure
+  mode does not exist rather than being patched.
+
+  `color()` and `->value` deliberately differ for two cases: the backing values
+  are the CSS tokens a front end already uses (`default`, `mono`), while
+  `color()` answers with this package's palette (`secondary`, `ghost`).
+
 - **`Rector\RectorClassConstEnumToEnumerator`** — a third migration codemod, for
   the class-constant enum base an application invented for itself rather than a
   named vendor package. Configurable with the base classes to match, and it does
@@ -47,6 +66,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   An enum with no translations registered is unaffected — the fallback chain
   still ends at the `#[Label]` attribute and then the humaniser.
+
+### Fixed
+
+- **`HasOrder::compareTo()` sorted an unorderable case first instead of last.**
+  It read a foreign case's position as `(int) $other->getOrder()`, and
+  `(int) null` is 0 — so an enum whose `getOrder()` could not answer sorted
+  before everything, the opposite of the documented default that a case with no
+  order sorts last (`PHP_INT_MAX`). It now narrows with `is_int()` and falls
+  back to the `#[Order]` attribute.
+
+  `method_exists()` proves the method is callable and says nothing about what it
+  returns, which is also why this showed up as 25 identical `cast.int` entries
+  in the PHPStan baseline — one per enum using the trait. Fixing the trait
+  cleared all of them.
 
 ### Changed
 
