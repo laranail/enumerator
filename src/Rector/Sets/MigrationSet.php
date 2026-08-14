@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Rector\Sets;
 
 use Simtabi\Laranail\Enumerator\Rector\RectorBenSampoEnumToEnumerator;
+use Simtabi\Laranail\Enumerator\Rector\RectorClassConstEnumToEnumerator;
 use Simtabi\Laranail\Enumerator\Rector\RectorSpatieEnumToEnumerator;
 
 /**
@@ -23,6 +24,10 @@ use Simtabi\Laranail\Enumerator\Rector\RectorSpatieEnumToEnumerator;
  *
  *   - `RectorBenSampoEnumToEnumerator` — BenSampo `Enum` subclasses → native enums
  *   - `RectorSpatieEnumToEnumerator` — Spatie `Enum` subclasses → native enums
+ *   - `RectorClassConstEnumToEnumerator` — any bespoke class-constant enum base
+ *     → `AbstractEnumeratorClass`. **Configurable**, so it does nothing until
+ *     told which base classes to match; pass it through
+ *     `withConfiguredRule()` rather than relying on this set.
  */
 final class MigrationSet
 {
@@ -36,6 +41,7 @@ final class MigrationSet
         return [
             RectorBenSampoEnumToEnumerator::class,
             RectorSpatieEnumToEnumerator::class,
+            RectorClassConstEnumToEnumerator::class,
         ];
     }
 }

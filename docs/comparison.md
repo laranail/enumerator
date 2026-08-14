@@ -73,8 +73,9 @@ Three honest concessions:
 
 ## Migration codemods
 
-If you're currently on `bensampo/laravel-enum` or `spatie/laravel-enum`
-and want to migrate, two Rector rules ship in `src/Rector/`:
+If you're currently on `bensampo/laravel-enum`, `spatie/laravel-enum`,
+or a class-constant enum base your own application invented, three
+Rector rules ship in `src/Rector/`:
 
 ```php
 use Rector\Config\RectorConfig;
@@ -95,6 +96,58 @@ vendor/bin/rector process app/Enums
 - `RectorSpatieEnumToEnumerator` produces a structural skeleton; case
   bodies need a manual fill-in because Spatie's docblock-driven case
   pattern can't be auto-mapped reliably.
+- `RectorClassConstEnumToEnumerator` rebases a bespoke class-constant
+  base onto `AbstractEnumeratorClass`. It is **configurable** and does
+  nothing until told which base classes to match, so pass it through
+  `withConfiguredRule()` rather than relying on the set:
+
+  ```php
+  use Rector\Config\RectorConfig;
+  use Simtabi\Laranail\Enumerator\Rector\RectorClassConstEnumToEnumerator;
+
+  return RectorConfig::configure()
+      ->withPaths([__DIR__ . '/app/Enums'])
+      ->withConfiguredRule(RectorClassConstEnumToEnumerator::class, [
+          'Acme\\Enum\\Enum',
+          'Acme\\Enum\\StatusEnum',
+      ]);
+  ```
+
+  It rewrites `extends`, turns every `$this->value` into
+  `$this->getValue()`, renames `from`/`of` → `fromValue` and `tryFrom`
+  → `tryFromValue`, and drops `$langPath`.
+
+### Why that third rule targets a class, not a native enum
+
+The other two flip their source into a native enum, because that is what
+those libraries were emulating. A class-constant enum is different: its
+cases **are** string constants, and its methods are full of
+`match ($this->value) { self::ACTIVE => … }`. Promote `self::ACTIVE`
+from a string constant to an enum case and every one of those
+comparisons silently stops matching — the class still compiles, the
+suite still runs, and every `match` quietly falls to its default.
+
+So the rule rebases onto `AbstractEnumeratorClass` and leaves the
+constants alone. Going on to a native enum afterwards is a separate,
+deliberate step with its own diff.
+
+The `$this->value` rewrite is the part that is not optional:
+`AbstractEnumeratorClass` holds `$value` **private**, so a missed one is
+a fatal error the first time that branch runs rather than something
+static analysis catches.
+
+Two things the rule leaves for you:
+
+- **`$langPath` is dropped, not translated.** It pointed at a namespace
+  whose keys the rule cannot see; enumerator resolves labels through
+  `#[Label]` attributes plus `Concerns\IsTranslatable`. A guessed label
+  would be wrong rather than absent, and absent is visible — `label()`
+  falls back to humanising the case name.
+- **Model casts are untouched.** A legacy base usually implements
+  `Castable` on the enum itself; enumerator uses `Casts\AsEnum` on the
+  model. That edit belongs where the model is. `AsEnum` persists
+  `getValue()`, i.e. the same constant value the old cast stored, so the
+  column contents do not change.
 
 ## When NOT to use this package
 
