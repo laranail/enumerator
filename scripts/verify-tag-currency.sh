@@ -135,6 +135,32 @@ echo
 
 if [ "${commit}" = "${head}" ]; then
   ok "${current} is on ${BRANCH}; consumers on ^${line} resolve current code."
+
+  # ---------------------------------------------------------------------
+  # 3. The highest tag overall, for consumers who named no constraint
+  # ---------------------------------------------------------------------
+  #
+  # `composer require laranail/enumerator` with no constraint resolves the
+  # highest stable tag, which is not necessarily the branch-alias line. This
+  # package had v0.4.0 sitting two commits behind main while v0.1.0 was current,
+  # so a check anchored only on branch-alias called it healthy and said nothing
+  # about the tag an unconstrained require would actually install.
+  #
+  # The original version of this script checked only the highest tag and missed
+  # the branch-alias line. Replacing one with the other traded one blind spot
+  # for another; both are checked.
+  highest=$(printf '%s\n' "${tags}" | sort -V | tail -1)
+
+  if [ "${highest}" != "${current}" ]; then
+    hcommit=$(tag_commit "${highest}")
+
+    if [ "${hcommit}" = "${head}" ]; then
+      ok "${highest} is also on ${BRANCH}."
+    else
+      hbehind=$(gh api "repos/${REPO}/compare/${hcommit}...${head}" --jq '.ahead_by' 2>/dev/null || echo '?')
+      fail "${highest} is the highest tag and is ${hbehind} commit(s) behind ${BRANCH}. An unconstrained \`composer require ${REPO#*/}\` resolves it, so it must be current or it must not exist."
+    fi
+  fi
 else
   behind=$(gh api "repos/${REPO}/compare/${commit}...${head}" --jq '.ahead_by' 2>/dev/null || echo '?')
 
