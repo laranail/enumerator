@@ -13,7 +13,7 @@ use Simtabi\Laranail\Enumerator\Contracts\TranslatorAdapter;
  *
  * Expects a table with at least these columns:
  *
- *   - `key`     string  the translation key (e.g. `enumerator::enums.user_status.active.label`)
+ *   - `key`     string  the translation key (e.g. `laranail-enumerator::enums.user_status.active.label`)
  *   - `locale`  string  the locale code (e.g. `en`, `de_DE`)
  *   - `value`   string  the translated string
  *

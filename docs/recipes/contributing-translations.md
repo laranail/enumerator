@@ -104,10 +104,10 @@ your locale file loads and resolves the validation messages:
 ```php
 it('loads the {locale} translations', function (): void {
     app()->setLocale('{locale}');
-    expect(__('enumerator::validation.invalid_value', [
+    expect(__('laranail-enumerator::validation.invalid_value', [
         'attribute' => 'status',
         'enum' => 'UserStatusEnum',
-    ]))->not->toBe('enumerator::validation.invalid_value');
+    ]))->not->toBe('laranail-enumerator::validation.invalid_value');
 });
 ```
 

@@ -142,7 +142,7 @@ final class EnumeratorServiceProvider extends ServiceProvider
 
     private function bootResources(): void
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'enumerator');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'laranail-enumerator');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         $viewNamespace = (string) ($this->app['config']->get('enumerator.view_namespace') ?? 'laranail-enumerator');

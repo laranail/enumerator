@@ -50,7 +50,7 @@ class Select extends Component
     ) {
         $this->cases = $enum::cases();
         $this->selectedValue = $this->normalizeSelected($selected);
-        $this->placeholder ??= (string) __('enumerator::enumerator.components.select.placeholder');
+        $this->placeholder ??= (string) __('laranail-enumerator::enumerator.components.select.placeholder');
     }
 
     public function render(): View

@@ -27,7 +27,7 @@ class CacheClearEnumeratorCommand extends Command
         CasesCache::flush();
         $cache->flush();
         $cache->clearFile();
-        $this->info((string) __('enumerator::enumerator.commands.cache.cleared'));
+        $this->info((string) __('laranail-enumerator::enumerator.commands.cache.cleared'));
 
         return self::SUCCESS;
     }

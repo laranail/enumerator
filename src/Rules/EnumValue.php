@@ -59,7 +59,7 @@ class EnumValue implements ValidationRule
     {
         $case = $this->coerce($value);
         if ($case === null) {
-            $fail(__('enumerator::enumerator.validation.invalid_value', [
+            $fail(__('laranail-enumerator::enumerator.validation.invalid_value', [
                 'attribute' => $attribute,
                 'enum' => class_basename($this->enumClass),
             ]));
@@ -68,7 +68,7 @@ class EnumValue implements ValidationRule
         }
 
         if ($this->only !== null && ! in_array($case, $this->only, true)) {
-            $fail(__('enumerator::enumerator.validation.not_allowed', [
+            $fail(__('laranail-enumerator::enumerator.validation.not_allowed', [
                 'attribute' => $attribute,
                 'values' => $this->valuesAsString($this->only),
             ]));
@@ -77,7 +77,7 @@ class EnumValue implements ValidationRule
         }
 
         if ($this->except !== null && in_array($case, $this->except, true)) {
-            $fail(__('enumerator::enumerator.validation.excluded', [
+            $fail(__('laranail-enumerator::enumerator.validation.excluded', [
                 'attribute' => $attribute,
                 'value' => (string) $value,
             ]));

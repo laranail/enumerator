@@ -153,7 +153,7 @@ class Dropdown extends Select
      */
     private function resolveDropdownStrings(): array
     {
-        $base = 'enumerator::enumerator.components.dropdown';
+        $base = 'laranail-enumerator::enumerator.components.dropdown';
 
         // For placeholder-bearing strings, resolve with `:label` then
         // split — JS will tack on the actual label. Same approach

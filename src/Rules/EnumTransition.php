@@ -33,7 +33,7 @@ class EnumTransition implements ValidationRule
     {
         $class = $this->enumClass;
         if (! IsEnumeratorClass::check($class) || ! is_subclass_of($class, Stateful::class)) {
-            $fail(__('enumerator::enumerator.validation.invalid_enum_class', [
+            $fail(__('laranail-enumerator::enumerator.validation.invalid_enum_class', [
                 'class' => $class,
             ]));
 
@@ -42,7 +42,7 @@ class EnumTransition implements ValidationRule
 
         $target = $this->coerce($class, $value);
         if ($target === null) {
-            $fail(__('enumerator::enumerator.validation.invalid_value', [
+            $fail(__('laranail-enumerator::enumerator.validation.invalid_value', [
                 'attribute' => $attribute,
                 'enum' => class_basename($class),
             ]));
@@ -54,7 +54,7 @@ class EnumTransition implements ValidationRule
 
         if ($this->from === null) {
             if (! in_array($target, $class::initialStates(), true)) {
-                $fail(__('enumerator::enumerator.validation.invalid_transition', [
+                $fail(__('laranail-enumerator::enumerator.validation.invalid_transition', [
                     'from' => '(initial)',
                     'to' => $targetName,
                     'enum' => class_basename($class),
@@ -66,7 +66,7 @@ class EnumTransition implements ValidationRule
 
         if (! method_exists($this->from, 'canTransitionTo')
             || ! $this->from->canTransitionTo($target)) {
-            $fail(__('enumerator::enumerator.validation.invalid_transition', [
+            $fail(__('laranail-enumerator::enumerator.validation.invalid_transition', [
                 'from' => $this->caseLabel($this->from),
                 'to' => $targetName,
                 'enum' => class_basename($class),

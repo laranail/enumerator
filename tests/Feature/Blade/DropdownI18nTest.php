@@ -10,7 +10,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
 // the translation table. Before PR-ρ these were hardcoded English
 // literals inside the Blade view + Alpine x-data — community
 // translation PRs couldn't reach them. Now they flow through
-// `__('enumerator::enumerator.components.dropdown.*')`.
+// `__('laranail-enumerator::enumerator.components.dropdown.*')`.
 
 beforeEach(function (): void {
     config()->set('enumerator.css_framework', 'plain');
@@ -42,7 +42,7 @@ it('dropdown picks up a community-supplied locale via vendor publish', function 
         'enumerator.components.dropdown.no_matches' => 'Aucun résultat.',
         'enumerator.components.dropdown.clear_selection' => 'Effacer la sélection',
         'enumerator.components.dropdown.remove_value' => 'Supprimer :label',
-    ], 'fr', 'enumerator');
+    ], 'fr', 'laranail-enumerator');
 
     app()->setLocale('fr');
 
@@ -66,7 +66,7 @@ it('dropdown locale also reaches the Alpine x-data announcement strings', functi
         'enumerator.components.dropdown.announce_removed' => 'Supprimé :label',
         'enumerator.components.dropdown.announce_selected' => 'Sélectionné :label',
         'enumerator.components.dropdown.announce_cleared' => 'Sélection effacée',
-    ], 'fr', 'enumerator');
+    ], 'fr', 'laranail-enumerator');
 
     app()->setLocale('fr');
 
@@ -92,7 +92,7 @@ it('dropdown remove_value prefix uses the locale-supplied text', function (): vo
     $translator = app('translator');
     $translator->addLines([
         'enumerator.components.dropdown.remove_value' => 'Quitar :label',
-    ], 'es', 'enumerator');
+    ], 'es', 'laranail-enumerator');
 
     app()->setLocale('es');
 

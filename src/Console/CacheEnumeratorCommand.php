@@ -30,7 +30,7 @@ class CacheEnumeratorCommand extends Command
     {
         $classes = (array) config('enumerator.cache.auto_warm_classes', []);
         $persistor->dump($classes);
-        $this->info((string) __('enumerator::enumerator.commands.cache.cached'));
+        $this->info((string) __('laranail-enumerator::enumerator.commands.cache.cached'));
 
         return self::SUCCESS;
     }
