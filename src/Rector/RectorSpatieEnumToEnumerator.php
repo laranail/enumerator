@@ -31,7 +31,7 @@ if (! class_exists(AbstractRector::class)) {
  * Migration limitations:
  *   - Docblock `@method static self ACTIVE()` declarations are NOT yet
  *     parsed by this rule. Consumers using that pattern must run
- *     `php artisan enumerator:annotate` after migration to regenerate
+ *     `php artisan laranail::enumerator.annotate` after migration to regenerate
  *     IDE helpers.
  *   - `values()` method overrides are stripped; consumers should set
  *     `#[Label]` attributes manually after the codemod.

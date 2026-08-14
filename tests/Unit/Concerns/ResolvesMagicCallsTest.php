@@ -10,18 +10,18 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\MultiHandlerEnum;
 
 it('throws AmbiguousMagicCallException by default on a multi-hit call', function (): void {
     // The default config value of ambiguous_resolution is 'throw'.
-    config()->set('enumerator.magic.ambiguous_resolution', 'throw');
+    config()->set('laranail.enumerator.magic.ambiguous_resolution', 'throw');
     MultiHandlerEnum::Alpha->isAlpha();
 })->throws(AmbiguousMagicCallException::class);
 
 it('returns the first handler hit when ambiguous_resolution is "first"', function (): void {
-    config()->set('enumerator.magic.ambiguous_resolution', 'first');
+    config()->set('laranail.enumerator.magic.ambiguous_resolution', 'first');
     // magicCompare runs first, returns `true` (Alpha->isAlpha).
     expect(MultiHandlerEnum::Alpha->isAlpha())->toBeTrue();
 });
 
 it('returns null when ambiguous_resolution is "null"', function (): void {
-    config()->set('enumerator.magic.ambiguous_resolution', 'null');
+    config()->set('laranail.enumerator.magic.ambiguous_resolution', 'null');
     expect(MultiHandlerEnum::Alpha->isAlpha())->toBeNull();
 });
 

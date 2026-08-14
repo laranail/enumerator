@@ -75,7 +75,7 @@ trait ResolvesMagicCalls
         }
 
         $resolution = function_exists('config')
-            ? (string) (config('enumerator.magic.ambiguous_resolution') ?? 'throw')
+            ? (string) (config('laranail.enumerator.magic.ambiguous_resolution') ?? 'throw')
             : 'throw';
 
         return match ($resolution) {

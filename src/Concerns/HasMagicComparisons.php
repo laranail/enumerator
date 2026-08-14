@@ -12,7 +12,7 @@ use Simtabi\Laranail\Enumerator\Exceptions\AmbiguousMagicCallException;
  * `$case->isOneOf(Status::Active, Status::Pending)`.
  *
  * Case-name resolution is case-insensitive by default
- * (`config('enumerator.magic.case_insensitive_method_names')`); when two cases
+ * (`config('laranail.enumerator.magic.case_insensitive_method_names')`); when two cases
  * differ only by capitalisation the call resolves to the exact-match case,
  * falling back to `ambiguous_resolution` config when no exact match exists.
  *
@@ -76,7 +76,7 @@ trait HasMagicComparisons
         }
 
         $insensitive = function_exists('config')
-            ? (bool) (config('enumerator.magic.case_insensitive_method_names') ?? true)
+            ? (bool) (config('laranail.enumerator.magic.case_insensitive_method_names') ?? true)
             : true;
         if (! $insensitive) {
             return null;
@@ -98,7 +98,7 @@ trait HasMagicComparisons
         }
 
         $resolution = function_exists('config')
-            ? (string) (config('enumerator.magic.ambiguous_resolution') ?? 'throw')
+            ? (string) (config('laranail.enumerator.magic.ambiguous_resolution') ?? 'throw')
             : 'throw';
 
         return match ($resolution) {

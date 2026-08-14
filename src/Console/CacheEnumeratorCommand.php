@@ -17,7 +17,6 @@ class CacheEnumeratorCommand extends Command
     protected $description = 'Warm and persist the enumerator reflection cache.';
 
     /** @var list<string> */
-    protected array $commandAliases = ['enumerator:cache'];
 
     /**
      * fix: delegate to ReflectionCachePersistor so the persisted
@@ -28,7 +27,7 @@ class CacheEnumeratorCommand extends Command
      */
     public function handle(ReflectionCachePersistor $persistor): int
     {
-        $classes = (array) config('enumerator.cache.auto_warm_classes', []);
+        $classes = (array) config('laranail.enumerator.cache.auto_warm_classes', []);
         $persistor->dump($classes);
         $this->info((string) __('laranail-enumerator::enumerator.commands.cache.cached'));
 

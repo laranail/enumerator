@@ -20,7 +20,7 @@ trait RendersHtml
         if ($framework === null) {
             $framework = 'plain';
             if (function_exists('config')) {
-                $configured = config('enumerator.css_framework');
+                $configured = config('laranail.enumerator.css_framework');
                 if (is_string($configured) && $configured !== '') {
                     $framework = $configured;
                 }

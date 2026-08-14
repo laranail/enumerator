@@ -36,7 +36,7 @@ it('returns an empty string for non-enumerator classes', function (): void {
 });
 
 it('binds SchemaExporter as a singleton when the module is enabled', function (): void {
-    config()->set('enumerator.modules.graphql', true);
+    config()->set('laranail.enumerator.modules.graphql', true);
     app()->register(GraphQLServiceProvider::class, true);
 
     expect(app(SchemaExporter::class))->toBeInstanceOf(SchemaExporter::class);

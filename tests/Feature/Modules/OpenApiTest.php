@@ -57,7 +57,7 @@ it('returns an empty schema for non-enumerator classes', function (): void {
 });
 
 it('binds OpenApiSchemaExporter as a singleton when the module is enabled', function (): void {
-    config()->set('enumerator.modules.openapi', true);
+    config()->set('laranail.enumerator.modules.openapi', true);
     // Re-register the module to pick up the new config.
     app()->register(OpenApiServiceProvider::class, true);
 

@@ -18,7 +18,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
 // replacing, and the panel stays open for consecutive selections.
 
 beforeEach(function (): void {
-    config()->set('enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.css_framework', 'plain');
 });
 
 it('multi-mode emits the multi-aware x-data state', function (): void {

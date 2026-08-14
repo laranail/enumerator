@@ -12,7 +12,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
 |--------------------------------------------------------------------------
 |
 | For each component × framework, asserts that the CSS class strings from
-| `config('enumerator.css_classes.{framework}.{component}.{element}')` land
+| `config('laranail.enumerator.css_classes.{framework}.{component}.{element}')` land
 | in the rendered HTML. Catches regressions where:
 |
 |   - the config map drifts from the views,

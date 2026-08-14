@@ -10,7 +10,7 @@ namespace Simtabi\Laranail\Enumerator\Contracts;
  *
  * Default binding: `Translations\LaravelTranslatorAdapter` (wraps Lang::*).
  *
- * Consumers can swap the binding via `config('enumerator.translator.adapter')`
+ * Consumers can swap the binding via `config('laranail.enumerator.translator.adapter')`
  * to use a DB-backed source, a third-party translation service, or a
  * test fake.
  */

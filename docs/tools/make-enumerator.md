@@ -1,13 +1,13 @@
-# make:enumerator command
+# laranail::enumerator.make command
 
 Generate a new enum from a publishable stub:
 
 ```bash
-php artisan make:enumerator UserStatusEnum
-php artisan make:enumerator UserStatusEnum --stub=attributes
-php artisan make:enumerator OrderStatusEnum --stub=state-machine
-php artisan make:enumerator FeatureFlagEnum --stub=bitmask
-php artisan make:enumerator Color --stub=pure
+php artisan laranail::enumerator.make UserStatusEnum
+php artisan laranail::enumerator.make UserStatusEnum --stub=attributes
+php artisan laranail::enumerator.make OrderStatusEnum --stub=state-machine
+php artisan laranail::enumerator.make FeatureFlagEnum --stub=bitmask
+php artisan laranail::enumerator.make Color --stub=pure
 ```
 
 Customize stubs:

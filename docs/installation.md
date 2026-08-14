@@ -31,7 +31,7 @@ php artisan vendor:publish --tag=enumerator-views-bootstrap
 php artisan vendor:publish --tag=enumerator-views-bulma
 php artisan vendor:publish --tag=enumerator-views-plain
 
-# make:enumerator stubs (for customization)
+# laranail::enumerator.make stubs (for customization)
 php artisan vendor:publish --tag=enumerator-stubs
 
 # State-history migration
@@ -61,13 +61,13 @@ Or per-call:
 For production deployments warm the file-backed reflection cache:
 
 ```bash
-php artisan enumerator:cache
+php artisan laranail::enumerator.cache
 ```
 
 Clear it when releasing new enum cases:
 
 ```bash
-php artisan enumerator:cache:clear
+php artisan laranail::enumerator.cache-clear
 ```
 
 ---

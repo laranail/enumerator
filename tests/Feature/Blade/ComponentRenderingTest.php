@@ -12,7 +12,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\RenderableStatusEnum;
 // framework variants to lift coverage on the eight component classes.
 
 beforeEach(function (): void {
-    config()->set('enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.css_framework', 'plain');
 });
 
 // Badge

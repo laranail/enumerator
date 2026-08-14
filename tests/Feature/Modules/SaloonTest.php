@@ -44,7 +44,7 @@ it('recursively casts arrays', function (): void {
 });
 
 it('binds EnumCaster as a singleton when module is enabled', function (): void {
-    config()->set('enumerator.modules.saloon', true);
+    config()->set('laranail.enumerator.modules.saloon', true);
     app()->register(SaloonServiceProvider::class, true);
 
     expect(app(EnumCaster::class))->toBeInstanceOf(EnumCaster::class);

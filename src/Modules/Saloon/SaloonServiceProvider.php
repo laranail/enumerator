@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 /**
  * Optional Saloon caster module.
  *
- * Activates when `config('enumerator.modules.saloon')` is true. The
+ * Activates when `config('laranail.enumerator.modules.saloon')` is true. The
  * `EnumCaster` utility has no Saloon SDK dependency (it's plain PHP that
  * walks arrays + serializes enums), so the module is mostly a discovery
  * hook — it binds the caster as a singleton for resolution from the
@@ -33,6 +33,6 @@ final class SaloonServiceProvider extends ServiceProvider
 
     private function shouldRegister(): bool
     {
-        return (bool) $this->app['config']->get('enumerator.modules.saloon', false);
+        return (bool) $this->app['config']->get('laranail.enumerator.modules.saloon', false);
     }
 }

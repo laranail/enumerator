@@ -11,7 +11,7 @@ use Illuminate\Support\ServiceProvider;
  * Optional Octane warmup module.
  *
  * Activates when both (a) Octane is installed (`\Laravel\Octane\Octane`
- * class exists) AND (b) `config('enumerator.modules.octane')` is true.
+ * class exists) AND (b) `config('laranail.enumerator.modules.octane')` is true.
  * Registers `WarmCachesListener` as a listener for Octane's
  * `WorkerStarting` event.
  *
@@ -49,6 +49,6 @@ final class OctaneServiceProvider extends ServiceProvider
             return false;
         }
 
-        return (bool) $this->app['config']->get('enumerator.modules.octane', false);
+        return (bool) $this->app['config']->get('laranail.enumerator.modules.octane', false);
     }
 }

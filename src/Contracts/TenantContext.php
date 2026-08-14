@@ -8,12 +8,12 @@ namespace Simtabi\Laranail\Enumerator\Contracts;
  * Per-tenant override source for attribute resolution.
  *
  * Consumers implementing this contract bind it via
- * `config('enumerator.tenancy.driver')`. The default
+ * `config('laranail.enumerator.tenancy.driver')`. The default
  * `Support\NullTenantContext` preserves single-tenant behaviour.
  *
  * `AttributesOverrideResolver::resolve()` consults the bound
  * `TenantContext` FIRST, then falls back to
- * `config('enumerator.overrides')`, then the compile-time `#[Attribute]`
+ * `config('laranail.enumerator.overrides')`, then the compile-time `#[Attribute]`
  * declaration on the case.
  *
  * SECURITY — trusted-input contract for the `icon`, `color`, and
@@ -42,7 +42,7 @@ interface TenantContext
 
     /**
      * Per-tenant overrides for the given enum class. Returned shape
-     * mirrors `config('enumerator.overrides')`:
+     * mirrors `config('laranail.enumerator.overrides')`:
      *
      *     [
      *       'CaseName' => [

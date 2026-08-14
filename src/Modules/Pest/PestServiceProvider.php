@@ -11,7 +11,7 @@ use Illuminate\Support\ServiceProvider;
  *
  * Registers custom Pest expectations for enumerator cases on boot, but
  * only when (a) `pestphp/pest` is installed AND (b)
- * `config('enumerator.modules.pest')` is true. Both conditions failing
+ * `config('laranail.enumerator.modules.pest')` is true. Both conditions failing
  * makes this provider a no-op.
  */
 final class PestServiceProvider extends ServiceProvider
@@ -41,6 +41,6 @@ final class PestServiceProvider extends ServiceProvider
             return false;
         }
 
-        return (bool) $this->app['config']->get('enumerator.modules.pest', false);
+        return (bool) $this->app['config']->get('laranail.enumerator.modules.pest', false);
     }
 }

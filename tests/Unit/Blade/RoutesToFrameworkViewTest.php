@@ -9,8 +9,8 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\RenderableStatusEnum;
 // RoutesToFrameworkView — framework resolution + attribute extraction.
 
 it('frameworkView() composes the namespaced view path for the configured framework', function (): void {
-    config()->set('enumerator.css_framework', 'bootstrap');
-    config()->set('enumerator.view_namespace', 'laranail-enumerator');
+    config()->set('laranail.enumerator.css_framework', 'bootstrap');
+    config()->set('laranail.enumerator.view_namespace', 'laranail-enumerator');
 
     $component = new Badge(RenderableStatusEnum::Active);
     $method = (new ReflectionMethod($component, 'frameworkView'))->setAccessible(true) ?? null;
@@ -20,7 +20,7 @@ it('frameworkView() composes the namespaced view path for the configured framewo
 });
 
 it('frameworkView() respects the per-component framework prop over config', function (): void {
-    config()->set('enumerator.css_framework', 'bootstrap');
+    config()->set('laranail.enumerator.css_framework', 'bootstrap');
 
     $component = new Badge(RenderableStatusEnum::Active, framework: 'tailwind');
     $r = new ReflectionMethod($component, 'frameworkView');

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 /**
  * Record of a state transition for any model using HasEnumeratorStateMachine.
  *
- * Table name comes from `config('enumerator.state_machine.table_name')`
+ * Table name comes from `config('laranail.enumerator.state_machine.table_name')`
  * (default `enumerator_state_history`).
  *
  * @property int $id
@@ -53,7 +53,7 @@ class EnumeratorStateHistory extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->setTable((string) config('enumerator.state_machine.table_name', 'enumerator_state_history'));
+        $this->setTable((string) config('laranail.enumerator.state_machine.table_name', 'enumerator_state_history'));
         parent::__construct($attributes);
     }
 

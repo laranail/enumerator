@@ -58,7 +58,7 @@ it('tryFromMeta() returns null when nothing matches', function (): void {
 
 it('fromMeta() returns the case collection when matches are found', function (): void {
     AttributesCache::flush();
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
             'Active' => ['meta' => ['priority' => 'high']],
             'Pending' => ['meta' => ['priority' => 'high']],
@@ -71,7 +71,7 @@ it('fromMeta() returns the case collection when matches are found', function ():
 
 it('tryFromMeta() returns a collection when matches are found', function (): void {
     AttributesCache::flush();
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
             'Active' => ['meta' => ['featured' => true]],
         ],
@@ -84,7 +84,7 @@ it('tryFromMeta() returns a collection when matches are found', function (): voi
 
 it('tryFromMeta() supports a callable predicate', function (): void {
     AttributesCache::flush();
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
             'Active' => ['meta' => ['priority' => 5]],
             'Pending' => ['meta' => ['priority' => 10]],

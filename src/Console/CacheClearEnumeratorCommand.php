@@ -19,7 +19,6 @@ class CacheClearEnumeratorCommand extends Command
     protected $description = 'Drop the enumerator reflection cache (memory + file).';
 
     /** @var list<string> */
-    protected array $commandAliases = ['enumerator:cache:clear'];
 
     public function handle(LayeredCache $cache): int
     {

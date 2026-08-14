@@ -57,7 +57,7 @@ it('all three emitters return empty schemas for non-enumerator classes', functio
 });
 
 it('binds all three emitters as singletons when module is enabled', function (): void {
-    config()->set('enumerator.modules.structured_output', true);
+    config()->set('laranail.enumerator.modules.structured_output', true);
     app()->register(StructuredOutputServiceProvider::class, true);
 
     expect(app(OpenAiSchemaEmitter::class))->toBeInstanceOf(OpenAiSchemaEmitter::class);

@@ -18,7 +18,7 @@ It writes to `config/enumerator.php`. Every key is documented inline.
 | `cache.driver` | `layered` | `memory` (per-request) / `file` (bootstrap/cache/enumerator.php) / `layered` (memory over file). |
 | `cache.file_path` | `null` | Defaults to `bootstrap/cache/enumerator.php`. |
 | `cache.auto_warm` | `false` | If `true`, warm `auto_warm_classes` on boot. Adds startup latency. |
-| `cache.auto_warm_classes` | `[]` | FQCNs to warm. Use with `auto_warm=true` or `enumerator:cache` artisan command. |
+| `cache.auto_warm_classes` | `[]` | FQCNs to warm. Use with `auto_warm=true` or `laranail::enumerator.cache` artisan command. |
 | `state_machine.table_name` | `enumerator_state_history` | Table for the optional history model. |
 | `state_machine.record_history` | `true` | Persist transitions automatically. |
 | `state_machine.enforce_initial_state` | `true` | Reject creating models with a non-initial state. |

@@ -19,7 +19,7 @@ afterEach(function (): void {
 // laranail::enumerator.* namespaced names resolve (and old names stay as aliases)
 
 it('resolves the laranail::enumerator.cache primary name', function (): void {
-    config()->set('enumerator.cache.auto_warm_classes', [StatusEnum::class]);
+    config()->set('laranail.enumerator.cache.auto_warm_classes', [StatusEnum::class]);
     $exit = Artisan::call('laranail::enumerator.cache');
     expect($exit)->toBe(0);
 });
@@ -33,7 +33,7 @@ it('resolves both the primary name and the legacy alias for annotate', function 
     $viaPrimary = Artisan::call('laranail::enumerator.annotate', ['class' => StatusEnum::class]);
     expect($viaPrimary)->toBe(0);
 
-    $viaAlias = Artisan::call('enumerator:annotate', ['class' => StatusEnum::class]);
+    $viaAlias = Artisan::call('laranail::enumerator.annotate', ['class' => StatusEnum::class]);
     expect($viaAlias)->toBe(0);
 });
 
@@ -48,29 +48,29 @@ it('resolves the laranail::enumerator.make primary name', function (): void {
     expect(file_exists(app()->path('Enums/PrimaryNameEnum.php')))->toBeTrue();
 });
 
-// enumerator:cache + enumerator:cache:clear
+// laranail::enumerator.cache + laranail::enumerator.cache-clear
 
-it('enumerator:cache returns SUCCESS', function (): void {
-    config()->set('enumerator.cache.auto_warm_classes', [StatusEnum::class]);
-    $exit = Artisan::call('enumerator:cache');
+it('laranail::enumerator.cache returns SUCCESS', function (): void {
+    config()->set('laranail.enumerator.cache.auto_warm_classes', [StatusEnum::class]);
+    $exit = Artisan::call('laranail::enumerator.cache');
     expect($exit)->toBe(0);
 });
 
-it('enumerator:cache:clear returns SUCCESS', function (): void {
-    $exit = Artisan::call('enumerator:cache:clear');
+it('laranail::enumerator.cache-clear returns SUCCESS', function (): void {
+    $exit = Artisan::call('laranail::enumerator.cache-clear');
     expect($exit)->toBe(0);
 });
 
-// enumerator:export
+// laranail::enumerator.export
 
-it('enumerator:export emits JSON to stdout by default', function (): void {
-    Artisan::call('enumerator:export', ['class' => StatusEnum::class]);
+it('laranail::enumerator.export emits JSON to stdout by default', function (): void {
+    Artisan::call('laranail::enumerator.export', ['class' => StatusEnum::class]);
     $output = Artisan::output();
     expect($output)->toContain('"active"');
 });
 
-it('enumerator:export --ts emits TypeScript', function (): void {
-    Artisan::call('enumerator:export', [
+it('laranail::enumerator.export --ts emits TypeScript', function (): void {
+    Artisan::call('laranail::enumerator.export', [
         'class' => StatusEnum::class,
         '--ts' => true,
     ]);
@@ -78,8 +78,8 @@ it('enumerator:export --ts emits TypeScript', function (): void {
     expect($output)->toContain('export const StatusEnum = {');
 });
 
-it('enumerator:export --php emits a PHP return file', function (): void {
-    Artisan::call('enumerator:export', [
+it('laranail::enumerator.export --php emits a PHP return file', function (): void {
+    Artisan::call('laranail::enumerator.export', [
         'class' => StatusEnum::class,
         '--php' => true,
     ]);
@@ -88,9 +88,9 @@ it('enumerator:export --php emits a PHP return file', function (): void {
     expect($output)->toContain('declare(strict_types=1);');
 });
 
-it('enumerator:export --out writes to disk', function (): void {
+it('laranail::enumerator.export --out writes to disk', function (): void {
     $path = sys_get_temp_dir() . '/enum-export-test-' . bin2hex(random_bytes(4)) . '.json';
-    Artisan::call('enumerator:export', [
+    Artisan::call('laranail::enumerator.export', [
         'class' => StatusEnum::class,
         '--out' => $path,
     ]);
@@ -98,46 +98,46 @@ it('enumerator:export --out writes to disk', function (): void {
     expect(File::get($path))->toContain('"active"');
 });
 
-it('enumerator:export fails when the class is not an enum', function (): void {
-    $exit = Artisan::call('enumerator:export', ['class' => stdClass::class]);
+it('laranail::enumerator.export fails when the class is not an enum', function (): void {
+    $exit = Artisan::call('laranail::enumerator.export', ['class' => stdClass::class]);
     expect($exit)->toBe(1);
 });
 
-// enumerator:annotate
+// laranail::enumerator.annotate
 
-it('enumerator:annotate runs without error for a valid enum', function (): void {
-    $exit = Artisan::call('enumerator:annotate', ['class' => StatusEnum::class]);
+it('laranail::enumerator.annotate runs without error for a valid enum', function (): void {
+    $exit = Artisan::call('laranail::enumerator.annotate', ['class' => StatusEnum::class]);
     expect($exit)->toBe(0);
 });
 
-it('enumerator:annotate emits @method stubs for backed enums', function (): void {
-    Artisan::call('enumerator:annotate', ['class' => StatusEnum::class]);
+it('laranail::enumerator.annotate emits @method stubs for backed enums', function (): void {
+    Artisan::call('laranail::enumerator.annotate', ['class' => StatusEnum::class]);
     $output = Artisan::output();
     expect($output)->toContain('@method static StatusEnum Active()');
     expect($output)->toContain('@method static StatusEnum Archived()');
 });
 
-it('enumerator:annotate prints a usage hint when no class is given', function (): void {
-    $exit = Artisan::call('enumerator:annotate');
+it('laranail::enumerator.annotate prints a usage hint when no class is given', function (): void {
+    $exit = Artisan::call('laranail::enumerator.annotate');
     expect($exit)->toBe(0);
-    expect(Artisan::output())->toContain('php artisan enumerator:annotate');
+    expect(Artisan::output())->toContain('php artisan laranail::enumerator.annotate');
 });
 
-it('enumerator:annotate fails for a non-enumerator class', function (): void {
-    $exit = Artisan::call('enumerator:annotate', ['class' => stdClass::class]);
+it('laranail::enumerator.annotate fails for a non-enumerator class', function (): void {
+    $exit = Artisan::call('laranail::enumerator.annotate', ['class' => stdClass::class]);
     expect($exit)->toBe(1);
 });
 
-it('enumerator:annotate handles AbstractEnumeratorClass subclasses', function (): void {
-    $exit = Artisan::call('enumerator:annotate', [
+it('laranail::enumerator.annotate handles AbstractEnumeratorClass subclasses', function (): void {
+    $exit = Artisan::call('laranail::enumerator.annotate', [
         'class' => LegacyStatusEnum::class,
     ]);
     expect($exit)->toBe(0);
     expect(Artisan::output())->toContain('@method static');
 });
 
-it('enumerator:annotate emits unannotated @method lines for pure enums', function (): void {
-    $exit = Artisan::call('enumerator:annotate', [
+it('laranail::enumerator.annotate emits unannotated @method lines for pure enums', function (): void {
+    $exit = Artisan::call('laranail::enumerator.annotate', [
         'class' => PureColorEnum::class,
     ]);
     expect($exit)->toBe(0);
@@ -146,22 +146,22 @@ it('enumerator:annotate emits unannotated @method lines for pure enums', functio
     expect($out)->not->toContain('returns string');
 });
 
-// enumerator:ide-helper
+// laranail::enumerator.ide-helper
 
-it('enumerator:ide-helper runs and emits to a temp output', function (): void {
+it('laranail::enumerator.ide-helper runs and emits to a temp output', function (): void {
     // Use a path that's resolvable inside Testbench's app root.
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
-    config()->set('enumerator.ide_helper.classes', [StatusEnum::class]);
+    config()->set('laranail.enumerator.ide_helper.classes', [StatusEnum::class]);
 
-    $exit = Artisan::call('enumerator:ide-helper', ['--out' => $path]);
+    $exit = Artisan::call('laranail::enumerator.ide-helper', ['--out' => $path]);
     expect($exit)->toBe(0);
 
     @unlink(app()->basePath($path));
 });
 
-it('enumerator:ide-helper accepts positional class args (overrides config)', function (): void {
+it('laranail::enumerator.ide-helper accepts positional class args (overrides config)', function (): void {
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
-    $exit = Artisan::call('enumerator:ide-helper', [
+    $exit = Artisan::call('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
         '--out' => $path,
     ]);
@@ -174,9 +174,9 @@ it('enumerator:ide-helper accepts positional class args (overrides config)', fun
     }
 });
 
-it('enumerator:ide-helper emits factory + predicate methods for native enums', function (): void {
+it('laranail::enumerator.ide-helper emits factory + predicate methods for native enums', function (): void {
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
-    Artisan::call('enumerator:ide-helper', [
+    Artisan::call('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
         '--out' => $path,
     ]);
@@ -192,9 +192,9 @@ it('enumerator:ide-helper emits factory + predicate methods for native enums', f
     @unlink($absolute);
 });
 
-it('enumerator:ide-helper emits factory stubs for AbstractEnumeratorClass subclasses', function (): void {
+it('laranail::enumerator.ide-helper emits factory stubs for AbstractEnumeratorClass subclasses', function (): void {
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
-    Artisan::call('enumerator:ide-helper', [
+    Artisan::call('laranail::enumerator.ide-helper', [
         'classes' => [LegacyStatusEnum::class],
         '--out' => $path,
     ]);
@@ -209,22 +209,22 @@ it('enumerator:ide-helper emits factory stubs for AbstractEnumeratorClass subcla
     @unlink($absolute);
 });
 
-it('enumerator:ide-helper warns when no classes are configured', function (): void {
-    config()->set('enumerator.ide_helper.classes', null);
-    config()->set('enumerator.cache.auto_warm_classes', null);
+it('laranail::enumerator.ide-helper warns when no classes are configured', function (): void {
+    config()->set('laranail.enumerator.ide_helper.classes', null);
+    config()->set('laranail.enumerator.cache.auto_warm_classes', null);
 
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
-    $exit = Artisan::call('enumerator:ide-helper', ['--out' => $path]);
+    $exit = Artisan::call('laranail::enumerator.ide-helper', ['--out' => $path]);
     expect($exit)->toBe(0);
     expect(Artisan::output())->toContain('No enumerator classes found');
 });
 
-it('enumerator:ide-helper falls back to cache.auto_warm_classes', function (): void {
-    config()->set('enumerator.ide_helper.classes', null);
-    config()->set('enumerator.cache.auto_warm_classes', [StatusEnum::class]);
+it('laranail::enumerator.ide-helper falls back to cache.auto_warm_classes', function (): void {
+    config()->set('laranail.enumerator.ide_helper.classes', null);
+    config()->set('laranail.enumerator.cache.auto_warm_classes', [StatusEnum::class]);
 
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
-    Artisan::call('enumerator:ide-helper', ['--out' => $path]);
+    Artisan::call('laranail::enumerator.ide-helper', ['--out' => $path]);
 
     $absolute = app()->basePath($path);
     expect(file_exists($absolute))->toBeTrue();
@@ -233,9 +233,9 @@ it('enumerator:ide-helper falls back to cache.auto_warm_classes', function (): v
     @unlink($absolute);
 });
 
-it('enumerator:ide-helper skips non-enumerator candidates silently', function (): void {
+it('laranail::enumerator.ide-helper skips non-enumerator candidates silently', function (): void {
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
-    Artisan::call('enumerator:ide-helper', [
+    Artisan::call('laranail::enumerator.ide-helper', [
         'classes' => [stdClass::class, StatusEnum::class],
         '--out' => $path,
     ]);
@@ -249,7 +249,7 @@ it('enumerator:ide-helper skips non-enumerator candidates silently', function ()
     @unlink($absolute);
 });
 
-// make:enumerator
+// laranail::enumerator.make
 
 afterEach(function (): void {
     $appDir = app()->path('Enums');
@@ -261,8 +261,8 @@ afterEach(function (): void {
     }
 });
 
-it('make:enumerator scaffolds a backed-enum class', function (): void {
-    $exit = Artisan::call('make:enumerator', ['name' => 'TestBackedEnum']);
+it('laranail::enumerator.make scaffolds a backed-enum class', function (): void {
+    $exit = Artisan::call('laranail::enumerator.make', ['name' => 'TestBackedEnum']);
     expect($exit)->toBe(0);
 
     $expected = app()->path('Enums/TestBackedEnum.php');
@@ -270,27 +270,27 @@ it('make:enumerator scaffolds a backed-enum class', function (): void {
     expect(file_get_contents($expected))->toContain('enum TestBackedEnum');
 });
 
-it('make:enumerator supports the pure stub', function (): void {
-    Artisan::call('make:enumerator', ['name' => 'TestPureEnum', '--stub' => 'pure']);
+it('laranail::enumerator.make supports the pure stub', function (): void {
+    Artisan::call('laranail::enumerator.make', ['name' => 'TestPureEnum', '--stub' => 'pure']);
     $expected = app()->path('Enums/TestPureEnum.php');
     expect(file_exists($expected))->toBeTrue();
 });
 
-it('make:enumerator supports the attributes stub', function (): void {
-    Artisan::call('make:enumerator', ['name' => 'TestAttrsEnum', '--stub' => 'attributes']);
+it('laranail::enumerator.make supports the attributes stub', function (): void {
+    Artisan::call('laranail::enumerator.make', ['name' => 'TestAttrsEnum', '--stub' => 'attributes']);
     expect(file_exists(app()->path('Enums/TestAttrsEnum.php')))->toBeTrue();
 });
 
-it('make:enumerator supports the bitmask stub', function (): void {
-    Artisan::call('make:enumerator', ['name' => 'TestBitmaskEnum', '--stub' => 'bitmask']);
+it('laranail::enumerator.make supports the bitmask stub', function (): void {
+    Artisan::call('laranail::enumerator.make', ['name' => 'TestBitmaskEnum', '--stub' => 'bitmask']);
     expect(file_exists(app()->path('Enums/TestBitmaskEnum.php')))->toBeTrue();
 });
 
-it('make:enumerator supports the state-machine stub', function (): void {
-    Artisan::call('make:enumerator', ['name' => 'TestStateEnum', '--stub' => 'state-machine']);
+it('laranail::enumerator.make supports the state-machine stub', function (): void {
+    Artisan::call('laranail::enumerator.make', ['name' => 'TestStateEnum', '--stub' => 'state-machine']);
     expect(file_exists(app()->path('Enums/TestStateEnum.php')))->toBeTrue();
 });
 
-it('make:enumerator rejects an unknown stub', function (): void {
-    Artisan::call('make:enumerator', ['name' => 'TestUnknownEnum', '--stub' => 'no-such-stub']);
+it('laranail::enumerator.make rejects an unknown stub', function (): void {
+    Artisan::call('laranail::enumerator.make', ['name' => 'TestUnknownEnum', '--stub' => 'no-such-stub']);
 })->throws(InvalidArgumentException::class);

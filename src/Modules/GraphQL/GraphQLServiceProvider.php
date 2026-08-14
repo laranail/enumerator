@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
  * Optional GraphQL schema generator module.
  *
  * Framework-agnostic — does NOT require Lighthouse. Activates when
- * `config('enumerator.modules.graphql')` is true. Binds `SchemaExporter`
+ * `config('laranail.enumerator.modules.graphql')` is true. Binds `SchemaExporter`
  * as a singleton so callers can resolve it from the container or DI it
  * into commands / handlers.
  *
@@ -36,6 +36,6 @@ final class GraphQLServiceProvider extends ServiceProvider
 
     private function shouldRegister(): bool
     {
-        return (bool) $this->app['config']->get('enumerator.modules.graphql', false);
+        return (bool) $this->app['config']->get('laranail.enumerator.modules.graphql', false);
     }
 }

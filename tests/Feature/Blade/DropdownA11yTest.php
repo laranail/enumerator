@@ -12,7 +12,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
 // than a resolved value.
 
 beforeEach(function (): void {
-    config()->set('enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.css_framework', 'plain');
 });
 
 it('Alpine path emits aria-controls linking trigger → listbox', function (): void {

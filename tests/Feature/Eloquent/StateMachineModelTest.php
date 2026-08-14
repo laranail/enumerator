@@ -30,9 +30,9 @@ class StateMachineTestArticle extends Model
 }
 
 beforeEach(function (): void {
-    config()->set('enumerator.state_machine.record_history', true);
-    config()->set('enumerator.state_machine.enforce_initial_state', true);
-    config()->set('enumerator.state_machine.table_name', 'enumerator_state_history');
+    config()->set('laranail.enumerator.state_machine.record_history', true);
+    config()->set('laranail.enumerator.state_machine.enforce_initial_state', true);
+    config()->set('laranail.enumerator.state_machine.table_name', 'enumerator_state_history');
 
     Schema::create('state_machine_articles', function ($table): void {
         $table->id();
@@ -96,7 +96,7 @@ it('records a row on each allowed update', function (): void {
 });
 
 it('skips history recording when record_history config is false', function (): void {
-    config()->set('enumerator.state_machine.record_history', false);
+    config()->set('laranail.enumerator.state_machine.record_history', false);
 
     // Re-boot the trait to re-evaluate the config-gated created/updated hooks.
     StateMachineTestArticle::clearBootedModels();
@@ -113,7 +113,7 @@ it('exposes enumeratorStateHistory() as a polymorphic relation', function (): vo
 // EnumeratorStateHistory model itself
 
 it('EnumeratorStateHistory uses the configured table name', function (): void {
-    config()->set('enumerator.state_machine.table_name', 'enumerator_state_history');
+    config()->set('laranail.enumerator.state_machine.table_name', 'enumerator_state_history');
     $model = new EnumeratorStateHistory;
     expect($model->getTable())->toBe('enumerator_state_history');
 });

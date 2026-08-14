@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 /**
  * Optional structured-output schemas module.
  *
- * Activates when `config('enumerator.modules.structured_output')` is
+ * Activates when `config('laranail.enumerator.modules.structured_output')` is
  * true. Binds three sibling emitters as singletons — one each for
  * OpenAI, Anthropic, and MCP. No vendor SDK dependency at the file
  * level; consumers paste the schema fragments into their own client
@@ -35,6 +35,6 @@ final class StructuredOutputServiceProvider extends ServiceProvider
 
     private function shouldRegister(): bool
     {
-        return (bool) $this->app['config']->get('enumerator.modules.structured_output', false);
+        return (bool) $this->app['config']->get('laranail.enumerator.modules.structured_output', false);
     }
 }

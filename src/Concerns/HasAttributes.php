@@ -14,7 +14,7 @@ use Simtabi\Laranail\Enumerator\Support\EnumeratorRegistry;
  * declaration, with config-file override support.
  *
  * Override priority (per attribute key, e.g. "color"):
- *   1. config('enumerator.overrides.{FQCN}.{CaseName}.color')
+ *   1. config('laranail.enumerator.overrides.{FQCN}.{CaseName}.color')
  *   2. The compile-time #[Color] attribute on the case
  *   3. null
  *
@@ -54,7 +54,7 @@ trait HasAttributes
         if ($framework === null) {
             $framework = 'plain';
             if (function_exists('config')) {
-                $configured = config('enumerator.css_framework');
+                $configured = config('laranail.enumerator.css_framework');
                 if (is_string($configured) && $configured !== '') {
                     $framework = $configured;
                 }

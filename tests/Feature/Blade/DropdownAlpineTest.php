@@ -25,7 +25,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
 // those fall through to the native select.
 
 beforeEach(function (): void {
-    config()->set('enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.css_framework', 'plain');
 });
 
 // Default (native select) path

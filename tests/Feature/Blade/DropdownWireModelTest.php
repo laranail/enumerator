@@ -18,7 +18,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
 //     goes on the <select> element itself.
 
 beforeEach(function (): void {
-    config()->set('enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.css_framework', 'plain');
 });
 
 // Alpine path

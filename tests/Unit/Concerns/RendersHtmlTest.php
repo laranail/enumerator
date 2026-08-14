@@ -10,7 +10,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\RenderableStatusEnum;
 // RendersHtml — toHtml() output contract.
 
 beforeEach(function (): void {
-    config()->set('enumerator.css_framework', 'bootstrap');
+    config()->set('laranail.enumerator.css_framework', 'bootstrap');
 });
 
 it('toHtml() returns an HtmlString', function (): void {
@@ -55,7 +55,7 @@ it('toHtml() falls back to per-framework class formulas when no #[CssClass] is s
 });
 
 it('toHtml() defaults to plain when config returns null', function (): void {
-    config()->set('enumerator.css_framework', null);
+    config()->set('laranail.enumerator.css_framework', null);
     $out = (string) StatusEnum::Active->toHtml();
     expect($out)->toContain('enumerator-badge');
 });

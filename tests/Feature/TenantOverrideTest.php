@@ -42,7 +42,7 @@ it('config-driven driver swap binds the consumer-provided implementation', funct
 });
 
 it('tenant overrides take precedence over config overrides', function (): void {
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
             'Active' => ['color' => 'config-red'],
         ],
@@ -67,7 +67,7 @@ it('tenant overrides take precedence over config overrides', function (): void {
 });
 
 it('empty tenant overrides fall through to config overrides', function (): void {
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
             'Active' => ['color' => 'config-red'],
         ],

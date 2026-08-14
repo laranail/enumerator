@@ -10,7 +10,7 @@ use Simtabi\Laranail\Enumerator\Support\ReflectionCachePersistor;
  * Octane worker boot listener
  *
  * Restores the persisted reflection cache snapshot (from
- * `enumerator:cache`) once per worker boot, so the worker doesn't have
+ * `laranail::enumerator.cache`) once per worker boot, so the worker doesn't have
  * to do reflection on the first request that touches each enum.
  *
  * Registered by `OctaneServiceProvider::boot()` when the module is

@@ -308,7 +308,7 @@ trait HasClassEnumBehavior
 
     public function toHtml(?string $framework = null): HtmlString
     {
-        $framework ??= (string) (config('enumerator.css_framework') ?? 'plain');
+        $framework ??= (string) (config('laranail.enumerator.css_framework') ?? 'plain');
         $classes = $this->cssClass($framework) ?? sprintf('enumerator-badge enumerator-%s', $this->color() ?? 'default');
         $icon = $this->icon();
         // double_encode=false — see RendersHtml::toHtml() for rationale.
@@ -326,7 +326,7 @@ trait HasClassEnumBehavior
 
     public function cssClass(?string $framework = null): ?string
     {
-        $framework ??= (string) (config('enumerator.css_framework') ?? 'plain');
+        $framework ??= (string) (config('laranail.enumerator.css_framework') ?? 'plain');
         $override = EnumeratorRegistry::instance()?->overrides->resolve($this, 'css_class.' . $framework);
         if (is_string($override)) {
             return $override;

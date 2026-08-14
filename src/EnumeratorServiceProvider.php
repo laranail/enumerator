@@ -39,11 +39,11 @@ final class EnumeratorServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/enumerator.php', 'enumerator');
+        $this->mergeConfigFrom(__DIR__ . '/../config/enumerator.php', 'laranail.enumerator');
 
         $this->app->singleton(LayeredCache::class, function ($app): LayeredCache {
             /** @var array{driver?: string, file_path?: ?string} $cfg */
-            $cfg = (array) $app['config']->get('enumerator.cache', []);
+            $cfg = (array) $app['config']->get('laranail.enumerator.cache', []);
             $driver = (string) ($cfg['driver'] ?? 'layered');
             $path = $cfg['file_path'] ?? null;
             if ($path === null && in_array($driver, ['file', 'layered'], true)) {
@@ -54,9 +54,9 @@ final class EnumeratorServiceProvider extends ServiceProvider
         });
 
         // TenantContext binding. Default = NullTenantContext (single-tenant).
-        // Consumers swap via config('enumerator.tenancy.driver') = FQCN.
+        // Consumers swap via config('laranail.enumerator.tenancy.driver') = FQCN.
         $this->app->singleton(TenantContext::class, function ($app): TenantContext {
-            $configured = $app['config']->get('enumerator.tenancy.driver');
+            $configured = $app['config']->get('laranail.enumerator.tenancy.driver');
             if (is_string($configured) && class_exists($configured)) {
                 $instance = $app->make($configured);
                 if ($instance instanceof TenantContext) {
@@ -71,7 +71,7 @@ final class EnumeratorServiceProvider extends ServiceProvider
             // TenantContext is NOT injected at construction time —
             // AttributesOverrideResolver resolves it lazily from the
             // container so tests can rebind via app()->instance() and
-            // production swaps via config('enumerator.tenancy.driver')
+            // production swaps via config('laranail.enumerator.tenancy.driver')
             // both work without needing to flush this singleton.
             return new AttributesOverrideResolver($app['config']);
         });
@@ -87,9 +87,9 @@ final class EnumeratorServiceProvider extends ServiceProvider
         });
 
         // Pluggable translator adapter. Default = LaravelTranslatorAdapter.
-        // Consumers swap via config('enumerator.translator.adapter').
+        // Consumers swap via config('laranail.enumerator.translator.adapter').
         $this->app->singleton(TranslatorAdapter::class, function ($app): TranslatorAdapter {
-            $configured = $app['config']->get('enumerator.translator.adapter');
+            $configured = $app['config']->get('laranail.enumerator.translator.adapter');
             if (is_string($configured) && class_exists($configured)) {
                 $instance = $app->make($configured);
                 if ($instance instanceof TranslatorAdapter) {
@@ -125,7 +125,7 @@ final class EnumeratorServiceProvider extends ServiceProvider
         // Restore the reflection-cache snapshot at boot when auto_warm
         // is enabled (and the persisted file exists). No-op when the
         // memory driver is in use, no snapshot exists, or auto_warm is off.
-        if ((bool) $this->app['config']->get('enumerator.cache.auto_warm', false)) {
+        if ((bool) $this->app['config']->get('laranail.enumerator.cache.auto_warm', false)) {
             $this->app->make(ReflectionCachePersistor::class)->restore();
         }
 
@@ -145,13 +145,13 @@ final class EnumeratorServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'laranail-enumerator');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        $viewNamespace = (string) ($this->app['config']->get('enumerator.view_namespace') ?? 'laranail-enumerator');
+        $viewNamespace = (string) ($this->app['config']->get('laranail.enumerator.view_namespace') ?? 'laranail-enumerator');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', $viewNamespace);
     }
 
     private function bootViewComponents(): void
     {
-        $viewNamespace = (string) ($this->app['config']->get('enumerator.view_namespace') ?? 'laranail-enumerator');
+        $viewNamespace = (string) ($this->app['config']->get('laranail.enumerator.view_namespace') ?? 'laranail-enumerator');
 
         // `componentNamespace()` powers the `<x-{namespace}::{name}>` form by
         // auto-resolving classes inside a PHP namespace. Class basenames are
@@ -186,27 +186,36 @@ final class EnumeratorServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Publish tags are a global registry too, and a bare `enumerator-config` is
+     * a name any package or application could also claim — `vendor:publish
+     * --tag=enumerator-config` would then write whichever registered last.
+     */
     private function bootPublishing(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/enumerator.php' => config_path('enumerator.php'),
-        ], 'enumerator-config');
+            __DIR__ . '/../config/enumerator.php' => config_path('laranail/enumerator.php'),
+        ], 'laranail::enumerator-config');
 
+        // vendor/laranail-enumerator, matching the namespace registered by
+        // loadTranslationsFrom(). Laravel looks for published overrides under
+        // lang/vendor/{namespace}, so `vendor/enumerator` put them where nothing
+        // reads them and every override was silently ignored.
         $this->publishes([
-            __DIR__ . '/../lang' => $this->app->langPath('vendor/enumerator'),
-        ], 'enumerator-lang');
+            __DIR__ . '/../lang' => $this->app->langPath('vendor/laranail-enumerator'),
+        ], 'laranail::enumerator-lang');
 
         $this->publishes([
             __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/laranail-enumerator'),
-        ], 'enumerator-views');
+        ], 'laranail::enumerator-views');
 
         $this->publishes([
-            __DIR__ . '/../resources/stubs' => $this->app->resourcePath('stubs/enumerator'),
-        ], 'enumerator-stubs');
+            __DIR__ . '/../resources/stubs' => $this->app->resourcePath('stubs/laranail-enumerator'),
+        ], 'laranail::enumerator-stubs');
 
         $this->publishes([
             __DIR__ . '/../database/migrations' => $this->app->databasePath('migrations'),
-        ], 'enumerator-migrations');
+        ], 'laranail::enumerator-migrations');
 
         // Alpine.js bundle for the Alpine-enhanced components. Consumers
         // publish this once if they want the local-fallback path of
@@ -214,11 +223,11 @@ final class EnumeratorServiceProvider extends ServiceProvider
         // under strict CSP. See docs/tools/alpine-loader.md.
         $this->publishes([
             __DIR__ . '/../resources/js' => $this->app->publicPath('vendor/laranail-enumerator'),
-        ], 'enumerator-js');
+        ], 'laranail::enumerator-js');
 
         $this->publishes([
             __DIR__ . '/Presets' => $this->app->path('Enums'),
-        ], 'enumerator-presets');
+        ], 'laranail::enumerator-presets');
     }
 
     private function bootCommands(): void

@@ -25,7 +25,7 @@ use UnitEnum;
  *
  * Enums implementing Contracts\Translatable can override the namespace
  * (via translationNamespace()) and slug (via translationSlug()). Defaults
- * are `config('enumerator.translation_namespace')` and a snake-cased class
+ * are `config('laranail.enumerator.translation_namespace')` and a snake-cased class
  * basename minus a trailing "Enum".
  */
 trait IsTranslatable
@@ -61,7 +61,7 @@ trait IsTranslatable
     public static function translationNamespace(): string
     {
         if (function_exists('config')) {
-            return (string) (config('enumerator.translation_namespace') ?? 'enumerator');
+            return (string) (config('laranail.enumerator.translation_namespace') ?? 'enumerator');
         }
 
         return 'enumerator';
@@ -90,7 +90,7 @@ trait IsTranslatable
     private function translateField(string $field, ?string $locale): ?string
     {
         // Resolve through the bound TranslatorAdapter; consumers can
-        // swap the binding via config('enumerator.translator.adapter').
+        // swap the binding via config('laranail.enumerator.translator.adapter').
         $adapter = $this->resolveTranslatorAdapter();
         if ($adapter === null) {
             return null;

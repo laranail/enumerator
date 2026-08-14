@@ -38,7 +38,7 @@ it('OctaneServiceProvider no-ops when the Octane event class is absent', functio
     // The Octane event class isn't installed in this test environment,
     // so the provider's shouldRegister() returns false even if the
     // config flag is on. Verify nothing throws and no listener is bound.
-    config()->set('enumerator.modules.octane', true);
+    config()->set('laranail.enumerator.modules.octane', true);
 
     app()->register(OctaneServiceProvider::class, true);
 
@@ -57,7 +57,7 @@ it('OctaneServiceProvider registers a listener when the Octane event class IS pr
         class_alias(stdClass::class, $aliasedName);
     }
 
-    config()->set('enumerator.modules.octane', true);
+    config()->set('laranail.enumerator.modules.octane', true);
 
     $dispatcher = app(Dispatcher::class);
     expect($dispatcher->hasListeners($aliasedName))->toBeFalse();

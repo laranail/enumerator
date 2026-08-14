@@ -43,7 +43,7 @@ trait HasEnumeratorStateMachine
             $model->assertAllowedTransitionsForAllMachines();
         });
 
-        if ((bool) config('enumerator.state_machine.record_history', true)) {
+        if ((bool) config('laranail.enumerator.state_machine.record_history', true)) {
             static::created(function ($model): void {
                 $model->recordTransitionsForAllMachines(true);
             });
@@ -74,12 +74,12 @@ trait HasEnumeratorStateMachine
             return (bool) $this->recordEnumStateHistory;
         }
 
-        return (bool) config('enumerator.state_machine.record_history', true);
+        return (bool) config('laranail.enumerator.state_machine.record_history', true);
     }
 
     protected function assertInitialStateForAllMachines(): void
     {
-        if (! (bool) config('enumerator.state_machine.enforce_initial_state', true)) {
+        if (! (bool) config('laranail.enumerator.state_machine.enforce_initial_state', true)) {
             return;
         }
 

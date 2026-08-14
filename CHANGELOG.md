@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- **The generic command aliases.** `make:enumerator`, `enumerator:cache`, `enumerator:cache:clear`,
+  `enumerator:annotate`, `enumerator:export` and `enumerator:ide-helper` are gone; the
+  `laranail::enumerator.*` names they shadowed are the only ones now.
+
+  Artisan's registry is a flat map, so those aliases handed back exactly the collision the
+  namespaced names exist to prevent — and made the convention decorative, since the short name is
+  the one anybody would actually type. `make:enumerator` was the worst of them: it colonised
+  Laravel's own `make:` namespace, where a future framework generator or another package would
+  simply have replaced it.
+
+### Changed
+
+- **The config key is `laranail.enumerator`,** published to `config/laranail/enumerator.php`. Every
+  read moves with it — `config('enumerator.cache.driver')` is now
+  `config('laranail.enumerator.cache.driver')`. Laravel's config repository is a flat map and
+  `enumerator` is a name an application could plausibly use for its own file.
+
+- **Publish tags are vendor-scoped:** `enumerator-config` → `laranail::enumerator-config`, and the
+  same for `-lang`, `-views`, `-stubs`, `-migrations`, `-js` and `-presets`.
+
+### Fixed
+
+- **`SupportsNamespacedNames` read `$commandAliases` without declaring it.** Any command that used
+  the trait without declaring the property died with `Undefined property` the moment Laravel built
+  it — a trait that requires an undeclared property of its user is a trap, and the failure lands at
+  boot rather than at the call site. It is declared on the trait now, defaulting to empty; a command
+  wanting aliases still declares its own list and overrides it.
+
+- **Published translations went to the wrong directory.** The namespace registered is
+  `laranail-enumerator` but the publish target was `lang/vendor/enumerator`, and Laravel looks for
+  overrides under `lang/vendor/{namespace}` — so every published translation was silently ignored
+  while the packaged default kept answering. Stubs moved the same way, to
+  `resources/stubs/laranail-enumerator`.
+
+- Guarded by `tests/Feature/NamingConventionTest.php`, which reads the console kernel, the config
+  repository, `Lang::getLoader()->namespaces()`, the view finder and
+  `ServiceProvider::publishableGroups()` on a booted app.
+
 ### Added
 
 - **`Presets\Enums\AlertTypeEnum`** — the twenty-seventh preset: the styling of a

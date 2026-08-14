@@ -12,8 +12,8 @@ use Simtabi\Laranail\Enumerator\Support\AttributesCache;
 // HTML could become a stored XSS. These tests pin the escaped form.
 
 it('badge component HTML-escapes the icon attribute against XSS payloads', function (): void {
-    config()->set('enumerator.css_framework', 'plain');
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
             'Active' => ['icon' => '<script>alert(1)</script>'],
         ],
@@ -30,8 +30,8 @@ it('badge component HTML-escapes the icon attribute against XSS payloads', funct
 });
 
 it('badge component HTML-escapes `&` and `"` in the icon attribute', function (): void {
-    config()->set('enumerator.css_framework', 'plain');
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
             'Active' => ['icon' => 'a&b"c'],
         ],

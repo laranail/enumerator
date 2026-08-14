@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
  * Optional Lighthouse cast module.
  *
  * Activates when both (a) Lighthouse is installed AND
- * (b) `config('enumerator.modules.lighthouse')` is true. Provides the
+ * (b) `config('laranail.enumerator.modules.lighthouse')` is true. Provides the
  * abstract `EnumScalar` that consumers extend per-enum.
  *
  * Distinct from `Modules/GraphQL/SchemaExporter` (Step 35) — that one
@@ -44,6 +44,6 @@ final class LighthouseServiceProvider extends ServiceProvider
             return false;
         }
 
-        return (bool) $this->app['config']->get('enumerator.modules.lighthouse', false);
+        return (bool) $this->app['config']->get('laranail.enumerator.modules.lighthouse', false);
     }
 }

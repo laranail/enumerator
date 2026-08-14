@@ -75,19 +75,19 @@ it('restore() returns false when no snapshot is present', function (): void {
     expect($persistor->restore())->toBeFalse();
 });
 
-it('enumerator:cache command persists via the persistor', function (): void {
+it('laranail::enumerator.cache command persists via the persistor', function (): void {
     // Configure auto_warm_classes; run the command; verify the disk
     // payload is non-empty AND contains the expected structure.
     $tmp = tempnam(sys_get_temp_dir(), 'enum-cache-cli-') . '.php';
-    config()->set('enumerator.cache.driver', 'file');
-    config()->set('enumerator.cache.file_path', $tmp);
-    config()->set('enumerator.cache.auto_warm_classes', [StatusEnum::class]);
+    config()->set('laranail.enumerator.cache.driver', 'file');
+    config()->set('laranail.enumerator.cache.file_path', $tmp);
+    config()->set('laranail.enumerator.cache.auto_warm_classes', [StatusEnum::class]);
 
     // Rebind LayeredCache to pick up the new config.
     app()->forgetInstance(LayeredCache::class);
     app()->forgetInstance(ReflectionCachePersistor::class);
 
-    $this->artisan('enumerator:cache')->assertSuccessful();
+    $this->artisan('laranail::enumerator.cache')->assertSuccessful();
 
     expect(file_exists($tmp))->toBeTrue();
     /** @var array<string, mixed> $payload */

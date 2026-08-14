@@ -40,8 +40,8 @@ abstract class TestCase extends Orchestra
             'prefix' => '',
         ]);
 
-        $app['config']->set('enumerator.cache.driver', 'memory');
-        $app['config']->set('enumerator.css_framework', 'plain');
+        $app['config']->set('laranail.enumerator.cache.driver', 'memory');
+        $app['config']->set('laranail.enumerator.css_framework', 'plain');
     }
 
     protected function defineDatabaseMigrations(): void

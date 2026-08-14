@@ -18,7 +18,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\EscapeRegressionEnum;
 // `pre-encoded label stays single-encoded` test.
 
 beforeEach(function (): void {
-    config()->set('enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.css_framework', 'plain');
 });
 
 it('escapes HTML tags in the label exactly once', function (): void {

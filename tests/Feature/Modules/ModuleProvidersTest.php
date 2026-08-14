@@ -20,14 +20,14 @@ use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 // StructuredOutput
 
 it('StructuredOutputServiceProvider does not bind when the module is off', function (): void {
-    config()->set('enumerator.modules.structured_output', false);
+    config()->set('laranail.enumerator.modules.structured_output', false);
     $fresh = clone app();
     (new StructuredOutputServiceProvider($fresh))->register();
     expect($fresh->bound(OpenAiSchemaEmitter::class))->toBeFalse();
 });
 
 it('StructuredOutputServiceProvider binds all three emitters when on', function (): void {
-    config()->set('enumerator.modules.structured_output', true);
+    config()->set('laranail.enumerator.modules.structured_output', true);
     (new StructuredOutputServiceProvider(app()))->register();
     expect(app(OpenAiSchemaEmitter::class))->toBeInstanceOf(OpenAiSchemaEmitter::class);
     expect(app(AnthropicSchemaEmitter::class))->toBeInstanceOf(AnthropicSchemaEmitter::class);
@@ -37,14 +37,14 @@ it('StructuredOutputServiceProvider binds all three emitters when on', function 
 // GraphQL
 
 it('GraphQLServiceProvider does not bind when off', function (): void {
-    config()->set('enumerator.modules.graphql', false);
+    config()->set('laranail.enumerator.modules.graphql', false);
     $fresh = clone app();
     (new GraphQLServiceProvider($fresh))->register();
     expect($fresh->bound(GraphQLExporter::class))->toBeFalse();
 });
 
 it('GraphQLServiceProvider binds SchemaExporter when on', function (): void {
-    config()->set('enumerator.modules.graphql', true);
+    config()->set('laranail.enumerator.modules.graphql', true);
     (new GraphQLServiceProvider(app()))->register();
     expect(app(GraphQLExporter::class))->toBeInstanceOf(GraphQLExporter::class);
 });
@@ -52,14 +52,14 @@ it('GraphQLServiceProvider binds SchemaExporter when on', function (): void {
 // OpenAPI
 
 it('OpenApiServiceProvider does not bind when off', function (): void {
-    config()->set('enumerator.modules.openapi', false);
+    config()->set('laranail.enumerator.modules.openapi', false);
     $fresh = clone app();
     (new OpenApiServiceProvider($fresh))->register();
     expect($fresh->bound(OpenApiSchemaExporter::class))->toBeFalse();
 });
 
 it('OpenApiServiceProvider binds OpenApiSchemaExporter when on', function (): void {
-    config()->set('enumerator.modules.openapi', true);
+    config()->set('laranail.enumerator.modules.openapi', true);
     (new OpenApiServiceProvider(app()))->register();
     expect(app(OpenApiSchemaExporter::class))->toBeInstanceOf(OpenApiSchemaExporter::class);
 });
@@ -67,14 +67,14 @@ it('OpenApiServiceProvider binds OpenApiSchemaExporter when on', function (): vo
 // Saloon
 
 it('SaloonServiceProvider does not bind when off', function (): void {
-    config()->set('enumerator.modules.saloon', false);
+    config()->set('laranail.enumerator.modules.saloon', false);
     $fresh = clone app();
     (new SaloonServiceProvider($fresh))->register();
     expect($fresh->bound(EnumCaster::class))->toBeFalse();
 });
 
 it('SaloonServiceProvider binds EnumCaster when on', function (): void {
-    config()->set('enumerator.modules.saloon', true);
+    config()->set('laranail.enumerator.modules.saloon', true);
     (new SaloonServiceProvider(app()))->register();
     expect(app(EnumCaster::class))->toBeInstanceOf(EnumCaster::class);
 });
@@ -82,11 +82,11 @@ it('SaloonServiceProvider binds EnumCaster when on', function (): void {
 // All providers should boot() without error in default config
 
 it('every module provider boot()s cleanly when its toggle is off', function (): void {
-    config()->set('enumerator.modules.structured_output', false);
-    config()->set('enumerator.modules.graphql', false);
-    config()->set('enumerator.modules.openapi', false);
-    config()->set('enumerator.modules.saloon', false);
-    config()->set('enumerator.modules.pest', false);
+    config()->set('laranail.enumerator.modules.structured_output', false);
+    config()->set('laranail.enumerator.modules.graphql', false);
+    config()->set('laranail.enumerator.modules.openapi', false);
+    config()->set('laranail.enumerator.modules.saloon', false);
+    config()->set('laranail.enumerator.modules.pest', false);
 
     (new StructuredOutputServiceProvider(app()))->boot();
     (new GraphQLServiceProvider(app()))->boot();
@@ -112,7 +112,7 @@ it('PestServiceProvider::register() is a no-op (no bindings)', function (): void
 });
 
 it('PestServiceProvider::boot() invokes Expectations::register() when the module is on', function (): void {
-    config()->set('enumerator.modules.pest', true);
+    config()->set('laranail.enumerator.modules.pest', true);
 
     // Sanity: function_exists('expect') is true inside a Pest test
     // run, so shouldRegister() returns true; boot() reaches the
@@ -126,7 +126,7 @@ it('PestServiceProvider::boot() invokes Expectations::register() when the module
 });
 
 it('PestServiceProvider::boot() short-circuits when the module is off', function (): void {
-    config()->set('enumerator.modules.pest', false);
+    config()->set('laranail.enumerator.modules.pest', false);
 
     // shouldRegister() returns false; Expectations::register() is
     // NOT called. No assertion target — just confirm boot doesn't

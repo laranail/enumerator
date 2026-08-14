@@ -13,7 +13,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
 // `__('laranail-enumerator::enumerator.components.dropdown.*')`.
 
 beforeEach(function (): void {
-    config()->set('enumerator.css_framework', 'plain');
+    config()->set('laranail.enumerator.css_framework', 'plain');
 });
 
 it('dropdown uses the English defaults out of the box', function (): void {

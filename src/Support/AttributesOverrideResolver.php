@@ -11,11 +11,11 @@ use UnitEnum;
 
 /**
  * Reads attribute overrides from `TenantContext` then
- * `config('enumerator.overrides')`.
+ * `config('laranail.enumerator.overrides')`.
  *
  * Lookup priority for any attribute key (color, icon, etc.):
  *   1. TenantContext::overridesFor($class)[$caseName][$key]  (when bound)
- *   2. config('enumerator.overrides.{FQCN}.{CaseName}.{key}')
+ *   2. config('laranail.enumerator.overrides.{FQCN}.{CaseName}.{key}')
  *   3. The compile-time #[Attribute] declaration (caller's fallback).
  *
  * Overrides for the `meta` key are merged shallowly with the attribute
@@ -112,7 +112,7 @@ final class AttributesOverrideResolver
         }
 
         /** @var array<class-string, array<string, array<string, mixed>>> $all */
-        $all = (array) $this->config->get('enumerator.overrides', []);
+        $all = (array) $this->config->get('laranail.enumerator.overrides', []);
         $entry = $all[$class][$name] ?? null;
 
         return is_array($entry) ? $entry : null;

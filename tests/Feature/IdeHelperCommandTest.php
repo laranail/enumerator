@@ -13,7 +13,7 @@ afterEach(function (): void {
 });
 
 it('emits a header explaining the file is IDE-only', function (): void {
-    $this->artisan('enumerator:ide-helper', [
+    $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
         '--out' => '_ide_helper_test.php',
     ])->assertSuccessful();
@@ -26,7 +26,7 @@ it('emits a header explaining the file is IDE-only', function (): void {
 });
 
 it('emits @method static stubs per case for native enums', function (): void {
-    $this->artisan('enumerator:ide-helper', [
+    $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
         '--out' => '_ide_helper_test.php',
     ])->assertSuccessful();
@@ -41,7 +41,7 @@ it('emits @method static stubs per case for native enums', function (): void {
 });
 
 it('emits @method bool predicates per case for native enums', function (): void {
-    $this->artisan('enumerator:ide-helper', [
+    $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
         '--out' => '_ide_helper_test.php',
     ])->assertSuccessful();
@@ -56,7 +56,7 @@ it('emits @method bool predicates per case for native enums', function (): void 
 });
 
 it('wraps the stub class in the real namespace', function (): void {
-    $this->artisan('enumerator:ide-helper', [
+    $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
         '--out' => '_ide_helper_test.php',
     ])->assertSuccessful();
@@ -68,7 +68,7 @@ it('wraps the stub class in the real namespace', function (): void {
 });
 
 it('emits @method static stubs for class-const enums (AbstractEnumeratorClass)', function (): void {
-    $this->artisan('enumerator:ide-helper', [
+    $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [LegacyStatusEnum::class],
         '--out' => '_ide_helper_test.php',
     ])->assertSuccessful();
@@ -81,9 +81,9 @@ it('emits @method static stubs for class-const enums (AbstractEnumeratorClass)',
 });
 
 it('falls back to enumerator.cache.auto_warm_classes when no args provided', function (): void {
-    config()->set('enumerator.cache.auto_warm_classes', [StatusEnum::class]);
+    config()->set('laranail.enumerator.cache.auto_warm_classes', [StatusEnum::class]);
 
-    $this->artisan('enumerator:ide-helper', [
+    $this->artisan('laranail::enumerator.ide-helper', [
         '--out' => '_ide_helper_test.php',
     ])->assertSuccessful();
 
@@ -92,10 +92,10 @@ it('falls back to enumerator.cache.auto_warm_classes when no args provided', fun
 });
 
 it('warns and exits cleanly when no classes are configured', function (): void {
-    config()->set('enumerator.cache.auto_warm_classes', []);
-    config()->set('enumerator.ide_helper.classes', []);
+    config()->set('laranail.enumerator.cache.auto_warm_classes', []);
+    config()->set('laranail.enumerator.ide_helper.classes', []);
 
-    $this->artisan('enumerator:ide-helper', [
+    $this->artisan('laranail::enumerator.ide-helper', [
         '--out' => '_ide_helper_test.php',
     ])
         ->expectsOutputToContain('No enumerator classes found')
@@ -103,7 +103,7 @@ it('warns and exits cleanly when no classes are configured', function (): void {
 });
 
 it('rejects non-enumerator classes silently (filter, not error)', function (): void {
-    $this->artisan('enumerator:ide-helper', [
+    $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [stdClass::class, StatusEnum::class],
         '--out' => '_ide_helper_test.php',
     ])->assertSuccessful();

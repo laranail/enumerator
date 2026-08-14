@@ -20,9 +20,9 @@ use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
  * class-const `__callStatic` factory from `HasClassEnumBehavior`.
  *
  * Resolution order for the class list:
- *   1. Positional args (`php artisan enumerator:ide-helper ClassA ClassB`)
- *   2. `config('enumerator.ide_helper.classes')` if set
- *   3. `config('enumerator.cache.auto_warm_classes')` as final fallback
+ *   1. Positional args (`php artisan laranail::enumerator.ide-helper ClassA ClassB`)
+ *   2. `config('laranail.enumerator.ide_helper.classes')` if set
+ *   3. `config('laranail.enumerator.cache.auto_warm_classes')` as final fallback
  *
  * The output file is meant to be IDE-indexed, NOT runtime-required.
  * Add it to `.gitignore` and exclude it from composer's autoload to
@@ -39,7 +39,6 @@ class IdeHelperCommand extends Command
     protected $description = 'Generate IDE helper docblocks for dynamic enumerator methods.';
 
     /** @var list<string> */
-    protected array $commandAliases = ['enumerator:ide-helper'];
 
     public function handle(): int
     {
@@ -72,7 +71,7 @@ class IdeHelperCommand extends Command
         $args = (array) $this->argument('classes');
         $candidates = $args !== []
             ? $args
-            : (array) (config('enumerator.ide_helper.classes') ?: config('enumerator.cache.auto_warm_classes', []));
+            : (array) (config('laranail.enumerator.ide_helper.classes') ?: config('laranail.enumerator.cache.auto_warm_classes', []));
 
         $resolved = [];
         foreach ($candidates as $candidate) {
@@ -95,7 +94,7 @@ class IdeHelperCommand extends Command
             . " * This file is NOT meant to be executed. It exists for IDE\n"
             . " * autocomplete + static analysis only. Add to `.gitignore`,\n"
             . " * exclude from composer's autoload, and re-run\n"
-            . " * `php artisan enumerator:ide-helper` after each enum change.\n"
+            . " * `php artisan laranail::enumerator.ide-helper` after each enum change.\n"
             . " */\n"
             . "\n";
     }

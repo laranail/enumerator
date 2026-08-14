@@ -20,13 +20,12 @@ class AnnotateEnumeratorCommand extends Command
     protected $description = 'Print PHPDoc @method static stubs for case access and meta helpers.';
 
     /** @var list<string> */
-    protected array $commandAliases = ['enumerator:annotate'];
 
     public function handle(): int
     {
         $class = (string) ($this->argument('class') ?? '');
         if ($class === '') {
-            $this->info('Pass an FQCN, e.g.: php artisan enumerator:annotate "App\\Enums\\UserStatusEnum"');
+            $this->info('Pass an FQCN, e.g.: php artisan laranail::enumerator.annotate "App\\Enums\\UserStatusEnum"');
 
             return self::SUCCESS;
         }

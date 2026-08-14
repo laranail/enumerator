@@ -11,7 +11,7 @@ use Simtabi\Laranail\Enumerator\Contracts\TenantContext;
  *
  * Returns null / empty for every call — preserving single-tenant
  * behaviour. The service provider binds this as the default when
- * `config('enumerator.tenancy.driver')` is unset.
+ * `config('laranail.enumerator.tenancy.driver')` is unset.
  */
 final class NullTenantContext implements TenantContext
 {

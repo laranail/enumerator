@@ -33,7 +33,7 @@ it('@enumeratorName prints the case name', function (): void {
 });
 
 it('@enumeratorBadge renders the HtmlString output', function (): void {
-    config()->set('enumerator.css_framework', 'bootstrap');
+    config()->set('laranail.enumerator.css_framework', 'bootstrap');
     $out = render('@enumeratorBadge($case)', ['case' => RenderableStatusEnum::Active]);
     expect($out)->toContain('Active');
 });
@@ -77,7 +77,7 @@ it('@enumeratorHelp prints empty when no help is set', function (): void {
 });
 
 it('@enumeratorMeta prints the keyed meta value when present', function (): void {
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => ['Active' => ['meta' => ['priority' => 'high']]],
     ]);
     expect(render("@enumeratorMeta(\$case, 'priority')", ['case' => StatusEnum::Active]))

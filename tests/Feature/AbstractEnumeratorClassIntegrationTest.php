@@ -30,7 +30,7 @@ it('OptionsArrayBuilder::flipped() works for class-const enums', function (): vo
 });
 
 it('AnnotateEnumeratorCommand renders @method stubs for class-const enums', function (): void {
-    $this->artisan('enumerator:annotate', ['class' => LegacyStatusEnum::class])
+    $this->artisan('laranail::enumerator.annotate', ['class' => LegacyStatusEnum::class])
         ->expectsOutputToContain('@method static LegacyStatusEnum ACTIVE()')
         ->expectsOutputToContain('@method static LegacyStatusEnum INACTIVE()')
         ->expectsOutputToContain('@method static LegacyStatusEnum BANNED()')
@@ -38,7 +38,7 @@ it('AnnotateEnumeratorCommand renders @method stubs for class-const enums', func
 });
 
 it('AnnotateEnumeratorCommand still works for native enums (no regression)', function (): void {
-    $this->artisan('enumerator:annotate', [
+    $this->artisan('laranail::enumerator.annotate', [
         'class' => StatusEnum::class,
     ])
         ->expectsOutputToContain('@method static StatusEnum Active()')
@@ -46,7 +46,7 @@ it('AnnotateEnumeratorCommand still works for native enums (no regression)', fun
 });
 
 it('AnnotateEnumeratorCommand rejects non-enumerator classes', function (): void {
-    $this->artisan('enumerator:annotate', ['class' => stdClass::class])
+    $this->artisan('laranail::enumerator.annotate', ['class' => stdClass::class])
         ->expectsOutputToContain('not an enumerator')
         ->assertFailed();
 });

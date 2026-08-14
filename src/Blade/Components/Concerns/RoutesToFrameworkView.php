@@ -11,13 +11,13 @@ namespace Simtabi\Laranail\Enumerator\Blade\Components\Concerns;
  *
  * Resolution order for the framework:
  *   1. `$this->framework` (per-call prop on the component tag)
- *   2. `config('enumerator.css_framework')`
+ *   2. `config('laranail.enumerator.css_framework')`
  *   3. 'plain'
  *
  * Consumers customize by either:
  *   - editing the per-call props (`framework=`, `class=`, `:icon-classes=`),
  *   - publishing the framework's view bundle and editing it,
- *   - setting long-lived overrides under `config('enumerator.element_overrides')`.
+ *   - setting long-lived overrides under `config('laranail.enumerator.element_overrides')`.
  */
 trait RoutesToFrameworkView
 {
@@ -26,12 +26,12 @@ trait RoutesToFrameworkView
      */
     protected function frameworkView(string $component): string
     {
-        $nsConfig = config('enumerator.view_namespace');
+        $nsConfig = config('laranail.enumerator.view_namespace');
         $ns = is_string($nsConfig) && $nsConfig !== '' ? $nsConfig : 'laranail-enumerator';
 
         $framework = $this->framework;
         if ($framework === null) {
-            $fwConfig = config('enumerator.css_framework');
+            $fwConfig = config('laranail.enumerator.css_framework');
             $framework = is_string($fwConfig) && $fwConfig !== '' ? $fwConfig : 'plain';
         }
 

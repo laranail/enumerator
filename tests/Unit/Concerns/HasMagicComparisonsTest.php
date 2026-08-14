@@ -45,13 +45,13 @@ it('isNotCase() returns the inverse', function (): void {
 it('case-insensitive case-name resolution when the config flag is on (default)', function (): void {
     // The "is" prefix itself must be lowercase to enter magicCompare; the
     // case-name remainder is matched case-insensitively.
-    config()->set('enumerator.magic.case_insensitive_method_names', true);
+    config()->set('laranail.enumerator.magic.case_insensitive_method_names', true);
     expect(GroupedStatusEnum::Active->isactive())->toBeTrue();
     expect(GroupedStatusEnum::Active->isACTIVE())->toBeTrue();
 });
 
 it('case-insensitive resolution is disabled when the config flag is off', function (): void {
-    config()->set('enumerator.magic.case_insensitive_method_names', false);
+    config()->set('laranail.enumerator.magic.case_insensitive_method_names', false);
     expect(fn () => GroupedStatusEnum::Active->isactive())
         ->toThrow(BadMethodCallException::class);
 });
@@ -75,15 +75,15 @@ it('AmbiguousMagicCallException constructor is importable', function (): void {
 // Case-name ambiguous resolution (lowercase needle matches multiple cases)
 
 it('case-name ambiguity throws by default (ambiguous_resolution=throw)', function (): void {
-    config()->set('enumerator.magic.ambiguous_resolution', 'throw');
-    config()->set('enumerator.magic.case_insensitive_method_names', true);
+    config()->set('laranail.enumerator.magic.ambiguous_resolution', 'throw');
+    config()->set('laranail.enumerator.magic.case_insensitive_method_names', true);
 
     CasingAmbiguousEnum::Pending->isactive();
 })->throws(AmbiguousMagicCallException::class);
 
 it('case-name ambiguity returns the first hit when ambiguous_resolution=first', function (): void {
-    config()->set('enumerator.magic.ambiguous_resolution', 'first');
-    config()->set('enumerator.magic.case_insensitive_method_names', true);
+    config()->set('laranail.enumerator.magic.ambiguous_resolution', 'first');
+    config()->set('laranail.enumerator.magic.case_insensitive_method_names', true);
 
     // First case-insensitive hit is `Active`. `Pending->isactive()` then
     // compares Pending === Active → false.
@@ -92,8 +92,8 @@ it('case-name ambiguity returns the first hit when ambiguous_resolution=first', 
 });
 
 it('case-name ambiguity returns null when ambiguous_resolution=null', function (): void {
-    config()->set('enumerator.magic.ambiguous_resolution', 'null');
-    config()->set('enumerator.magic.case_insensitive_method_names', true);
+    config()->set('laranail.enumerator.magic.ambiguous_resolution', 'null');
+    config()->set('laranail.enumerator.magic.case_insensitive_method_names', true);
 
     // With ambiguous-resolution=null, the case-name resolver returns null,
     // magicCompare propagates that as no-hit, and __call falls through to

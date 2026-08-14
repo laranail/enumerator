@@ -75,7 +75,7 @@ it('whereEnumMeta returns no rows when no meta matches', function (): void {
 
 it('whereEnumMeta returns matching rows when meta override is set', function (): void {
     AttributesCache::flush();
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
             'Active' => ['meta' => ['priority' => 'high']],
         ],

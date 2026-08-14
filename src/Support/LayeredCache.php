@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\File;
 
 /**
  * Two-layer cache: in-memory (per-request) over an optional file backend.
- * Driver selected via config('enumerator.cache.driver'):
+ * Driver selected via config('laranail.enumerator.cache.driver'):
  *
  *   - memory : memory only; cleared between requests
- *   - file   : file only; survives requests; warmed by `enumerator:cache`
+ *   - file   : file only; survives requests; warmed by `laranail::enumerator.cache`
  *   - layered: memory on read, file on miss; writes go to both
  *
  * The file backend uses a single PHP file (var_export-able payload) similar

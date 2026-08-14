@@ -30,7 +30,7 @@ it('cssClass() resolves per-framework via #[CssClass]', function (): void {
 });
 
 it('cssClass() falls back to config framework when null', function (): void {
-    config()->set('enumerator.css_framework', 'bootstrap');
+    config()->set('laranail.enumerator.css_framework', 'bootstrap');
     expect(RenderableStatusEnum::Active->cssClass())->toBe('badge bg-success');
 });
 
@@ -47,21 +47,21 @@ it('attributes() returns only non-null/non-empty entries', function (): void {
 });
 
 it('config overrides take precedence over compile-time attributes', function (): void {
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => ['Active' => ['color' => 'override-magenta']],
     ]);
     expect(StatusEnum::Active->color())->toBe('override-magenta');
 });
 
 it('config overrides for meta merge with declared meta', function (): void {
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => ['Active' => ['meta' => ['paging' => true]]],
     ]);
     expect(StatusEnum::Active->meta('paging'))->toBeTrue();
 });
 
 it('metaAll() returns the merged meta array', function (): void {
-    config()->set('enumerator.overrides', [
+    config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => ['Active' => ['meta' => ['a' => 1, 'b' => 2]]],
     ]);
     $meta = StatusEnum::Active->metaAll();

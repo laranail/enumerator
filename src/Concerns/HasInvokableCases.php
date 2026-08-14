@@ -14,7 +14,7 @@ use BadMethodCallException;
  *     Status::Active('label') // 'Active'
  *
  * Inspired by archtechx/enums' InvokableCases. Configurable via
- * `config('enumerator.magic.allow_invokable_cases')`. Disabled by default;
+ * `config('laranail.enumerator.magic.allow_invokable_cases')`. Disabled by default;
  * traits add this only when explicitly used.
  *
  * Implements `__callStatic` — do not combine with another trait that does so

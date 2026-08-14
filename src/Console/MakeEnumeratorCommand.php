@@ -18,7 +18,6 @@ class MakeEnumeratorCommand extends GeneratorCommand
     protected $description = 'Create a new enumerator class.';
 
     /** @var list<string> */
-    protected array $commandAliases = ['make:enumerator'];
 
     protected $type = 'Enumerator';
 

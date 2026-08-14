@@ -22,7 +22,7 @@ use Illuminate\View\Component;
  *      loader no-ops. The package never double-loads Alpine.
  *   2. CDN-first — emits `<script defer src="{cdn_url}"
  *      integrity="..." crossorigin="anonymous">`. The pinned version
- *      and SRI integrity hash come from `config('enumerator.alpine')`.
+ *      and SRI integrity hash come from `config('laranail.enumerator.alpine')`.
  *   3. Local fallback on CDN error — the script's onerror handler
  *      swaps the source to the locally-published file under
  *      `/vendor/laranail-enumerator/alpine.min.js`. Requires that the
@@ -54,7 +54,7 @@ class AlpineLoader extends Component
         public bool $cdn = true,
     ) {
         /** @var array{version?: string, integrity?: string, cdn_url?: string, local_url?: string} $cfg */
-        $cfg = (array) (function_exists('config') ? (config('enumerator.alpine') ?? []) : []);
+        $cfg = (array) (function_exists('config') ? (config('laranail.enumerator.alpine') ?? []) : []);
         $this->version = (string) ($cfg['version'] ?? '3.15.12');
         $this->integrity = (string) ($cfg['integrity'] ?? '');
         $cdnTemplate = (string) ($cfg['cdn_url'] ?? 'https://cdn.jsdelivr.net/npm/alpinejs@{version}/dist/cdn.min.js');
