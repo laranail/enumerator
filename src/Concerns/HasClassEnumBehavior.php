@@ -7,7 +7,6 @@ namespace Simtabi\Laranail\Enumerator\Concerns;
 use Illuminate\Support\HtmlString;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorNameException;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
-use Simtabi\Laranail\Enumerator\Helpers\Humanizer;
 use Simtabi\Laranail\Enumerator\Support\AttributeBag;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
 use Simtabi\Laranail\Enumerator\Support\CasesCache;
@@ -36,6 +35,23 @@ use Simtabi\Laranail\Enumerator\Support\EnumeratorRegistry;
  */
 trait HasClassEnumBehavior
 {
+    /**
+     * Translation lookup for `label()`, `description()`, `help()` and
+     * `placeholder()`.
+     *
+     * Composed here rather than left to consumers because
+     * `AbstractEnumeratorClass` is the documented migration target for legacy
+     * class-constant enums, and those are exactly the enums that already have a
+     * translation namespace they cannot afford to lose. Without this, migrating
+     * onto the class-const path silently downgraded every translated label to a
+     * humanised case name — the strings changed, nothing errored, and the
+     * existing lang files went quietly unused.
+     *
+     * `IsTranslatable` falls back to the attribute and then to humanising, so
+     * an enum with no translations behaves exactly as it did before.
+     */
+    use IsTranslatable;
+
     private string|int|null $value = null;
 
     private ?string $key = null;
@@ -263,17 +279,6 @@ trait HasClassEnumBehavior
         return $opts + static::labels();
     }
 
-    public function label(?string $locale = null): string
-    {
-        return $this->resolvedAttribute('label')
-            ?? Humanizer::humanize($this->key ?? (string) $this->value);
-    }
-
-    public function description(?string $locale = null): ?string
-    {
-        return $this->resolvedAttribute('description');
-    }
-
     public function color(): ?string
     {
         return $this->resolvedAttribute('color');
@@ -282,11 +287,6 @@ trait HasClassEnumBehavior
     public function icon(): ?string
     {
         return $this->resolvedAttribute('icon');
-    }
-
-    public function help(): ?string
-    {
-        return $this->resolvedAttribute('help');
     }
 
     public function order(): ?int

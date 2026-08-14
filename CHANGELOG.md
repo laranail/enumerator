@@ -27,6 +27,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `tryFrom` → `tryFromValue`, and drops `$langPath` rather than guessing a
   translation mapping it cannot see.
 
+- **Translation support on the class-constant path.** `HasClassEnumBehavior`
+  now composes `IsTranslatable`, so an `AbstractEnumeratorClass` subclass
+  implementing `Contracts\Translatable` resolves `label()`, `description()`,
+  `help()` and `placeholder()` through the translator.
+
+  This closes a gap that bit exactly the enums the class-const path exists for.
+  `AbstractEnumeratorClass` is the documented migration target for legacy
+  class-constant enums, and those are precisely the ones already carrying a
+  translation namespace — but only native enums got `IsTranslatable`, through
+  `BehaviorCore`. Migrating onto the class-const path therefore downgraded every
+  translated label to a humanised case name: nothing errored, the strings just
+  changed and the existing lang files went quietly unused.
+
+  `IsTranslatable`'s `caseKey()` and `caseName()` were written for native enums
+  and read `->value` and `->name` as properties. On a class-const enum the
+  backing property is private, so those were undefined-property reads; both now
+  dispatch on the shape and use `getValue()`/`getKey()`.
+
+  An enum with no translations registered is unaffected — the fallback chain
+  still ends at the `#[Label]` attribute and then the humaniser.
+
 ### Changed
 
 - **`rector/rector` moved from `suggest` to `require-dev`.** The migration rules

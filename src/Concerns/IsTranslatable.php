@@ -6,6 +6,7 @@ namespace Simtabi\Laranail\Enumerator\Concerns;
 
 use BackedEnum;
 use Illuminate\Support\Facades\Lang;
+use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Contracts\TranslatorAdapter;
 use Simtabi\Laranail\Enumerator\Helpers\Humanizer;
 use UnitEnum;
@@ -135,26 +136,39 @@ trait IsTranslatable
             : null;
     }
 
+    /**
+     * The case's identity in a translation key.
+     *
+     * Two shapes reach this trait. A native enum carries `->value` and
+     * `->name` as real properties; an `AbstractEnumeratorClass` carries them
+     * behind `getValue()` and `getKey()` because its backing property is
+     * private. Reading `->name` on the second would be an undefined-property
+     * access, which is why this dispatches rather than assuming.
+     */
     private function caseKey(): string
     {
-        /** @phpstan-var UnitEnum $self */
         $self = $this;
-        if ($self instanceof BackedEnum && is_string($self->value)) {
-            return $self->value;
-        }
-        if ($self instanceof BackedEnum && is_int($self->value)) {
+
+        if ($self instanceof BackedEnum) {
             return (string) $self->value;
         }
 
-        return $self->name;
+        if ($self instanceof AbstractEnumeratorClass) {
+            return (string) ($self->getValue() ?? $self->getKey() ?? '');
+        }
+
+        return $self instanceof UnitEnum ? $self->name : '';
     }
 
     private function caseName(): string
     {
-        /** @phpstan-var UnitEnum $self */
         $self = $this;
 
-        return $self->name;
+        if ($self instanceof AbstractEnumeratorClass) {
+            return (string) ($self->getKey() ?? $self->getValue() ?? '');
+        }
+
+        return $self instanceof UnitEnum ? $self->name : '';
     }
 
     /**
