@@ -6,9 +6,9 @@
 # not mean consumers get older features, it means they get code without the
 # fixes.
 #
-# Two checks, because this package shipped both failures at once.
+# Three checks, because this package has now shipped every one of these failures.
 #
-#   1. CURRENCY — the tag consumers resolve must be on main.
+#   1. CURRENCY — the tag constrained consumers resolve must be on main.
 #
 #      Anchored on `extra.branch-alias`, NOT on the highest tag. That
 #      distinction is the whole point of this rewrite. laranail/enumerator
@@ -29,6 +29,15 @@
 #      advertised v0.2.0, v0.2.1 and v0.3.0 pointing at abandoned history, so
 #      anyone writing `^0.2` got code that had been discarded months earlier,
 #      with nothing anywhere saying so.
+#
+#   3. THE HIGHEST TAG — what an unconstrained `composer require` resolves.
+#
+#      Anchoring on branch-alias alone traded one blind spot for another. This
+#      package kept v0.4.0 three commits behind main while v0.1.0 was current,
+#      and a check that only knew about the live line called that healthy — yet
+#      v0.4.0 is exactly what a new consumer who names no constraint installs.
+#      Both are checked. The third only reports when it names a different tag,
+#      so an ordinary single-tag package does not hear it twice.
 #
 # Runs against the remote rather than the local checkout, so a stale local tag
 # cannot make it pass, and so it needs no particular fetch depth in CI.
@@ -158,7 +167,7 @@ if [ "${commit}" = "${head}" ]; then
       ok "${highest} is also on ${BRANCH}."
     else
       hbehind=$(gh api "repos/${REPO}/compare/${hcommit}...${head}" --jq '.ahead_by' 2>/dev/null || echo '?')
-      fail "${highest} is the highest tag and is ${hbehind} commit(s) behind ${BRANCH}. An unconstrained \`composer require ${REPO#*/}\` resolves it, so it must be current or it must not exist."
+      fail "${highest} is the highest tag and is ${hbehind} commit(s) behind ${BRANCH}. An unconstrained \`composer require ${REPO}\` resolves it, so it must be current or it must not exist."
     fi
   fi
 else
