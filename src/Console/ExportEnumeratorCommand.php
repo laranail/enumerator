@@ -17,8 +17,6 @@ class ExportEnumeratorCommand extends Command
 
     protected $description = 'Export an enum to TS / JSON / PHP for frontend or downstream consumption.';
 
-    /** @var list<string> */
-
     public function handle(EnumExporter $exporter): int
     {
         $class = (string) $this->argument('class');

@@ -38,8 +38,6 @@ class IdeHelperCommand extends Command
 
     protected $description = 'Generate IDE helper docblocks for dynamic enumerator methods.';
 
-    /** @var list<string> */
-
     public function handle(): int
     {
         $out = (string) ($this->option('out') ?: '_ide_helper_enumerator.php');

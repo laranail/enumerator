@@ -19,8 +19,6 @@ class AnnotateEnumeratorCommand extends Command
 
     protected $description = 'Print PHPDoc @method static stubs for case access and meta helpers.';
 
-    /** @var list<string> */
-
     public function handle(): int
     {
         $class = (string) ($this->argument('class') ?? '');

@@ -18,8 +18,6 @@ class CacheClearEnumeratorCommand extends Command
 
     protected $description = 'Drop the enumerator reflection cache (memory + file).';
 
-    /** @var list<string> */
-
     public function handle(LayeredCache $cache): int
     {
         AttributesCache::flush();

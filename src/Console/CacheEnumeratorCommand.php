@@ -16,8 +16,6 @@ class CacheEnumeratorCommand extends Command
 
     protected $description = 'Warm and persist the enumerator reflection cache.';
 
-    /** @var list<string> */
-
     /**
      * fix: delegate to ReflectionCachePersistor so the persisted
      * payload actually contains the warmed attribute + case data. The

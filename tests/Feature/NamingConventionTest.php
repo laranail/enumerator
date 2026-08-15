@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\View as ViewFacade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\FileViewFinder;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * Every name this package registers into a framework-owned registry.
@@ -42,7 +45,10 @@ it('claims no generic short alias', function (): void {
         expect($names)->not->toContain($generic);
     }
 
-    foreach (app(Kernel::class)->all() as $name => $command) {
+    /** @var array<string, Command> $commands */
+    $commands = app(Kernel::class)->all();
+
+    foreach ($commands as $name => $command) {
         if (! str_contains($name, 'enumerator')) {
             continue;
         }
@@ -66,7 +72,13 @@ it('registers its translations under vendor and slug', function (): void {
 });
 
 it('registers its views under vendor and slug', function (): void {
-    $hints = array_keys(app('view')->getFinder()->getHints());
+    // Through the factory rather than app('view'), which resolves as mixed:
+    // getHints() is on FileViewFinder, not on the ViewFinderInterface that
+    // getFinder() advertises.
+    $finder = ViewFacade::getFinder();
+    \assert($finder instanceof FileViewFinder);
+
+    $hints = array_keys($finder->getHints());
 
     expect($hints)->toContain('laranail-enumerator')
         ->and($hints)->not->toContain('enumerator');
@@ -77,7 +89,7 @@ it('publishes under vendor-scoped tags and claims no bare one', function (): voi
 
     $ours = array_values(array_filter(
         $groups,
-        static fn (string $group): bool => str_contains($group, 'enumerator'),
+        static fn (mixed $group): bool => is_string($group) && str_contains($group, 'enumerator'),
     ));
 
     expect($ours)->not->toBeEmpty();
