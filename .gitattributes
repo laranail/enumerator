@@ -19,7 +19,15 @@
 /phpunit.xml        export-ignore
 /pint.json          export-ignore
 /scripts            export-ignore
-/extension.neon     export-ignore
+
+# NOT export-ignored, despite looking like a dev file: composer.json declares
+# `extra.phpstan.includes: ["extension.neon"]`, and phpstan/extension-installer
+# writes that path into every consumer's generated config. Stripping it from the
+# dist archive made PHPStan fail hard for anyone who installed this package —
+# "Config file .../vendor/laranail/enumerator/extension.neon does not exist or
+# isn't readable" — with nothing pointing back here as the cause.
+#
+# /extension.neon   export-ignore
 
 # Language detection on GitHub
 *.blade.php linguist-language=Blade
