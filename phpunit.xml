@@ -29,6 +29,12 @@
         <exclude>
             <directory>src/PHPStan</directory>
             <directory>src/Integrations</directory>
+            <!-- Rector rules execute inside Rector's own process, and
+                 Rector is deliberately not a dev-dep (consumers add it
+                 when migrating) — the class_exists-guarded files define
+                 nothing here, so lines can never be covered. Same class
+                 of exclusion as the PHPStan extension above. -->
+            <directory>src/Rector</directory>
         </exclude>
     </source>
     <coverage>
