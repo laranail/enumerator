@@ -38,7 +38,7 @@ if (! class_exists(Component::class)) {
  *
  *     <button wire:click="pay" wire:loading.attr="disabled">Pay</button>
  *
- *     @error('order.status') <span class="error">{{ $message }}</span> @enderror
+ *     <span>@error('order.status') {{ $message }} @enderror</span>
  *
  * Behaviour:
  *
