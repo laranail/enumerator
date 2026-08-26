@@ -42,19 +42,14 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
  */
 trait SupportsNamespacedNames
 {
-    /**
-     * Extra names this command also answers to. Vendor-scoped or empty.
-     *
-     * @var list<string>
-     */
-    protected array $commandAliases = [];
-
     public function setName(string $name): static
     {
         $this->writeCommandName('name', $name);
 
-        if ($this->commandAliases !== []) {
-            $this->setAliases($this->commandAliases);
+        $aliases = $this->declaredCommandAliases();
+
+        if ($aliases !== []) {
+            $this->setAliases($aliases);
         }
 
         return $this;
@@ -68,6 +63,34 @@ trait SupportsNamespacedNames
         $this->writeCommandName('aliases', is_array($aliases) ? $aliases : iterator_to_array($aliases));
 
         return $this;
+    }
+
+    /**
+     * The consuming command's own `$commandAliases`, if it declares one.
+     *
+     * Deliberately NOT a property on this trait. A trait cannot declare a property that the using
+     * class also declares with a different default -- PHP rejects the composition outright with a
+     * fatal -- so declaring it here made the documented usage ("a command that wants aliases
+     * declares its own list") impossible to actually write.
+     *
+     * Declaring it was itself the fix for the opposite bug, where reading an undeclared property
+     * threw at boot. Reading it defensively fixes both at once.
+     *
+     * @return list<string>
+     */
+    private function declaredCommandAliases(): array
+    {
+        if (! property_exists($this, 'commandAliases') || ! is_array($this->commandAliases)) {
+            return [];
+        }
+
+        // Filtered rather than cast: the property is the consuming command's, so its contents are
+        // not this trait's to assume. A stray null would reach Symfony's setAliases() as a type
+        // error at boot, which is the failure mode this whole method exists to avoid.
+        return array_values(array_filter(
+            $this->commandAliases,
+            static fn (mixed $alias): bool => is_string($alias) && $alias !== '',
+        ));
     }
 
     private function writeCommandName(string $property, mixed $value): void
