@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use GraphQL\Type\Definition\ScalarType;
 use Simtabi\Laranail\Enumerator\Modules\Lighthouse\EnumScalar;
-use Simtabi\Laranail\Enumerator\Modules\Lighthouse\LighthouseServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Lighthouse\Providers\LighthouseServiceProvider;
 
 it('LighthouseServiceProvider no-ops when Lighthouse is absent', function (): void {
     config()->set('laranail.enumerator.modules.lighthouse', true);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\Enumerator\Modules\Lighthouse;
+namespace Simtabi\Laranail\Enumerator\Modules\Lighthouse\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

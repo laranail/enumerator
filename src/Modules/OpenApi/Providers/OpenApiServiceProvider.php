@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\Enumerator\Modules\OpenApi;
+namespace Simtabi\Laranail\Enumerator\Modules\OpenApi\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\OpenApi\OpenApiSchemaExporter;
 
 /**
  * Optional OpenAPI 3.1 schema generator module.

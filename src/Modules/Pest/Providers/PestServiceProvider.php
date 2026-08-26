@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\Enumerator\Modules\Pest;
+namespace Simtabi\Laranail\Enumerator\Modules\Pest\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Pest\Expectations;
 
 /**
  * Optional Pest plugin module.

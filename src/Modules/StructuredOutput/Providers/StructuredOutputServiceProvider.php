@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\Enumerator\Modules\StructuredOutput;
+namespace Simtabi\Laranail\Enumerator\Modules\StructuredOutput\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\AnthropicSchemaEmitter;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\McpSchemaEmitter;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\OpenAiSchemaEmitter;
 
 /**
  * Optional structured-output schemas module.

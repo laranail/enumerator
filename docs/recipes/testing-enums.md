@@ -3,7 +3,7 @@
 Pest is configured to use `Simtabi\Laranail\Enumerator\Tests\TestCase` for the `Feature` directory. For consumer tests:
 
 ```php
-use Simtabi\Laranail\Enumerator\EnumeratorServiceProvider;
+use Simtabi\Laranail\Enumerator\Providers\EnumeratorServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 class MyEnumTest extends TestCase {

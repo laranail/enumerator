@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\Enumerator;
+namespace Simtabi\Laranail\Enumerator\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
@@ -20,13 +20,13 @@ use Simtabi\Laranail\Enumerator\Console\IdeHelperCommand;
 use Simtabi\Laranail\Enumerator\Console\MakeEnumeratorCommand;
 use Simtabi\Laranail\Enumerator\Contracts\TenantContext;
 use Simtabi\Laranail\Enumerator\Contracts\TranslatorAdapter;
-use Simtabi\Laranail\Enumerator\Modules\GraphQL\GraphQLServiceProvider;
-use Simtabi\Laranail\Enumerator\Modules\Lighthouse\LighthouseServiceProvider;
-use Simtabi\Laranail\Enumerator\Modules\Octane\OctaneServiceProvider;
-use Simtabi\Laranail\Enumerator\Modules\OpenApi\OpenApiServiceProvider;
-use Simtabi\Laranail\Enumerator\Modules\Pest\PestServiceProvider;
-use Simtabi\Laranail\Enumerator\Modules\Saloon\SaloonServiceProvider;
-use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\StructuredOutputServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\GraphQL\Providers\GraphQLServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Lighthouse\Providers\LighthouseServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Octane\Providers\OctaneServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\OpenApi\Providers\OpenApiServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Pest\Providers\PestServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Saloon\Providers\SaloonServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\Providers\StructuredOutputServiceProvider;
 use Simtabi\Laranail\Enumerator\Rules\EnumValue;
 use Simtabi\Laranail\Enumerator\Support\AttributesOverrideResolver;
 use Simtabi\Laranail\Enumerator\Support\EnumeratorRegistry;
@@ -39,7 +39,7 @@ final class EnumeratorServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/enumerator.php', 'laranail.enumerator');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/enumerator.php', 'laranail.enumerator');
 
         $this->app->singleton(LayeredCache::class, function ($app): LayeredCache {
             /** @var array{driver?: string, file_path?: ?string} $cfg */
@@ -142,11 +142,11 @@ final class EnumeratorServiceProvider extends ServiceProvider
 
     private function bootResources(): void
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'laranail-enumerator');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'laranail-enumerator');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
         $viewNamespace = (string) ($this->app['config']->get('laranail.enumerator.view_namespace') ?? 'laranail-enumerator');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', $viewNamespace);
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', $viewNamespace);
     }
 
     private function bootViewComponents(): void
@@ -194,7 +194,7 @@ final class EnumeratorServiceProvider extends ServiceProvider
     private function bootPublishing(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/enumerator.php' => config_path('laranail/enumerator.php'),
+            __DIR__ . '/../../config/enumerator.php' => config_path('laranail/enumerator.php'),
         ], 'laranail::enumerator-config');
 
         // vendor/laranail-enumerator, matching the namespace registered by
@@ -202,19 +202,19 @@ final class EnumeratorServiceProvider extends ServiceProvider
         // lang/vendor/{namespace}, so `vendor/enumerator` put them where nothing
         // reads them and every override was silently ignored.
         $this->publishes([
-            __DIR__ . '/../lang' => $this->app->langPath('vendor/laranail-enumerator'),
+            __DIR__ . '/../../lang' => $this->app->langPath('vendor/laranail-enumerator'),
         ], 'laranail::enumerator-lang');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/laranail-enumerator'),
+            __DIR__ . '/../../resources/views' => $this->app->resourcePath('views/vendor/laranail-enumerator'),
         ], 'laranail::enumerator-views');
 
         $this->publishes([
-            __DIR__ . '/../resources/stubs' => $this->app->resourcePath('stubs/laranail-enumerator'),
+            __DIR__ . '/../../resources/stubs' => $this->app->resourcePath('stubs/laranail-enumerator'),
         ], 'laranail::enumerator-stubs');
 
         $this->publishes([
-            __DIR__ . '/../database/migrations' => $this->app->databasePath('migrations'),
+            __DIR__ . '/../../database/migrations' => $this->app->databasePath('migrations'),
         ], 'laranail::enumerator-migrations');
 
         // Alpine.js bundle for the Alpine-enhanced components. Consumers
@@ -222,11 +222,11 @@ final class EnumeratorServiceProvider extends ServiceProvider
         // <x-laranail-enumerator::alpine-loader /> to work offline /
         // under strict CSP. See docs/tools/alpine-loader.md.
         $this->publishes([
-            __DIR__ . '/../resources/js' => $this->app->publicPath('vendor/laranail-enumerator'),
+            __DIR__ . '/../../resources/js' => $this->app->publicPath('vendor/laranail-enumerator'),
         ], 'laranail::enumerator-js');
 
         $this->publishes([
-            __DIR__ . '/Presets' => $this->app->path('Enums'),
+            __DIR__ . '/../Presets' => $this->app->path('Enums'),
         ], 'laranail::enumerator-presets');
     }
 

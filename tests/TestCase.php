@@ -6,7 +6,7 @@ namespace Simtabi\Laranail\Enumerator\Tests;
 
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Simtabi\Laranail\Enumerator\EnumeratorServiceProvider;
+use Simtabi\Laranail\Enumerator\Providers\EnumeratorServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

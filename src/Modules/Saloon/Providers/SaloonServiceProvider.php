@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\Enumerator\Modules\Saloon;
+namespace Simtabi\Laranail\Enumerator\Modules\Saloon\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Saloon\EnumCaster;
 
 /**
  * Optional Saloon caster module.

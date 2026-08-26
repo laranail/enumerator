@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Modules\Saloon\EnumCaster;
-use Simtabi\Laranail\Enumerator\Modules\Saloon\SaloonServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Saloon\Providers\SaloonServiceProvider;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\Enumerator\Modules\GraphQL;
+namespace Simtabi\Laranail\Enumerator\Modules\GraphQL\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\GraphQL\SchemaExporter;
 
 /**
  * Optional GraphQL schema generator module.
