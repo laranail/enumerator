@@ -72,7 +72,7 @@ parameters:
                 # statically known but PHPStan can't infer them.
                 # Same noise pattern as the method.nonObject scope
                 # below; adding here for the argument-typing side.
-                - src/EnumeratorServiceProvider.php
+                - src/Providers/EnumeratorServiceProvider.php
         # Service providers use the idiomatic `$app['config']->get(...)`
         # / `$app->make(...)` patterns that PHPStan types as `mixed`
         # because of the loose ArrayAccess + Container::make contract.
@@ -83,14 +83,14 @@ parameters:
         -
             identifier: method.nonObject
             paths:
-                - src/EnumeratorServiceProvider.php
-                - src/Modules/GraphQL/GraphQLServiceProvider.php
-                - src/Modules/Lighthouse/LighthouseServiceProvider.php
-                - src/Modules/Octane/OctaneServiceProvider.php
-                - src/Modules/OpenApi/OpenApiServiceProvider.php
-                - src/Modules/Pest/PestServiceProvider.php
-                - src/Modules/Saloon/SaloonServiceProvider.php
-                - src/Modules/StructuredOutput/StructuredOutputServiceProvider.php
+                - src/Providers/EnumeratorServiceProvider.php
+                - src/Modules/GraphQL/Providers/GraphQLServiceProvider.php
+                - src/Modules/Lighthouse/Providers/LighthouseServiceProvider.php
+                - src/Modules/Octane/Providers/OctaneServiceProvider.php
+                - src/Modules/OpenApi/Providers/OpenApiServiceProvider.php
+                - src/Modules/Pest/Providers/PestServiceProvider.php
+                - src/Modules/Saloon/Providers/SaloonServiceProvider.php
+                - src/Modules/StructuredOutput/Providers/StructuredOutputServiceProvider.php
         # HasTransitions is composed via the HasEnumerator umbrella onto
         # every native enum using the package, including fixtures and
         # presets that don't implement Contracts\Stateful. The trait's
