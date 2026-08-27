@@ -80,7 +80,7 @@ Advances the enum at `$propertyPath` to the `$target` case.
 - Calls `Stateful::transitionTo($target)`.
 - On success:
   - Sets the result back to the property via `data_set()`.
-  - Dispatches `enumerator.transitioned` Livewire event with
+  - Dispatches `laranail-enumerator.transitioned` Livewire event with
     `{from, to, property}` payload.
   - Returns `true`.
 - On `InvalidTransitionException`:
@@ -102,7 +102,7 @@ enable/disable in the view.
 On success, the trait dispatches:
 
 ```js
-window.Livewire.on('enumerator.transitioned', (event) => {
+window.Livewire.on('laranail-enumerator.transitioned', (event) => {
     console.log(event.from, event.to, event.property);
 });
 ```
@@ -216,7 +216,7 @@ public function pay(): void
 message; `messages['notStateful']` replaces the "not a Stateful
 enum case" message. Either key is optional; omitted keys fall
 through to the default text. Behaviour on success is identical
-to `transitionEnum()` — property advances, `enumerator.transitioned`
+to `transitionEnum()` — property advances, `laranail-enumerator.transitioned`
 event dispatches.
 
 ## See also

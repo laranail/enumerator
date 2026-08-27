@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Modules\GraphQL\GraphQLServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\GraphQL\Providers\GraphQLServiceProvider;
 use Simtabi\Laranail\Enumerator\Modules\GraphQL\SchemaExporter as GraphQLExporter;
 use Simtabi\Laranail\Enumerator\Modules\OpenApi\OpenApiSchemaExporter;
-use Simtabi\Laranail\Enumerator\Modules\OpenApi\OpenApiServiceProvider;
-use Simtabi\Laranail\Enumerator\Modules\Pest\PestServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\OpenApi\Providers\OpenApiServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Pest\Providers\PestServiceProvider;
 use Simtabi\Laranail\Enumerator\Modules\Saloon\EnumCaster;
-use Simtabi\Laranail\Enumerator\Modules\Saloon\SaloonServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Saloon\Providers\SaloonServiceProvider;
 use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\AnthropicSchemaEmitter;
 use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\McpSchemaEmitter;
 use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\OpenAiSchemaEmitter;
-use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\StructuredOutputServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\Providers\StructuredOutputServiceProvider;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 
 // Module service providers — gating + container-binding behaviour.

@@ -5,6 +5,15 @@ All notable changes to `laranail/enumerator` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Changed
+
+- **Breaking.** The Livewire browser event is now `laranail-enumerator.transitioned` (was the
+  bare `enumerator.transitioned`) — browser event names share one global namespace, and a bare
+  slug is a silent collision with any sibling. JS listeners update one string:
+  `Livewire.on('laranail-enumerator.transitioned', …)`.
+
 ## [0.1.0] - 2026-08-15
 
 ### Removed

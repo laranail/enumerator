@@ -169,14 +169,14 @@ it('canTransitionEnum() returns false for a non-Stateful target', function (): v
     expect($component->canTransitionEnum('status', NonStatefulPalette::Red))->toBeFalse();
 });
 
-it('dispatches enumerator.transitioned with from/to payload on success', function (): void {
+it('dispatches laranail-enumerator.transitioned with from/to payload on success', function (): void {
     $component = new OrderShowFixture;
     $component->status = OrderStatus::Pending;
 
     $component->transitionEnum('status', OrderStatus::Paid);
 
-    expect($component->dispatched)->toHaveKey('enumerator.transitioned');
-    $payload = json_decode($component->dispatched['enumerator.transitioned'], true);
+    expect($component->dispatched)->toHaveKey('laranail-enumerator.transitioned');
+    $payload = json_decode($component->dispatched['laranail-enumerator.transitioned'], true);
     expect($payload)->toBeArray();
 });
 
@@ -290,5 +290,5 @@ it('transitionEnumOrValidate() advances the property + dispatches on a valid tra
 
     expect($ok)->toBeTrue();
     expect($component->status)->toBe(OrderStatus::Paid);
-    expect($component->dispatched)->toHaveKey('enumerator.transitioned');
+    expect($component->dispatched)->toHaveKey('laranail-enumerator.transitioned');
 });

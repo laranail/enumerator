@@ -38,7 +38,7 @@ if (! class_exists(Component::class)) {
  *
  *     <button wire:click="pay" wire:loading.attr="disabled">Pay</button>
  *
- *     @error('order.status') <span class="error">{{ $message }}</span> @enderror
+ *     <span>@error('order.status') {{ $message }} @enderror</span>
  *
  * Behaviour:
  *
@@ -46,7 +46,7 @@ if (! class_exists(Component::class)) {
  *     (uses dot notation: `order.status` resolves through getter chain).
  *   - Calls `Stateful::transitionTo($next)` under the hood.
  *   - On success: the resolved value is set back on the property path,
- *     and a `enumerator.transitioned` Livewire event is dispatched with
+ *     and a `laranail-enumerator.transitioned` Livewire event is dispatched with
  *     `[from, to]` payload.
  *   - On `InvalidTransitionException`: the message is pushed to the
  *     Livewire error bag at the property path so Blade's `@error()`
@@ -104,7 +104,7 @@ trait WithEnumTransitions
         data_set($this, $propertyPath, $next);
 
         if (method_exists($this, 'dispatch')) {
-            $this->dispatch('enumerator.transitioned', [
+            $this->dispatch('laranail-enumerator.transitioned', [
                 'from' => $current,
                 'to' => $next,
                 'property' => $propertyPath,
@@ -207,7 +207,7 @@ trait WithEnumTransitions
         data_set($this, $propertyPath, $next);
 
         if (method_exists($this, 'dispatch')) {
-            $this->dispatch('enumerator.transitioned', [
+            $this->dispatch('laranail-enumerator.transitioned', [
                 'from' => $current,
                 'to' => $next,
                 'property' => $propertyPath,

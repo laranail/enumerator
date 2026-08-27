@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\AnthropicSchemaEmitter;
 use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\McpSchemaEmitter;
 use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\OpenAiSchemaEmitter;
-use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\StructuredOutputServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\Providers\StructuredOutputServiceProvider;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;

@@ -83,7 +83,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Simtabi\\Laranail\\Enumerator\\EnumeratorServiceProvider"
+                "Simtabi\\Laranail\\Enumerator\\Providers\\EnumeratorServiceProvider"
             ]
         },
         "phpstan": {

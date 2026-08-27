@@ -78,10 +78,10 @@ it('transitionEnum advances the Livewire property on a valid transition', functi
         ->assertSet('status', WorkflowStatus::Submitted);
 });
 
-it('transitionEnum dispatches enumerator.transitioned on success', function (): void {
+it('transitionEnum dispatches laranail-enumerator.transitioned on success', function (): void {
     Livewire::test(WorkflowComponent::class)
         ->call('submit')
-        ->assertDispatched('enumerator.transitioned');
+        ->assertDispatched('laranail-enumerator.transitioned');
 });
 
 it('transitionEnum on an invalid transition leaves state unchanged + sets error', function (): void {
@@ -90,7 +90,7 @@ it('transitionEnum on an invalid transition leaves state unchanged + sets error'
         ->call('approve')
         ->assertSet('status', WorkflowStatus::Draft)
         ->assertHasErrors('status')
-        ->assertNotDispatched('enumerator.transitioned');
+        ->assertNotDispatched('laranail-enumerator.transitioned');
 });
 
 it('transitionEnum chained through the state machine advances correctly', function (): void {
@@ -142,7 +142,7 @@ it('transitionEnumOrValidate succeeds + dispatches on a valid transition', funct
     Livewire::test(WorkflowComponent::class, ['status' => WorkflowStatus::Submitted])
         ->call('approveWithCustomMessage')
         ->assertSet('status', WorkflowStatus::Approved)
-        ->assertDispatched('enumerator.transitioned');
+        ->assertDispatched('laranail-enumerator.transitioned');
 });
 
 // === Sanity: trait can co-exist with Livewire's own validation rules =====

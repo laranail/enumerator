@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Contracts\Events\Dispatcher;
-use Simtabi\Laranail\Enumerator\Modules\Octane\OctaneServiceProvider;
+use Simtabi\Laranail\Enumerator\Modules\Octane\Providers\OctaneServiceProvider;
 use Simtabi\Laranail\Enumerator\Modules\Octane\WarmCachesListener;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
