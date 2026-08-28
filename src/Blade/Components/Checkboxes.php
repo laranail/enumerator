@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Blade\Components;
 
+use UnitEnum;
 use BackedEnum;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Blade\Components\Concerns\RoutesToFrameworkView;
-use UnitEnum;
 
 class Checkboxes extends Component
 {
@@ -22,16 +22,16 @@ class Checkboxes extends Component
     public array $selectedValues = [];
 
     /**
-     * @param  class-string  $enum
-     * @param  iterable<int|string, mixed>  $selected
-     * @param  string|null  $wireModel  Optional Livewire property name. When set,
-     *                                  each `<input>` emits `wire:model="…"` so
-     *                                  Livewire binds the array at the input level
-     *                                  (required for checkbox-array binding to
-     *                                  actually populate the property).
-     * @param  string|null  $wireModelModifier  Livewire wire:model modifier
-     *                                          (`live`, `blur`, `defer`, `debounce.500ms`,
-     *                                          …). No-op unless `wireModel` is also set.
+     * @param class-string $enum
+     * @param iterable<int|string, mixed> $selected
+     * @param string|null $wireModel Optional Livewire property name. When set,
+     *                               each `<input>` emits `wire:model="…"` so
+     *                               Livewire binds the array at the input level
+     *                               (required for checkbox-array binding to
+     *                               actually populate the property).
+     * @param string|null $wireModelModifier Livewire wire:model modifier
+     *                                       (`live`, `blur`, `defer`, `debounce.500ms`,
+     *                                       …). No-op unless `wireModel` is also set.
      */
     public function __construct(
         public string $enum,
@@ -61,38 +61,38 @@ class Checkboxes extends Component
     public function render(): View
     {
         return view($this->frameworkView('checkboxes'), [
-            'appendClasses' => $this->consumerClasses(),
-            'cases' => $this->cases,
-            'name' => $this->name,
-            'selectedValues' => $this->selectedValues,
-            'layout' => $this->layout,
-            'legend' => $this->legend,
-            'disabled' => $this->disabled,
-            'required' => $this->required,
-            'descriptions' => $this->descriptions,
-            'overrideClasses' => $this->classes,
-            'overrideItemClasses' => $this->itemClasses,
-            'overrideInputClasses' => $this->inputClasses,
-            'overrideLabelClasses' => $this->labelClasses,
+            'appendClasses'         => $this->consumerClasses(),
+            'cases'                 => $this->cases,
+            'name'                  => $this->name,
+            'selectedValues'        => $this->selectedValues,
+            'layout'                => $this->layout,
+            'legend'                => $this->legend,
+            'disabled'              => $this->disabled,
+            'required'              => $this->required,
+            'descriptions'          => $this->descriptions,
+            'overrideClasses'       => $this->classes,
+            'overrideItemClasses'   => $this->itemClasses,
+            'overrideInputClasses'  => $this->inputClasses,
+            'overrideLabelClasses'  => $this->labelClasses,
             'overrideLegendClasses' => $this->legendClasses,
-            'overrideRootId' => $this->rootId,
-            'wireModel' => $this->wireModel,
-            'wireModelModifier' => $this->wireModelModifier,
-            'valueOf' => $this->valueOfFn(),
-            'labelOf' => $this->labelOfFn(),
-            'idFor' => $this->idForFn(),
-            'descriptionOf' => $this->descriptionOfFn(),
+            'overrideRootId'        => $this->rootId,
+            'wireModel'             => $this->wireModel,
+            'wireModelModifier'     => $this->wireModelModifier,
+            'valueOf'               => $this->valueOfFn(),
+            'labelOf'               => $this->labelOfFn(),
+            'idFor'                 => $this->idForFn(),
+            'descriptionOf'         => $this->descriptionOfFn(),
         ]);
     }
 
     protected function scalar(mixed $value): string|int
     {
         return match (true) {
-            $value instanceof BackedEnum => $value->value,
-            $value instanceof UnitEnum => $value->name,
+            $value instanceof BackedEnum              => $value->value,
+            $value instanceof UnitEnum                => $value->name,
             $value instanceof AbstractEnumeratorClass => (string) $value->getValue(),
-            is_scalar($value) => $value,
-            default => (string) $value,
+            is_scalar($value)                         => $value,
+            default                                   => (string) $value,
         };
     }
 

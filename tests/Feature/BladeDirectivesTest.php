@@ -10,7 +10,7 @@ use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\RenderableStatusEnum;
 // throwaway Blade view and verify the output.
 
 /**
- * @param  array<string, mixed>  $data
+ * @param array<string, mixed> $data
  */
 function render(string $blade, array $data = []): string
 {
@@ -51,7 +51,7 @@ it('@enumeratorIs ... @endEnumeratorIs gates content correctly', function (): vo
 it('@enumeratorIn ... @endEnumeratorIn gates content correctly', function (): void {
     $template = '@enumeratorIn($case, $targets) YES @endEnumeratorIn';
     expect(trim(render($template, [
-        'case' => StatusEnum::Active,
+        'case'    => StatusEnum::Active,
         'targets' => [StatusEnum::Active, StatusEnum::Pending],
     ])))->toBe('YES');
 });

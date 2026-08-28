@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Modules\GraphQL\SchemaExporter;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
+use Simtabi\Laranail\Enumerator\Modules\GraphQL\SchemaExporter;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\DescribedEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
 
 // SchemaExporter — portable .graphql enum fragment emitter.
 

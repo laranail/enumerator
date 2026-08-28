@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
 use Simtabi\Laranail\Enumerator\Presets\Enums\OrderStatusEnum;
 use Simtabi\Laranail\Enumerator\Presets\Enums\PublicationStatusEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
 
 it('allows declared transitions', function (): void {
     expect(OrderStatusEnum::Pending->canTransitionTo(OrderStatusEnum::Confirmed))->toBeTrue();

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidBitmaskException;
-use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Support\AttributeBag;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\ClassConstBitEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\ClassConstDuplicateBitEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\DuplicateBitEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\FlaggedPermissionEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\MixedBitEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidBitmaskException;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\DuplicateBitEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\ClassConstBitEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\NonPowerOfTwoBitEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\FlaggedPermissionEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\ClassConstDuplicateBitEnum;
 
 // AttributesCache — reflection cache for resolved #[Attribute] data.
 
@@ -181,17 +181,17 @@ it('restore() ignores non-array payload entries', function (): void {
     AttributesCache::flush();
 
     AttributesCache::restore([
-        'corrupt::entry' => 'not-an-array',
+        'corrupt::entry'               => 'not-an-array',
         StatusEnum::class . '::Active' => [
-            'label' => 'restored-label',
+            'label'       => 'restored-label',
             'description' => null,
-            'color' => null,
-            'icon' => null,
-            'help' => null,
-            'order' => null,
-            'bit' => null,
-            'meta' => null,
-            'cssClasses' => [],
+            'color'       => null,
+            'icon'        => null,
+            'help'        => null,
+            'order'       => null,
+            'bit'         => null,
+            'meta'        => null,
+            'cssClasses'  => [],
         ],
     ]);
 

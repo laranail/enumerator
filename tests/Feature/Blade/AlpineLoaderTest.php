@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Blade;
 beforeEach(function (): void {
     // Reset to known config so individual tests can override.
     config()->set('laranail.enumerator.alpine', [
-        'version' => '3.15.12',
+        'version'   => '3.15.12',
         'integrity' => 'sha384-pb6hrQvo4s23cEUFtj0CZkzGE3jyK3pj26RIupXXxhSrrcUA/Cn0lZgcCrGH0t6L',
-        'cdn_url' => 'https://cdn.jsdelivr.net/npm/alpinejs@{version}/dist/cdn.min.js',
+        'cdn_url'   => 'https://cdn.jsdelivr.net/npm/alpinejs@{version}/dist/cdn.min.js',
         'local_url' => '/vendor/laranail-enumerator/alpine.min.js',
     ]);
 });

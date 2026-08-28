@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
-use BackedEnum;
-use Illuminate\Support\HtmlString;
-use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use Simtabi\Laranail\Enumerator\Casts\AsEnum;
-use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 use UnitEnum;
+use BackedEnum;
+use BadMethodCallException;
+use Illuminate\Support\HtmlString;
+use Simtabi\Laranail\Enumerator\Casts\AsEnum;
+use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
+use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 
 /**
  * Consumer-side trait. Use on **Eloquent Models**,
@@ -53,13 +54,52 @@ use UnitEnum;
 trait HasEnumAttributes
 {
     /**
-     * Consumer overrides this to declare the enum-typed attributes.
+     * Magic accessor: `$model->status_label`, `$model->status_color`, etc.
+     * Delegates to the underlying enum instance if it's hydrated.
      *
-     * @return array<string, class-string|array{enum: class-string, cast?: class-string}>
+     * Untyped `$key` matches Eloquent\Model::__get's signature so this
+     * trait composes cleanly on Models. Other hosts (Livewire, FormRequest)
+     * pass strings here too in practice.
      */
-    protected function enumAttributes(): array
+    public function __get($key)
     {
-        return [];
+        $derived = is_string($key) ? $this->resolveEnumDerivedAttribute($key) : null;
+        if ($derived !== null) {
+            return $derived['value'];
+        }
+
+        // Defer to parent `__get` (Eloquent's) when not an enum-derived
+        // accessor. Parent classes typically provide their own implementation.
+        if (is_callable(['parent', '__get'])) {
+            return parent::__get($key);
+        }
+
+        return $this->{$key} ?? null;
+    }
+
+    /**
+     * Magic method: `$model->statusIs($x)`, `$model->statusIn([...])`, etc.
+     *
+     * Untyped to match Eloquent\Model::__call.
+     *
+     * @param array<int, mixed> $arguments
+     */
+    public function __call($method, $arguments)
+    {
+        $resolved = is_string($method) ? $this->resolveEnumPredicate($method, (array) $arguments) : null;
+        if ($resolved !== null) {
+            return $resolved['result'];
+        }
+
+        if (is_callable(['parent', '__call'])) {
+            return parent::__call($method, $arguments);
+        }
+
+        throw new BadMethodCallException(sprintf(
+            'Undefined method %s::%s()',
+            static::class,
+            $method,
+        ));
     }
 
     /**
@@ -114,52 +154,45 @@ trait HasEnumAttributes
     }
 
     /**
-     * Magic accessor: `$model->status_label`, `$model->status_color`, etc.
-     * Delegates to the underlying enum instance if it's hydrated.
+     * Consumer overrides this to declare the enum-typed attributes.
      *
-     * Untyped `$key` matches Eloquent\Model::__get's signature so this
-     * trait composes cleanly on Models. Other hosts (Livewire, FormRequest)
-     * pass strings here too in practice.
+     * @return array<string, class-string|array{enum: class-string, cast?: class-string}>
      */
-    public function __get($key)
+    protected function enumAttributes(): array
     {
-        $derived = is_string($key) ? $this->resolveEnumDerivedAttribute($key) : null;
-        if ($derived !== null) {
-            return $derived['value'];
-        }
-
-        // Defer to parent `__get` (Eloquent's) when not an enum-derived
-        // accessor. Parent classes typically provide their own implementation.
-        if (is_callable(['parent', '__get'])) {
-            return parent::__get($key);
-        }
-
-        return $this->{$key} ?? null;
+        return [];
     }
 
     /**
-     * Magic method: `$model->statusIs($x)`, `$model->statusIn([...])`, etc.
+     * Suffix → projection callable map. Used by `__get` to resolve
+     * `$model->{attribute}_{suffix}`. Every projection handles a null
+     * case (when the underlying attribute is null) by returning the
+     * empty/null/default for its return type.
      *
-     * Untyped to match Eloquent\Model::__call.
-     *
-     * @param  array<int, mixed>  $arguments
+     * @return array<string, callable(object|null): mixed>
      */
-    public function __call($method, $arguments)
+    private static function accessorSuffixes(): array
     {
-        $resolved = is_string($method) ? $this->resolveEnumPredicate($method, (array) $arguments) : null;
-        if ($resolved !== null) {
-            return $resolved['result'];
-        }
-
-        if (is_callable(['parent', '__call'])) {
-            return parent::__call($method, $arguments);
-        }
-
-        throw new \BadMethodCallException(sprintf(
-            'Undefined method %s::%s()',
-            static::class,
-            $method,
-        ));
+        return [
+            'label' => static fn (?object $c): string => $c !== null && method_exists($c, 'label') ? (string) $c->label() : '',
+            'value' => static fn (?object $c): mixed => match (true) {
+                $c instanceof BackedEnum                     => $c->value,
+                $c instanceof UnitEnum                       => $c->name,
+                $c !== null && method_exists($c, 'getValue') => $c->getValue(),
+                default                                      => null,
+            },
+            'name' => static fn (?object $c): string => match (true) {
+                $c instanceof UnitEnum                     => $c->name,
+                $c !== null && method_exists($c, 'getKey') => (string) $c->getKey(),
+                default                                    => '',
+            },
+            'color'       => static fn (?object $c): ?string => $c !== null && method_exists($c, 'color') ? $c->color() : null,
+            'icon'        => static fn (?object $c): ?string => $c !== null && method_exists($c, 'icon') ? $c->icon() : null,
+            'description' => static fn (?object $c): ?string => $c !== null && method_exists($c, 'description') ? $c->description() : null,
+            'help'        => static fn (?object $c): ?string => $c !== null && method_exists($c, 'help') ? $c->help() : null,
+            'badge'       => static fn (?object $c): ?HtmlString => $c !== null && method_exists($c, 'toHtml') ? $c->toHtml() : null,
+            'meta'        => static fn (?object $c): array => $c !== null && method_exists($c, 'metaAll') ? $c->metaAll() : [],
+        ];
     }
 
     /**
@@ -208,7 +241,8 @@ trait HasEnumAttributes
     /**
      * Resolve `$model->statusIs(...)` / `statusIn(...)` / `statusEquals(...)`.
      *
-     * @param  array<int, mixed>  $arguments
+     * @param array<int, mixed> $arguments
+     *
      * @return array{result: bool}|null
      */
     private function resolveEnumPredicate(string $method, array $arguments): ?array
@@ -260,37 +294,5 @@ trait HasEnumAttributes
         }
 
         return null;
-    }
-
-    /**
-     * Suffix → projection callable map. Used by `__get` to resolve
-     * `$model->{attribute}_{suffix}`. Every projection handles a null
-     * case (when the underlying attribute is null) by returning the
-     * empty/null/default for its return type.
-     *
-     * @return array<string, callable(object|null): mixed>
-     */
-    private static function accessorSuffixes(): array
-    {
-        return [
-            'label' => static fn (?object $c): string => $c !== null && method_exists($c, 'label') ? (string) $c->label() : '',
-            'value' => static fn (?object $c): mixed => match (true) {
-                $c instanceof BackedEnum => $c->value,
-                $c instanceof UnitEnum => $c->name,
-                $c !== null && method_exists($c, 'getValue') => $c->getValue(),
-                default => null,
-            },
-            'name' => static fn (?object $c): string => match (true) {
-                $c instanceof UnitEnum => $c->name,
-                $c !== null && method_exists($c, 'getKey') => (string) $c->getKey(),
-                default => '',
-            },
-            'color' => static fn (?object $c): ?string => $c !== null && method_exists($c, 'color') ? $c->color() : null,
-            'icon' => static fn (?object $c): ?string => $c !== null && method_exists($c, 'icon') ? $c->icon() : null,
-            'description' => static fn (?object $c): ?string => $c !== null && method_exists($c, 'description') ? $c->description() : null,
-            'help' => static fn (?object $c): ?string => $c !== null && method_exists($c, 'help') ? $c->help() : null,
-            'badge' => static fn (?object $c): ?HtmlString => $c !== null && method_exists($c, 'toHtml') ? $c->toHtml() : null,
-            'meta' => static fn (?object $c): array => $c !== null && method_exists($c, 'metaAll') ? $c->metaAll() : [],
-        ];
     }
 }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Modules\Saloon\EnumCaster;
-use Simtabi\Laranail\Enumerator\Modules\Saloon\Providers\SaloonServiceProvider;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Modules\Saloon\EnumCaster;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
+use Simtabi\Laranail\Enumerator\Modules\Saloon\Providers\SaloonServiceProvider;
 
 it('serializes backed string enums to their value', function (): void {
     expect(EnumCaster::serialize(StatusEnum::Active))->toBe('active');
@@ -34,12 +34,12 @@ it('passes through non-enum scalars unchanged', function (): void {
 it('recursively casts arrays', function (): void {
     $payload = [
         'status' => StatusEnum::Active,
-        'extra' => ['nested' => PureColorEnum::Red, 'static' => 'x'],
+        'extra'  => ['nested' => PureColorEnum::Red, 'static' => 'x'],
     ];
 
     expect(EnumCaster::cast($payload))->toBe([
         'status' => 'active',
-        'extra' => ['nested' => 'Red', 'static' => 'x'],
+        'extra'  => ['nested' => 'Red', 'static' => 'x'],
     ]);
 });
 

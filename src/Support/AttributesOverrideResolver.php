@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Support;
 
+use UnitEnum;
+use Throwable;
 use Illuminate\Contracts\Config\Repository as Config;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Simtabi\Laranail\Enumerator\Contracts\TenantContext;
-use UnitEnum;
 
 /**
  * Reads attribute overrides from `TenantContext` then
@@ -29,6 +30,44 @@ final class AttributesOverrideResolver
     ) {}
 
     /**
+     * Return the override value for a single attribute key, or null if not
+     * configured.
+     *
+     * @param UnitEnum|object $caseOrInstance enum case or AbstractEnumeratorClass instance
+     */
+    public function resolve(object $caseOrInstance, string $key): mixed
+    {
+        $entry = $this->entryFor($caseOrInstance);
+        if ($entry === null) {
+            return null;
+        }
+
+        return $entry[$key] ?? null;
+    }
+
+    /**
+     * Merge an override 'meta' array into the case's declared meta.
+     *
+     * @param UnitEnum|object $caseOrInstance enum case or AbstractEnumeratorClass instance
+     * @param array<string, mixed>|null $declared
+     *
+     * @return array<string, mixed>|null
+     */
+    public function mergeMeta(object $caseOrInstance, ?array $declared): ?array
+    {
+        $entry = $this->entryFor($caseOrInstance);
+        $override = is_array($entry) && isset($entry['meta']) && is_array($entry['meta'])
+            ? $entry['meta']
+            : null;
+
+        if ($declared === null && $override === null) {
+            return null;
+        }
+
+        return array_merge($declared ?? [], $override ?? []);
+    }
+
+    /**
      * Resolve the active TenantContext. Constructor-injected one wins
      * (kept for unit-test isolation); otherwise resolves from the
      * container at call time so tests can rebind via
@@ -44,48 +83,11 @@ final class AttributesOverrideResolver
         }
         try {
             $bound = app(TenantContext::class);
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return null;
         }
 
         return $bound instanceof TenantContext ? $bound : null;
-    }
-
-    /**
-     * Return the override value for a single attribute key, or null if not
-     * configured.
-     *
-     * @param  UnitEnum|object  $caseOrInstance  enum case or AbstractEnumeratorClass instance
-     */
-    public function resolve(object $caseOrInstance, string $key): mixed
-    {
-        $entry = $this->entryFor($caseOrInstance);
-        if ($entry === null) {
-            return null;
-        }
-
-        return $entry[$key] ?? null;
-    }
-
-    /**
-     * Merge an override 'meta' array into the case's declared meta.
-     *
-     * @param  UnitEnum|object  $caseOrInstance  enum case or AbstractEnumeratorClass instance
-     * @param  array<string, mixed>|null  $declared
-     * @return array<string, mixed>|null
-     */
-    public function mergeMeta(object $caseOrInstance, ?array $declared): ?array
-    {
-        $entry = $this->entryFor($caseOrInstance);
-        $override = is_array($entry) && isset($entry['meta']) && is_array($entry['meta'])
-            ? $entry['meta']
-            : null;
-
-        if ($declared === null && $override === null) {
-            return null;
-        }
-
-        return array_merge($declared ?? [], $override ?? []);
     }
 
     /**

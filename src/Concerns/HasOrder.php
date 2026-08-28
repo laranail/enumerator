@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
+use UnitEnum;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
 use Simtabi\Laranail\Enumerator\Support\CasesCollection;
-use UnitEnum;
 
 /**
  * Attribute-driven ordering. Reads `#[Order]` from each case. Provides
@@ -17,6 +17,31 @@ use UnitEnum;
  */
 trait HasOrder
 {
+    /**
+     * @return CasesCollection<int, static>
+     */
+    public static function sortedByOrder(): CasesCollection
+    {
+        $cases = static::cases();
+        usort(
+            $cases,
+            static fn (UnitEnum $a, UnitEnum $b): int => (AttributesCache::for($a)->order ?? PHP_INT_MAX)
+                <=> (AttributesCache::for($b)->order ?? PHP_INT_MAX),
+        );
+
+        return new CasesCollection($cases);
+    }
+
+    /**
+     * @return CasesCollection<int, static>
+     */
+    public static function sortedByOrderDesc(): CasesCollection
+    {
+        $cases = static::sortedByOrder()->all();
+
+        return new CasesCollection(array_reverse($cases));
+    }
+
     public function getOrder(): int
     {
         return AttributesCache::for($this)->order ?? PHP_INT_MAX;
@@ -65,30 +90,5 @@ trait HasOrder
     public function isLowerOrEqual(UnitEnum $other): bool
     {
         return $this->compareTo($other) <= 0;
-    }
-
-    /**
-     * @return CasesCollection<int, static>
-     */
-    public static function sortedByOrder(): CasesCollection
-    {
-        $cases = static::cases();
-        usort(
-            $cases,
-            static fn (UnitEnum $a, UnitEnum $b): int => (AttributesCache::for($a)->order ?? PHP_INT_MAX)
-                <=> (AttributesCache::for($b)->order ?? PHP_INT_MAX),
-        );
-
-        return new CasesCollection($cases);
-    }
-
-    /**
-     * @return CasesCollection<int, static>
-     */
-    public static function sortedByOrderDesc(): CasesCollection
-    {
-        $cases = static::sortedByOrder()->all();
-
-        return new CasesCollection(array_reverse($cases));
     }
 }

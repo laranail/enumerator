@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\Saloon;
 
+use UnitEnum;
 use BackedEnum;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use UnitEnum;
 
 /**
  * Saloon-friendly value caster for enumerator instances.
@@ -63,7 +63,8 @@ final class EnumCaster
      * Recursively cast an array — useful for headers/query/body arrays
      * that contain enum instances nested at arbitrary depth.
      *
-     * @param  array<int|string, mixed>  $payload
+     * @param array<int|string, mixed> $payload
+     *
      * @return array<int|string, mixed>
      */
     public static function cast(array $payload): array

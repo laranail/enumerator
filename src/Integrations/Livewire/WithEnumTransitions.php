@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Integrations\Livewire;
 
+use UnitEnum;
 use BackedEnum;
 use Livewire\Component;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
-use UnitEnum;
 
 if (! class_exists(Component::class)) {
     return;
@@ -65,10 +65,10 @@ trait WithEnumTransitions
      * failure (so caller actions can short-circuit on failure if they
      * need to).
      *
-     * @param  string  $propertyPath  Dot-notation property path on
-     *                                this Livewire component, e.g.
-     *                                "order.status" or "user.role".
-     * @param  UnitEnum|BackedEnum  $target  The enum case to transition to.
+     * @param string $propertyPath Dot-notation property path on
+     *                             this Livewire component, e.g.
+     *                             "order.status" or "user.role".
+     * @param UnitEnum|BackedEnum $target The enum case to transition to.
      */
     public function transitionEnum(string $propertyPath, UnitEnum|BackedEnum $target): bool
     {
@@ -105,8 +105,8 @@ trait WithEnumTransitions
 
         if (method_exists($this, 'dispatch')) {
             $this->dispatch('laranail-enumerator.transitioned', [
-                'from' => $current,
-                'to' => $next,
+                'from'     => $current,
+                'to'       => $next,
                 'property' => $propertyPath,
             ]);
         }
@@ -142,7 +142,7 @@ trait WithEnumTransitions
      * error bag at the failing path. Returns true only if every path
      * transitioned successfully.
      *
-     * @param  array<int, string>  $propertyPaths
+     * @param array<int, string> $propertyPaths
      */
     public function bulkTransitionEnum(array $propertyPaths, UnitEnum|BackedEnum $target): bool
     {
@@ -208,8 +208,8 @@ trait WithEnumTransitions
 
         if (method_exists($this, 'dispatch')) {
             $this->dispatch('laranail-enumerator.transitioned', [
-                'from' => $current,
-                'to' => $next,
+                'from'     => $current,
+                'to'       => $next,
                 'property' => $propertyPath,
             ]);
         }

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Blade\Components;
 
-use BackedEnum;
 use Closure;
-use Illuminate\Contracts\View\View;
+use UnitEnum;
+use BackedEnum;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Blade\Components\Concerns\GroupsCases;
 use Simtabi\Laranail\Enumerator\Blade\Components\Concerns\RoutesToFrameworkView;
-use UnitEnum;
 
 class Select extends Component
 {
@@ -24,10 +24,10 @@ class Select extends Component
     public mixed $selectedValue;
 
     /**
-     * @param  class-string  $enum
-     * @param  UnitEnum|AbstractEnumeratorClass|iterable<int|string, mixed>|string|int|null  $selected
-     * @param  array<string, string>  $groupLabels
-     * @param  array<string, array<int, UnitEnum|AbstractEnumeratorClass>>|null  $groups
+     * @param class-string $enum
+     * @param UnitEnum|AbstractEnumeratorClass|iterable<int|string, mixed>|string|int|null $selected
+     * @param array<string, string> $groupLabels
+     * @param array<string, array<int, UnitEnum|AbstractEnumeratorClass>>|null $groups
      */
     public function __construct(
         public string $enum,
@@ -59,24 +59,46 @@ class Select extends Component
             ?? $this->buildGroups($this->cases, $this->groupsBy, $this->groupLabels);
 
         return view($this->frameworkView('select'), [
-            'appendClasses' => $this->consumerClasses(),
-            'cases' => $this->cases,
-            'name' => $this->name,
-            'selectedValue' => $this->selectedValue,
-            'nullable' => $this->nullable,
-            'placeholder' => $this->placeholder,
-            'multiple' => $this->multiple,
-            'size' => $this->size,
-            'disabled' => $this->disabled,
-            'required' => $this->required,
-            'groups' => $this->groups,
-            'ariaLabel' => $this->ariaLabel,
-            'overrideClasses' => $this->classes,
+            'appendClasses'         => $this->consumerClasses(),
+            'cases'                 => $this->cases,
+            'name'                  => $this->name,
+            'selectedValue'         => $this->selectedValue,
+            'nullable'              => $this->nullable,
+            'placeholder'           => $this->placeholder,
+            'multiple'              => $this->multiple,
+            'size'                  => $this->size,
+            'disabled'              => $this->disabled,
+            'required'              => $this->required,
+            'groups'                => $this->groups,
+            'ariaLabel'             => $this->ariaLabel,
+            'overrideClasses'       => $this->classes,
             'overrideOptionClasses' => $this->optionClasses,
-            'overrideRootId' => $this->rootId,
-            'valueOf' => $this->valueOfFn(),
-            'labelOf' => $this->labelOfFn(),
+            'overrideRootId'        => $this->rootId,
+            'valueOf'               => $this->valueOfFn(),
+            'labelOf'               => $this->labelOfFn(),
         ]);
+    }
+
+    protected function valueOfFn(): callable
+    {
+        return function (object $case): string|int {
+            if ($case instanceof BackedEnum) {
+                return $case->value;
+            }
+            if ($case instanceof UnitEnum) {
+                return $case->name;
+            }
+
+            /** @var AbstractEnumeratorClass $case */
+            return (string) $case->getValue();
+        };
+    }
+
+    protected function labelOfFn(): callable
+    {
+        return static fn (object $case): string => method_exists($case, 'label')
+            ? (string) $case->label()
+            : (string) ($case->name ?? '');
     }
 
     private function normalizeSelected(mixed $selected): mixed
@@ -109,27 +131,5 @@ class Select extends Component
         }
 
         return is_scalar($value) ? $value : (string) $value;
-    }
-
-    protected function valueOfFn(): callable
-    {
-        return function (object $case): string|int {
-            if ($case instanceof BackedEnum) {
-                return $case->value;
-            }
-            if ($case instanceof UnitEnum) {
-                return $case->name;
-            }
-
-            /** @var AbstractEnumeratorClass $case */
-            return (string) $case->getValue();
-        };
-    }
-
-    protected function labelOfFn(): callable
-    {
-        return static fn (object $case): string => method_exists($case, 'label')
-            ? (string) $case->label()
-            : (string) ($case->name ?? '');
     }
 }

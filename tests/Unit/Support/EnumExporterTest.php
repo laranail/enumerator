@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Support\EnumExporter;
+use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 
 // EnumExporter — array / JSON / PHP file / TypeScript emitters.
 

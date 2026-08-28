@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\StructuredOutput;
 
+use Throwable;
 use ReflectionEnum;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 
@@ -22,7 +23,8 @@ final class AnthropicSchemaEmitter
     /**
      * Emit a tool-input-property schema fragment.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array{type: string, enum: list<int|string>, description?: string}
      */
     public function asToolInputProperty(string $enumClass): array
@@ -49,7 +51,7 @@ final class AnthropicSchemaEmitter
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function typeOf(string $enumClass): string
     {
@@ -66,7 +68,7 @@ final class AnthropicSchemaEmitter
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function classDescription(string $enumClass): string
     {
@@ -75,7 +77,7 @@ final class AnthropicSchemaEmitter
         }
         try {
             $value = $enumClass::classDescription();
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return '';
         }
 

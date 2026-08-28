@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Contracts\TranslatorAdapter;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\TranslatableStatusEnum;
 use Simtabi\Laranail\Enumerator\Translations\LaravelTranslatorAdapter;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\TranslatableStatusEnum;
 
 it('binds LaravelTranslatorAdapter by default', function (): void {
     $adapter = app(TranslatorAdapter::class);

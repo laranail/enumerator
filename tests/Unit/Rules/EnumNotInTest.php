@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Rules\EnumNotIn;
+use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 
 // EnumNotIn — exclude a subset of cases (delegates to EnumValue::except).
 

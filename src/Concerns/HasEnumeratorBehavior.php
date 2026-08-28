@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
-use BackedEnum;
-use Simtabi\Laranail\Enumerator\Concerns\Core\BehaviorCore;
-use Simtabi\Laranail\Enumerator\Support\CasesCollection;
 use UnitEnum;
+use BackedEnum;
+use Simtabi\Laranail\Enumerator\Support\CasesCollection;
+use Simtabi\Laranail\Enumerator\Concerns\Core\BehaviorCore;
 
 /**
  * Umbrella trait for native PHP 8.3+ enums implementing the

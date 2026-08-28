@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Rules;
 
 use Closure;
+use UnitEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use UnitEnum;
 
 /**
  * Validate the value matches one of an explicit allow-list of cases.
@@ -16,7 +16,7 @@ use UnitEnum;
 class EnumIn implements ValidationRule
 {
     /**
-     * @param  array<int, UnitEnum|AbstractEnumeratorClass>  $allowed
+     * @param array<int, UnitEnum|AbstractEnumeratorClass> $allowed
      */
     public function __construct(
         public readonly string $enumClass,

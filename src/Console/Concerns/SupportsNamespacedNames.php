@@ -56,7 +56,7 @@ trait SupportsNamespacedNames
     }
 
     /**
-     * @param  iterable<int, string>  $aliases
+     * @param iterable<int, string> $aliases
      */
     public function setAliases(iterable $aliases): static
     {

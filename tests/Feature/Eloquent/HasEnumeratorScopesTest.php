@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Simtabi\Laranail\Enumerator\Eloquent\HasEnumeratorScopes;
-use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Illuminate\Database\Eloquent\Model;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
+use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Eloquent\HasEnumeratorScopes;
 
 /**
  * Minimal Eloquent model fixture with an enum-cast column and the scopes trait.
@@ -20,11 +20,11 @@ class ScopedTestModel extends Model
 {
     use HasEnumeratorScopes;
 
+    public $timestamps = false;
+
     protected $table = 'scoped_test_models';
 
     protected $guarded = [];
-
-    public $timestamps = false;
 
     protected function casts(): array
     {
@@ -94,9 +94,9 @@ it('whereEnumMeta returns no rows when the column has no enum cast', function ()
     {
         use HasEnumeratorScopes;
 
-        protected $table = 'scoped_test_models';
-
         public $timestamps = false;
+
+        protected $table = 'scoped_test_models';
     };
 
     $count = $rawModel::query()->whereEnumMeta('status', 'priority', 'high')->count();

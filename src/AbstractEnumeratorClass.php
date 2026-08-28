@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator;
 
-use JsonSerializable;
-use Simtabi\Laranail\Enumerator\Concerns\HasClassEnumBehavior;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Stringable;
+use JsonSerializable;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasClassEnumBehavior;
 
 /**
  * Class-constant enumerator base. Intended for the rare scenarios where

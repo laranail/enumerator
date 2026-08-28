@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 use Illuminate\Database\Eloquent\Model;
 use Simtabi\Laranail\Enumerator\Casts\AsEnum;
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 
 // AsEnum — Eloquent cast for native and class-const enums.
 

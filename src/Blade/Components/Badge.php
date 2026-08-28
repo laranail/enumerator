@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Blade\Components;
 
-use Illuminate\Contracts\View\View;
+use UnitEnum;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Blade\Components\Concerns\RoutesToFrameworkView;
-use UnitEnum;
 
 /**
  * Renders an enum case as a badge. Routes to
@@ -40,15 +40,15 @@ class Badge extends Component
     public function render(): View
     {
         return view($this->frameworkView('badge'), [
-            'appendClasses' => $this->consumerClasses(),
-            'case' => $this->case,
-            'iconPosition' => $this->iconPosition,
-            'href' => $this->href,
-            'ariaLabel' => $this->ariaLabel,
-            'overrideClasses' => $this->classes,
-            'overrideIconClasses' => $this->iconClasses,
+            'appendClasses'        => $this->consumerClasses(),
+            'case'                 => $this->case,
+            'iconPosition'         => $this->iconPosition,
+            'href'                 => $this->href,
+            'ariaLabel'            => $this->ariaLabel,
+            'overrideClasses'      => $this->classes,
+            'overrideIconClasses'  => $this->iconClasses,
             'overrideLabelClasses' => $this->labelClasses,
-            'overrideRootId' => $this->rootId,
+            'overrideRootId'       => $this->rootId,
         ]);
     }
 }

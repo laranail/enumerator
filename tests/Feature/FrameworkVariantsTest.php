@@ -12,11 +12,11 @@ it('renders each framework badge variant with that framework class set', functio
 
     $html->assertSee($expectedClass, false);
 })->with([
-    'plain' => ['plain', 'enumerator-badge'],
-    'tailwind' => ['tailwind', 'bg-success-50'],
-    'daisyui' => ['daisyui', 'badge-success'],
+    'plain'     => ['plain', 'enumerator-badge'],
+    'tailwind'  => ['tailwind', 'bg-success-50'],
+    'daisyui'   => ['daisyui', 'badge-success'],
     'bootstrap' => ['bootstrap', 'bg-success'],
-    'bulma' => ['bulma', 'tag is-success'],
+    'bulma'     => ['bulma', 'tag is-success'],
 ]);
 
 it('renders each framework select variant', function (string $framework): void {

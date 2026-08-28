@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
-use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Icon;
+use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Order;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
-use Simtabi\Laranail\Enumerator\Concerns\HasLifecycle;
 use Simtabi\Laranail\Enumerator\Concerns\HasOrder;
-use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
+use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasLifecycle;
+use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum PublicationStatusEnum: string implements Enumerator, Stateful
 {
@@ -38,11 +38,11 @@ enum PublicationStatusEnum: string implements Enumerator, Stateful
     public static function transitions(): array
     {
         return [
-            self::Draft->value => [self::Pending, self::Archived],
-            self::Pending->value => [self::Published, self::Draft, self::Archived],
+            self::Draft->value     => [self::Pending, self::Archived],
+            self::Pending->value   => [self::Published, self::Draft, self::Archived],
             self::Published->value => [self::Archived],
-            self::Archived->value => [self::Deleted, self::Draft],
-            self::Deleted->value => [],
+            self::Archived->value  => [self::Deleted, self::Draft],
+            self::Deleted->value   => [],
         ];
     }
 
@@ -54,7 +54,7 @@ enum PublicationStatusEnum: string implements Enumerator, Stateful
         return [
             'positive' => [self::Published],
             'negative' => [self::Deleted],
-            'pending' => [self::Draft, self::Pending],
+            'pending'  => [self::Draft, self::Pending],
             'terminal' => [self::Deleted],
         ];
     }

@@ -27,15 +27,15 @@ use Illuminate\Contracts\View\View;
 class Dropdown extends Select
 {
     /**
-     * @param  class-string  $enum
-     * @param  array<string, string>  $groupLabels
-     * @param  array<string, array<int, mixed>>|null  $groups
-     * @param  string|null  $wireModel  Livewire `wire:model` attribute
-     *                                  value (e.g. `'status'`).
-     * @param  string|null  $wireModelModifier  Livewire wire:model modifier
-     *                                          (`live`, `blur`, `defer`,
-     *                                          `debounce.500ms`, …). No-op
-     *                                          unless `wireModel` is set.
+     * @param class-string $enum
+     * @param array<string, string> $groupLabels
+     * @param array<string, array<int, mixed>>|null $groups
+     * @param string|null $wireModel Livewire `wire:model` attribute
+     *                               value (e.g. `'status'`).
+     * @param string|null $wireModelModifier Livewire wire:model modifier
+     *                                       (`live`, `blur`, `defer`,
+     *                                       `debounce.500ms`, …). No-op
+     *                                       unless `wireModel` is set.
      */
     public function __construct(
         string $enum,
@@ -95,36 +95,36 @@ class Dropdown extends Select
             ?? $this->buildGroups($this->cases, $this->groupsBy, $this->groupLabels);
 
         return view($this->frameworkView('dropdown'), [
-            'appendClasses' => $this->consumerClasses(),
-            'cases' => $this->cases,
-            'name' => $this->name,
-            'selectedValue' => $this->selectedValue,
-            'nullable' => $this->nullable,
-            'placeholder' => $this->placeholder,
-            'multiple' => $this->multiple,
-            'size' => $this->size,
-            'disabled' => $this->disabled,
-            'required' => $this->required,
-            'groups' => $this->groups,
-            'ariaLabel' => $this->ariaLabel,
-            'labelText' => $this->labelText,
-            'description' => $this->description,
-            'searchable' => $this->searchable,
-            'clearable' => $this->clearable,
-            'overrideWrapperClasses' => $this->wrapperClasses,
-            'overrideLabelClasses' => $this->labelClasses,
+            'appendClasses'              => $this->consumerClasses(),
+            'cases'                      => $this->cases,
+            'name'                       => $this->name,
+            'selectedValue'              => $this->selectedValue,
+            'nullable'                   => $this->nullable,
+            'placeholder'                => $this->placeholder,
+            'multiple'                   => $this->multiple,
+            'size'                       => $this->size,
+            'disabled'                   => $this->disabled,
+            'required'                   => $this->required,
+            'groups'                     => $this->groups,
+            'ariaLabel'                  => $this->ariaLabel,
+            'labelText'                  => $this->labelText,
+            'description'                => $this->description,
+            'searchable'                 => $this->searchable,
+            'clearable'                  => $this->clearable,
+            'overrideWrapperClasses'     => $this->wrapperClasses,
+            'overrideLabelClasses'       => $this->labelClasses,
             'overrideDescriptionClasses' => $this->descriptionClasses,
-            'overrideClasses' => $this->classes,
-            'overrideOptionClasses' => $this->optionClasses,
-            'overrideRootId' => $this->rootId,
-            'overrideWrapperId' => $this->wrapperId,
-            'overrideLabelId' => $this->labelId,
-            'wireModel' => $this->wireModel,
-            'wireModelModifier' => $this->wireModelModifier,
-            'announceChanges' => $this->announceChanges,
-            'strings' => $this->resolveDropdownStrings(),
-            'valueOf' => $this->valueOfFn(),
-            'labelOf' => $this->labelOfFn(),
+            'overrideClasses'            => $this->classes,
+            'overrideOptionClasses'      => $this->optionClasses,
+            'overrideRootId'             => $this->rootId,
+            'overrideWrapperId'          => $this->wrapperId,
+            'overrideLabelId'            => $this->labelId,
+            'wireModel'                  => $this->wireModel,
+            'wireModelModifier'          => $this->wireModelModifier,
+            'announceChanges'            => $this->announceChanges,
+            'strings'                    => $this->resolveDropdownStrings(),
+            'valueOf'                    => $this->valueOfFn(),
+            'labelOf'                    => $this->labelOfFn(),
         ]);
     }
 
@@ -177,15 +177,15 @@ class Dropdown extends Select
         };
 
         return [
-            'search_placeholder' => $resolve($base . '.search_placeholder', 'Search…'),
-            'search_label' => $resolve($base . '.search_label', 'Search options'),
-            'no_matches' => $resolve($base . '.no_matches', 'No matches.'),
-            'clear_selection' => $resolve($base . '.clear_selection', 'Clear selection'),
-            'remove_value_prefix' => $splitOnLabel($base . '.remove_value', 'Remove '),
-            'announce_added_prefix' => $splitOnLabel($base . '.announce_added', 'Added '),
-            'announce_removed_prefix' => $splitOnLabel($base . '.announce_removed', 'Removed '),
+            'search_placeholder'       => $resolve($base . '.search_placeholder', 'Search…'),
+            'search_label'             => $resolve($base . '.search_label', 'Search options'),
+            'no_matches'               => $resolve($base . '.no_matches', 'No matches.'),
+            'clear_selection'          => $resolve($base . '.clear_selection', 'Clear selection'),
+            'remove_value_prefix'      => $splitOnLabel($base . '.remove_value', 'Remove '),
+            'announce_added_prefix'    => $splitOnLabel($base . '.announce_added', 'Added '),
+            'announce_removed_prefix'  => $splitOnLabel($base . '.announce_removed', 'Removed '),
             'announce_selected_prefix' => $splitOnLabel($base . '.announce_selected', 'Selected '),
-            'announce_cleared' => $resolve($base . '.announce_cleared', 'Selection cleared'),
+            'announce_cleared'         => $resolve($base . '.announce_cleared', 'Selection cleared'),
         ];
     }
 }

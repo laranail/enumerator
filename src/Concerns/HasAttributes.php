@@ -23,6 +23,11 @@ use Simtabi\Laranail\Enumerator\Support\EnumeratorRegistry;
  */
 trait HasAttributes
 {
+    public static function classDescription(): ?string
+    {
+        return AttributesCache::forClass(static::class)->description;
+    }
+
     public function color(): ?string
     {
         return $this->resolvedAttribute('color');
@@ -100,21 +105,16 @@ trait HasAttributes
         $bag = $this->attributeBag();
 
         return array_filter([
-            'label' => $bag->label,
+            'label'       => $bag->label,
             'description' => $bag->description,
-            'color' => $bag->color,
-            'icon' => $bag->icon,
-            'help' => $bag->help,
-            'order' => $bag->order,
-            'bit' => $bag->bit,
-            'meta' => $bag->meta,
+            'color'       => $bag->color,
+            'icon'        => $bag->icon,
+            'help'        => $bag->help,
+            'order'       => $bag->order,
+            'bit'         => $bag->bit,
+            'meta'        => $bag->meta,
             'css_classes' => $bag->cssClasses,
         ], static fn (mixed $v): bool => $v !== null && $v !== []);
-    }
-
-    public static function classDescription(): ?string
-    {
-        return AttributesCache::forClass(static::class)->description;
     }
 
     /**
@@ -131,12 +131,12 @@ trait HasAttributes
         $bag = $this->attributeBag();
 
         return match ($field) {
-            'label' => $bag->label,
+            'label'       => $bag->label,
             'description' => $bag->description,
-            'color' => $bag->color,
-            'icon' => $bag->icon,
-            'help' => $bag->help,
-            default => null,
+            'color'       => $bag->color,
+            'icon'        => $bag->icon,
+            'help'        => $bag->help,
+            default       => null,
         };
     }
 

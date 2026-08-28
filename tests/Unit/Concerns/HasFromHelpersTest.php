@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+use Simtabi\Laranail\Enumerator\Support\AttributesCache;
+use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorNameException;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
-use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
-use Simtabi\Laranail\Enumerator\Support\AttributesCache;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
 
 // HasFromHelpers — fromName/tryFromName/fromMeta/coerce/fromAny.
 
@@ -60,7 +60,7 @@ it('fromMeta() returns the case collection when matches are found', function ():
     AttributesCache::flush();
     config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
-            'Active' => ['meta' => ['priority' => 'high']],
+            'Active'  => ['meta' => ['priority' => 'high']],
             'Pending' => ['meta' => ['priority' => 'high']],
         ],
     ]);
@@ -86,7 +86,7 @@ it('tryFromMeta() supports a callable predicate', function (): void {
     AttributesCache::flush();
     config()->set('laranail.enumerator.overrides', [
         StatusEnum::class => [
-            'Active' => ['meta' => ['priority' => 5]],
+            'Active'  => ['meta' => ['priority' => 5]],
             'Pending' => ['meta' => ['priority' => 10]],
         ],
     ]);

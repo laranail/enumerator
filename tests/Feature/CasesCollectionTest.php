@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
 
 it('returns names/values/labels from a collection', function (): void {
     $col = SimpleStatusEnum::collect();
@@ -43,10 +43,10 @@ it('plucks via callable + key', function (): void {
         fn ($c) => $c->value,
     );
     expect($picked)->toBe([
-        'low' => 'Low',
-        'medium' => 'Medium',
-        'high' => 'High',
-        'urgent' => 'Urgent',
+        'low'      => 'Low',
+        'medium'   => 'Medium',
+        'high'     => 'High',
+        'urgent'   => 'Urgent',
         'critical' => 'Critical',
     ]);
 });

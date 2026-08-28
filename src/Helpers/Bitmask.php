@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Helpers;
 
-use ArrayIterator;
-use BackedEnum;
+use UnitEnum;
 use Countable;
-use IteratorAggregate;
+use BackedEnum;
+use Traversable;
+use ArrayIterator;
 use JsonSerializable;
+use IteratorAggregate;
 use Simtabi\Laranail\Enumerator\Contracts\Bitwise;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidBitmaskException;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
-use Traversable;
-use UnitEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidBitmaskException;
 
 /**
  * Bitmask value object. Combines one or more Bitwise enum cases into a single
@@ -30,8 +30,8 @@ use UnitEnum;
 final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
 {
     /**
-     * @param  class-string<TCase>  $enumClass
-     * @param  array<int, TCase>  $cases
+     * @param class-string<TCase> $enumClass
+     * @param array<int, TCase> $cases
      */
     public function __construct(
         public readonly string $enumClass,
@@ -60,6 +60,11 @@ final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
         $this->cases = array_values(array_unique($cases, SORT_REGULAR));
     }
 
+    public function __toString(): string
+    {
+        return (string) $this->toInt();
+    }
+
     /**
      * Combined integer mask.
      */
@@ -76,7 +81,7 @@ final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
     /**
      * Whether the given case is part of this mask.
      *
-     * @param  TCase  $case
+     * @param TCase $case
      */
     public function has(UnitEnum $case): bool
     {
@@ -86,7 +91,7 @@ final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
     /**
      * Whether none of the given cases are part of the mask.
      *
-     * @param  TCase  ...$cases
+     * @param TCase ...$cases
      */
     public function hasNone(UnitEnum ...$cases): bool
     {
@@ -102,7 +107,7 @@ final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
     /**
      * Whether every given case is part of the mask.
      *
-     * @param  TCase  ...$cases
+     * @param TCase ...$cases
      */
     public function hasAll(UnitEnum ...$cases): bool
     {
@@ -118,7 +123,7 @@ final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
     /**
      * Whether at least one given case is part of the mask.
      *
-     * @param  TCase  ...$cases
+     * @param TCase ...$cases
      */
     public function hasAny(UnitEnum ...$cases): bool
     {
@@ -134,7 +139,7 @@ final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
     /**
      * Return a new mask with the given cases added (immutable).
      *
-     * @param  TCase  ...$cases
+     * @param TCase ...$cases
      */
     public function add(UnitEnum ...$cases): self
     {
@@ -146,7 +151,7 @@ final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
     /**
      * Return a new mask with the given cases removed (immutable).
      *
-     * @param  TCase  ...$cases
+     * @param TCase ...$cases
      */
     public function remove(UnitEnum ...$cases): self
     {
@@ -226,14 +231,9 @@ final class Bitmask implements Countable, IteratorAggregate, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'enum' => $this->enumClass,
-            'mask' => $this->toInt(),
+            'enum'  => $this->enumClass,
+            'mask'  => $this->toInt(),
             'cases' => $this->names(),
         ];
-    }
-
-    public function __toString(): string
-    {
-        return (string) $this->toInt();
     }
 }

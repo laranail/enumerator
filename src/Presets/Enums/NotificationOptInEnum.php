@@ -6,10 +6,10 @@ namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
 use Simtabi\Laranail\Enumerator\Attributes\Bit;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
-use Simtabi\Laranail\Enumerator\Concerns\HasBitmask;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 use Simtabi\Laranail\Enumerator\Contracts\Bitwise;
+use Simtabi\Laranail\Enumerator\Concerns\HasBitmask;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum NotificationOptInEnum implements Bitwise, Enumerator
 {

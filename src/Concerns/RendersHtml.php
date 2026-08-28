@@ -59,11 +59,11 @@ trait RendersHtml
         $color = method_exists($this, 'color') ? ($this->color() ?? 'default') : 'default';
 
         return match ($framework) {
-            'tailwind' => "inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-{$color}-100 text-{$color}-800",
-            'daisyui' => "badge badge-{$color}",
+            'tailwind'  => "inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-{$color}-100 text-{$color}-800",
+            'daisyui'   => "badge badge-{$color}",
             'bootstrap' => "badge bg-{$color}",
-            'bulma' => "tag is-{$color}",
-            default => sprintf('enumerator-badge enumerator-%s', $color),
+            'bulma'     => "tag is-{$color}",
+            default     => sprintf('enumerator-badge enumerator-%s', $color),
         };
     }
 }

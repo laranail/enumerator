@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Support;
 
+use UnitEnum;
 use BackedEnum;
 use InvalidArgumentException;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use UnitEnum;
 
 /**
  * Unifies the native-enum / class-const enum branching that the package's
@@ -33,7 +33,8 @@ final class IsEnumeratorClass
      * Iterate over a class's cases regardless of which path it's on.
      * Yields nothing (does not throw) when the class isn't enumerator-shaped.
      *
-     * @param  class-string  $class
+     * @param class-string $class
+     *
      * @return iterable<int, object>
      */
     public static function casesOf(string $class): iterable

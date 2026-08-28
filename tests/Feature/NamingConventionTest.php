@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\View as ViewFacade;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\View\FileViewFinder;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Console\Kernel;
 use Symfony\Component\Console\Command\Command;
+use Illuminate\Support\Facades\View as ViewFacade;
 
 /**
  * Every name this package registers into a framework-owned registry.

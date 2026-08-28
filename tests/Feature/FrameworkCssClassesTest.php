@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
 
 /*
@@ -37,11 +37,11 @@ it('renders the badge with framework-specific classes', function (string $framew
         $html->assertSee($needle, false);
     }
 })->with([
-    'plain' => ['plain',     ['enumerator-badge']],
-    'tailwind' => ['tailwind',  ['inline-flex', 'rounded-full', 'bg-success-50', 'text-success-700', 'ring-1', 'ring-inset']],
-    'daisyui' => ['daisyui',   ['badge', 'badge-success']],
+    'plain'     => ['plain',     ['enumerator-badge']],
+    'tailwind'  => ['tailwind',  ['inline-flex', 'rounded-full', 'bg-success-50', 'text-success-700', 'ring-1', 'ring-inset']],
+    'daisyui'   => ['daisyui',   ['badge', 'badge-success']],
     'bootstrap' => ['bootstrap', ['badge', 'text-bg-success', 'rounded-pill']],
-    'bulma' => ['bulma',     ['tag', 'is-success', 'is-rounded']],
+    'bulma'     => ['bulma',     ['tag', 'is-success', 'is-rounded']],
 ]);
 
 it('interpolates the {color} token with the case color', function (): void {
@@ -94,11 +94,11 @@ it('renders the select with framework-specific classes', function (string $frame
         $html->assertSee($needle, false);
     }
 })->with([
-    'plain' => ['plain',     ['enumerator-select']],
-    'tailwind' => ['tailwind',  ['block', 'w-full', 'rounded-md', 'ring-gray-300', 'focus:ring-indigo-600']],
-    'daisyui' => ['daisyui',   ['select', 'select-bordered', 'w-full']],
+    'plain'     => ['plain',     ['enumerator-select']],
+    'tailwind'  => ['tailwind',  ['block', 'w-full', 'rounded-md', 'ring-gray-300', 'focus:ring-indigo-600']],
+    'daisyui'   => ['daisyui',   ['select', 'select-bordered', 'w-full']],
     'bootstrap' => ['bootstrap', ['form-select']],
-    'bulma' => ['bulma',     ['select', 'is-fullwidth']],
+    'bulma'     => ['bulma',     ['select', 'is-fullwidth']],
 ]);
 
 // ---- DROPDOWN --------------------------------------------------------------
@@ -113,11 +113,11 @@ it('renders the dropdown wrapper, label, and description with framework classes'
         $html->assertSee($needle, false);
     }
 })->with([
-    'plain' => ['plain',     ['enumerator-dropdown', 'enumerator-dropdown-label', 'enumerator-dropdown-description']],
-    'tailwind' => ['tailwind',  ['space-y-1', 'text-sm', 'font-medium', 'leading-6', 'text-gray-500']],
-    'daisyui' => ['daisyui',   ['form-control', 'label-text', 'label-text-alt']],
+    'plain'     => ['plain',     ['enumerator-dropdown', 'enumerator-dropdown-label', 'enumerator-dropdown-description']],
+    'tailwind'  => ['tailwind',  ['space-y-1', 'text-sm', 'font-medium', 'leading-6', 'text-gray-500']],
+    'daisyui'   => ['daisyui',   ['form-control', 'label-text', 'label-text-alt']],
     'bootstrap' => ['bootstrap', ['mb-3', 'form-label', 'fw-medium', 'form-text']],
-    'bulma' => ['bulma',     ['field', 'label', 'help']],
+    'bulma'     => ['bulma',     ['field', 'label', 'help']],
 ]);
 
 // ---- RADIO -----------------------------------------------------------------
@@ -132,11 +132,11 @@ it('renders the radio group with framework-specific root/item/input/label classe
         $html->assertSee($needle, false);
     }
 })->with([
-    'plain' => ['plain',     ['enumerator-radio-group', 'enumerator-radio-item', 'enumerator-radio-label', 'enumerator-radio-legend']],
-    'tailwind' => ['tailwind',  ['space-y-3', 'flex items-center', 'text-indigo-600', 'size-4']],
-    'daisyui' => ['daisyui',   ['form-control', 'radio radio-primary', 'label cursor-pointer']],
+    'plain'     => ['plain',     ['enumerator-radio-group', 'enumerator-radio-item', 'enumerator-radio-label', 'enumerator-radio-legend']],
+    'tailwind'  => ['tailwind',  ['space-y-3', 'flex items-center', 'text-indigo-600', 'size-4']],
+    'daisyui'   => ['daisyui',   ['form-control', 'radio radio-primary', 'label cursor-pointer']],
     'bootstrap' => ['bootstrap', ['d-flex flex-column', 'form-check', 'form-check-input', 'form-check-label']],
-    'bulma' => ['bulma',     ['is-grouped', 'control', 'radio']],
+    'bulma'     => ['bulma',     ['is-grouped', 'control', 'radio']],
 ]);
 
 // ---- CHECKBOXES ------------------------------------------------------------
@@ -151,11 +151,11 @@ it('renders the checkbox group with framework-specific classes', function (strin
         $html->assertSee($needle, false);
     }
 })->with([
-    'plain' => ['plain',     ['enumerator-checkbox-group', 'enumerator-checkbox-item', 'enumerator-checkbox-label']],
-    'tailwind' => ['tailwind',  ['space-y-3', 'rounded', 'text-indigo-600', 'size-4']],
-    'daisyui' => ['daisyui',   ['form-control', 'checkbox checkbox-primary']],
+    'plain'     => ['plain',     ['enumerator-checkbox-group', 'enumerator-checkbox-item', 'enumerator-checkbox-label']],
+    'tailwind'  => ['tailwind',  ['space-y-3', 'rounded', 'text-indigo-600', 'size-4']],
+    'daisyui'   => ['daisyui',   ['form-control', 'checkbox checkbox-primary']],
     'bootstrap' => ['bootstrap', ['d-flex flex-column', 'form-check', 'form-check-input']],
-    'bulma' => ['bulma',     ['is-grouped', 'control', 'checkbox']],
+    'bulma'     => ['bulma',     ['is-grouped', 'control', 'checkbox']],
 ]);
 
 // ---- GRID ------------------------------------------------------------------
@@ -170,11 +170,11 @@ it('renders the grid with framework-specific root/item/label classes', function 
         $html->assertSee($needle, false);
     }
 })->with([
-    'plain' => ['plain',     ['enumerator-grid', 'enumerator-grid-item', 'enumerator-grid-label']],
-    'tailwind' => ['tailwind',  ['grid gap-4', 'ring-1', 'ring-gray-200', 'rounded-lg', 'font-semibold']],
-    'daisyui' => ['daisyui',   ['grid gap-4', 'card card-bordered', 'card-title']],
+    'plain'     => ['plain',     ['enumerator-grid', 'enumerator-grid-item', 'enumerator-grid-label']],
+    'tailwind'  => ['tailwind',  ['grid gap-4', 'ring-1', 'ring-gray-200', 'rounded-lg', 'font-semibold']],
+    'daisyui'   => ['daisyui',   ['grid gap-4', 'card card-bordered', 'card-title']],
     'bootstrap' => ['bootstrap', ['row', 'g-3', 'card', 'card-title h6']],
-    'bulma' => ['bulma',     ['columns is-multiline', 'is-variable', 'column is-one-third', 'title is-6']],
+    'bulma'     => ['bulma',     ['columns is-multiline', 'is-variable', 'column is-one-third', 'title is-6']],
 ]);
 
 // ---- LISTING ---------------------------------------------------------------
@@ -189,11 +189,11 @@ it('renders the listing with framework-specific classes', function (string $fram
         $html->assertSee($needle, false);
     }
 })->with([
-    'plain' => ['plain',     ['enumerator-list', 'enumerator-list-item']],
-    'tailwind' => ['tailwind',  ['divide-y', 'divide-gray-200', 'py-2']],
-    'daisyui' => ['daisyui',   ['menu', 'bg-base-100', 'rounded-box', 'menu-item']],
+    'plain'     => ['plain',     ['enumerator-list', 'enumerator-list-item']],
+    'tailwind'  => ['tailwind',  ['divide-y', 'divide-gray-200', 'py-2']],
+    'daisyui'   => ['daisyui',   ['menu', 'bg-base-100', 'rounded-box', 'menu-item']],
     'bootstrap' => ['bootstrap', ['list-group', 'list-group-flush', 'list-group-item']],
-    'bulma' => ['bulma',     ['panel', 'panel-block']],
+    'bulma'     => ['bulma',     ['panel', 'panel-block']],
 ]);
 
 // ---- ELEMENT ---------------------------------------------------------------
@@ -208,11 +208,11 @@ it('renders the polymorphic element with framework-specific root classes', funct
         $html->assertSee($needle, false);
     }
 })->with([
-    'plain' => ['plain',     ['enumerator-element']],
-    'tailwind' => ['tailwind',  ['inline-flex', 'items-center', 'gap-x-1.5']],
-    'daisyui' => ['daisyui',   ['inline-flex', 'items-center', 'gap-2']],
+    'plain'     => ['plain',     ['enumerator-element']],
+    'tailwind'  => ['tailwind',  ['inline-flex', 'items-center', 'gap-x-1.5']],
+    'daisyui'   => ['daisyui',   ['inline-flex', 'items-center', 'gap-2']],
     'bootstrap' => ['bootstrap', ['d-inline-flex', 'align-items-center', 'gap-2']],
-    'bulma' => ['bulma',     ['is-inline-flex', 'is-align-items-center']],
+    'bulma'     => ['bulma',     ['is-inline-flex', 'is-align-items-center']],
 ]);
 
 // ---- CROSS-CUTTING ---------------------------------------------------------

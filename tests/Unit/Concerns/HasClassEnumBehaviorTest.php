@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 use Simtabi\Laranail\Enumerator\Support\CasesCollection;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 
 // HasClassEnumBehavior — the class-const path counterpart of
 // HasEnumeratorBehavior. Exercises every public surface that's

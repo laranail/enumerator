@@ -35,7 +35,8 @@ trait HasMagicComparisons
      * Handler invoked by ResolvesMagicCalls. Return `[$bool]` on a hit, null
      * to let other handlers run.
      *
-     * @param  array<int, mixed>  $arguments
+     * @param array<int, mixed> $arguments
+     *
      * @return array{0: mixed}|null
      */
     protected function magicCompare(string $method, array $arguments): ?array
@@ -103,7 +104,7 @@ trait HasMagicComparisons
 
         return match ($resolution) {
             'first' => $hits[0],
-            'null' => null,
+            'null'  => null,
             default => throw new AmbiguousMagicCallException(sprintf(
                 'Case lookup "%s" on %s is ambiguous (matches: %s).',
                 $needle,

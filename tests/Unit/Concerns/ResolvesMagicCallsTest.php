@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Concerns\ResolvesMagicCalls;
-use Simtabi\Laranail\Enumerator\Exceptions\AmbiguousMagicCallException;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\MultiHandlerEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\AmbiguousMagicCallException;
 
 // ResolvesMagicCalls — multi-handler dispatch branches.
 
@@ -47,7 +47,8 @@ it('skips handlers whose method does not exist on the receiver', function (): vo
         }
 
         /**
-         * @param  array<int, mixed>  $arguments
+         * @param array<int, mixed> $arguments
+         *
          * @return array{0: mixed}|null
          */
         protected function magicCompare(string $method, array $arguments): ?array

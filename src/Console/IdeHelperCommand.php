@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Console;
 
+use ReflectionEnum;
+use ReflectionClass;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use ReflectionClass;
-use ReflectionEnum;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
+use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 
 /**
  * Emit a PhpStorm / VS Code IDE helper file describing the dynamic
@@ -98,7 +98,7 @@ class IdeHelperCommand extends Command
     }
 
     /**
-     * @param  class-string  $class
+     * @param class-string $class
      */
     private function emitForClass(string $class): string
     {
@@ -115,7 +115,7 @@ class IdeHelperCommand extends Command
     }
 
     /**
-     * @param  class-string  $class
+     * @param class-string $class
      */
     private function emitNative(string $class): string
     {
@@ -138,7 +138,7 @@ class IdeHelperCommand extends Command
     }
 
     /**
-     * @param  class-string<AbstractEnumeratorClass>  $class
+     * @param class-string<AbstractEnumeratorClass> $class
      */
     private function emitClassConst(string $class): string
     {
@@ -162,7 +162,7 @@ class IdeHelperCommand extends Command
     }
 
     /**
-     * @param  list<string>  $methods
+     * @param list<string> $methods
      */
     private function renderClassBlock(string $namespace, string $short, array $methods): string
     {

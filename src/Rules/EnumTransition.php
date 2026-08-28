@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Rules;
 
 use Closure;
+use UnitEnum;
+use BackedEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
+use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 
 /**
@@ -22,7 +24,7 @@ use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 class EnumTransition implements ValidationRule
 {
     /**
-     * @param  class-string<Stateful>  $enumClass
+     * @param class-string<Stateful> $enumClass
      */
     public function __construct(
         public readonly string $enumClass,
@@ -44,7 +46,7 @@ class EnumTransition implements ValidationRule
         if ($target === null) {
             $fail(__('laranail-enumerator::enumerator.validation.invalid_value', [
                 'attribute' => $attribute,
-                'enum' => class_basename($class),
+                'enum'      => class_basename($class),
             ]));
 
             return;
@@ -56,7 +58,7 @@ class EnumTransition implements ValidationRule
             if (! in_array($target, $class::initialStates(), true)) {
                 $fail(__('laranail-enumerator::enumerator.validation.invalid_transition', [
                     'from' => '(initial)',
-                    'to' => $targetName,
+                    'to'   => $targetName,
                     'enum' => class_basename($class),
                 ]));
             }
@@ -68,7 +70,7 @@ class EnumTransition implements ValidationRule
             || ! $this->from->canTransitionTo($target)) {
             $fail(__('laranail-enumerator::enumerator.validation.invalid_transition', [
                 'from' => $this->caseLabel($this->from),
-                'to' => $targetName,
+                'to'   => $targetName,
                 'enum' => class_basename($class),
             ]));
         }
@@ -78,7 +80,7 @@ class EnumTransition implements ValidationRule
      * Coerce the incoming raw value into a case instance, supporting both
      * native backed enums and class-const enums.
      *
-     * @param  class-string  $class
+     * @param class-string $class
      */
     private function coerce(string $class, mixed $value): ?object
     {
@@ -86,7 +88,7 @@ class EnumTransition implements ValidationRule
             return null;
         }
 
-        if (enum_exists($class) && is_subclass_of($class, \BackedEnum::class)) {
+        if (enum_exists($class) && is_subclass_of($class, BackedEnum::class)) {
             return $class::tryFrom($value);
         }
 
@@ -99,7 +101,7 @@ class EnumTransition implements ValidationRule
 
     private function caseLabel(object $case): string
     {
-        if ($case instanceof \UnitEnum) {
+        if ($case instanceof UnitEnum) {
             return $case->name;
         }
         if ($case instanceof AbstractEnumeratorClass && method_exists($case, 'getKey')) {

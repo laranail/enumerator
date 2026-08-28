@@ -5,10 +5,10 @@ declare(strict_types=1);
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
-use Simtabi\Laranail\Enumerator\Routing\EnumeratorRouteBinder;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Simtabi\Laranail\Enumerator\Routing\EnumeratorRouteBinder;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 
 // EnumeratorRouteBinder — implicit-binding registrar for native + class-const.
 

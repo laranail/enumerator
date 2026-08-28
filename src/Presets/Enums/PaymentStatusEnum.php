@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
-use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Icon;
+use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Order;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
 use Simtabi\Laranail\Enumerator\Concerns\HasOrder;
-use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
+use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum PaymentStatusEnum: string implements Enumerator, Stateful
 {
@@ -38,13 +38,13 @@ enum PaymentStatusEnum: string implements Enumerator, Stateful
     public static function transitions(): array
     {
         return [
-            self::Pending->value => [self::Authorized, self::Failed, self::Voided],
+            self::Pending->value    => [self::Authorized, self::Failed, self::Voided],
             self::Authorized->value => [self::Captured, self::Voided, self::Failed],
-            self::Captured->value => [self::Refunded, self::Disputed],
-            self::Failed->value => [],
-            self::Refunded->value => [],
-            self::Voided->value => [],
-            self::Disputed->value => [self::Refunded, self::Captured],
+            self::Captured->value   => [self::Refunded, self::Disputed],
+            self::Failed->value     => [],
+            self::Refunded->value   => [],
+            self::Voided->value     => [],
+            self::Disputed->value   => [self::Refunded, self::Captured],
         ];
     }
 
@@ -56,7 +56,7 @@ enum PaymentStatusEnum: string implements Enumerator, Stateful
         return [
             'positive' => [self::Captured],
             'negative' => [self::Failed, self::Voided, self::Refunded, self::Disputed],
-            'pending' => [self::Pending, self::Authorized],
+            'pending'  => [self::Pending, self::Authorized],
             'terminal' => [self::Failed, self::Voided, self::Refunded],
         ];
     }

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Presets\Enums\BasicPermissionEnum;
 use Simtabi\Laranail\Enumerator\Presets\Enums\FeatureFlagEnum;
+use Simtabi\Laranail\Enumerator\Presets\Enums\BasicPermissionEnum;
 use Simtabi\Laranail\Enumerator\Presets\Enums\NotificationOptInEnum;
 
 it('builds bitmasks from int-backed enums', function (): void {

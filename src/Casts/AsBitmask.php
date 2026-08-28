@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
-use Simtabi\Laranail\Enumerator\Contracts\Bitwise;
+use Illuminate\Database\Eloquent\Model;
 use Simtabi\Laranail\Enumerator\Helpers\Bitmask;
+use Simtabi\Laranail\Enumerator\Contracts\Bitwise;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 /**
  * Cast an integer column to/from a Bitmask of a Bitwise enum.
@@ -22,7 +22,7 @@ use Simtabi\Laranail\Enumerator\Helpers\Bitmask;
 final class AsBitmask implements CastsAttributes
 {
     /**
-     * @param  class-string<Bitwise>  $enumClass
+     * @param class-string<Bitwise> $enumClass
      */
     public function __construct(public readonly string $enumClass)
     {
@@ -36,7 +36,7 @@ final class AsBitmask implements CastsAttributes
     }
 
     /**
-     * @param  class-string<Bitwise>  $enumClass
+     * @param class-string<Bitwise> $enumClass
      */
     public static function of(string $enumClass): string
     {
@@ -44,7 +44,7 @@ final class AsBitmask implements CastsAttributes
     }
 
     /**
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): ?Bitmask
     {
@@ -65,7 +65,7 @@ final class AsBitmask implements CastsAttributes
     }
 
     /**
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): ?int
     {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Livewire\Component;
 use Livewire\Livewire;
-use Simtabi\Laranail\Enumerator\Integrations\Livewire\WithEnumTransitions;
+use Livewire\Component;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\WorkflowStatus;
+use Simtabi\Laranail\Enumerator\Integrations\Livewire\WithEnumTransitions;
 
 // PR-ω real-Livewire-roundtrip coverage for the v0.3.0 PR-ζ trait
 // (and v0.4.0 PR-ν bulk/validate extensions). The existing
@@ -151,7 +151,7 @@ it('trait composes with Livewire properties + does not interfere with hydration'
     // The transition's data_get / data_set sequence shouldn't trip
     // Livewire's property-hydration guard for typed enum properties.
     $component = Livewire::test(WorkflowComponent::class, [
-        'status' => WorkflowStatus::Submitted,
+        'status'          => WorkflowStatus::Submitted,
         'secondaryStatus' => WorkflowStatus::Submitted,
     ]);
 

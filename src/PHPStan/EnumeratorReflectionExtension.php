@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\PHPStan;
 
-use PHPStan\Reflection\ClassMemberReflection;
+use PHPStan\Type\Type;
+use PHPStan\TrinaryLogic;
+use PHPStan\Type\BooleanType;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\TrinaryLogic;
-use PHPStan\Type\BooleanType;
 use PHPStan\Type\Generic\TemplateTypeMap;
-use PHPStan\Type\Type;
+use PHPStan\Reflection\ClassMemberReflection;
 
 final class EnumeratorReflectionExtension implements MethodReflection
 {

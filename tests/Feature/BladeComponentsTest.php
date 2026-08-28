@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
 
 it('renders a badge with case label, color, and value', function (): void {
     $html = $this->blade('<x-laranail-enumerator::badge :case="$case" />', [

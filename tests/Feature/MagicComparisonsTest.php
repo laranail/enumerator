@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasMagicComparisons;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasMagicComparisons;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum MagicTestStatusEnum: string implements Enumerator
 {

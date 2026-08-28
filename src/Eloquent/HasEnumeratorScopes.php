@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Eloquent;
 
-use BackedEnum;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use UnitEnum;
+use BackedEnum;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 
 /**
  * Query-scope helpers for enum-cast columns.
@@ -28,7 +28,7 @@ trait HasEnumeratorScopes
     }
 
     /**
-     * @param  array<int, UnitEnum|AbstractEnumeratorClass>  $cases
+     * @param array<int, UnitEnum|AbstractEnumeratorClass> $cases
      */
     public function scopeWhereEnumIn(Builder $query, string $column, array $cases): Builder
     {
@@ -36,7 +36,7 @@ trait HasEnumeratorScopes
     }
 
     /**
-     * @param  array<int, UnitEnum|AbstractEnumeratorClass>  $cases
+     * @param array<int, UnitEnum|AbstractEnumeratorClass> $cases
      */
     public function scopeWhereEnumNotIn(Builder $query, string $column, array $cases): Builder
     {

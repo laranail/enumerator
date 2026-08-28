@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Translations;
 
+use Throwable;
 use Illuminate\Support\Facades\Lang;
 use Simtabi\Laranail\Enumerator\Contracts\TranslatorAdapter;
 
@@ -29,7 +30,7 @@ final class LaravelTranslatorAdapter implements TranslatorAdapter
             // fallback. Allow Laravel's fallback only when the caller
             // hasn't asked for a specific locale.
             $translated = (string) Lang::get($key, $replace, $locale, $locale === null);
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return null;
         }
 
@@ -48,7 +49,7 @@ final class LaravelTranslatorAdapter implements TranslatorAdapter
             // Same fallback discipline as translate(): an explicit locale
             // means "only check this locale, no app-wide fallback".
             return Lang::has($key, $locale, $locale === null);
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return false;
         }
     }

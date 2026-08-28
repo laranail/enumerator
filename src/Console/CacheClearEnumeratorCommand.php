@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Console;
 
 use Illuminate\Console\Command;
-use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
-use Simtabi\Laranail\Enumerator\Support\AttributesCache;
 use Simtabi\Laranail\Enumerator\Support\CasesCache;
 use Simtabi\Laranail\Enumerator\Support\LayeredCache;
+use Simtabi\Laranail\Enumerator\Support\AttributesCache;
+use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 
 class CacheClearEnumeratorCommand extends Command
 {

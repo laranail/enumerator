@@ -15,7 +15,7 @@ afterEach(function (): void {
 it('emits a header explaining the file is IDE-only', function (): void {
     $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
-        '--out' => '_ide_helper_test.php',
+        '--out'   => '_ide_helper_test.php',
     ])->assertSuccessful();
 
     $contents = file_get_contents(base_path('_ide_helper_test.php'));
@@ -28,7 +28,7 @@ it('emits a header explaining the file is IDE-only', function (): void {
 it('emits @method static stubs per case for native enums', function (): void {
     $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
-        '--out' => '_ide_helper_test.php',
+        '--out'   => '_ide_helper_test.php',
     ])->assertSuccessful();
 
     $contents = file_get_contents(base_path('_ide_helper_test.php'));
@@ -43,7 +43,7 @@ it('emits @method static stubs per case for native enums', function (): void {
 it('emits @method bool predicates per case for native enums', function (): void {
     $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
-        '--out' => '_ide_helper_test.php',
+        '--out'   => '_ide_helper_test.php',
     ])->assertSuccessful();
 
     $contents = file_get_contents(base_path('_ide_helper_test.php'));
@@ -58,7 +58,7 @@ it('emits @method bool predicates per case for native enums', function (): void 
 it('wraps the stub class in the real namespace', function (): void {
     $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
-        '--out' => '_ide_helper_test.php',
+        '--out'   => '_ide_helper_test.php',
     ])->assertSuccessful();
 
     $contents = file_get_contents(base_path('_ide_helper_test.php'));
@@ -70,7 +70,7 @@ it('wraps the stub class in the real namespace', function (): void {
 it('emits @method static stubs for class-const enums (AbstractEnumeratorClass)', function (): void {
     $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [LegacyStatusEnum::class],
-        '--out' => '_ide_helper_test.php',
+        '--out'   => '_ide_helper_test.php',
     ])->assertSuccessful();
 
     $contents = file_get_contents(base_path('_ide_helper_test.php'));
@@ -105,7 +105,7 @@ it('warns and exits cleanly when no classes are configured', function (): void {
 it('rejects non-enumerator classes silently (filter, not error)', function (): void {
     $this->artisan('laranail::enumerator.ide-helper', [
         'classes' => [stdClass::class, StatusEnum::class],
-        '--out' => '_ide_helper_test.php',
+        '--out'   => '_ide_helper_test.php',
     ])->assertSuccessful();
 
     $contents = file_get_contents(base_path('_ide_helper_test.php'));

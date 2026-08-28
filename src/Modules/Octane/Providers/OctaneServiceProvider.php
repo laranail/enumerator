@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\Octane\Providers;
 
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Events\Dispatcher;
 use Simtabi\Laranail\Enumerator\Modules\Octane\WarmCachesListener;
 
 /**

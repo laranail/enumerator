@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Casts;
 
-use BackedEnum;
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Database\Eloquent\Model;
-use InvalidArgumentException;
-use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 use UnitEnum;
+use BackedEnum;
+use InvalidArgumentException;
+use Illuminate\Database\Eloquent\Model;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 
 /**
  * Eloquent attribute cast for any Enumerator (native enum OR
@@ -30,7 +30,7 @@ use UnitEnum;
 final class AsEnum implements CastsAttributes
 {
     /**
-     * @param  class-string<Enumerator>  $enumClass
+     * @param class-string<Enumerator> $enumClass
      */
     public function __construct(public readonly string $enumClass)
     {
@@ -46,7 +46,7 @@ final class AsEnum implements CastsAttributes
     /**
      * Helper for `casts()`: AsEnum::of(MyEnum::class).
      *
-     * @param  class-string<Enumerator>  $enumClass
+     * @param class-string<Enumerator> $enumClass
      */
     public static function of(string $enumClass): string
     {
@@ -54,7 +54,7 @@ final class AsEnum implements CastsAttributes
     }
 
     /**
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): ?object
     {
@@ -69,7 +69,7 @@ final class AsEnum implements CastsAttributes
     }
 
     /**
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): null|string|int
     {

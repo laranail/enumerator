@@ -38,7 +38,8 @@ final class LayeredCache
      *
      * @template T
      *
-     * @param  Closure(): T  $resolver
+     * @param Closure(): T $resolver
+     *
      * @return T
      */
     public function remember(string $key, Closure $resolver): mixed
@@ -127,6 +128,16 @@ final class LayeredCache
         $this->fileLoaded = false;
     }
 
+    public function driver(): string
+    {
+        return $this->driver;
+    }
+
+    public function filePath(): ?string
+    {
+        return $this->filePath;
+    }
+
     private function ensureFileLoaded(): void
     {
         if ($this->fileLoaded || $this->filePath === null) {
@@ -140,15 +151,5 @@ final class LayeredCache
                 $this->file = $payload;
             }
         }
-    }
-
-    public function driver(): string
-    {
-        return $this->driver;
-    }
-
-    public function filePath(): ?string
-    {
-        return $this->filePath;
     }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Presets\Enums\OrderStatusEnum;
-use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
+use Simtabi\Laranail\Enumerator\Presets\Enums\OrderStatusEnum;
 
 it('groups options by attribute:color', function (): void {
     $html = $this->blade(
@@ -41,8 +41,8 @@ it('groups options via an explicit map', function (): void {
             :groups="$groups"
         />',
         ['groups' => [
-            'Live' => [StatusEnum::Active],
-            'Hidden' => [StatusEnum::Inactive, StatusEnum::Archived],
+            'Live'    => [StatusEnum::Active],
+            'Hidden'  => [StatusEnum::Inactive, StatusEnum::Archived],
             'Waiting' => [StatusEnum::Pending],
         ]],
     );

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
-use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Icon;
+use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Order;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
 use Simtabi\Laranail\Enumerator\Concerns\HasOrder;
-use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
+use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum ApprovalStatusEnum: string implements Enumerator, Stateful
 {
@@ -36,11 +36,11 @@ enum ApprovalStatusEnum: string implements Enumerator, Stateful
     public static function transitions(): array
     {
         return [
-            self::Pending->value => [self::Approved, self::Rejected, self::NeedsRevision, self::Cancelled],
-            self::Approved->value => [],
-            self::Rejected->value => [self::Pending],
+            self::Pending->value       => [self::Approved, self::Rejected, self::NeedsRevision, self::Cancelled],
+            self::Approved->value      => [],
+            self::Rejected->value      => [self::Pending],
             self::NeedsRevision->value => [self::Pending, self::Cancelled],
-            self::Cancelled->value => [],
+            self::Cancelled->value     => [],
         ];
     }
 
@@ -52,7 +52,7 @@ enum ApprovalStatusEnum: string implements Enumerator, Stateful
         return [
             'positive' => [self::Approved],
             'negative' => [self::Rejected, self::Cancelled],
-            'pending' => [self::Pending, self::NeedsRevision],
+            'pending'  => [self::Pending, self::NeedsRevision],
             'terminal' => [self::Approved, self::Cancelled],
         ];
     }

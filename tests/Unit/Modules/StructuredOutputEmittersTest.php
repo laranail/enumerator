@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\AnthropicSchemaEmitter;
-use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\McpSchemaEmitter;
-use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\OpenAiSchemaEmitter;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\McpSchemaEmitter;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\OpenAiSchemaEmitter;
+use Simtabi\Laranail\Enumerator\Modules\StructuredOutput\AnthropicSchemaEmitter;
 
 // StructuredOutput emitters — three sibling JSON-schema producers for
 // OpenAI / Anthropic / MCP. All return arrays; no AI-SDK dependency.

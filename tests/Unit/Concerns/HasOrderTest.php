@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Support\CasesCollection;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\NullOrderReportingEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\OrderedStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\NullOrderReportingEnum;
 
 // HasOrder — explicit ordering + sortedBy* + compare helpers.
 

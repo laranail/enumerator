@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Support;
 
-use Illuminate\Support\Str;
-use ReflectionClass;
-use ReflectionClassConstant;
 use UnitEnum;
+use ReflectionClass;
+use Illuminate\Support\Str;
+use ReflectionClassConstant;
 
 /**
  * Reflection cache for enum cases — native and class-const enums alike.
@@ -24,7 +24,8 @@ final class CasesCache
      *
      * @template TCase of UnitEnum
      *
-     * @param  class-string<TCase>  $class
+     * @param class-string<TCase> $class
+     *
      * @return list<TCase>
      */
     public static function nativeCases(string $class): array
@@ -40,7 +41,8 @@ final class CasesCache
     /**
      * Return a map of constant-name => value for a class-const enum.
      *
-     * @param  class-string  $class
+     * @param class-string $class
+     *
      * @return array<string, string|int>
      */
     public static function classConstants(string $class): array
@@ -73,7 +75,7 @@ final class CasesCache
     }
 
     /**
-     * @param  class-string  $class
+     * @param class-string $class
      */
     public static function reflectConstant(string $class, string $name): ReflectionClassConstant
     {
@@ -91,8 +93,8 @@ final class CasesCache
      * runtime-loaded cases (from a database table) flow through the same
      * `classConstants()` lookup path as static `public const` constants.
      *
-     * @param  class-string  $class
-     * @param  array<string, string|int>  $constants  name → value map
+     * @param class-string $class
+     * @param array<string, string|int> $constants name → value map
      */
     public static function setConstants(string $class, array $constants): void
     {
@@ -114,7 +116,7 @@ final class CasesCache
     /**
      * Restore the in-memory memo from a `snapshot()` payload.
      *
-     * @param  array<string, mixed>  $snapshot
+     * @param array<string, mixed> $snapshot
      */
     public static function restore(array $snapshot): void
     {

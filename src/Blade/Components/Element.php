@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Blade\Components;
 
-use Illuminate\Contracts\View\View;
+use UnitEnum;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Blade\Components\Concerns\RoutesToFrameworkView;
-use UnitEnum;
 
 class Element extends Component
 {
@@ -34,20 +34,20 @@ class Element extends Component
     public function render(): View
     {
         return view($this->frameworkView('element'), [
-            'appendClasses' => $this->consumerClasses(),
-            'case' => $this->case,
-            'as' => $this->as,
-            'href' => $this->href,
-            'type' => $this->type,
-            'for' => $this->for,
-            'showIcon' => $this->showIcon,
-            'showLabel' => $this->showLabel,
-            'showBadge' => $this->showBadge,
-            'overrideClasses' => $this->classes,
-            'overrideIconClasses' => $this->iconClasses,
+            'appendClasses'        => $this->consumerClasses(),
+            'case'                 => $this->case,
+            'as'                   => $this->as,
+            'href'                 => $this->href,
+            'type'                 => $this->type,
+            'for'                  => $this->for,
+            'showIcon'             => $this->showIcon,
+            'showLabel'            => $this->showLabel,
+            'showBadge'            => $this->showBadge,
+            'overrideClasses'      => $this->classes,
+            'overrideIconClasses'  => $this->iconClasses,
             'overrideLabelClasses' => $this->labelClasses,
             'overrideBadgeClasses' => $this->badgeClasses,
-            'overrideRootId' => $this->rootId,
+            'overrideRootId'       => $this->rootId,
         ]);
     }
 }

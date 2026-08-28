@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 /**
  * Cast a JSON column to/from a Collection of enum instances.
@@ -19,7 +19,7 @@ use Illuminate\Support\Collection;
 final class AsEnumeratorCollection implements CastsAttributes
 {
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     public function __construct(public readonly string $enumClass) {}
 
@@ -29,7 +29,7 @@ final class AsEnumeratorCollection implements CastsAttributes
     }
 
     /**
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): Collection
     {
@@ -52,7 +52,7 @@ final class AsEnumeratorCollection implements CastsAttributes
     }
 
     /**
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      *
      * @phpstan-param mixed $value  Accepts iterable of cases, scalar values, or null; non-iterable returns null.
      */

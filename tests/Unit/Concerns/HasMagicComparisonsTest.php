@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Exceptions\AmbiguousMagicCallException;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\CasingAmbiguousEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\GroupedStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\CasingAmbiguousEnum;
 
 // HasMagicComparisons — `$case->isFoo()` / `isNotFoo()` magic predicates,
 // plus isOneOf / isNoneOf helpers. GroupedStatusEnum uses HasEnumerator

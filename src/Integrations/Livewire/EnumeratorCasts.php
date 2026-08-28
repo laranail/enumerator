@@ -18,7 +18,7 @@ if (! class_exists(Component::class)) {
 final class EnumeratorCasts
 {
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     public static function hydrateProperty(string $enumClass, mixed $value): mixed
     {

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
-use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Icon;
+use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Order;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
-use Simtabi\Laranail\Enumerator\Concerns\HasLifecycle;
 use Simtabi\Laranail\Enumerator\Concerns\HasOrder;
+use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasLifecycle;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum PriorityEnum: string implements Enumerator
 {
@@ -34,7 +34,7 @@ enum PriorityEnum: string implements Enumerator
     {
         return [
             'high' => [self::High, self::Urgent, self::Critical],
-            'low' => [self::Low, self::Medium],
+            'low'  => [self::Low, self::Medium],
         ];
     }
 }

@@ -6,13 +6,13 @@ namespace Simtabi\Laranail\Enumerator\Rector;
 
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
-use PhpParser\Node\Name\FullyQualified;
-use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Enum_;
+use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\TraitUse;
 use Rector\Rector\AbstractRector;
-use Rector\Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use PhpParser\Node\Name\FullyQualified;
 use Rector\Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use Rector\Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 
 // Migration rule: spatie/enum (and its predecessor spatie/laravel-enum)
 // → laranail/enumerator.

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidBitmaskException;
 use Simtabi\Laranail\Enumerator\Helpers\Bitmask;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidBitmaskException;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\FlaggedPermissionEnum;
 
 // Bitmask — value object combining Bitwise enum cases into an integer mask.

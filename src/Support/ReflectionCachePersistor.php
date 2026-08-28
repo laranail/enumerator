@@ -31,7 +31,7 @@ final class ReflectionCachePersistor
      * Warm the in-memory memos for the given classes, then persist a
      * snapshot via `LayeredCache::persist()`. Idempotent.
      *
-     * @param  array<int, class-string>  $classes  enumerator classes to warm
+     * @param array<int, class-string> $classes enumerator classes to warm
      */
     public function dump(array $classes): void
     {

@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Config\Repository;
-use Simtabi\Laranail\Enumerator\Support\AttributesOverrideResolver;
-use Simtabi\Laranail\Enumerator\Support\EnumeratorRegistry;
 use Simtabi\Laranail\Enumerator\Support\LayeredCache;
+use Simtabi\Laranail\Enumerator\Support\EnumeratorRegistry;
+use Simtabi\Laranail\Enumerator\Support\AttributesOverrideResolver;
 
 // EnumeratorRegistry — singleton holder for the cache + override resolver.
 

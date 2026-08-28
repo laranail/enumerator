@@ -6,8 +6,8 @@ namespace Simtabi\Laranail\Enumerator\PHPStan;
 
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Reflection\MethodsClassReflectionExtension;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use PHPStan\Reflection\MethodsClassReflectionExtension;
 
 /**
  * PHPStan extension: silences "undefined method" for the dynamic helpers

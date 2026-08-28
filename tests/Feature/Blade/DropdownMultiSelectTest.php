@@ -76,7 +76,7 @@ it('multi-mode hydrates selectedValues from :selected iterable', function (): vo
     $html = (string) Blade::render(
         '<x-laranail-enumerator::dropdown :enum="$enum" name="permissions[]" :multiple="true" :searchable="true" :selected="$selected" />',
         [
-            'enum' => SimpleStatusEnum::class,
+            'enum'     => SimpleStatusEnum::class,
             'selected' => [SimpleStatusEnum::Active, SimpleStatusEnum::Pending],
         ],
     );

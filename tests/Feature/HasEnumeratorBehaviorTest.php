@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Presets\Enums\BasicPermissionEnum;
-use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
 use Simtabi\Laranail\Enumerator\Presets\Enums\WeekdayEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
+use Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum;
+use Simtabi\Laranail\Enumerator\Presets\Enums\BasicPermissionEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\SimpleStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\AttributedStatusEnum;
 
 it('exposes value/name/label on a case', function (): void {
     $case = SimpleStatusEnum::Active;

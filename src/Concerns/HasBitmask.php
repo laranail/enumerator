@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
+use UnitEnum;
 use Simtabi\Laranail\Enumerator\Helpers\Bitmask;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
-use UnitEnum;
 
 /**
  * Bitmask support for native enums declaring `#[Bit]` attributes on each case.
@@ -61,15 +61,6 @@ trait HasBitmask
     }
 
     /**
-     * The bit assigned to this case via its `#[Bit]` attribute. Throws when
-     * the case has no `#[Bit]` attribute.
-     */
-    public function bit(): int
-    {
-        return AttributesCache::bitFor($this);
-    }
-
-    /**
      * Map of bit => case name for the enum.
      *
      * @return array<int, string>
@@ -85,5 +76,14 @@ trait HasBitmask
         }
 
         return $out;
+    }
+
+    /**
+     * The bit assigned to this case via its `#[Bit]` attribute. Throws when
+     * the case has no `#[Bit]` attribute.
+     */
+    public function bit(): int
+    {
+        return AttributesCache::bitFor($this);
     }
 }

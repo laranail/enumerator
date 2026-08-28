@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Simtabi\Laranail\Enumerator\DynamicEnums\DatabaseBackedEnum;
-use Simtabi\Laranail\Enumerator\Support\AttributesCache;
 use Simtabi\Laranail\Enumerator\Support\CasesCache;
+use Simtabi\Laranail\Enumerator\Support\AttributesCache;
+use Simtabi\Laranail\Enumerator\DynamicEnums\DatabaseBackedEnum;
 
 // DatabaseBackedEnum round-trip.
 
@@ -79,7 +79,7 @@ it('reloadCases() picks up new DB rows mid-process', function (): void {
 
     // Seed a new row.
     DB::table('tenant_status_fixtures')->insert([
-        'name' => 'PILOT',
+        'name'  => 'PILOT',
         'value' => 'pilot',
     ]);
 

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\StructuredOutput;
 
+use Throwable;
 use ReflectionEnum;
+use ReflectionClass;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 
 /**
@@ -35,7 +37,8 @@ final class OpenAiSchemaEmitter
      *       }
      *     }
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array<string, mixed>
      */
     public function asResponseFormat(string $enumClass): array
@@ -43,9 +46,9 @@ final class OpenAiSchemaEmitter
         $name = $this->shortName($enumClass);
 
         return [
-            'type' => 'json_schema',
+            'type'        => 'json_schema',
             'json_schema' => [
-                'name' => $name,
+                'name'   => $name,
                 'strict' => true,
                 'schema' => $this->asToolParameter($enumClass),
             ],
@@ -57,7 +60,8 @@ final class OpenAiSchemaEmitter
      *
      *     { "type": "string", "enum": [...], "description": "..." }
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array{type: string, enum: list<int|string>, description?: string}
      */
     public function asToolParameter(string $enumClass): array
@@ -82,7 +86,7 @@ final class OpenAiSchemaEmitter
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function typeOf(string $enumClass): string
     {
@@ -99,19 +103,19 @@ final class OpenAiSchemaEmitter
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function shortName(string $enumClass): string
     {
         $reflection = enum_exists($enumClass)
             ? new ReflectionEnum($enumClass)
-            : new \ReflectionClass($enumClass);
+            : new ReflectionClass($enumClass);
 
         return $reflection->getShortName();
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function classDescription(string $enumClass): string
     {
@@ -120,7 +124,7 @@ final class OpenAiSchemaEmitter
         }
         try {
             $value = $enumClass::classDescription();
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return '';
         }
 

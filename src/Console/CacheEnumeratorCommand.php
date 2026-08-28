@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Console;
 
 use Illuminate\Console\Command;
-use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 use Simtabi\Laranail\Enumerator\Support\ReflectionCachePersistor;
+use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 
 class CacheEnumeratorCommand extends Command
 {

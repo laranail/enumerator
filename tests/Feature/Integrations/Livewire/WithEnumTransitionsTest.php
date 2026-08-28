@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\MessageBag;
 use Livewire\Component;
+use Illuminate\Support\MessageBag;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumerator;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
-use Simtabi\Laranail\Enumerator\Integrations\Livewire\WithEnumTransitions;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumerator;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\NonStatefulPalette;
+use Simtabi\Laranail\Enumerator\Integrations\Livewire\WithEnumTransitions;
 
 // Feature coverage for the v0.3.0 PR-ζ WithEnumTransitions trait.
 //
@@ -37,9 +37,9 @@ enum OrderStatus: string implements Enumerator, Stateful
     public static function transitions(): array
     {
         return [
-            self::Pending->value => [self::Paid, self::Cancelled],
-            self::Paid->value => [self::Shipped, self::Cancelled],
-            self::Shipped->value => [],
+            self::Pending->value   => [self::Paid, self::Cancelled],
+            self::Paid->value      => [self::Shipped, self::Cancelled],
+            self::Shipped->value   => [],
             self::Cancelled->value => [],
         ];
     }

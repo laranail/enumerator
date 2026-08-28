@@ -21,7 +21,7 @@ interface TranslatorAdapter
      * key is not present in the configured source. Returning null lets
      * the caller's fallback chain (attribute → humanized name) run.
      *
-     * @param  array<string, scalar|null>  $replace  placeholder substitutions
+     * @param array<string, scalar|null> $replace placeholder substitutions
      */
     public function translate(string $key, array $replace = [], ?string $locale = null): ?string;
 

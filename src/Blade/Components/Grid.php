@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Blade\Components;
 
+use UnitEnum;
 use BackedEnum;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Blade\Components\Concerns\RoutesToFrameworkView;
-use UnitEnum;
 
 class Grid extends Component
 {
@@ -19,7 +19,7 @@ class Grid extends Component
     public array $cases;
 
     /**
-     * @param  class-string  $enum
+     * @param class-string $enum
      */
     public function __construct(
         public string $enum,
@@ -38,16 +38,16 @@ class Grid extends Component
     public function render(): View
     {
         return view($this->frameworkView('grid'), [
-            'appendClasses' => $this->consumerClasses(),
-            'cases' => $this->cases,
-            'columns' => $this->columns,
-            'showBadges' => $this->showBadges,
-            'overrideClasses' => $this->classes,
-            'overrideItemClasses' => $this->itemClasses,
-            'overrideLabelClasses' => $this->labelClasses,
+            'appendClasses'              => $this->consumerClasses(),
+            'cases'                      => $this->cases,
+            'columns'                    => $this->columns,
+            'showBadges'                 => $this->showBadges,
+            'overrideClasses'            => $this->classes,
+            'overrideItemClasses'        => $this->itemClasses,
+            'overrideLabelClasses'       => $this->labelClasses,
             'overrideDescriptionClasses' => $this->descriptionClasses,
-            'overrideRootId' => $this->rootId,
-            'labelOf' => static fn (object $case): string => method_exists($case, 'label')
+            'overrideRootId'             => $this->rootId,
+            'labelOf'                    => static fn (object $case): string => method_exists($case, 'label')
                 ? (string) $case->label()
                 : (string) ($case->name ?? ''),
             'descriptionOf' => static fn (object $case): ?string => method_exists($case, 'description')

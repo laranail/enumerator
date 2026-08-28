@@ -14,7 +14,7 @@ if (! class_exists(SelectFilter::class)) {
 final class EnumeratorFilter extends SelectFilter
 {
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     public static function for(string $enumClass, string $column): self
     {

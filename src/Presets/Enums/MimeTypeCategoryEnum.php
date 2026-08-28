@@ -6,8 +6,8 @@ namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
 use Illuminate\Support\Str;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum MimeTypeCategoryEnum: string implements Enumerator
 {
@@ -28,15 +28,15 @@ enum MimeTypeCategoryEnum: string implements Enumerator
         $primary = Str::lower(explode('/', $mime, 2)[0] ?? '');
 
         return match ($primary) {
-            'text' => self::Text,
-            'image' => self::Image,
-            'video' => self::Video,
-            'audio' => self::Audio,
+            'text'        => self::Text,
+            'image'       => self::Image,
+            'video'       => self::Video,
+            'audio'       => self::Audio,
             'application' => self::Application,
-            'font' => self::Font,
-            'multipart' => self::Multipart,
-            'message' => self::Message,
-            default => self::Other,
+            'font'        => self::Font,
+            'multipart'   => self::Multipart,
+            'message'     => self::Message,
+            default       => self::Other,
         };
     }
 }

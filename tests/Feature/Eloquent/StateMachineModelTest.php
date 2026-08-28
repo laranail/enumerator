@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Simtabi\Laranail\Enumerator\Eloquent\EnumeratorStateHistory;
 use Simtabi\Laranail\Enumerator\Eloquent\HasEnumeratorStateMachine;
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
 use Simtabi\Laranail\Enumerator\Presets\Enums\PublicationStatusEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
 
 class StateMachineTestArticle extends Model
 {
     use HasEnumeratorStateMachine;
+
+    public $timestamps = false;
 
     protected $table = 'state_machine_articles';
 
     protected $guarded = [];
 
     protected array $stateMachines = ['status'];
-
-    public $timestamps = false;
 
     protected function casts(): array
     {
@@ -121,12 +121,12 @@ it('EnumeratorStateHistory uses the configured table name', function (): void {
 it('EnumeratorStateHistory casts context to array', function (): void {
     $row = DB::table('enumerator_state_history')->insertGetId([
         'subject_type' => StateMachineTestArticle::class,
-        'subject_id' => 1,
-        'field' => 'status',
-        'from' => 'draft',
-        'to' => 'pending',
-        'enum_class' => PublicationStatusEnum::class,
-        'context' => json_encode(['actor' => 'system']),
+        'subject_id'   => 1,
+        'field'        => 'status',
+        'from'         => 'draft',
+        'to'           => 'pending',
+        'enum_class'   => PublicationStatusEnum::class,
+        'context'      => json_encode(['actor' => 'system']),
     ]);
 
     $reloaded = EnumeratorStateHistory::find($row);

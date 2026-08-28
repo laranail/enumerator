@@ -23,7 +23,7 @@ use BadMethodCallException;
 trait HasInvokableCases
 {
     /**
-     * @param  array<int, mixed>  $arguments
+     * @param array<int, mixed> $arguments
      */
     public static function __callStatic(string $name, array $arguments): mixed
     {

@@ -43,7 +43,7 @@ it('cssClassFor() returns the framework-keyed class string', function (): void {
     $bag = new AttributeBag;
     $bag->cssClasses = [
         'bootstrap' => 'badge bg-success',
-        'tailwind' => 'bg-green-500',
+        'tailwind'  => 'bg-green-500',
     ];
 
     expect($bag->cssClassFor('bootstrap'))->toBe('badge bg-success');

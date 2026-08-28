@@ -6,8 +6,8 @@ namespace Simtabi\Laranail\Enumerator\Routing;
 
 use BackedEnum;
 use Illuminate\Support\Facades\Route;
-use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 
 /**
@@ -27,7 +27,7 @@ use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 final class EnumeratorRouteBinder
 {
     /**
-     * @param  class-string<Enumerator>  $enumClass
+     * @param class-string<Enumerator> $enumClass
      */
     public static function register(string $param, string $enumClass, ?object $fallback = null): void
     {

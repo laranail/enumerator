@@ -20,6 +20,21 @@ final class EnumeratorRegistry
         public readonly AttributesOverrideResolver $overrides,
     ) {}
 
+    public static function set(self $instance): void
+    {
+        self::$instance = $instance;
+    }
+
+    public static function instance(): ?self
+    {
+        return self::$instance;
+    }
+
+    public static function reset(): void
+    {
+        self::$instance = null;
+    }
+
     /**
      * Method accessor for the cache singleton. The `Facade\Enumerator::cache()`
      * shim relies on this — facades dispatch to methods, not properties.
@@ -35,20 +50,5 @@ final class EnumeratorRegistry
     public function overrides(): AttributesOverrideResolver
     {
         return $this->overrides;
-    }
-
-    public static function set(self $instance): void
-    {
-        self::$instance = $instance;
-    }
-
-    public static function instance(): ?self
-    {
-        return self::$instance;
-    }
-
-    public static function reset(): void
-    {
-        self::$instance = null;
     }
 }

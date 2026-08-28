@@ -13,7 +13,7 @@ it('returns null when groupsBy is null', function (): void {
 
 it('returns an explicit map as-is', function (): void {
     $explicit = [
-        'left' => [GroupedStatusEnum::Active],
+        'left'  => [GroupedStatusEnum::Active],
         'right' => [GroupedStatusEnum::Banned],
     ];
     expect(CaseGroupingResolver::resolve(GroupedStatusEnum::cases(), $explicit))

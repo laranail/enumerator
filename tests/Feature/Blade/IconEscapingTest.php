@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Blade;
-use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
+use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 
 // Regression tests for the F1 audit finding (2026-05-16): the `#[Icon]`
 // attribute value used to be rendered raw via `{!! !!}` inside the

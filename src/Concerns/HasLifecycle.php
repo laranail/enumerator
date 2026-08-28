@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
-use Simtabi\Laranail\Enumerator\Support\AttributesCache;
 use UnitEnum;
+use Simtabi\Laranail\Enumerator\Support\AttributesCache;
 
 /**
  * Linear lifecycle helpers (next / previous / isFirst / isLast).
@@ -62,7 +62,7 @@ trait HasLifecycle
     }
 
     /**
-     * @param  array<int, static>  $list
+     * @param array<int, static> $list
      */
     private static function indexOf(array $list, UnitEnum $needle): int
     {

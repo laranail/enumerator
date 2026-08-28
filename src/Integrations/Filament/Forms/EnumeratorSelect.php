@@ -14,7 +14,7 @@ if (! class_exists(Select::class)) {
 final class EnumeratorSelect extends Select
 {
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     public function enumerator(string $enumClass): static
     {

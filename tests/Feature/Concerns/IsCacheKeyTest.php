@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Cache;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 use Simtabi\Laranail\Enumerator\Concerns\IsCacheKey;
 use Simtabi\Laranail\Enumerator\Contracts\Cacheable;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 // Feature coverage for the v0.3.0 PR-η IsCacheKey trait + Cacheable
 // contract. Each test exercises one of the trait's wrappers around

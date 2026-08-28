@@ -6,8 +6,8 @@ namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
 use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum ToggleEnum: string implements Enumerator
 {

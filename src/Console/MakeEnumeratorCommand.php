@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Console;
 
-use Illuminate\Console\GeneratorCommand;
-use Illuminate\Support\Facades\File;
 use InvalidArgumentException;
+use Illuminate\Support\Facades\File;
+use Illuminate\Console\GeneratorCommand;
 use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 
 class MakeEnumeratorCommand extends GeneratorCommand

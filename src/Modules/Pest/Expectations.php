@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\Pest;
 
+use UnitEnum;
 use PHPUnit\Framework\Assert;
 use Simtabi\Laranail\Enumerator\Helpers\Bitmask;
-use UnitEnum;
 
 /**
  * Custom Pest expectations for enumerator cases.

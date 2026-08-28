@@ -9,8 +9,8 @@ interface TransitionHook
     /**
      * Called before a transition. Return false to abort.
      *
-     * @param  object  $from  the source case (Enumerator or AbstractEnumeratorClass)
-     * @param  object  $to  the target case
+     * @param object $from the source case (Enumerator or AbstractEnumeratorClass)
+     * @param object $to the target case
      */
     public function before(object $from, object $to): bool;
 

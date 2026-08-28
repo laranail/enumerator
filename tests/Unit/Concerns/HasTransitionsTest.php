@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Simtabi\Laranail\Enumerator\Contracts\TransitionHook;
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
 use Simtabi\Laranail\Enumerator\Presets\Enums\PublicationStatusEnum;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
 
 // HasTransitions — state-machine transition logic.
 

@@ -38,10 +38,10 @@ it('dropdown picks up a community-supplied locale via vendor publish', function 
     // tests stand in for vendor publish without writing files.
     $translator->addLines([
         'enumerator.components.dropdown.search_placeholder' => 'Rechercher…',
-        'enumerator.components.dropdown.search_label' => 'Rechercher des options',
-        'enumerator.components.dropdown.no_matches' => 'Aucun résultat.',
-        'enumerator.components.dropdown.clear_selection' => 'Effacer la sélection',
-        'enumerator.components.dropdown.remove_value' => 'Supprimer :label',
+        'enumerator.components.dropdown.search_label'       => 'Rechercher des options',
+        'enumerator.components.dropdown.no_matches'         => 'Aucun résultat.',
+        'enumerator.components.dropdown.clear_selection'    => 'Effacer la sélection',
+        'enumerator.components.dropdown.remove_value'       => 'Supprimer :label',
     ], 'fr', 'laranail-enumerator');
 
     app()->setLocale('fr');
@@ -62,10 +62,10 @@ it('dropdown locale also reaches the Alpine x-data announcement strings', functi
     /** @var Translator $translator */
     $translator = app('translator');
     $translator->addLines([
-        'enumerator.components.dropdown.announce_added' => 'Ajouté :label',
-        'enumerator.components.dropdown.announce_removed' => 'Supprimé :label',
+        'enumerator.components.dropdown.announce_added'    => 'Ajouté :label',
+        'enumerator.components.dropdown.announce_removed'  => 'Supprimé :label',
         'enumerator.components.dropdown.announce_selected' => 'Sélectionné :label',
-        'enumerator.components.dropdown.announce_cleared' => 'Sélection effacée',
+        'enumerator.components.dropdown.announce_cleared'  => 'Sélection effacée',
     ], 'fr', 'laranail-enumerator');
 
     app()->setLocale('fr');

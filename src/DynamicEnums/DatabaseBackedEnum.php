@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\DynamicEnums;
 
+use Throwable;
 use Illuminate\Support\Facades\DB;
+use Simtabi\Laranail\Enumerator\Support\CasesCache;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
-use Simtabi\Laranail\Enumerator\Support\CasesCache;
 
 /**
  * ⚠ DESIGN CAVEAT (): instances of subclasses of
@@ -53,34 +54,13 @@ use Simtabi\Laranail\Enumerator\Support\CasesCache;
 abstract class DatabaseBackedEnum extends AbstractEnumeratorClass
 {
     /**
-     * Table holding the case definitions. Required override.
-     */
-    abstract protected static function table(): string;
-
-    /**
-     * Column storing the case name (constant-like identifier).
-     */
-    protected static function nameColumn(): string
-    {
-        return 'name';
-    }
-
-    /**
-     * Column storing the case value.
-     */
-    protected static function valueColumn(): string
-    {
-        return 'value';
-    }
-
-    /**
      * Load cases from the configured table and register them with
      * `CasesCache` so the rest of the enumerator API works seamlessly.
      *
      * Idempotent: subsequent calls re-read the table. Use `reloadCases()`
      * to force a refresh after seeding new rows mid-process.
      *
-     * @throws \Throwable when the DB connection / table is unavailable
+     * @throws Throwable when the DB connection / table is unavailable
      */
     public static function loadCases(): void
     {
@@ -111,4 +91,25 @@ abstract class DatabaseBackedEnum extends AbstractEnumeratorClass
         AttributesCache::flush();
         static::loadCases();
     }
+
+    /**
+     * Column storing the case name (constant-like identifier).
+     */
+    protected static function nameColumn(): string
+    {
+        return 'name';
+    }
+
+    /**
+     * Column storing the case value.
+     */
+    protected static function valueColumn(): string
+    {
+        return 'value';
+    }
+
+    /**
+     * Table holding the case definitions. Required override.
+     */
+    abstract protected static function table(): string;
 }

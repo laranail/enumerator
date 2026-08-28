@@ -7,15 +7,15 @@ namespace Simtabi\Laranail\Enumerator\Rector;
 use PhpParser\Node;
 use PhpParser\Node\Const_;
 use PhpParser\Node\Identifier;
-use PhpParser\Node\Name\FullyQualified;
-use PhpParser\Node\Stmt\Class_;
-use PhpParser\Node\Stmt\ClassConst;
 use PhpParser\Node\Stmt\Enum_;
+use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\EnumCase;
 use PhpParser\Node\Stmt\TraitUse;
 use Rector\Rector\AbstractRector;
-use Rector\Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use PhpParser\Node\Stmt\ClassConst;
+use PhpParser\Node\Name\FullyQualified;
 use Rector\Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use Rector\Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 
 // Migration rule: BenSampo/laravel-enum → laranail/enumerator.
 // File-level guard so the rule class is only defined
@@ -150,7 +150,7 @@ PHP,
     }
 
     /**
-     * @param  array<string, Node\Expr>  $cases
+     * @param array<string, Node\Expr> $cases
      */
     private function detectBackingType(array $cases): ?string
     {

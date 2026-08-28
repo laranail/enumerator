@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Blade\Components;
 
+use UnitEnum;
 use BackedEnum;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Blade\Components\Concerns\RoutesToFrameworkView;
-use UnitEnum;
 
 class Listing extends Component
 {
@@ -19,7 +19,7 @@ class Listing extends Component
     public array $cases;
 
     /**
-     * @param  class-string  $enum
+     * @param class-string $enum
      */
     public function __construct(
         public string $enum,
@@ -34,12 +34,12 @@ class Listing extends Component
     public function render(): View
     {
         return view($this->frameworkView('listing'), [
-            'appendClasses' => $this->consumerClasses(),
-            'cases' => $this->cases,
-            'overrideClasses' => $this->classes,
+            'appendClasses'       => $this->consumerClasses(),
+            'cases'               => $this->cases,
+            'overrideClasses'     => $this->classes,
             'overrideItemClasses' => $this->itemClasses,
-            'overrideRootId' => $this->rootId,
-            'labelOf' => static fn (object $case): string => method_exists($case, 'label')
+            'overrideRootId'      => $this->rootId,
+            'labelOf'             => static fn (object $case): string => method_exists($case, 'label')
                 ? (string) $case->label()
                 : (string) ($case->name ?? ''),
             'valueOf' => static function (object $case): string|int {

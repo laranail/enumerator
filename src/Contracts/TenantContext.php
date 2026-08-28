@@ -54,7 +54,8 @@ interface TenantContext
      * Returning an empty array is a valid "no overrides for this
      * tenant + enum combination" signal.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array<string, array<string, mixed>>
      */
     public function overridesFor(string $enumClass): array;

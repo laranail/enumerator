@@ -99,8 +99,14 @@
         "test": "pest",
         "test:coverage": "pest --coverage --min=85",
         "analyse": "phpstan analyse",
-        "format": "pint",
-        "format:check": "pint --test"
+        "format": "@pint-fix",
+        "format:check": "pint --test",
+        "pint": "vendor/bin/pint --test --config vendor/laranail/package-tools/pint.json",
+        "pint-fix": "vendor/bin/pint --parallel --config vendor/laranail/package-tools/pint.json",
+        "lint": [
+            "@pint",
+            "@analyse"
+        ]
     },
     "config": {
         "sort-packages": true,

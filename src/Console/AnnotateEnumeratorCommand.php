@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Console;
 
-use Illuminate\Console\Command;
-use ReflectionClass;
 use ReflectionEnum;
+use ReflectionClass;
+use Illuminate\Console\Command;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
+use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 
 class AnnotateEnumeratorCommand extends Command
 {
@@ -45,7 +45,7 @@ class AnnotateEnumeratorCommand extends Command
     }
 
     /**
-     * @param  class-string  $class
+     * @param class-string $class
      */
     private function annotateNative(string $class): void
     {
@@ -65,7 +65,7 @@ class AnnotateEnumeratorCommand extends Command
     }
 
     /**
-     * @param  class-string<AbstractEnumeratorClass>  $class
+     * @param class-string<AbstractEnumeratorClass> $class
      */
     private function annotateClassConst(string $class): void
     {

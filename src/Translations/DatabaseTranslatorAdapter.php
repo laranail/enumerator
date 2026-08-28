@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Translations;
 
+use Throwable;
 use Illuminate\Support\Facades\DB;
 use Simtabi\Laranail\Enumerator\Contracts\TranslatorAdapter;
 
@@ -30,10 +31,10 @@ final class DatabaseTranslatorAdapter implements TranslatorAdapter
     private ?string $locale = null;
 
     /**
-     * @param  string  $table  table holding translations
-     * @param  string  $keyColumn  column storing the translation key
-     * @param  string  $localeColumn  column storing the locale code
-     * @param  string  $valueColumn  column storing the translated string
+     * @param string $table table holding translations
+     * @param string $keyColumn column storing the translation key
+     * @param string $localeColumn column storing the locale code
+     * @param string $valueColumn column storing the translated string
      */
     public function __construct(
         private readonly string $table = 'enum_translations',
@@ -96,7 +97,7 @@ final class DatabaseTranslatorAdapter implements TranslatorAdapter
                 ->where($this->keyColumn, $key)
                 ->where($this->localeColumn, $locale)
                 ->value($this->valueColumn);
-        } catch (\Throwable) {
+        } catch (Throwable) {
             // DB not configured / table missing — graceful fallthrough.
             $this->cache[$cacheKey] = false;
 
@@ -116,7 +117,7 @@ final class DatabaseTranslatorAdapter implements TranslatorAdapter
     }
 
     /**
-     * @param  array<string, scalar|null>  $replace
+     * @param array<string, scalar|null> $replace
      */
     private function applyReplacements(string $value, array $replace): string
     {

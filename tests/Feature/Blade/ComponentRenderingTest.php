@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Blade;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\FlaggedPermissionEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\GroupedStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\RenderableStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\FlaggedPermissionEnum;
 
 // Blade components — exercise the renderable surface across components +
 // framework variants to lift coverage on the eight component classes.
@@ -101,7 +101,7 @@ it('checkboxes marks the cases that are part of the selected mask', function ():
     $html = Blade::render(
         '<x-laranail-enumerator::checkboxes :enum="$enum" name="flags[]" :selected="$selected" />',
         [
-            'enum' => FlaggedPermissionEnum::class,
+            'enum'     => FlaggedPermissionEnum::class,
             'selected' => [FlaggedPermissionEnum::Read, FlaggedPermissionEnum::Write],
         ],
     );

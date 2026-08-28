@@ -14,7 +14,7 @@ if (! class_exists(Radio::class)) {
 final class EnumeratorRadio extends Radio
 {
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     public function enumerator(string $enumClass): static
     {

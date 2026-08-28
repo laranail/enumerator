@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
+use UnitEnum;
 use BackedEnum;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
 use Simtabi\Laranail\Enumerator\Contracts\TransitionHook;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
-use UnitEnum;
 
 /**
  * State machine helpers for native enums implementing

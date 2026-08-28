@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Enumerator\Modules\OpenApi\OpenApiSchemaExporter;
-use Simtabi\Laranail\Enumerator\Modules\OpenApi\Providers\OpenApiServiceProvider;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
+use Simtabi\Laranail\Enumerator\Modules\OpenApi\OpenApiSchemaExporter;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\BackedIntStatusEnum;
+use Simtabi\Laranail\Enumerator\Modules\OpenApi\Providers\OpenApiServiceProvider;
 
 // OpenAPI 3.1 component schema export.
 

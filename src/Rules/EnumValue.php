@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Rules;
 
-use BackedEnum;
 use Closure;
-use Illuminate\Contracts\Validation\ValidationRule;
-use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use UnitEnum;
+use BackedEnum;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 
 /**
  * Validate that an attribute is a valid backing value of the given enum.
@@ -26,7 +26,7 @@ class EnumValue implements ValidationRule
     protected ?array $except = null;
 
     /**
-     * @param  class-string<Enumerator>  $enumClass
+     * @param class-string<Enumerator> $enumClass
      */
     public function __construct(public readonly string $enumClass) {}
 
@@ -36,7 +36,7 @@ class EnumValue implements ValidationRule
     }
 
     /**
-     * @param  array<int, UnitEnum|AbstractEnumeratorClass>  $cases
+     * @param array<int, UnitEnum|AbstractEnumeratorClass> $cases
      */
     public function only(array $cases): static
     {
@@ -46,7 +46,7 @@ class EnumValue implements ValidationRule
     }
 
     /**
-     * @param  array<int, UnitEnum|AbstractEnumeratorClass>  $cases
+     * @param array<int, UnitEnum|AbstractEnumeratorClass> $cases
      */
     public function except(array $cases): static
     {
@@ -61,7 +61,7 @@ class EnumValue implements ValidationRule
         if ($case === null) {
             $fail(__('laranail-enumerator::enumerator.validation.invalid_value', [
                 'attribute' => $attribute,
-                'enum' => class_basename($this->enumClass),
+                'enum'      => class_basename($this->enumClass),
             ]));
 
             return;
@@ -70,7 +70,7 @@ class EnumValue implements ValidationRule
         if ($this->only !== null && ! in_array($case, $this->only, true)) {
             $fail(__('laranail-enumerator::enumerator.validation.not_allowed', [
                 'attribute' => $attribute,
-                'values' => $this->valuesAsString($this->only),
+                'values'    => $this->valuesAsString($this->only),
             ]));
 
             return;
@@ -79,7 +79,7 @@ class EnumValue implements ValidationRule
         if ($this->except !== null && in_array($case, $this->except, true)) {
             $fail(__('laranail-enumerator::enumerator.validation.excluded', [
                 'attribute' => $attribute,
-                'value' => (string) $value,
+                'value'     => (string) $value,
             ]));
         }
     }
@@ -114,7 +114,7 @@ class EnumValue implements ValidationRule
     }
 
     /**
-     * @param  array<int, UnitEnum|AbstractEnumeratorClass>  $cases
+     * @param array<int, UnitEnum|AbstractEnumeratorClass> $cases
      */
     private function valuesAsString(array $cases): string
     {

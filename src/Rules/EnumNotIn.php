@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Rules;
 
 use Closure;
+use UnitEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
-use UnitEnum;
 
 /**
  * Validate the value does NOT match any of the excluded cases.
@@ -15,7 +15,7 @@ use UnitEnum;
 class EnumNotIn implements ValidationRule
 {
     /**
-     * @param  array<int, UnitEnum|AbstractEnumeratorClass>  $excluded
+     * @param array<int, UnitEnum|AbstractEnumeratorClass> $excluded
      */
     public function __construct(
         public readonly string $enumClass,

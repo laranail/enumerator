@@ -40,9 +40,9 @@ return [
     |         layered (memory over file — recommended for prod)
     */
     'cache' => [
-        'driver' => env('ENUMERATOR_CACHE_DRIVER', 'layered'),
-        'file_path' => null,
-        'auto_warm' => false,
+        'driver'            => env('ENUMERATOR_CACHE_DRIVER', 'layered'),
+        'file_path'         => null,
+        'auto_warm'         => false,
         'auto_warm_classes' => [],
     ],
 
@@ -52,8 +52,8 @@ return [
     |--------------------------------------------------------------------------
     */
     'state_machine' => [
-        'table_name' => 'enumerator_state_history',
-        'record_history' => true,
+        'table_name'            => 'enumerator_state_history',
+        'record_history'        => true,
         'enforce_initial_state' => true,
     ],
 
@@ -77,9 +77,9 @@ return [
     | this value on every push.
     */
     'alpine' => [
-        'version' => env('ENUMERATOR_ALPINE_VERSION', '3.15.12'),
+        'version'   => env('ENUMERATOR_ALPINE_VERSION', '3.15.12'),
         'integrity' => env('ENUMERATOR_ALPINE_INTEGRITY', 'sha384-pb6hrQvo4s23cEUFtj0CZkzGE3jyK3pj26RIupXXxhSrrcUA/Cn0lZgcCrGH0t6L'),
-        'cdn_url' => env('ENUMERATOR_ALPINE_CDN', 'https://cdn.jsdelivr.net/npm/alpinejs@{version}/dist/cdn.min.js'),
+        'cdn_url'   => env('ENUMERATOR_ALPINE_CDN', 'https://cdn.jsdelivr.net/npm/alpinejs@{version}/dist/cdn.min.js'),
         'local_url' => env('ENUMERATOR_ALPINE_LOCAL', '/vendor/laranail-enumerator/alpine.min.js'),
     ],
 
@@ -90,8 +90,8 @@ return [
     */
     'magic' => [
         'case_insensitive_method_names' => true,
-        'allow_invokable_cases' => false,
-        'ambiguous_resolution' => 'throw', // throw | first | null
+        'allow_invokable_cases'         => false,
+        'ambiguous_resolution'          => 'throw', // throw | first | null
     ],
 
     /*
@@ -129,14 +129,14 @@ return [
     | vendor package is absent). All default to false — opt in per app.
     */
     'modules' => [
-        'pest' => env('ENUMERATOR_MODULE_PEST', false),
-        'openapi' => env('ENUMERATOR_MODULE_OPENAPI', false),
-        'lighthouse' => env('ENUMERATOR_MODULE_LIGHTHOUSE', false),
-        'saloon' => env('ENUMERATOR_MODULE_SALOON', false),
-        'octane' => env('ENUMERATOR_MODULE_OCTANE', false),
+        'pest'              => env('ENUMERATOR_MODULE_PEST', false),
+        'openapi'           => env('ENUMERATOR_MODULE_OPENAPI', false),
+        'lighthouse'        => env('ENUMERATOR_MODULE_LIGHTHOUSE', false),
+        'saloon'            => env('ENUMERATOR_MODULE_SALOON', false),
+        'octane'            => env('ENUMERATOR_MODULE_OCTANE', false),
         'structured_output' => env('ENUMERATOR_MODULE_STRUCTURED_OUTPUT', false),
-        'graphql' => env('ENUMERATOR_MODULE_GRAPHQL', false),
-        'tenancy' => env('ENUMERATOR_MODULE_TENANCY', false),
+        'graphql'           => env('ENUMERATOR_MODULE_GRAPHQL', false),
+        'tenancy'           => env('ENUMERATOR_MODULE_TENANCY', false),
     ],
 
     /*

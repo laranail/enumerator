@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Blade\Components\Concerns;
 
 use Closure;
-use Simtabi\Laranail\Enumerator\Support\CaseGroupingResolver;
 use UnitEnum;
+use Simtabi\Laranail\Enumerator\Support\CaseGroupingResolver;
 
 /**
  * Thin trait wrapper around `Support\CaseGroupingResolver` (— the
@@ -23,9 +23,10 @@ use UnitEnum;
 trait GroupsCases
 {
     /**
-     * @param  array<int, UnitEnum|object>  $cases
-     * @param  string|Closure|array<string, array<int, UnitEnum|object>>|null  $groupsBy
-     * @param  array<string, string>  $groupLabels
+     * @param array<int, UnitEnum|object> $cases
+     * @param string|Closure|array<string, array<int, UnitEnum|object>>|null $groupsBy
+     * @param array<string, string> $groupLabels
+     *
      * @return array<string, array<int, UnitEnum|object>>|null
      */
     protected function buildGroups(

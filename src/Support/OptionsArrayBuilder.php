@@ -17,7 +17,8 @@ final class OptionsArrayBuilder
      * Build a `[value|name => label]` map for the given enum class.
      * Returns an empty array if the class isn't enumerator-shaped.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array<int|string, string>
      */
     public static function for(string $enumClass): array
@@ -42,7 +43,8 @@ final class OptionsArrayBuilder
      * Flipped variant for hosts (e.g. Nova filters) whose API expects
      * `[label => value]` instead.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array<string, int|string>
      */
     public static function flipped(string $enumClass): array

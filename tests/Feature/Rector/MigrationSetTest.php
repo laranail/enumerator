@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use Rector\Rector\AbstractRector;
+use Simtabi\Laranail\Enumerator\Rector\Sets\MigrationSet;
+use Simtabi\Laranail\Enumerator\Rector\RectorSpatieEnumToEnumerator;
 use Simtabi\Laranail\Enumerator\Rector\RectorBenSampoEnumToEnumerator;
 use Simtabi\Laranail\Enumerator\Rector\RectorClassConstEnumToEnumerator;
-use Simtabi\Laranail\Enumerator\Rector\RectorSpatieEnumToEnumerator;
-use Simtabi\Laranail\Enumerator\Rector\Sets\MigrationSet;
 
 // Rector migration rules.
 //

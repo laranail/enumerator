@@ -100,8 +100,8 @@ it('accepts a custom table and column names', function (): void {
         $table->text('translation_value');
     });
     DB::table('custom_i18n')->insert([
-        'translation_key' => 'app.greeting',
-        'locale_code' => 'en',
+        'translation_key'   => 'app.greeting',
+        'locale_code'       => 'en',
         'translation_value' => 'Howdy',
     ]);
 

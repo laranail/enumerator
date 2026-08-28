@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\GraphQL;
 
+use UnitEnum;
+use Throwable;
 use ReflectionEnum;
+use ReflectionClass;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 
@@ -35,7 +38,7 @@ final class SchemaExporter
     /**
      * Emit a portable `.graphql` schema fragment for the given enum.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     public function export(string $enumClass): string
     {
@@ -68,19 +71,19 @@ final class SchemaExporter
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function shortName(string $enumClass): string
     {
         $reflection = enum_exists($enumClass)
             ? new ReflectionEnum($enumClass)
-            : new \ReflectionClass($enumClass);
+            : new ReflectionClass($enumClass);
 
         return $reflection->getShortName();
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function classDescription(string $enumClass): string
     {
@@ -90,7 +93,7 @@ final class SchemaExporter
 
         try {
             $value = $enumClass::classDescription();
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return '';
         }
 
@@ -99,7 +102,7 @@ final class SchemaExporter
 
     private function caseName(object $case): string
     {
-        if ($case instanceof \UnitEnum) {
+        if ($case instanceof UnitEnum) {
             return $case->name;
         }
         if ($case instanceof AbstractEnumeratorClass && method_exists($case, 'getKey')) {

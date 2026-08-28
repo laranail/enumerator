@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Support;
 
+use UnitEnum;
 use BackedEnum;
 use Illuminate\Support\Collection;
 use Simtabi\Laranail\Enumerator\Helpers\Humanizer;
-use UnitEnum;
 
 /**
  * Specialised Collection of enum cases. Adds enum-aware helpers on top of
@@ -209,7 +209,7 @@ class CasesCollection extends Collection
         foreach ($this->items as $case) {
             $out[] = [
                 'value' => $case instanceof BackedEnum ? $case->value : $case->name,
-                'name' => $case->name,
+                'name'  => $case->name,
                 'label' => $this->resolveLabel($case),
             ];
         }

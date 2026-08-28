@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Blade\Components;
 
+use UnitEnum;
 use BackedEnum;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Blade\Components\Concerns\RoutesToFrameworkView;
-use UnitEnum;
 
 class Radio extends Component
 {
@@ -21,15 +21,15 @@ class Radio extends Component
     public mixed $selectedValue;
 
     /**
-     * @param  class-string  $enum
-     * @param  string|null  $wireModel  Optional Livewire property name. When set,
-     *                                  each `<input>` emits `wire:model="…"` so
-     *                                  Livewire binds at the input level (not just
-     *                                  at the fieldset). Use with `wireModelModifier`
-     *                                  for `wire:model.live="…"` etc.
-     * @param  string|null  $wireModelModifier  Livewire wire:model modifier
-     *                                          (`live`, `blur`, `defer`, `debounce.500ms`,
-     *                                          …). No-op unless `wireModel` is also set.
+     * @param class-string $enum
+     * @param string|null $wireModel Optional Livewire property name. When set,
+     *                               each `<input>` emits `wire:model="…"` so
+     *                               Livewire binds at the input level (not just
+     *                               at the fieldset). Use with `wireModelModifier`
+     *                               for `wire:model.live="…"` etc.
+     * @param string|null $wireModelModifier Livewire wire:model modifier
+     *                                       (`live`, `blur`, `defer`, `debounce.500ms`,
+     *                                       …). No-op unless `wireModel` is also set.
      */
     public function __construct(
         public string $enum,
@@ -57,38 +57,38 @@ class Radio extends Component
     public function render(): View
     {
         return view($this->frameworkView('radio'), [
-            'appendClasses' => $this->consumerClasses(),
-            'cases' => $this->cases,
-            'name' => $this->name,
-            'selectedValue' => $this->selectedValue,
-            'layout' => $this->layout,
-            'legend' => $this->legend,
-            'disabled' => $this->disabled,
-            'required' => $this->required,
-            'descriptions' => $this->descriptions,
-            'overrideClasses' => $this->classes,
-            'overrideItemClasses' => $this->itemClasses,
-            'overrideInputClasses' => $this->inputClasses,
-            'overrideLabelClasses' => $this->labelClasses,
+            'appendClasses'         => $this->consumerClasses(),
+            'cases'                 => $this->cases,
+            'name'                  => $this->name,
+            'selectedValue'         => $this->selectedValue,
+            'layout'                => $this->layout,
+            'legend'                => $this->legend,
+            'disabled'              => $this->disabled,
+            'required'              => $this->required,
+            'descriptions'          => $this->descriptions,
+            'overrideClasses'       => $this->classes,
+            'overrideItemClasses'   => $this->itemClasses,
+            'overrideInputClasses'  => $this->inputClasses,
+            'overrideLabelClasses'  => $this->labelClasses,
             'overrideLegendClasses' => $this->legendClasses,
-            'overrideRootId' => $this->rootId,
-            'wireModel' => $this->wireModel,
-            'wireModelModifier' => $this->wireModelModifier,
-            'valueOf' => $this->valueOfFn(),
-            'labelOf' => $this->labelOfFn(),
-            'idFor' => $this->idForFn(),
-            'descriptionOf' => $this->descriptionOfFn(),
+            'overrideRootId'        => $this->rootId,
+            'wireModel'             => $this->wireModel,
+            'wireModelModifier'     => $this->wireModelModifier,
+            'valueOf'               => $this->valueOfFn(),
+            'labelOf'               => $this->labelOfFn(),
+            'idFor'                 => $this->idForFn(),
+            'descriptionOf'         => $this->descriptionOfFn(),
         ]);
     }
 
     protected function scalar(mixed $value): mixed
     {
         return match (true) {
-            $value === null => null,
-            $value instanceof BackedEnum => $value->value,
-            $value instanceof UnitEnum => $value->name,
+            $value === null                           => null,
+            $value instanceof BackedEnum              => $value->value,
+            $value instanceof UnitEnum                => $value->name,
             $value instanceof AbstractEnumeratorClass => (string) $value->getValue(),
-            default => $value,
+            default                                   => $value,
         };
     }
 

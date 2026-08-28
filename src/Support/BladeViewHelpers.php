@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Support;
 
-use BackedEnum;
 use Closure;
 use UnitEnum;
+use BackedEnum;
 
 /**
  * Tiny helpers callable from anonymous Blade variants when they receive
@@ -26,9 +26,10 @@ final class BladeViewHelpers
      *   • Closure                    — fn(case): string → group key
      *   • array<string, cases[]>     — explicit map (returned as-is)
      *
-     * @param  array<int, UnitEnum|object>  $cases
-     * @param  string|Closure|array<string, array<int, mixed>>|null  $groupsBy
-     * @param  array<string, string>  $groupLabels
+     * @param array<int, UnitEnum|object> $cases
+     * @param string|Closure|array<string, array<int, mixed>>|null $groupsBy
+     * @param array<string, string> $groupLabels
+     *
      * @return array<string, array<int, UnitEnum|object>>|null
      */
     public static function buildGroups(

@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\Lighthouse;
 
+use UnitEnum;
+use BackedEnum;
 use GraphQL\Error\Error;
 use GraphQL\Language\AST\Node;
 use GraphQL\Type\Definition\ScalarType;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
-use UnitEnum;
 
 // Lighthouse depends on webonyx/graphql-php. If neither is installed,
 // this file early-returns so the autoloader doesn't try to extend a
@@ -69,7 +70,7 @@ abstract class EnumScalar extends ScalarType
     /**
      * Parse a value from an inline GraphQL literal in a query document.
      *
-     * @param  array<string, mixed>|null  $variables
+     * @param array<string, mixed>|null $variables
      */
     public function parseLiteral(Node $valueNode, ?array $variables = null): mixed
     {
@@ -103,7 +104,7 @@ abstract class EnumScalar extends ScalarType
         }
 
         $class = $this->enumClass;
-        if (enum_exists($class) && is_subclass_of($class, \BackedEnum::class)) {
+        if (enum_exists($class) && is_subclass_of($class, BackedEnum::class)) {
             $case = $class::tryFrom($value);
             if ($case !== null) {
                 return $case;

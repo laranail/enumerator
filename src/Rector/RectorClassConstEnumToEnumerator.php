@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Rector;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr\MethodCall;
-use PhpParser\Node\Expr\PropertyFetch;
-use PhpParser\Node\Expr\StaticCall;
-use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
-use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt\Property;
-use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
-use Rector\Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
-use Rector\Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Expr\StaticCall;
+use PhpParser\Node\Expr\PropertyFetch;
+use PhpParser\Node\Name\FullyQualified;
+use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
+use Rector\Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use Rector\Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 
 // Migration rule: any legacy class-constant enum base → laranail/enumerator's
 // AbstractEnumeratorClass.
@@ -73,6 +73,8 @@ if (! class_exists(AbstractRector::class)) {
  */
 final class RectorClassConstEnumToEnumerator extends AbstractRector implements ConfigurableRectorInterface
 {
+    private const string TARGET = 'Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass';
+
     /**
      * Fully-qualified legacy base classes to rebase, without a leading slash.
      *
@@ -83,10 +85,8 @@ final class RectorClassConstEnumToEnumerator extends AbstractRector implements C
      */
     private array $baseClasses = [];
 
-    private const string TARGET = 'Simtabi\\Laranail\\Enumerator\\AbstractEnumeratorClass';
-
     /**
-     * @param  array<int|string, mixed>  $configuration
+     * @param array<int|string, mixed> $configuration
      */
     public function configure(array $configuration): void
     {
@@ -242,8 +242,8 @@ PHP,
 
             $replacement = match ($subNode->name->toString()) {
                 'from', 'of' => 'fromValue',
-                'tryFrom' => 'tryFromValue',
-                default => null,
+                'tryFrom'    => 'tryFromValue',
+                default      => null,
             };
 
             if ($replacement === null) {

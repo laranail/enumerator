@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
-use BackedEnum;
 use UnitEnum;
+use BackedEnum;
 
 /**
  * `JsonSerializable`-friendly representation for enum cases.
@@ -28,7 +28,7 @@ trait IsJsonable
 
         return [
             'value' => $self instanceof BackedEnum ? $self->value : $self->name,
-            'name' => $self->name,
+            'name'  => $self->name,
             'label' => method_exists($self, 'label') ? (string) $self->label() : $self->name,
         ];
     }

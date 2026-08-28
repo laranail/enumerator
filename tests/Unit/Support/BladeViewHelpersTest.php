@@ -47,7 +47,7 @@ it('buildGroups() delegates to CaseGroupingResolver for closure form', function 
         fn (BvhBackedEnum $c): string => $c === BvhBackedEnum::A ? 'first' : 'second',
     );
     expect($out)->toBe([
-        'first' => [BvhBackedEnum::A],
+        'first'  => [BvhBackedEnum::A],
         'second' => [BvhBackedEnum::B],
     ]);
 });

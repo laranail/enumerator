@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
-use BackedEnum;
 use UnitEnum;
+use BackedEnum;
 
 /**
  * Equality + membership helpers shared by every Enumerator.
@@ -36,7 +36,7 @@ trait HasEquality
     }
 
     /**
-     * @param  iterable<int, mixed>  $targets
+     * @param iterable<int, mixed> $targets
      */
     public function in(iterable $targets): bool
     {
@@ -50,7 +50,7 @@ trait HasEquality
     }
 
     /**
-     * @param  iterable<int, mixed>  $targets
+     * @param iterable<int, mixed> $targets
      */
     public function notIn(iterable $targets): bool
     {

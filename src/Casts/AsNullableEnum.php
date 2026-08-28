@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
+use Illuminate\Database\Eloquent\Model;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 
 /**
@@ -19,7 +19,7 @@ use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 final class AsNullableEnum implements CastsAttributes
 {
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     public function __construct(public readonly string $enumClass)
     {
@@ -40,7 +40,7 @@ final class AsNullableEnum implements CastsAttributes
     }
 
     /**
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): ?object
     {
@@ -55,7 +55,7 @@ final class AsNullableEnum implements CastsAttributes
     }
 
     /**
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): null|string|int
     {

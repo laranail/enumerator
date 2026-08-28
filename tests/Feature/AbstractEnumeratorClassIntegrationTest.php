@@ -13,9 +13,9 @@ it('OptionsArrayBuilder::for() works for class-const enums', function (): void {
     $options = OptionsArrayBuilder::for(LegacyStatusEnum::class);
 
     expect($options)->toBe([
-        'active' => 'Active',
+        'active'   => 'Active',
         'inactive' => 'Inactive',
-        'banned' => 'Banned',
+        'banned'   => 'Banned',
     ]);
 });
 
@@ -23,9 +23,9 @@ it('OptionsArrayBuilder::flipped() works for class-const enums', function (): vo
     $flipped = OptionsArrayBuilder::flipped(LegacyStatusEnum::class);
 
     expect($flipped)->toBe([
-        'Active' => 'active',
+        'Active'   => 'active',
         'Inactive' => 'inactive',
-        'Banned' => 'banned',
+        'Banned'   => 'banned',
     ]);
 });
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
+use BadMethodCallException;
 use Simtabi\Laranail\Enumerator\Exceptions\AmbiguousMagicCallException;
 
 /**
@@ -27,26 +28,7 @@ use Simtabi\Laranail\Enumerator\Exceptions\AmbiguousMagicCallException;
 trait ResolvesMagicCalls
 {
     /**
-     * Ordered list of handler method names tried by `__call`. Override
-     * in a downstream trait or enum to register additional dispatchers:
-     *
-     *     protected static function magicCallHandlers(): array
-     *     {
-     *         return [...parent::magicCallHandlers(), 'magicMyThing'];
-     *     }
-     *
-     * Each handler must accept `(string $method, array $args)` and return
-     * `[$result]` on a hit or `null` to pass.
-     *
-     * @return list<string>
-     */
-    protected static function magicCallHandlers(): array
-    {
-        return ['magicCompare'];
-    }
-
-    /**
-     * @param  array<int, mixed>  $arguments
+     * @param array<int, mixed> $arguments
      */
     public function __call(string $method, array $arguments): mixed
     {
@@ -63,7 +45,7 @@ trait ResolvesMagicCalls
         }
 
         if ($hits === []) {
-            throw new \BadMethodCallException(sprintf(
+            throw new BadMethodCallException(sprintf(
                 'Undefined method %s::%s()',
                 static::class,
                 $method,
@@ -80,7 +62,7 @@ trait ResolvesMagicCalls
 
         return match ($resolution) {
             'first' => $hits[0][1],
-            'null' => null,
+            'null'  => null,
             default => throw new AmbiguousMagicCallException(sprintf(
                 'Method %s::%s() is ambiguous; resolved by handlers: %s.',
                 static::class,
@@ -88,5 +70,24 @@ trait ResolvesMagicCalls
                 implode(', ', array_column($hits, 0)),
             )),
         };
+    }
+
+    /**
+     * Ordered list of handler method names tried by `__call`. Override
+     * in a downstream trait or enum to register additional dispatchers:
+     *
+     *     protected static function magicCallHandlers(): array
+     *     {
+     *         return [...parent::magicCallHandlers(), 'magicMyThing'];
+     *     }
+     *
+     * Each handler must accept `(string $method, array $args)` and return
+     * `[$result]` on a hit or `null` to pass.
+     *
+     * @return list<string>
+     */
+    protected static function magicCallHandlers(): array
+    {
+        return ['magicCompare'];
     }
 }

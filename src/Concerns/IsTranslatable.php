@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
+use UnitEnum;
+use Throwable;
 use BackedEnum;
 use Illuminate\Support\Facades\Lang;
+use Simtabi\Laranail\Enumerator\Helpers\Humanizer;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Contracts\TranslatorAdapter;
-use Simtabi\Laranail\Enumerator\Helpers\Humanizer;
-use UnitEnum;
 
 /**
  * Translation lookup for enum cases.
@@ -30,30 +31,6 @@ use UnitEnum;
  */
 trait IsTranslatable
 {
-    public function label(?string $locale = null): string
-    {
-        return $this->translateField('label', $locale)
-            ?? $this->resolvedAttribute('label')
-            ?? Humanizer::humanize($this->caseName());
-    }
-
-    public function description(?string $locale = null): ?string
-    {
-        return $this->translateField('description', $locale)
-            ?? $this->resolvedAttribute('description');
-    }
-
-    public function help(?string $locale = null): ?string
-    {
-        return $this->translateField('help', $locale)
-            ?? $this->resolvedAttribute('help');
-    }
-
-    public function placeholder(?string $locale = null): ?string
-    {
-        return $this->translateField('placeholder', $locale);
-    }
-
     /**
      * Translation namespace (`enumerator` by default). Override per-enum
      * by implementing Contracts\Translatable.
@@ -86,6 +63,35 @@ trait IsTranslatable
 
         return $field === null ? $base : $base . '.' . $field;
     }
+
+    public function label(?string $locale = null): string
+    {
+        return $this->translateField('label', $locale)
+            ?? $this->resolvedAttribute('label')
+            ?? Humanizer::humanize($this->caseName());
+    }
+
+    public function description(?string $locale = null): ?string
+    {
+        return $this->translateField('description', $locale)
+            ?? $this->resolvedAttribute('description');
+    }
+
+    public function help(?string $locale = null): ?string
+    {
+        return $this->translateField('help', $locale)
+            ?? $this->resolvedAttribute('help');
+    }
+
+    public function placeholder(?string $locale = null): ?string
+    {
+        return $this->translateField('placeholder', $locale);
+    }
+
+    /**
+     * Defer to HasAttributes (string field name → resolved value).
+     */
+    abstract protected function resolvedAttribute(string $field): ?string;
 
     private function translateField(string $field, ?string $locale): ?string
     {
@@ -127,7 +133,7 @@ trait IsTranslatable
 
         try {
             $adapter = app(TranslatorAdapter::class);
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return null;
         }
 
@@ -170,9 +176,4 @@ trait IsTranslatable
 
         return $self instanceof UnitEnum ? $self->name : '';
     }
-
-    /**
-     * Defer to HasAttributes (string field name → resolved value).
-     */
-    abstract protected function resolvedAttribute(string $field): ?string;
 }

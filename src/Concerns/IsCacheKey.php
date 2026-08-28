@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
-use BackedEnum;
 use Closure;
+use UnitEnum;
+use BackedEnum;
 use Illuminate\Support\Facades\Cache;
 use Simtabi\Laranail\Enumerator\Contracts\Cacheable;
-use UnitEnum;
 
 /**
  * Cache-key encapsulation for enum cases.

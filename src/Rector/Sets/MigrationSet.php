@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Rector\Sets;
 
+use Simtabi\Laranail\Enumerator\Rector\RectorSpatieEnumToEnumerator;
 use Simtabi\Laranail\Enumerator\Rector\RectorBenSampoEnumToEnumerator;
 use Simtabi\Laranail\Enumerator\Rector\RectorClassConstEnumToEnumerator;
-use Simtabi\Laranail\Enumerator\Rector\RectorSpatieEnumToEnumerator;
 
 /**
  * Rector rule-set descriptor.

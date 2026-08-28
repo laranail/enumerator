@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Eloquent;
 
+use UnitEnum;
 use BackedEnum;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidTransitionException;
-use UnitEnum;
 
 /**
  * Model trait that enforces state-machine transitions for one or more enum
@@ -152,9 +152,9 @@ trait HasEnumeratorStateMachine
                 : ($current instanceof UnitEnum ? $current->name : (string) $current);
 
             $this->enumeratorStateHistory()->create([
-                'field' => $field,
-                'from' => $from,
-                'to' => $to,
+                'field'      => $field,
+                'from'       => $from,
+                'to'         => $to,
                 'enum_class' => $current::class,
             ]);
         }

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
-use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Icon;
+use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Order;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
 use Simtabi\Laranail\Enumerator\Concerns\HasOrder;
-use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
+use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum TaskStatusEnum: string implements Enumerator, Stateful
 {
@@ -37,12 +37,12 @@ enum TaskStatusEnum: string implements Enumerator, Stateful
     public static function transitions(): array
     {
         return [
-            self::ToDo->value => [self::InProgress, self::Cancelled, self::Blocked],
+            self::ToDo->value       => [self::InProgress, self::Cancelled, self::Blocked],
             self::InProgress->value => [self::InReview, self::Done, self::Blocked, self::Cancelled],
-            self::InReview->value => [self::Done, self::InProgress, self::Blocked],
-            self::Done->value => [],
-            self::Cancelled->value => [],
-            self::Blocked->value => [self::ToDo, self::InProgress, self::Cancelled],
+            self::InReview->value   => [self::Done, self::InProgress, self::Blocked],
+            self::Done->value       => [],
+            self::Cancelled->value  => [],
+            self::Blocked->value    => [self::ToDo, self::InProgress, self::Cancelled],
         ];
     }
 
@@ -54,7 +54,7 @@ enum TaskStatusEnum: string implements Enumerator, Stateful
         return [
             'positive' => [self::Done],
             'negative' => [self::Cancelled, self::Blocked],
-            'pending' => [self::ToDo, self::InProgress, self::InReview],
+            'pending'  => [self::ToDo, self::InProgress, self::InReview],
             'terminal' => [self::Done, self::Cancelled],
         ];
     }

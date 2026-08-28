@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Support;
 
 use Closure;
-use Illuminate\Support\Str;
 use UnitEnum;
+use Illuminate\Support\Str;
 
 /**
  * Shared case-grouping resolver. Both `Support\BladeViewHelpers`
@@ -27,9 +27,10 @@ use UnitEnum;
 final class CaseGroupingResolver
 {
     /**
-     * @param  array<int, UnitEnum|object>  $cases
-     * @param  string|Closure|array<string, array<int, mixed>>|null  $groupsBy
-     * @param  array<string, string>  $groupLabels
+     * @param array<int, UnitEnum|object> $cases
+     * @param string|Closure|array<string, array<int, mixed>>|null $groupsBy
+     * @param array<string, string> $groupLabels
+     *
      * @return array<string, array<int, UnitEnum|object>>|null
      */
     public static function resolve(
@@ -88,7 +89,8 @@ final class CaseGroupingResolver
     }
 
     /**
-     * @param  array<int, UnitEnum|object>  $cases
+     * @param array<int, UnitEnum|object> $cases
+     *
      * @return array<string, array<int, UnitEnum|object>>
      */
     private static function groupBy(array $cases, Closure $keyOf): array
@@ -102,8 +104,9 @@ final class CaseGroupingResolver
     }
 
     /**
-     * @param  array<string, array<int, UnitEnum|object>>  $groups
-     * @param  array<string, string>  $labels
+     * @param array<string, array<int, UnitEnum|object>> $groups
+     * @param array<string, string> $labels
+     *
      * @return array<string, array<int, UnitEnum|object>>
      */
     private static function relabel(array $groups, array $labels): array

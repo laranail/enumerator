@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\StructuredOutput;
 
+use Throwable;
 use ReflectionEnum;
+use ReflectionClass;
 use Simtabi\Laranail\Enumerator\Support\IsEnumeratorClass;
 
 /**
@@ -22,7 +24,8 @@ final class McpSchemaEmitter
     /**
      * Emit a tool input property schema for an MCP tool definition.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array{type: string, enum: list<int|string>, description?: string, title?: string}
      */
     public function asToolInputProperty(string $enumClass): array
@@ -37,8 +40,8 @@ final class McpSchemaEmitter
         }
 
         $out = [
-            'type' => $this->typeOf($enumClass),
-            'enum' => $values,
+            'type'  => $this->typeOf($enumClass),
+            'enum'  => $values,
             'title' => $this->shortName($enumClass),
         ];
         $description = $this->classDescription($enumClass);
@@ -54,7 +57,8 @@ final class McpSchemaEmitter
      * for `resources/templates/list` responses where the URI template
      * accepts an enum-typed parameter).
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array<string, mixed>
      */
     public function asResourceParameter(string $enumClass): array
@@ -63,7 +67,7 @@ final class McpSchemaEmitter
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function typeOf(string $enumClass): string
     {
@@ -80,19 +84,19 @@ final class McpSchemaEmitter
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function shortName(string $enumClass): string
     {
         $reflection = enum_exists($enumClass)
             ? new ReflectionEnum($enumClass)
-            : new \ReflectionClass($enumClass);
+            : new ReflectionClass($enumClass);
 
         return $reflection->getShortName();
     }
 
     /**
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function classDescription(string $enumClass): string
     {
@@ -101,7 +105,7 @@ final class McpSchemaEmitter
         }
         try {
             $value = $enumClass::classDescription();
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return '';
         }
 

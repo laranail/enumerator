@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Modules\OpenApi;
 
+use UnitEnum;
 use BackedEnum;
 use ReflectionEnum;
 use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
@@ -31,15 +32,16 @@ final class OpenApiSchemaExporter
     /**
      * Emit an OpenAPI 3.1 schema fragment for the given enum class.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
+     *
      * @return array{type: string, enum: list<int|string>, 'x-enum-varnames': list<string>, 'x-enum-descriptions'?: list<string>}
      */
     public function export(string $enumClass): array
     {
         if (! IsEnumeratorClass::check($enumClass)) {
             return [
-                'type' => 'string',
-                'enum' => [],
+                'type'            => 'string',
+                'enum'            => [],
                 'x-enum-varnames' => [],
             ];
         }
@@ -60,8 +62,8 @@ final class OpenApiSchemaExporter
         }
 
         $schema = [
-            'type' => $this->typeOf($enumClass),
-            'enum' => $values,
+            'type'            => $this->typeOf($enumClass),
+            'enum'            => $values,
             'x-enum-varnames' => $names,
         ];
 
@@ -77,7 +79,7 @@ final class OpenApiSchemaExporter
      * `integer`; everything else (string-backed, pure, class-const) gets
      * `string`.
      *
-     * @param  class-string  $enumClass
+     * @param class-string $enumClass
      */
     private function typeOf(string $enumClass): string
     {
@@ -96,7 +98,7 @@ final class OpenApiSchemaExporter
 
     private function nameOf(object $case): string
     {
-        if ($case instanceof BackedEnum || $case instanceof \UnitEnum) {
+        if ($case instanceof BackedEnum || $case instanceof UnitEnum) {
             return $case->name;
         }
         if ($case instanceof AbstractEnumeratorClass && method_exists($case, 'getKey')) {

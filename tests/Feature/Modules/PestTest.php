@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\AssertionFailedError;
 use Simtabi\Laranail\Enumerator\Helpers\Bitmask;
+use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 use Simtabi\Laranail\Enumerator\Modules\Pest\Expectations;
 use Simtabi\Laranail\Enumerator\Presets\Enums\FeatureFlagEnum;
 use Simtabi\Laranail\Enumerator\Presets\Enums\OrderStatusEnum;
-use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
 
 // custom Pest expectations for enumerator cases.
 // Register up-front so the expectations are available in every test below.

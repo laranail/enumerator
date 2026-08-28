@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Support;
 
+use UnitEnum;
 use BackedEnum;
 use ReflectionEnum;
-use UnitEnum;
 
 /**
  * Exports an enum to alternative representations: PHP array, JSON, TypeScript
@@ -17,7 +17,8 @@ use UnitEnum;
 final class EnumExporter
 {
     /**
-     * @param  class-string<UnitEnum>  $class
+     * @param class-string<UnitEnum> $class
+     *
      * @return array<int, CaseDescriptor>
      */
     public function toArray(string $class): array
@@ -26,7 +27,7 @@ final class EnumExporter
         foreach ($class::cases() as $case) {
             $out[] = [
                 'value' => $case instanceof BackedEnum ? $case->value : $case->name,
-                'name' => $case->name,
+                'name'  => $case->name,
                 'label' => method_exists($case, 'label') ? (string) $case->label() : $case->name,
             ];
         }
@@ -35,7 +36,7 @@ final class EnumExporter
     }
 
     /**
-     * @param  class-string<UnitEnum>  $class
+     * @param class-string<UnitEnum> $class
      */
     public function toJson(string $class, int $flags = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES): string
     {
@@ -43,7 +44,7 @@ final class EnumExporter
     }
 
     /**
-     * @param  class-string<UnitEnum>  $class
+     * @param class-string<UnitEnum> $class
      */
     public function toPhpFile(string $class): string
     {
@@ -53,7 +54,7 @@ final class EnumExporter
     }
 
     /**
-     * @param  class-string<UnitEnum>  $class
+     * @param class-string<UnitEnum> $class
      */
     public function toTypeScript(string $class): string
     {

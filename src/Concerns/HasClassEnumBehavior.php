@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
 use Illuminate\Support\HtmlString;
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorNameException;
-use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
+use Simtabi\Laranail\Enumerator\Support\CasesCache;
 use Simtabi\Laranail\Enumerator\Support\AttributeBag;
 use Simtabi\Laranail\Enumerator\Support\AttributesCache;
-use Simtabi\Laranail\Enumerator\Support\CasesCache;
 use Simtabi\Laranail\Enumerator\Support\CasesCollection;
 use Simtabi\Laranail\Enumerator\Support\EnumeratorRegistry;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorNameException;
+use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
 
 /**
  * Class-constant enumerator engine. Brings native-enum-style behaviour to a
@@ -59,24 +59,18 @@ trait HasClassEnumBehavior
     final public function __construct() {}
 
     /**
-     * Build an instance for the given backed value.
+     * Magic case access: UserStatus::ACTIVE() → instance.
+     *
+     * @param array<int, mixed> $arguments (ignored)
      */
-    public function make(string|int $value): static
+    public static function __callStatic(string $name, array $arguments): static
     {
-        $constants = CasesCache::classConstants(static::class);
-        $key = array_search($value, $constants, true);
-        if ($key === false) {
-            throw new InvalidEnumeratorValueException(sprintf(
-                'Value "%s" is not a constant on %s.',
-                (string) $value,
-                static::class,
-            ));
-        }
+        return static::fromKey($name);
+    }
 
-        $this->value = $value;
-        $this->key = $key;
-
-        return $this;
+    public function __toString(): string
+    {
+        return (string) $this->value;
     }
 
     public static function fromValue(string|int $value): static
@@ -114,78 +108,6 @@ trait HasClassEnumBehavior
         } catch (InvalidEnumeratorNameException) {
             return null;
         }
-    }
-
-    /**
-     * Magic case access: UserStatus::ACTIVE() → instance.
-     *
-     * @param  array<int, mixed>  $arguments  (ignored)
-     */
-    public static function __callStatic(string $name, array $arguments): static
-    {
-        return static::fromKey($name);
-    }
-
-    public function getValue(): string|int|null
-    {
-        return $this->value;
-    }
-
-    public function getKey(): ?string
-    {
-        return $this->key;
-    }
-
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-
-    public function equals(?object $other): bool
-    {
-        if ($other === null) {
-            return false;
-        }
-
-        return $other::class === static::class
-            && method_exists($other, 'getValue')
-            && $other->getValue() === $this->value;
-    }
-
-    public function is(mixed $target): bool
-    {
-        if ($target instanceof static) {
-            return $this->equals($target);
-        }
-
-        return $target === $this->value || $target === $this->key;
-    }
-
-    public function isNot(mixed $target): bool
-    {
-        return ! $this->is($target);
-    }
-
-    /**
-     * @param  iterable<int, mixed>  $targets
-     */
-    public function in(iterable $targets): bool
-    {
-        foreach ($targets as $target) {
-            if ($this->is($target)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param  iterable<int, mixed>  $targets
-     */
-    public function notIn(iterable $targets): bool
-    {
-        return ! $this->in($targets);
     }
 
     /**
@@ -279,6 +201,84 @@ trait HasClassEnumBehavior
         return $opts + static::labels();
     }
 
+    /**
+     * Build an instance for the given backed value.
+     */
+    public function make(string|int $value): static
+    {
+        $constants = CasesCache::classConstants(static::class);
+        $key = array_search($value, $constants, true);
+        if ($key === false) {
+            throw new InvalidEnumeratorValueException(sprintf(
+                'Value "%s" is not a constant on %s.',
+                (string) $value,
+                static::class,
+            ));
+        }
+
+        $this->value = $value;
+        $this->key = $key;
+
+        return $this;
+    }
+
+    public function getValue(): string|int|null
+    {
+        return $this->value;
+    }
+
+    public function getKey(): ?string
+    {
+        return $this->key;
+    }
+
+    public function equals(?object $other): bool
+    {
+        if ($other === null) {
+            return false;
+        }
+
+        return $other::class === static::class
+            && method_exists($other, 'getValue')
+            && $other->getValue() === $this->value;
+    }
+
+    public function is(mixed $target): bool
+    {
+        if ($target instanceof static) {
+            return $this->equals($target);
+        }
+
+        return $target === $this->value || $target === $this->key;
+    }
+
+    public function isNot(mixed $target): bool
+    {
+        return ! $this->is($target);
+    }
+
+    /**
+     * @param iterable<int, mixed> $targets
+     */
+    public function in(iterable $targets): bool
+    {
+        foreach ($targets as $target) {
+            if ($this->is($target)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param iterable<int, mixed> $targets
+     */
+    public function notIn(iterable $targets): bool
+    {
+        return ! $this->in($targets);
+    }
+
     public function color(): ?string
     {
         return $this->resolvedAttribute('color');
@@ -342,7 +342,7 @@ trait HasClassEnumBehavior
     {
         return [
             'value' => $this->value,
-            'key' => $this->key,
+            'key'   => $this->key,
             'label' => $this->label(),
         ];
     }
@@ -370,12 +370,12 @@ trait HasClassEnumBehavior
         $bag = $this->attributeBag();
 
         return match ($field) {
-            'label' => $bag->label,
+            'label'       => $bag->label,
             'description' => $bag->description,
-            'color' => $bag->color,
-            'icon' => $bag->icon,
-            'help' => $bag->help,
-            default => null,
+            'color'       => $bag->color,
+            'icon'        => $bag->icon,
+            'help'        => $bag->help,
+            default       => null,
         };
     }
 

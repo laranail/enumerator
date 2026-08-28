@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
-use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\PureColorEnum;
+use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\LegacyStatusEnum;
 
 // Console commands — Artisan-runnable behaviour smoke tests.
 
@@ -72,7 +72,7 @@ it('laranail::enumerator.export emits JSON to stdout by default', function (): v
 it('laranail::enumerator.export --ts emits TypeScript', function (): void {
     Artisan::call('laranail::enumerator.export', [
         'class' => StatusEnum::class,
-        '--ts' => true,
+        '--ts'  => true,
     ]);
     $output = Artisan::output();
     expect($output)->toContain('export const StatusEnum = {');
@@ -163,7 +163,7 @@ it('laranail::enumerator.ide-helper accepts positional class args (overrides con
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
     $exit = Artisan::call('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
-        '--out' => $path,
+        '--out'   => $path,
     ]);
     expect($exit)->toBe(0);
 
@@ -178,7 +178,7 @@ it('laranail::enumerator.ide-helper emits factory + predicate methods for native
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
     Artisan::call('laranail::enumerator.ide-helper', [
         'classes' => [StatusEnum::class],
-        '--out' => $path,
+        '--out'   => $path,
     ]);
 
     $absolute = app()->basePath($path);
@@ -196,7 +196,7 @@ it('laranail::enumerator.ide-helper emits factory stubs for AbstractEnumeratorCl
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
     Artisan::call('laranail::enumerator.ide-helper', [
         'classes' => [LegacyStatusEnum::class],
-        '--out' => $path,
+        '--out'   => $path,
     ]);
 
     $absolute = app()->basePath($path);
@@ -237,7 +237,7 @@ it('laranail::enumerator.ide-helper skips non-enumerator candidates silently', f
     $path = 'enum-export-test-' . bin2hex(random_bytes(4)) . '.php';
     Artisan::call('laranail::enumerator.ide-helper', [
         'classes' => [stdClass::class, StatusEnum::class],
-        '--out' => $path,
+        '--out'   => $path,
     ]);
 
     $absolute = app()->basePath($path);

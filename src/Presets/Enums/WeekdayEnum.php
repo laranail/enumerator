@@ -6,10 +6,10 @@ namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
 use InvalidArgumentException;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasLifecycle;
 use Simtabi\Laranail\Enumerator\Concerns\HasOrder;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasLifecycle;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 /**
  * Days of the week. Sunday-first by default (US convention); ISO-8601 and
@@ -28,6 +28,16 @@ enum WeekdayEnum: int implements Enumerator
     #[Label('Thursday')] case Thursday = 5;
     #[Label('Friday')] case Friday = 6;
     #[Label('Saturday')] case Saturday = 7;
+
+    public static function fromNumber(int $n, string $convention = 'sunday-first'): self
+    {
+        return match ($convention) {
+            'sunday-first' => self::from($n),
+            'iso-8601'     => $n === 7 ? self::Sunday : self::from($n + 1),
+            'carbon'       => self::from($n + 1),
+            default        => throw new InvalidArgumentException(sprintf('Unknown convention "%s".', $convention)),
+        };
+    }
 
     /** Sunday-first: Sun=1..Sat=7. */
     public function number(): int
@@ -55,15 +65,5 @@ enum WeekdayEnum: int implements Enumerator
     public function isWeekday(): bool
     {
         return ! $this->isWeekend();
-    }
-
-    public static function fromNumber(int $n, string $convention = 'sunday-first'): self
-    {
-        return match ($convention) {
-            'sunday-first' => self::from($n),
-            'iso-8601' => $n === 7 ? self::Sunday : self::from($n + 1),
-            'carbon' => self::from($n + 1),
-            default => throw new InvalidArgumentException(sprintf('Unknown convention "%s".', $convention)),
-        };
     }
 }

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
-use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Icon;
+use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Order;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
 use Simtabi\Laranail\Enumerator\Concerns\HasOrder;
+use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 /**
  * The styling of a flash message or inline notice.
@@ -48,11 +48,11 @@ enum AlertTypeEnum: string implements Enumerator
     public static function groups(): array
     {
         return [
-            'positive' => [self::Success],
-            'negative' => [self::Error],
+            'positive'  => [self::Success],
+            'negative'  => [self::Error],
             'attention' => [self::Warning],
-            'neutral' => [self::Default, self::Info, self::Mono],
-            'branded' => [self::Primary],
+            'neutral'   => [self::Default, self::Info, self::Mono],
+            'branded'   => [self::Primary],
         ];
     }
 }

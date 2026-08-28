@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Enumerator\Concerns;
 
 use BackedEnum;
+use ValueError;
+use Simtabi\Laranail\Enumerator\Support\CasesCollection;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorNameException;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidEnumeratorValueException;
-use Simtabi\Laranail\Enumerator\Support\CasesCollection;
-use ValueError;
 
 /**
  * Static hydration helpers — fromName / tryFromName / fromMeta / tryFromMeta.

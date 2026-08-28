@@ -6,8 +6,8 @@ namespace Simtabi\Laranail\Enumerator\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 use Simtabi\Laranail\Enumerator\Support\EnumExporter;
+use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames;
 
 class ExportEnumeratorCommand extends Command
 {
@@ -27,9 +27,9 @@ class ExportEnumeratorCommand extends Command
         }
 
         $payload = match (true) {
-            (bool) $this->option('ts') => $exporter->toTypeScript($class),
+            (bool) $this->option('ts')  => $exporter->toTypeScript($class),
             (bool) $this->option('php') => $exporter->toPhpFile($class),
-            default => $exporter->toJson($class),
+            default                     => $exporter->toJson($class),
         };
 
         $out = (string) ($this->option('out') ?? '');

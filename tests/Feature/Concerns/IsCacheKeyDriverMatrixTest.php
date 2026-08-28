@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\DatabaseManager;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\DatabaseManager;
+use Illuminate\Database\Schema\Blueprint;
 use Simtabi\Laranail\Enumerator\Concerns\IsCacheKey;
 use Simtabi\Laranail\Enumerator\Contracts\Cacheable;
 

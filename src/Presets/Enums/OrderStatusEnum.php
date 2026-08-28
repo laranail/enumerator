@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Presets\Enums;
 
-use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Icon;
+use Simtabi\Laranail\Enumerator\Attributes\Color;
 use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Order;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
-use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
 use Simtabi\Laranail\Enumerator\Concerns\HasOrder;
-use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
-use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 use Simtabi\Laranail\Enumerator\Contracts\Stateful;
+use Simtabi\Laranail\Enumerator\Concerns\HasGrouping;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\Concerns\HasTransitions;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
 
 enum OrderStatusEnum: string implements Enumerator, Stateful
 {
@@ -38,13 +38,13 @@ enum OrderStatusEnum: string implements Enumerator, Stateful
     public static function transitions(): array
     {
         return [
-            self::Pending->value => [self::Confirmed, self::Cancelled],
-            self::Confirmed->value => [self::Processing, self::Cancelled],
+            self::Pending->value    => [self::Confirmed, self::Cancelled],
+            self::Confirmed->value  => [self::Processing, self::Cancelled],
             self::Processing->value => [self::Shipped, self::Cancelled],
-            self::Shipped->value => [self::Delivered, self::Refunded],
-            self::Delivered->value => [self::Refunded],
-            self::Cancelled->value => [],
-            self::Refunded->value => [],
+            self::Shipped->value    => [self::Delivered, self::Refunded],
+            self::Delivered->value  => [self::Refunded],
+            self::Cancelled->value  => [],
+            self::Refunded->value   => [],
         ];
     }
 
@@ -56,7 +56,7 @@ enum OrderStatusEnum: string implements Enumerator, Stateful
         return [
             'positive' => [self::Delivered],
             'negative' => [self::Cancelled, self::Refunded],
-            'pending' => [self::Pending, self::Confirmed, self::Processing, self::Shipped],
+            'pending'  => [self::Pending, self::Confirmed, self::Processing, self::Shipped],
             'terminal' => [self::Delivered, self::Cancelled, self::Refunded],
         ];
     }

@@ -6,8 +6,8 @@ namespace Simtabi\Laranail\Enumerator\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+use Simtabi\Laranail\Enumerator\AbstractEnumeratorClass;
 
 /**
  * Validate that an attribute is a valid case name on the enum (e.g.
@@ -17,7 +17,7 @@ use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
 class EnumName implements ValidationRule
 {
     /**
-     * @param  class-string<Enumerator>  $enumClass
+     * @param class-string<Enumerator> $enumClass
      */
     public function __construct(public readonly string $enumClass) {}
 
@@ -31,7 +31,7 @@ class EnumName implements ValidationRule
         if (! is_string($value)) {
             $fail(__('laranail-enumerator::enumerator.validation.invalid_name', [
                 'attribute' => $attribute,
-                'enum' => class_basename($this->enumClass),
+                'enum'      => class_basename($this->enumClass),
             ]));
 
             return;
@@ -64,7 +64,7 @@ class EnumName implements ValidationRule
     {
         $fail(__('laranail-enumerator::enumerator.validation.invalid_name', [
             'attribute' => $attribute,
-            'enum' => class_basename($this->enumClass),
+            'enum'      => class_basename($this->enumClass),
         ]));
     }
 }

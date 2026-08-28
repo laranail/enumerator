@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Support;
 
-use ReflectionAttribute;
-use ReflectionClass;
-use ReflectionClassConstant;
+use UnitEnum;
 use ReflectionEnum;
+use ReflectionClass;
+use ReflectionAttribute;
+use ReflectionException;
+use ReflectionClassConstant;
 use Simtabi\Laranail\Enumerator\Attributes\Bit;
-use Simtabi\Laranail\Enumerator\Attributes\Color;
-use Simtabi\Laranail\Enumerator\Attributes\CssClass;
-use Simtabi\Laranail\Enumerator\Attributes\Description;
 use Simtabi\Laranail\Enumerator\Attributes\Help;
 use Simtabi\Laranail\Enumerator\Attributes\Icon;
-use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Meta;
+use Simtabi\Laranail\Enumerator\Attributes\Color;
+use Simtabi\Laranail\Enumerator\Attributes\Label;
 use Simtabi\Laranail\Enumerator\Attributes\Order;
+use Simtabi\Laranail\Enumerator\Attributes\CssClass;
+use Simtabi\Laranail\Enumerator\Attributes\Description;
 use Simtabi\Laranail\Enumerator\Exceptions\InvalidBitmaskException;
-use UnitEnum;
 
 /**
  * Per-case attribute reflection cache. Reads every supported attribute off a
@@ -35,7 +36,7 @@ final class AttributesCache
     /**
      * Resolve the attribute bag for a native enum case OR a class-const value.
      *
-     * @param  UnitEnum|object  $caseOrInstance  enum case or AbstractEnumeratorClass instance
+     * @param UnitEnum|object $caseOrInstance enum case or AbstractEnumeratorClass instance
      */
     public static function for(object $caseOrInstance): AttributeBag
     {
@@ -69,7 +70,7 @@ final class AttributesCache
     /**
      * Resolve the class-level attribute bag (Description on the enum class).
      *
-     * @param  class-string  $class
+     * @param class-string $class
      */
     public static function forClass(string $class): AttributeBag
     {
@@ -112,7 +113,7 @@ final class AttributesCache
      * Run validation rules over every #[Bit] attribute on the given enum.
      * Memoised to once-per-class.
      *
-     * @param  class-string  $class
+     * @param class-string $class
      */
     public static function validateBits(string $class): void
     {
@@ -159,18 +160,6 @@ final class AttributesCache
         self::$memo[$key] = new AttributeBag;
     }
 
-    private static function assertPowerOfTwo(string $class, string $caseName, int $bit): void
-    {
-        if ($bit < 1 || ($bit & ($bit - 1)) !== 0) {
-            throw new InvalidBitmaskException(sprintf(
-                'Bit %d on %s::%s is not a positive power of two.',
-                $bit,
-                $class,
-                $caseName,
-            ));
-        }
-    }
-
     public static function flush(): void
     {
         self::$memo = [];
@@ -191,15 +180,15 @@ final class AttributesCache
                 continue;
             }
             $out[$key] = [
-                'label' => $bag->label,
+                'label'       => $bag->label,
                 'description' => $bag->description,
-                'color' => $bag->color,
-                'icon' => $bag->icon,
-                'help' => $bag->help,
-                'order' => $bag->order,
-                'bit' => $bag->bit,
-                'meta' => $bag->meta,
-                'cssClasses' => $bag->cssClasses,
+                'color'       => $bag->color,
+                'icon'        => $bag->icon,
+                'help'        => $bag->help,
+                'order'       => $bag->order,
+                'bit'         => $bag->bit,
+                'meta'        => $bag->meta,
+                'cssClasses'  => $bag->cssClasses,
             ];
         }
 
@@ -209,7 +198,7 @@ final class AttributesCache
     /**
      * Restore the in-memory memo from a `snapshot()` payload.
      *
-     * @param  array<string, array<string, mixed>>  $snapshot
+     * @param array<string, array<string, mixed>> $snapshot
      */
     public static function restore(array $snapshot): void
     {
@@ -233,6 +222,18 @@ final class AttributesCache
         }
     }
 
+    private static function assertPowerOfTwo(string $class, string $caseName, int $bit): void
+    {
+        if ($bit < 1 || ($bit & ($bit - 1)) !== 0) {
+            throw new InvalidBitmaskException(sprintf(
+                'Bit %d on %s::%s is not a positive power of two.',
+                $bit,
+                $class,
+                $caseName,
+            ));
+        }
+    }
+
     private static function readNativeEnumCase(UnitEnum $case): AttributeBag
     {
         $reflection = new ReflectionEnum($case::class);
@@ -246,14 +247,14 @@ final class AttributesCache
     }
 
     /**
-     * @param  class-string  $class
+     * @param class-string $class
      */
     private static function readClassConstant(string $class, string $constant): AttributeBag
     {
         $bag = new AttributeBag;
         try {
             $ref = new ReflectionClassConstant($class, $constant);
-        } catch (\ReflectionException) {
+        } catch (ReflectionException) {
             // No physical PHP constant exists for this case. Most likely
             // a `DynamicEnums\DatabaseBackedEnum` case loaded at runtime
             // via `CasesCache::setConstants()`. Return an empty bag so
@@ -273,15 +274,15 @@ final class AttributesCache
         $instance = $attribute->newInstance();
 
         match (true) {
-            $instance instanceof Label => $bag->label = $instance->label,
+            $instance instanceof Label       => $bag->label = $instance->label,
             $instance instanceof Description => $bag->description = $instance->description,
-            $instance instanceof Color => $bag->color = $instance->color,
-            $instance instanceof Icon => $bag->icon = $instance->icon,
-            $instance instanceof Help => $bag->help = $instance->help,
-            $instance instanceof Order => $bag->order = $instance->order,
-            $instance instanceof Bit => $bag->bit = $instance->bit,
-            $instance instanceof Meta => $bag->meta = array_merge($bag->meta ?? [], $instance->values),
-            $instance instanceof CssClass => $bag->cssClasses[$instance->framework]
+            $instance instanceof Color       => $bag->color = $instance->color,
+            $instance instanceof Icon        => $bag->icon = $instance->icon,
+            $instance instanceof Help        => $bag->help = $instance->help,
+            $instance instanceof Order       => $bag->order = $instance->order,
+            $instance instanceof Bit         => $bag->bit = $instance->bit,
+            $instance instanceof Meta        => $bag->meta = array_merge($bag->meta ?? [], $instance->values),
+            $instance instanceof CssClass    => $bag->cssClasses[$instance->framework]
                 = trim(($bag->cssClasses[$instance->framework] ?? '') . ' ' . $instance->classes),
             default => null,
         };

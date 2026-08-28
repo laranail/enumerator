@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Simtabi\Laranail\Enumerator\Casts\AsEnumeratorCollection;
+use Illuminate\Database\Eloquent\Model;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Casts\AsEnumeratorCollection;
 
 // AsEnumeratorCollection — JSON-column cast to/from a Collection of enums.
 

@@ -30,17 +30,6 @@ trait HasGrouping
         return [];
     }
 
-    public function inGroup(string $name): bool
-    {
-        foreach (static::groups()[$name] ?? [] as $member) {
-            if ($member === $this) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     /**
      * @return array<int, static>
      */
@@ -55,6 +44,17 @@ trait HasGrouping
     public static function groupedByType(): array
     {
         return static::groups();
+    }
+
+    public function inGroup(string $name): bool
+    {
+        foreach (static::groups()[$name] ?? [] as $member) {
+            if ($member === $this) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

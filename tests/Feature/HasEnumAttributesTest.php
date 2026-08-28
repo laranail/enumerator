@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
-use Simtabi\Laranail\Enumerator\Concerns\HasEnumAttributes;
+use Illuminate\Database\Eloquent\Model;
 use Simtabi\Laranail\Enumerator\Presets\Enums\StatusEnum;
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumAttributes;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Enums\RenderableStatusEnum;
 
 // In-memory Eloquent model under test. Schema created in the
@@ -14,16 +14,16 @@ class HasEnumAttributesTestModel extends Model
 {
     use HasEnumAttributes;
 
+    public $timestamps = false;
+
     protected $table = 'enum_attributes_test_models';
 
     protected $guarded = [];
 
-    public $timestamps = false;
-
     protected function enumAttributes(): array
     {
         return [
-            'status' => StatusEnum::class,
+            'status'   => StatusEnum::class,
             'rendered' => RenderableStatusEnum::class,
         ];
     }
@@ -110,11 +110,11 @@ it('respects consumer-declared casts when present', function (): void {
     {
         use HasEnumAttributes;
 
+        public $timestamps = false;
+
         protected $table = 'enum_attributes_test_models';
 
         protected $guarded = [];
-
-        public $timestamps = false;
 
         protected $casts = [
             'status' => 'string',  // consumer explicitly opts out of enum cast

@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Rector\Rector\AbstractRector;
-use Simtabi\Laranail\Enumerator\Rector\RectorClassConstEnumToEnumerator;
 use Simtabi\Laranail\Enumerator\Rector\Sets\MigrationSet;
 use Simtabi\Laranail\Enumerator\Tests\Fixtures\Rector\LegacyBase;
+use Simtabi\Laranail\Enumerator\Rector\RectorClassConstEnumToEnumerator;
 
 /**
  * Runs the codemod for real, over a fixture, through the Rector binary.
