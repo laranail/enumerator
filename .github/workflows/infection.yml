@@ -14,8 +14,6 @@ name: Infection
 # when the floor is set in infection.json5.
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
     paths:
@@ -24,12 +22,17 @@ on:
       - "infection.json5"
       - ".github/workflows/infection.yml"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
   mutation:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
