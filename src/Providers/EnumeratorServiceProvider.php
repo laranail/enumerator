@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Simtabi\Laranail\Enumerator\Rules\EnumValue;
+use Simtabi\Laranail\Enumerator\Rules\EnumIn;
+use Simtabi\Laranail\Enumerator\Rules\EnumName;
+use Simtabi\Laranail\Enumerator\Rules\EnumNotIn;
+use Simtabi\Laranail\Enumerator\Rules\EnumTransition;
 use Simtabi\Laranail\Enumerator\Support\LayeredCache;
 use Simtabi\Laranail\Enumerator\Blade\BladeDirectives;
 use Simtabi\Laranail\Enumerator\Blade\Components\Badge;
@@ -129,6 +133,7 @@ final class EnumeratorServiceProvider extends ServiceProvider
             $this->app->make(ReflectionCachePersistor::class)->restore();
         }
 
+        $this->registerValidationBridge();
         $this->bootResources();
         $this->bootViewComponents();
         $this->bootBladeDirectives();
@@ -241,4 +246,40 @@ final class EnumeratorServiceProvider extends ServiceProvider
             CacheClearEnumeratorCommand::class,
         ]);
     }
+
+    /**
+     * Surface this package's rules through `laranail/validation`, if it is here.
+     *
+     * One-way and guarded: validation is not a dependency -- this package stays
+     * on PHP ^8.3 and validation is ^8.5 -- so the bridge is skipped entirely
+     * when the class is absent, and the rules work exactly as before.
+     *
+     * Registration goes through `RuleRegistrar::register()` with a class-string
+     * and an alias factory, NOT through the container tag. The tag is resolved
+     * by `RuleRegistrar::classes()`, which instantiates each tagged service with
+     * no arguments -- and every rule here requires the enum class it validates
+     * against, so tagging them would either fail to construct or silently
+     * produce a rule bound to nothing.
+     *
+     * Deferred to `booted()` so the ordering of the two providers does not
+     * matter: by then validation has bound the registrar if it is installed.
+     */
+    private function registerValidationBridge(): void
+    {
+        $registrar = 'Simtabi\\Laranail\\Validation\\Support\\RuleRegistrar';
+
+        if (! class_exists($registrar)) {
+            return;
+        }
+
+        $this->app->booted(static function ($app) use ($registrar): void {
+            $app->make($registrar)
+                ->register(EnumValue::class, 'laranail_enum_value', static fn (array $p): object => new EnumValue(...$p))
+                ->register(EnumName::class, 'laranail_enum_name', static fn (array $p): object => new EnumName(...$p))
+                ->register(EnumIn::class, 'laranail_enum_in', static fn (array $p): object => new EnumIn(array_shift($p), $p))
+                ->register(EnumNotIn::class, 'laranail_enum_not_in', static fn (array $p): object => new EnumNotIn(array_shift($p), $p))
+                ->register(EnumTransition::class, 'laranail_enum_transition', static fn (array $p): object => new EnumTransition(...$p));
+        });
+    }
+
 }
