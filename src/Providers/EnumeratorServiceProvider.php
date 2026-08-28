@@ -7,10 +7,10 @@ namespace Simtabi\Laranail\Enumerator\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
-use Simtabi\Laranail\Enumerator\Rules\EnumValue;
 use Simtabi\Laranail\Enumerator\Rules\EnumIn;
 use Simtabi\Laranail\Enumerator\Rules\EnumName;
 use Simtabi\Laranail\Enumerator\Rules\EnumNotIn;
+use Simtabi\Laranail\Enumerator\Rules\EnumValue;
 use Simtabi\Laranail\Enumerator\Rules\EnumTransition;
 use Simtabi\Laranail\Enumerator\Support\LayeredCache;
 use Simtabi\Laranail\Enumerator\Blade\BladeDirectives;
@@ -281,5 +281,4 @@ final class EnumeratorServiceProvider extends ServiceProvider
                 ->register(EnumTransition::class, 'laranail_enum_transition', static fn (array $p): object => new EnumTransition(...$p));
         });
     }
-
 }
