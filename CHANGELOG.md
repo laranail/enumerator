@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+
+- **`expect()->toHaveBit()` now asserts the case is `Bitwise` before consulting the mask.** A
+  `UnitEnum` that does not implement the contract carries no `#[Bit]` attribute and can never be
+  in a `Bitmask`, so the expectation should fail rather than reach `Bitmask::has()` with a case
+  the mask cannot key on. larastan 3.11 is what surfaced it — 3.10 accepted the widened
+  `UnitEnum` where the generic wants `Bitwise&UnitEnum`.
+
 ### Changed
 
 - **Breaking.** The Livewire browser event is now `laranail-enumerator.transitioned` (was the
