@@ -76,10 +76,10 @@ final class Expectations
 
         expect()->extend('toHaveBit', function (UnitEnum $bit): mixed {
             $mask = $this->value;
-            // `Bitwise` is asserted, not assumed: Bitmask is declared over
-            // `Bitwise&UnitEnum`, so a case that does not implement Bitwise can
-            // never be in one. Checking it here says that out loud instead of
-            // handing `has()` an argument its own signature rejects.
+            // `$bit instanceof Bitwise` is a real precondition, not a cast to
+            // quiet the analyser: Bitmask is keyed on the #[Bit] attribute that
+            // the Bitwise contract carries, so a case without it can never be in
+            // a mask and the assertion should fail rather than reach has().
             Assert::assertTrue(
                 $mask instanceof Bitmask && $bit instanceof Bitwise && $mask->has($bit),
                 sprintf('Expected mask to contain %s.', $bit::class . '::' . $bit->name),
