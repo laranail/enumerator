@@ -43,7 +43,11 @@ afterEach(function (): void {
 
 it('auto-registers AsEnum casts for declared enum attributes', function (): void {
     $model = HasEnumAttributesTestModel::create(['status' => 'active', 'rendered' => 'active']);
-    $reloaded = HasEnumAttributesTestModel::find($model->id);
+    // firstOrFail() rather than find(): find() is typed TModel|Collection|null,
+    // so every property access on it is an error at this level. This also makes
+    // a missing row fail here, where it means something, instead of as a null
+    // property read two lines later.
+    $reloaded = HasEnumAttributesTestModel::query()->whereKey($model->id)->firstOrFail();
 
     expect($reloaded->status)->toBe(StatusEnum::Active);
     expect($reloaded->rendered)->toBe(RenderableStatusEnum::Active);
@@ -120,6 +124,13 @@ it('respects consumer-declared casts when present', function (): void {
             'status' => 'string',  // consumer explicitly opts out of enum cast
         ];
 
+        /**
+         * Spelled out rather than inherited from the trait: PHPStan resolves
+         * inherited PHPDoc through a named class but not through an anonymous
+         * one, so without this the override reads as a bare `array`.
+         *
+         * @return array<string, class-string>
+         */
         protected function enumAttributes(): array
         {
             return ['status' => StatusEnum::class];
