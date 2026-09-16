@@ -23,6 +23,13 @@ parameters:
     # a red build, so this is off; genuine errors still fail the gate.
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
+        # larastan validates a view-string literal against a skeleton app that never
+        # boots this package's provider, so a namespace registered at RUNTIME is
+        # invisible to it and every `view()` / `View::make()` call reads as an error.
+        # The views exist; the suite renders them. Broad on purpose -- the narrow
+        # forms missed `static method`, `Contracts\View\Factory` and the helper,
+        # each of which had to be discovered from a red run.
+        - '#expects view-string, string given#'
         # Pest 4's TestCall no longer statically exposes chained test helpers —
         # the laravel plugin's artisan(), the package's custom blade(), and
         # PHPUnit's markTestSkipped() are all resolved at runtime. (Tests run green;
@@ -123,6 +130,13 @@ parameters:
             paths:
                 - tests/Fixtures/Enums/*
                 - src/Presets/Enums/*
+                # HasEnumAttributes guards every Eloquent hook it touches with
+                # method_exists()/property_exists(), because the trait is also
+                # usable on plain classes that are not Models. Analysed in the
+                # context of a consumer that IS a Model, each guard reads as
+                # already narrowed -- which is the point of the guard, not a
+                # defect. Path-scoped to the one trait.
+                - src/Concerns/HasEnumAttributes.php
         # Same pattern for instanceof.alwaysTrue inside the fixture
         # context — the consumer's concrete-case union always
         # satisfies the trait's BackedEnum / UnitEnum guard. Inherent
