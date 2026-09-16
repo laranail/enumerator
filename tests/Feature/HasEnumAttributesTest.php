@@ -43,7 +43,11 @@ afterEach(function (): void {
 
 it('auto-registers AsEnum casts for declared enum attributes', function (): void {
     $model = HasEnumAttributesTestModel::create(['status' => 'active', 'rendered' => 'active']);
-    $reloaded = HasEnumAttributesTestModel::find($model->id);
+    // firstOrFail() rather than find(): find() is typed TModel|Collection|null,
+    // so every property access on it is an error at this level. This also makes
+    // a missing row fail here, where it means something, instead of as a null
+    // property read two lines later.
+    $reloaded = HasEnumAttributesTestModel::query()->whereKey($model->id)->firstOrFail();
 
     expect($reloaded->status)->toBe(StatusEnum::Active);
     expect($reloaded->rendered)->toBe(RenderableStatusEnum::Active);
