@@ -7,6 +7,7 @@ namespace Simtabi\Laranail\Enumerator\Modules\Pest;
 use UnitEnum;
 use PHPUnit\Framework\Assert;
 use Simtabi\Laranail\Enumerator\Helpers\Bitmask;
+use Simtabi\Laranail\Enumerator\Contracts\Bitwise;
 
 /**
  * Custom Pest expectations for enumerator cases.
@@ -75,8 +76,12 @@ final class Expectations
 
         expect()->extend('toHaveBit', function (UnitEnum $bit): mixed {
             $mask = $this->value;
+            // `Bitwise` is asserted, not assumed: Bitmask is declared over
+            // `Bitwise&UnitEnum`, so a case that does not implement Bitwise can
+            // never be in one. Checking it here says that out loud instead of
+            // handing `has()` an argument its own signature rejects.
             Assert::assertTrue(
-                $mask instanceof Bitmask && $mask->has($bit),
+                $mask instanceof Bitmask && $bit instanceof Bitwise && $mask->has($bit),
                 sprintf('Expected mask to contain %s.', $bit::class . '::' . $bit->name),
             );
 

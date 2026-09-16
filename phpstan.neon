@@ -130,6 +130,13 @@ parameters:
             paths:
                 - tests/Fixtures/Enums/*
                 - src/Presets/Enums/*
+                # HasEnumAttributes guards every Eloquent hook it touches with
+                # method_exists()/property_exists(), because the trait is also
+                # usable on plain classes that are not Models. Analysed in the
+                # context of a consumer that IS a Model, each guard reads as
+                # already narrowed -- which is the point of the guard, not a
+                # defect. Path-scoped to the one trait.
+                - src/Concerns/HasEnumAttributes.php
         # Same pattern for instanceof.alwaysTrue inside the fixture
         # context — the consumer's concrete-case union always
         # satisfies the trait's BackedEnum / UnitEnum guard. Inherent

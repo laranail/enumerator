@@ -124,6 +124,13 @@ it('respects consumer-declared casts when present', function (): void {
             'status' => 'string',  // consumer explicitly opts out of enum cast
         ];
 
+        /**
+         * Spelled out rather than inherited from the trait: PHPStan resolves
+         * inherited PHPDoc through a named class but not through an anonymous
+         * one, so without this the override reads as a bare `array`.
+         *
+         * @return array<string, class-string>
+         */
         protected function enumAttributes(): array
         {
             return ['status' => StatusEnum::class];
