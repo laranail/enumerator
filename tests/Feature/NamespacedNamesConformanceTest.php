@@ -21,6 +21,13 @@ use Simtabi\Laranail\Enumerator\Console\Concerns\SupportsNamespacedNames as Name
  * undeclared `$commandAliases` and fataled at boot for any command that used it without declaring
  * the property. This file is the same in every package that carries a copy, so a divergence fails
  * somewhere instead of shipping.
+ *
+ * @trait-copy-reason php-floor-below-console This package targets PHP ^8.3; depending on
+ *   `laranail/console` for the canonical trait would raise the floor to ^8.4.1. The slug
+ *   names a condition rather than a decision, so it expires on its own: raise this floor
+ *   to console's and `scripts/verify-trait-copies.py` in `laranail/package-tools` fails
+ *   until the copy goes. The reason that rotted here -- "db-tools documents an
+ *   independence invariant" -- could never fail, which is why it outlived the invariant.
  */
 function conformanceCommand(): SymfonyCommand
 {
