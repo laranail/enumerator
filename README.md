@@ -1,9 +1,10 @@
 # laranail/enumerator
 
-[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/enumerator.svg)](https://packagist.org/packages/laranail/enumerator)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PHP 8.3+](https://img.shields.io/badge/php-%5E8.3-8892bf.svg)](https://packagist.org/packages/laranail/enumerator)
 [![Laravel 13+](https://img.shields.io/badge/laravel-%5E13.0-ff2d20.svg)](https://packagist.org/packages/laranail/enumerator)
+
+`laranail/enumerator` is not published to Packagist, so there is no registry-version badge to show — see [Install](#install).
 
 > The integration-rich Laravel enum toolkit — native enums with declarative attributes, state machines, bitmasks, Blade components, Eloquent casts, validation rules, Filament/Nova/Livewire/Inertia integrations, optional Pest/OpenAPI/GraphQL modules, per-tenant overrides, and Rector migration codemods.
 
