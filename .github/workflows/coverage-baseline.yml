@@ -1,30 +1,15 @@
-name: Coverage
+name: Coverage baseline
 
-# Single-job workflow that runs Pest with coverage on PHP 8.3 (the
-# floor) and reports it three ways, none of which depends on Codecov:
-#
-#   - a job summary (total, the enforced floor, the lowest-covered
-#     files) written by scripts/coverage-summary.php from the Clover
-#     report phpunit.xml configures (coverage.xml);
-#   - coverage.xml kept as a short-retention artifact;
-#   - the Codecov upload, which is advisory.
-#
-# The floor is enforced by `pest --coverage --min` across the full
-# PHP 8.3 / 8.4 / 8.5 matrix in ci.yml (and by `composer test:coverage`
-# locally); the summary reads it from composer.json.
-#
-# Codecov: the upload runs with fail_ci_if_error: true so a rejection
-# (repository not activated, token mismatch) makes the step fail
-# instead of exiting 0 silently, and continue-on-error keeps that from
-# failing the job; the step after it turns the failure into a warning
-# annotation. Activating the repository on codecov.io and setting the
-# CODECOV_TOKEN secret is a maintainer task; until then every run
-# carries that warning. coverage-baseline.yml refreshes the baseline
-# for `main` weekly so PR comparisons have a base.
+# Refreshes the Codecov baseline for `main` so PR comparisons have a recent
+# base commit to diff against. Runs weekly (Monday 06:00 America/New_York,
+# 11:00 UTC) and on demand; scheduled runs always use the default branch.
+# It stands in for a `push: branches: [main]` trigger, which would re-run
+# coverage after every merge. Steps mirror coverage.yml, including the job
+# summary, the kept coverage.xml and the warning on a rejected upload.
 
 on:
-  pull_request:
-    branches: [main]
+  schedule:
+    - cron: '0 11 * * 1'
   workflow_dispatch:
 
 concurrency:
