@@ -1,15 +1,25 @@
 # Scripts
 
-Historical one-time scaffolds used while bootstrapping the package.
-**None of these run in CI**, and **none are part of the day-to-day
-contributor workflow**. They're kept in tree as an audit trail of how
-the initial v0.1.0 surface was generated.
+One CI helper, plus the historical one-time scaffolds used while
+bootstrapping the package.
+
+## CI helper
+
+| Script | Purpose | Run by |
+|---|---|---|
+| `coverage-summary.php` | Render the Clover report (`coverage.xml`) as a Markdown job summary: total line coverage, the floor from `composer.json`'s `test:coverage`, and the lowest-covered files. Reports only; `pest --coverage --min` enforces the floor. Run locally with `php scripts/coverage-summary.php` after `composer test:coverage`. | `coverage.yml`, `coverage-baseline.yml` |
+
+## Scaffolds
+
+**None of the scaffolds run in CI**, and **none are part of the
+day-to-day contributor workflow**. They're kept in tree as an audit
+trail of how the initial v0.1.0 surface was generated.
 
 If you want to know how a particular layer (docs, presets, framework
 view bundles) was first laid down, the matching script below is the
 authoritative answer.
 
-## What each script did
+### What each scaffold did
 
 | Script | Purpose | Last run (context) |
 |---|---|---|
@@ -21,7 +31,7 @@ authoritative answer.
 | `scaffold-presets.sh` | Generate the 26 preset enums under `src/Presets/Enums/`. The script emitted skeletons with `#[Label]` / `#[Color]` placeholders; each preset's case set was hand-curated afterwards. | Pre-v0.1.0 |
 | `refactor-facades.py` | Mass-rewrite raw function calls (`array_map`, `sprintf`-of-`trans`, etc.) to Laravel facade calls (`Arr::`, `Lang::`) where the facade reads more naturally. Conservative rewrite with manual review afterwards. | Pre-v0.1.0 |
 
-## Why they're kept
+### Why they're kept
 
 A future maintainer who wants to add (say) a sixth Blade framework
 variant has two options: hand-copy `_base/*` into the new directory, or
