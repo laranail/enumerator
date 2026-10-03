@@ -44,14 +44,14 @@ The component emits a tiny inline script that:
    have run:
 
    ```bash
-   php artisan vendor:publish --tag=enumerator-js
+   php artisan vendor:publish --tag=laranail::enumerator-js
    ```
 
    once. The bundle copies to `public/vendor/laranail-enumerator/alpine.min.js`.
 
 ## Configuration
 
-`config/enumerator.php`:
+`config/laranail/enumerator.php`:
 
 ```php
 'alpine' => [
@@ -81,7 +81,7 @@ the CDN entirely:
 ```
 
 The component loads directly from `local_url`. You still need to have
-run `vendor:publish --tag=enumerator-js`.
+run `vendor:publish --tag=laranail::enumerator-js`.
 
 ## Opt-out — you already ship Alpine
 
@@ -102,7 +102,7 @@ can't drift from the integrity hash without breaking the build.
 
 When a new Alpine version is released:
 
-1. Update `'version'` in `config/enumerator.php`.
+1. Update `'version'` in `config/laranail/enumerator.php`.
 2. Re-download the matching `cdn.min.js` to `resources/js/alpine.min.js`.
 3. Recompute the SHA-384 SRI and update `'integrity'`.
 4. CI passes → ship.

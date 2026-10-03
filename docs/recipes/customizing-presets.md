@@ -5,7 +5,7 @@ Two paths:
 **1. Override in config** (preferred, no code copy):
 
 ```php
-// config/enumerator.php
+// config/laranail/enumerator.php
 'overrides' => [
     Simtabi\Laranail\Enumerator\Presets\Enums\PriorityEnum::class => [
         'Critical' => ['color' => 'magenta', 'meta' => ['paging' => true]],
@@ -16,7 +16,7 @@ Two paths:
 **2. Copy and own** (when you need structural changes):
 
 ```bash
-php artisan vendor:publish --tag=enumerator-presets
+php artisan vendor:publish --tag=laranail::enumerator-presets
 # Files copied into app/Enums/ — edit freely.
 ```
 

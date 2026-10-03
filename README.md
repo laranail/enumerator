@@ -18,7 +18,25 @@ composer require laranail/enumerator
 
 The service provider is auto-discovered. One trait — `use HasEnumerator;` — composes labels, comparisons, bitmasks, grouping, lifecycle, transitions, and factories.
 
-## Quick start
+## Quick start guide and usage
+
+### Getting started
+
+Nothing to configure: the service provider registers itself through package discovery, and an enum
+needs only the trait. Optional steps, each for one feature:
+
+```bash
+# Scaffold an enum into App\Enums
+php artisan laranail::enumerator.make UserStatusEnum
+
+# The state-history table, only if you record transitions
+php artisan vendor:publish --tag=laranail::enumerator-migrations
+php artisan migrate
+```
+
+`ENUMERATOR_CSS` picks the Blade components' CSS framework (`plain` by default).
+
+### Usage
 
 ```php
 use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
@@ -36,6 +54,19 @@ enum UserStatusEnum: string implements Enumerator
 UserStatusEnum::Active->label();       // "Active"
 UserStatusEnum::Active->is('active');  // true
 UserStatusEnum::options();             // ['active' => 'Active', 'inactive' => 'Inactive', 'banned' => 'Banned']
+```
+
+```php
+use Simtabi\Laranail\Enumerator\Casts\AsEnum;
+
+protected function casts(): array
+{
+    return ['status' => AsEnum::of(UserStatusEnum::class)]; // null-aware + name lookup
+}
+```
+
+```blade
+<x-laranail-enumerator::badge :case="$user->status" />
 ```
 
 The full walkthrough is in [Getting started](docs/getting-started.md); everything else is in the [documentation index](#documentation).

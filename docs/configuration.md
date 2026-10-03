@@ -3,10 +3,10 @@
 Publish the config file:
 
 ```bash
-php artisan vendor:publish --tag=enumerator-config
+php artisan vendor:publish --tag=laranail::enumerator-config
 ```
 
-It writes to `config/enumerator.php`. Every key is documented inline.
+It writes to `config/laranail/enumerator.php`. Every key is documented inline.
 
 ## Keys
 
@@ -54,7 +54,7 @@ keys fully replace the attribute value.
 ## Environment variable surface
 
 Every env var the package reads. Defaults shown match
-`config/enumerator.php`. Set in `.env` (or your environment's
+`config/laranail/enumerator.php`. Set in `.env` (or your environment's
 equivalent) to override; an empty/missing value falls back to the
 default.
 
@@ -65,7 +65,7 @@ default.
 | `ENUMERATOR_ALPINE_VERSION` | `alpine.version` | `3.15.12` | Alpine.js semver (used by `<x-...::alpine-loader />`) |
 | `ENUMERATOR_ALPINE_INTEGRITY` | `alpine.integrity` | (pinned SHA-384) | SRI hash for the pinned bundle; empty disables SRI |
 | `ENUMERATOR_ALPINE_CDN` | `alpine.cdn_url` | jsDelivr | URL pattern with `{version}` placeholder |
-| `ENUMERATOR_ALPINE_LOCAL` | `alpine.local_url` | `/vendor/laranail-enumerator/alpine.min.js` | Local-fallback URL after `vendor:publish --tag=enumerator-js` |
+| `ENUMERATOR_ALPINE_LOCAL` | `alpine.local_url` | `/vendor/laranail-enumerator/alpine.min.js` | Local-fallback URL after `vendor:publish --tag=laranail::enumerator-js` |
 | `ENUMERATOR_TRANSLATOR` | `translator.adapter` | `null` | FQCN implementing `Contracts\TranslatorAdapter` |
 | `ENUMERATOR_TENANCY_DRIVER` | `tenancy.driver` | `null` | FQCN implementing `Contracts\TenantContext` |
 | `ENUMERATOR_MODULE_PEST` | `modules.pest` | `false` | `true` / `false` |

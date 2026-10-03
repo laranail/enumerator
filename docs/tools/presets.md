@@ -21,7 +21,7 @@ Twenty-seven native enum presets ship under `Simtabi\Laranail\Enumerator\Presets
 Use directly via `use`, or copy into your app:
 
 ```bash
-php artisan vendor:publish --tag=enumerator-presets
+php artisan vendor:publish --tag=laranail::enumerator-presets
 ```
 
 ## `AlertTypeEnum` vs `SeverityEnum`
