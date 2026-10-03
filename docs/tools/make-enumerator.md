@@ -13,7 +13,7 @@ php artisan laranail::enumerator.make Color --stub=pure
 Customize stubs:
 
 ```bash
-php artisan vendor:publish --tag=enumerator-stubs
+php artisan vendor:publish --tag=laranail::enumerator-stubs
 # edit resources/stubs/enumerator/enumerator.*.stub
 ```
 

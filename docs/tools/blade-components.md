@@ -33,7 +33,7 @@ Five framework variants ship per component (where styling applies):
 view bundle to customise:
 
 ```bash
-php artisan vendor:publish --tag=enumerator-views
+php artisan vendor:publish --tag=laranail::enumerator-views
 ```
 
 `<x-laranail-enumerator::alpine-loader>` is framework-agnostic.

@@ -16,35 +16,28 @@ Every asset bundle is independently publishable:
 
 ```bash
 # Config
-php artisan vendor:publish --tag=enumerator-config
+php artisan vendor:publish --tag=laranail::enumerator-config
 
 # Language strings
-php artisan vendor:publish --tag=enumerator-lang
+php artisan vendor:publish --tag=laranail::enumerator-lang
 
-# All Blade view bundles
-php artisan vendor:publish --tag=enumerator-views
-
-# A single CSS-framework view bundle
-php artisan vendor:publish --tag=enumerator-views-tailwind
-php artisan vendor:publish --tag=enumerator-views-daisyui
-php artisan vendor:publish --tag=enumerator-views-bootstrap
-php artisan vendor:publish --tag=enumerator-views-bulma
-php artisan vendor:publish --tag=enumerator-views-plain
+# Blade views (every CSS-framework bundle; there is no per-framework tag)
+php artisan vendor:publish --tag=laranail::enumerator-views
 
 # laranail::enumerator.make stubs (for customization)
-php artisan vendor:publish --tag=enumerator-stubs
+php artisan vendor:publish --tag=laranail::enumerator-stubs
 
 # State-history migration
-php artisan vendor:publish --tag=enumerator-migrations
+php artisan vendor:publish --tag=laranail::enumerator-migrations
 php artisan migrate
 
 # Preset enums copied into app/Enums/
-php artisan vendor:publish --tag=enumerator-presets
+php artisan vendor:publish --tag=laranail::enumerator-presets
 ```
 
 ## CSS framework
 
-Set the default CSS framework for Blade components in `config/enumerator.php`:
+Set the default CSS framework for Blade components in `config/laranail/enumerator.php`:
 
 ```php
 'css_framework' => 'tailwind',   // plain | tailwind | daisyui | bootstrap | bulma
