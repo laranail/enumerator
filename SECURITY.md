@@ -1,5 +1,7 @@
 # Security Policy
 
+Where this file is silent, the [laranail security policy](https://github.com/laranail/.github/blob/HEAD/SECURITY.md) applies.
+
 ## Reporting a vulnerability
 
 If you have discovered a security issue in `laranail/enumerator`, please
