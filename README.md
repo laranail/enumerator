@@ -18,6 +18,28 @@ composer require laranail/enumerator
 
 The service provider is auto-discovered. One trait — `use HasEnumerator;` — composes labels, comparisons, bitmasks, grouping, lifecycle, transitions, and factories.
 
+## Quick start
+
+```php
+use Simtabi\Laranail\Enumerator\Concerns\HasEnumeratorBehavior;
+use Simtabi\Laranail\Enumerator\Contracts\Enumerator;
+
+enum UserStatusEnum: string implements Enumerator
+{
+    use HasEnumeratorBehavior;
+
+    case Active   = 'active';
+    case Inactive = 'inactive';
+    case Banned   = 'banned';
+}
+
+UserStatusEnum::Active->label();       // "Active"
+UserStatusEnum::Active->is('active');  // true
+UserStatusEnum::options();             // ['active' => 'Active', 'inactive' => 'Inactive', 'banned' => 'Banned']
+```
+
+The full walkthrough is in [Getting started](docs/getting-started.md); everything else is in the [documentation index](#documentation).
+
 ## <a name="documentation"></a>Documentation
 
 Full documentation is at **[opensource.simtabi.com/documentation/laranail/enumerator](https://opensource.simtabi.com/documentation/laranail/enumerator/)** — getting started, the attribute metadata system, the consumer-side `HasEnumAttributes` trait, Eloquent, validation, Blade, state machines, bitmasks, translations, per-tenant overrides, database-backed dynamic enums, the optional integration modules, Artisan commands, TypeScript export, and migrating from BenSampo/Spatie enums.
