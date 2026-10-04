@@ -5,8 +5,7 @@ All notable changes to `laranail/enumerator` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
-
+## [Unreleased]
 ### Fixed
 
 - **`expect()->toHaveBit()` now asserts the case is `Bitwise` before consulting the mask.** A
@@ -147,3 +146,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   fixture and reads the transformed file.
 
 Initial public release.
+
+[Unreleased]: https://github.com/laranail/enumerator/compare/v0.1.0...HEAD
