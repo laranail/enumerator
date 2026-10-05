@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Enumerator\Providers;
 
+use Illuminate\View\FileViewFinder;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Translation\Translator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Simtabi\Laranail\Enumerator\Rules\EnumIn;
 use Simtabi\Laranail\Enumerator\Rules\EnumName;
 use Simtabi\Laranail\Enumerator\Rules\EnumNotIn;
 use Simtabi\Laranail\Enumerator\Rules\EnumValue;
+use Illuminate\Contracts\View\Factory as ViewFactory;
 use Simtabi\Laranail\Enumerator\Rules\EnumTransition;
 use Simtabi\Laranail\Enumerator\Support\LayeredCache;
 use Simtabi\Laranail\Enumerator\Blade\BladeDirectives;
@@ -152,6 +155,42 @@ final class EnumeratorServiceProvider extends ServiceProvider
 
         $viewNamespace = (string) ($this->app['config']->get('laranail.enumerator.view_namespace') ?? 'laranail-enumerator');
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', $viewNamespace);
+
+        $this->mirrorCanonicalNamespaces();
+    }
+
+    /**
+     * Answer to the canonical `laranail/enumerator::` as well as `laranail-enumerator::`.
+     *
+     * The slash form names the composer package, and its published overrides nest
+     * by vendor (`lang/vendor/laranail/enumerator`). The hyphen form stays: it is
+     * what a Blade tag can spell, and what every host written so far uses.
+     *
+     * This is `laranail/package-tools`' `NamespaceForms::mirror()`, kept local on
+     * purpose. package-tools requires PHP `^8.4.1`, and this package stays on
+     * `^8.3`; depending on it for one call would raise every consumer's floor.
+     * Views get the alias over the hyphen namespace's resolved paths, so a
+     * published override under `views/vendor/laranail-enumerator` answers to both.
+     * A custom `view_namespace` is the host's own name and gets nothing added.
+     */
+    private function mirrorCanonicalNamespaces(): void
+    {
+        $this->callAfterResolving('view', static function (ViewFactory $view): void {
+            $finder = $view->getFinder();
+            $hints = $finder instanceof FileViewFinder ? $finder->getHints() : [];
+
+            if (isset($hints['laranail-enumerator']) && ! isset($hints['laranail/enumerator'])) {
+                $view->addNamespace('laranail/enumerator', $hints['laranail-enumerator']);
+            }
+        });
+
+        $this->callAfterResolving('translator', static function (Translator $translator): void {
+            $namespaces = $translator->getLoader()->namespaces();
+
+            if (isset($namespaces['laranail-enumerator']) && ! isset($namespaces['laranail/enumerator'])) {
+                $translator->addNamespace('laranail/enumerator', $namespaces['laranail-enumerator']);
+            }
+        });
     }
 
     private function bootViewComponents(): void

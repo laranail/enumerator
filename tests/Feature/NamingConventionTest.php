@@ -84,6 +84,28 @@ it('registers its views under vendor and slug', function (): void {
         ->and($hints)->not->toContain('enumerator');
 });
 
+it('answers to the canonical vendor/package translation namespace as well', function (): void {
+    $namespaces = Lang::getLoader()->namespaces();
+
+    $canonical = (string) __('laranail/enumerator::enumerator.commands.cache.cached');
+
+    expect($namespaces)->toHaveKey('laranail/enumerator')
+        ->and($namespaces['laranail/enumerator'])->toBe($namespaces['laranail-enumerator'])
+        ->and($canonical)->toBe((string) __('laranail-enumerator::enumerator.commands.cache.cached'))
+        ->and($canonical)->not->toBe('laranail/enumerator::enumerator.commands.cache.cached');
+});
+
+it('answers to the canonical vendor/package view namespace over the same paths', function (): void {
+    $finder = ViewFacade::getFinder();
+    \assert($finder instanceof FileViewFinder);
+
+    $hints = $finder->getHints();
+
+    expect($hints)->toHaveKey('laranail/enumerator')
+        ->and($hints['laranail/enumerator'])->toBe($hints['laranail-enumerator'])
+        ->and(ViewFacade::exists('laranail/enumerator::components._base.alpine-loader'))->toBeTrue();
+});
+
 it('publishes under vendor-scoped tags and claims no bare one', function (): void {
     $groups = ServiceProvider::publishableGroups();
 

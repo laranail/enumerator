@@ -6,6 +6,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added
+
+- **Views and translations also answer to `laranail/enumerator::`**, the composer package name,
+  over the same files as `laranail-enumerator::`, which stays for Blade tags and existing hosts.
+  Registered locally rather than through `laranail/package-tools`' `NamespaceForms::mirror()`:
+  package-tools requires PHP `^8.4.1`, and this package stays on `^8.3`.
+- `illuminate/translation` is declared in `require`; the provider now uses its `Translator`
+  directly, and it had only arrived through `illuminate/validation`.
+
 ### Fixed
 
 - **`expect()->toHaveBit()` now asserts the case is `Bitwise` before consulting the mask.** A
@@ -45,6 +55,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Publish tags are vendor-scoped:** `enumerator-config` → `laranail::enumerator-config`, and the
   same for `-lang`, `-views`, `-stubs`, `-migrations`, `-js` and `-presets`.
 
+- **`rector/rector` moved from `suggest` to `require-dev`.** The migration rules
+  were previously unrunnable in this package's own suite, which is why the two
+  existing ones assert their shape rather than their output. The new rule is
+  covered by a test that runs the codemod through the Rector binary over a
+  fixture and reads the transformed file.
+
 ### Fixed
 
 - **`SupportsNamespacedNames` read `$commandAliases` without declaring it.** Any command that used
@@ -62,6 +78,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Guarded by `tests/Feature/NamingConventionTest.php`, which reads the console kernel, the config
   repository, `Lang::getLoader()->namespaces()`, the view finder and
   `ServiceProvider::publishableGroups()` on a booted app.
+
+- **`HasOrder::compareTo()` sorted an unorderable case first instead of last.**
+  It read a foreign case's position as `(int) $other->getOrder()`, and
+  `(int) null` is 0 — so an enum whose `getOrder()` could not answer sorted
+  before everything, the opposite of the documented default that a case with no
+  order sorts last (`PHP_INT_MAX`). It now narrows with `is_int()` and falls
+  back to the `#[Order]` attribute.
+
+  `method_exists()` proves the method is callable and says nothing about what it
+  returns, which is also why this showed up as 25 identical `cast.int` entries
+  in the PHPStan baseline — one per enum using the trait. Fixing the trait
+  cleared all of them.
 
 ### Added
 
@@ -122,28 +150,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   An enum with no translations registered is unaffected — the fallback chain
   still ends at the `#[Label]` attribute and then the humaniser.
-
-### Fixed
-
-- **`HasOrder::compareTo()` sorted an unorderable case first instead of last.**
-  It read a foreign case's position as `(int) $other->getOrder()`, and
-  `(int) null` is 0 — so an enum whose `getOrder()` could not answer sorted
-  before everything, the opposite of the documented default that a case with no
-  order sorts last (`PHP_INT_MAX`). It now narrows with `is_int()` and falls
-  back to the `#[Order]` attribute.
-
-  `method_exists()` proves the method is callable and says nothing about what it
-  returns, which is also why this showed up as 25 identical `cast.int` entries
-  in the PHPStan baseline — one per enum using the trait. Fixing the trait
-  cleared all of them.
-
-### Changed
-
-- **`rector/rector` moved from `suggest` to `require-dev`.** The migration rules
-  were previously unrunnable in this package's own suite, which is why the two
-  existing ones assert their shape rather than their output. The new rule is
-  covered by a test that runs the codemod through the Rector binary over a
-  fixture and reads the transformed file.
 
 Initial public release.
 
