@@ -27,6 +27,12 @@ It writes to `config/laranail/enumerator.php`. Every key is documented inline.
 | `magic.ambiguous_resolution` | `throw` | `throw` / `first` / `null` — how to behave when a magic call matches multiple cases. |
 | `overrides` | `[]` | Attribute overrides keyed by FQCN + case name. See below. |
 
+The package's own views and translations answer to two names. `laranail/enumerator::` is the
+canonical one for `view()`, `@include` and `__()`, since it names the composer package; for example
+`__('laranail/enumerator::enumerator.commands.cache.cached')`. `laranail-enumerator::` resolves the
+same files and stays: Blade tags cannot spell a slash, so `<x-laranail-enumerator::badge />` is the
+component form. A custom `view_namespace` is the host's own name and gets no second form.
+
 ## Overrides
 
 `config('enumerator.overrides')` lets you override metadata declared on a
