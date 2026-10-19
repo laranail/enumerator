@@ -26,6 +26,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **A guard now keeps literal credentials out of the tests**, and every generated credential's
+  purpose a single word. `tests/Architecture/NoLiteralCredentialsTest.php` is a local copy of
+  `laranail/package-tools` v0.1.10's `CredentialLiterals` rules, not a dependency: package-tools
+  requires PHP `^8.4.1`, and this package stays on `^8.3`.
 - **Breaking.** The Livewire browser event is now `laranail-enumerator.transitioned` (was the
   bare `enumerator.transitioned`) — browser event names share one global namespace, and a bare
   slug is a silent collision with any sibling. JS listeners update one string:
