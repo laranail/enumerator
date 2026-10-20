@@ -26,6 +26,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The local copy of package-tools' credential scanner now declares itself (`@credential-guard-copy
+  reason=php-floor-below-package-tools mirrors=0.1.10`), so package-tools' scheduled
+  `verify-credential-guard-copies.py` can fail it when the rules move on or the reason stops
+  holding.
 - **A guard now keeps literal credentials out of the tests**, and every generated credential's
   purpose a single word. `tests/Architecture/NoLiteralCredentialsTest.php` is a local copy of
   `laranail/package-tools` v0.1.10's `CredentialLiterals` rules, not a dependency: package-tools
