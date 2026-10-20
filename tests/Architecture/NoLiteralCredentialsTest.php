@@ -27,6 +27,8 @@ use RecursiveDirectoryIterator;
  *
  * Mark a deliberate fixed value on its line, or the line above, with
  * `// @credential-literal-exempt: <reason>`.
+ *
+ * @credential-guard-copy reason=php-floor-below-package-tools mirrors=0.1.10
  */
 final class NoLiteralCredentialsTest extends TestCase
 {
