@@ -1,26 +1,19 @@
 name: Coverage
 
 # Single-job workflow that runs Pest with coverage on PHP 8.3 (the
-# floor) and reports it three ways, none of which depends on Codecov:
+# floor) and reports it two ways:
 #
 #   - a job summary (total, the enforced floor, the lowest-covered
 #     files) written by scripts/coverage-summary.php from the Clover
 #     report phpunit.xml configures (coverage.xml);
-#   - coverage.xml kept as a short-retention artifact;
-#   - the Codecov upload, which is advisory.
+#   - coverage.xml kept as a short-retention artifact.
 #
 # The floor is enforced by `pest --coverage --min` across the full
 # PHP 8.3 / 8.4 / 8.5 matrix in ci.yml (and by `composer test:coverage`
 # locally); the summary reads it from composer.json.
 #
-# Codecov: the upload runs with fail_ci_if_error: true so a rejection
-# (repository not activated, token mismatch) makes the step fail
-# instead of exiting 0 silently, and continue-on-error keeps that from
-# failing the job; the step after it turns the failure into a warning
-# annotation. Activating the repository on codecov.io and setting the
-# CODECOV_TOKEN secret is a maintainer task; until then every run
-# carries that warning. coverage-baseline.yml refreshes the baseline
-# for `main` weekly so PR comparisons have a base.
+# coverage-baseline.yml runs the same steps against `main` weekly, so
+# drift after a merge stays visible without a push trigger.
 
 on:
   pull_request:
@@ -86,27 +79,3 @@ jobs:
           name: coverage-xml-${{ github.sha }}
           path: coverage.xml
           retention-days: 7
-
-      - name: Upload coverage to Codecov
-        id: codecov
-        # Advisory: the gate is `pest --min` in ci.yml, and the job summary
-        # shows the numbers. fail_ci_if_error makes the CLI exit non-zero
-        # when Codecov answers HTTP >= 400 (with it off, the action always
-        # exits 0 and a rejection is silent); continue-on-error keeps that
-        # from failing the job, and the next step makes it a visible warning.
-        continue-on-error: true
-        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
-        with:
-          files: ./coverage.xml
-          disable_search: true
-          flags: unittests
-          name: codecov-laranail-enumerator
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
-
-      - name: Report a rejected Codecov upload
-        if: steps.codecov.outcome == 'failure'
-        run: |
-          msg="Codecov rejected the upload (repository not activated or token mismatch) — coverage is still enforced by pest --min in ci.yml and shown in the job summary. See the 'Upload coverage to Codecov' step log for the server response."
-          echo "::warning title=Codecov upload failed::$msg"
-          printf '\n> [!WARNING]\n> %s\n' "$msg" >> "$GITHUB_STEP_SUMMARY"

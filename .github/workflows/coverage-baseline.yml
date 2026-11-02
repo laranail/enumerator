@@ -1,11 +1,11 @@
 name: Coverage baseline
 
-# Refreshes the Codecov baseline for `main` so PR comparisons have a recent
-# base commit to diff against. Runs weekly (Monday 06:00 America/New_York,
+# Runs coverage against `main` so drift after a merge stays visible.
+# Runs weekly (Monday 06:00 America/New_York,
 # 11:00 UTC) and on demand; scheduled runs always use the default branch.
 # It stands in for a `push: branches: [main]` trigger, which would re-run
 # coverage after every merge. Steps mirror coverage.yml, including the job
-# summary, the kept coverage.xml and the warning on a rejected upload.
+# summary and the kept coverage.xml.
 
 on:
   schedule:
@@ -71,27 +71,3 @@ jobs:
           name: coverage-xml-${{ github.sha }}
           path: coverage.xml
           retention-days: 7
-
-      - name: Upload coverage to Codecov
-        id: codecov
-        # Advisory: the gate is `pest --min` in ci.yml, and the job summary
-        # shows the numbers. fail_ci_if_error makes the CLI exit non-zero
-        # when Codecov answers HTTP >= 400 (with it off, the action always
-        # exits 0 and a rejection is silent); continue-on-error keeps that
-        # from failing the job, and the next step makes it a visible warning.
-        continue-on-error: true
-        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
-        with:
-          files: ./coverage.xml
-          disable_search: true
-          flags: unittests
-          name: codecov-laranail-enumerator
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
-
-      - name: Report a rejected Codecov upload
-        if: steps.codecov.outcome == 'failure'
-        run: |
-          msg="Codecov rejected the upload (repository not activated or token mismatch) — coverage is still enforced by pest --min in ci.yml and shown in the job summary. See the 'Upload coverage to Codecov' step log for the server response."
-          echo "::warning title=Codecov upload failed::$msg"
-          printf '\n> [!WARNING]\n> %s\n' "$msg" >> "$GITHUB_STEP_SUMMARY"
