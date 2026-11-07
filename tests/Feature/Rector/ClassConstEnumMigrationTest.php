@@ -42,6 +42,17 @@ function makeRectorWorkspace(?string $config = null): string
 
     // Nowdoc, not heredoc: the config is full of namespace separators and a
     // heredoc would collapse every one of them.
+    //
+    // `withoutParallel()` is load-bearing. Rector's parallel runner opens a TCP
+    // server on 127.0.0.1, and an environment that forbids binding a local port
+    // fails with `Failed to listen on "tcp://127.0.0.1:0": Operation not
+    // permitted (EPERM)` out of TcpServer.php -- before the rule runs at all.
+    // The exit code is 1, so runCodemod() reports "Rector failed" and the
+    // codemod looks broken when nothing about it was exercised. These tests
+    // assert the rule's OUTPUT on one file, which single-process produces
+    // identically; `process` has no --no-parallel flag, so the config is the
+    // only lever. Proven by removing both calls: 9 of 11 go red with that
+    // message, and green again when restored.
     file_put_contents($workspace . '/rector.php', $config ?? <<<'PHP'
 <?php
 
@@ -51,6 +62,7 @@ use Rector\Config\RectorConfig;
 use Simtabi\Laranail\Enumerator\Rector\RectorClassConstEnumToEnumerator;
 
 return RectorConfig::configure()
+    ->withoutParallel()
     ->withPaths([__DIR__ . '/src'])
     ->withConfiguredRule(RectorClassConstEnumToEnumerator::class, [
         'Simtabi\Laranail\Enumerator\Tests\Fixtures\Rector\LegacyBase',
@@ -211,6 +223,7 @@ use Rector\Config\RectorConfig;
 use Simtabi\Laranail\Enumerator\Rector\RectorClassConstEnumToEnumerator;
 
 return RectorConfig::configure()
+    ->withoutParallel()
     ->withPaths([__DIR__ . '/src'])
     ->withConfiguredRule(RectorClassConstEnumToEnumerator::class, []);
 PHP);
